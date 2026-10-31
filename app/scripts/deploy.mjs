@@ -95,7 +95,7 @@ if (target === 'pages') {
   cpSync(out, tmp, { recursive: true })
   run('git', ['init', '-q', '-b', branch], tmp)
   run('git', ['add', '-A'], tmp)
-  run('git', ['commit', '-q', '-m', `Site ${new Date().toISOString().slice(0, 10)}`], tmp)
+  run('git', ['commit', '-q', '-m', `Site-${new Date().toISOString().slice(0, 10)}`], tmp)
   run('git', ['push', '--force', remote, `${branch}:${branch}`], tmp)
   rmSync(tmp, { recursive: true, force: true })
   console.log(`Pushed to ${branch}. Enable Pages for that branch in the repository settings.`)
