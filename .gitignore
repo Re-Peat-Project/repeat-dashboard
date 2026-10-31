@@ -1,0 +1,9 @@
+node_modules/
+dist/
+app/public/data/
+__pycache__/
+*.log
+app/public/maplibre/
+deploy/
+app/tests/screenshots/
+app/investigation-desktop.png

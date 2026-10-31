@@ -1,0 +1,10 @@
+# The site is built and pruned locally (app/scripts/deploy.mjs) and uploaded with the Netlify CLI,
+# because the data comes from the project workspace and cannot be rebuilt on Netlify.
+[build]
+  publish = "deploy"
+
+# Tiles and tables are read with range requests; Netlify serves them with Accept-Ranges.
+[[headers]]
+  for = "/data/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"

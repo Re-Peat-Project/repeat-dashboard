@@ -1,0 +1,132 @@
+# Team runs added to the dashboard as DEM variants (build_team.py). Paths are relative to ${REPEAT_KHG}/from_team/.
+# Each variant is a whole-KHG run of the earlier method: every sub-KHG processed, own sub-KHG polygons, no prioritisation tables.
+# A variant key is <dem>_full. The layer files map a dashboard layer id to {path, layer}; a layer without a file is not shown.
+# dem_basis says how the DEM was identified: "named" when the delivery names it, "cell size" when it is inferred from the cell size.
+
+variants:
+  demnas_full: {en: "DEMNAS (full sub-KHG)", id: "DEMNAS (seluruh sub-KHG)"}
+  lidar_full: {en: "LiDAR (full sub-KHG)", id: "LiDAR (seluruh sub-KHG)"}
+  worlddem_full: {en: "WorldDEM 12 m (full sub-KHG)", id: "WorldDEM 12 m (seluruh sub-KHG)"}
+  brgmcontour_full: {en: "BRGM contour DTM (full sub-KHG)", id: "DTM kontur BRGM (seluruh sub-KHG)"}
+
+khg:
+  "15-16.01":    # Air Hitam Laut - Buntu Kecil
+    lidar_full:
+      dtm: "KHG Air Hitam Laut - Buntu Kecil/dem_lidar_25m.tif"
+      units: {path: "KHG Air Hitam Laut - Buntu Kecil/batas_subkhg.gpkg", layer: subkhg_prioritas}
+      sekat_proposed: {path: "KHG Air Hitam Laut - Buntu Kecil/sekat.gpkg", layer: sekat_terpilih}
+      dem_basis: named
+  "15.05-07-10.01":    # Mendahara - Batanghari
+    lidar_full:
+      dtm: "KHG Mendahara - Batanghari/dem_lidar_25m.tif"
+      units: {path: "KHG Mendahara - Batanghari/batas_subkhg.gpkg"}
+      sekat_proposed: {path: "KHG Mendahara - Batanghari/sekat.gpkg", layer: sekat_terpilih}
+      dem_basis: named
+  "61.12-71.01":    # Pungurbesar - Kapuas
+    demnas_full:
+      dtm: "KHG Punggurbesar-Kapuas DEMNAS/dem_demnas_30m.tif"
+      units: {path: "KHG Punggurbesar-Kapuas DEMNAS/batas_subkhg.gpkg"}
+      sekat_proposed: {path: "KHG Punggurbesar-Kapuas DEMNAS/sekat.gpkg", layer: sekat_terpilih}
+      dem_basis: named
+    lidar_full:
+      dtm: "KHG Punggurbesar-Kapuas LiDAR/dtm_brgm_10m.tif"
+      units: {path: "KHG Punggurbesar-Kapuas LiDAR/batas_subkhg.gpkg"}
+      sekat_proposed: {path: "KHG Punggurbesar-Kapuas LiDAR/sekat.gpkg", layer: sekat_terpilih}
+      dem_basis: named
+  "14.03.02":    # Pulau Bengkalis
+    worlddem_full:
+      dtm: "KHG BENGKALIS/DTM_BENGKALIS_WD.tif"
+      units: {path: "KHG BENGKALIS/pump_run.gpkg", layer: subkhg_selected}
+      sekat_proposed: {path: "KHG BENGKALIS/pump_run.gpkg", layer: sekat_proposed}
+      sekat_existing: {path: "KHG BENGKALIS/pump_run.gpkg", layer: sekat_existing_assessed}
+      canal_segments: {path: "KHG BENGKALIS/pump_run.gpkg", layer: canal_segments}
+      dem_basis: named      # file suffix WD
+  "63.07-08-11.01":    # Balangan - Batangalai
+    worlddem_full:
+      dtm: "KHG Balangan Batangalai/DTM_WORLDDEM.tif"
+      units: {path: "KHG Balangan Batangalai/pump_run.gpkg", layer: subkhg_selected}
+      sekat_proposed: {path: "KHG Balangan Batangalai/pump_run.gpkg", layer: sekat_proposed}
+      sekat_existing: {path: "KHG Balangan Batangalai/pump_run.gpkg", layer: sekat_existing_assessed}
+      canal_segments: {path: "KHG Balangan Batangalai/pump_run.gpkg", layer: canal_segments}
+      dem_basis: named
+  "62.03-04.01":    # Kapuas - Barito
+    brgmcontour_full:
+      dtm: "KHG KAPUAS BARITO/DTM_KAPUASBARITO_KONTURBRGM.tif"
+      units: {path: "KHG KAPUAS BARITO/kapuasbarito.gpkg", layer: subkhg_selected}
+      sekat_proposed: {path: "KHG KAPUAS BARITO/kapuasbarito.gpkg", layer: sekat_proposed}
+      canal_segments: {path: "KHG KAPUAS BARITO/kapuasbarito.gpkg", layer: canal_segments}
+      dem_basis: named      # file name KONTURBRGM
+  "62.11-14.02":    # Kahayan - Sebangau
+    demnas_full:
+      dtm: "HASIL KAHAYAN SEBANGAU DEMNAS/DTM_DEMNASSMOOTING_KAHAYANSEBANGAU.tif"
+      units: {path: "HASIL KAHAYAN SEBANGAU DEMNAS/pump_run3.gpkg", layer: subkhg_selected}
+      sekat_proposed: {path: "HASIL KAHAYAN SEBANGAU DEMNAS/pump_run3.gpkg", layer: sekat_proposed}
+      sekat_existing: {path: "HASIL KAHAYAN SEBANGAU DEMNAS/pump_run3.gpkg", layer: sekat_existing_assessed}
+      canal_segments: {path: "HASIL KAHAYAN SEBANGAU DEMNAS/pump_run3.gpkg", layer: canal_segments}
+      dem_basis: named
+    worlddem_full:
+      dtm: "KHG Kahayan-Sebangau/DTM_KHSB_49S.tif"
+      units: {path: "KHG Kahayan-Sebangau/unit_prioritas.gpkg"}
+      sekat_proposed: {path: "KHG Kahayan-Sebangau/kahseb_coba6_sekat_proposed.shp"}
+      dem_basis: cell size   # 12.31 m, the WorldDEM cell of the other deliveries; the README names no DEM
+  "61.02-08.01":    # Mempawah - Peniti
+    worlddem_full:
+      dtm: "KHG Menpawah Peniti/DTM world dem.tif"
+      units: {path: "KHG Menpawah Peniti/pump_run.gpkg", layer: subkhg_selected}
+      sekat_proposed: {path: "KHG Menpawah Peniti/pump_run.gpkg", layer: sekat_proposed}
+      canal_segments: {path: "KHG Menpawah Peniti/pump_run.gpkg", layer: canal_segments}
+      dem_basis: named
+    demnas_full:
+      dtm: "KHG Menpawah Peniti DEMNAS/dtm smooth.tif"
+      units: {path: "KHG Menpawah Peniti DEMNAS/pump_run_demnas.gpkg", layer: subkhg_selected}
+      sekat_proposed: {path: "KHG Menpawah Peniti DEMNAS/pump_run_demnas.gpkg", layer: sekat_proposed}
+      canal_segments: {path: "KHG Menpawah Peniti DEMNAS/pump_run_demnas.gpkg", layer: canal_segments}
+      dem_basis: named
+  "16.02.01":    # Sugihan - Lumpur
+    demnas_full:
+      units: {path: "KHG Sugihan Lumpur DEMNAS/pump_run_demnas_sugihan lumpur.gpkg", layer: subkhg_selected}
+      sekat_proposed: {path: "KHG Sugihan Lumpur DEMNAS/pump_run_demnas_sugihan lumpur.gpkg", layer: sekat_proposed}
+      canal_segments: {path: "KHG Sugihan Lumpur DEMNAS/pump_run_demnas_sugihan lumpur.gpkg", layer: canal_segments}
+      dem_basis: named
+    worlddem_full:
+      dtm: "KHG Sugihan Lumpur WorldDEM 12m/DTM_worlddem_12m.tif"
+      units: {path: "KHG Sugihan Lumpur WorldDEM 12m/pump_run.gpkg", layer: subkhg_selected}
+      sekat_proposed: {path: "KHG Sugihan Lumpur WorldDEM 12m/pump_run.gpkg", layer: sekat_proposed}
+      sekat_existing: {path: "KHG Sugihan Lumpur WorldDEM 12m/pump_run.gpkg", layer: sekat_existing_assessed}
+      canal_segments: {path: "KHG Sugihan Lumpur WorldDEM 12m/pump_run.gpkg", layer: canal_segments}
+      dem_basis: named
+  "16.02-07.01":    # Saleh - Sugihan (3 sub-KHG; the LiDAR run covers S02 and S03)
+    lidar_full:
+      dtm: "KHG Sugihan Saleh/04_pompa_A_LiDAR20m_S02_S03/pump_work/inputs_clipped/dtm.tif"
+      units: {path: "KHG Sugihan Saleh/04_pompa_A_LiDAR20m_S02_S03/pump.gpkg", layer: subkhg_selected}
+      sekat_proposed: {path: "KHG Sugihan Saleh/04_pompa_A_LiDAR20m_S02_S03/pump.gpkg", layer: sekat_proposed}
+      canal_segments: {path: "KHG Sugihan Saleh/04_pompa_A_LiDAR20m_S02_S03/pump.gpkg", layer: canal_segments}
+      dem_basis: named
+    worlddem_full:
+      dtm: "KHG Sugihan Saleh/05_pompa_B_WorldDEM12m_S01_S02_S03/pump_work/inputs_clipped/dtm.tif"
+      units: {path: "KHG Sugihan Saleh/05_pompa_B_WorldDEM12m_S01_S02_S03/pump.gpkg", layer: subkhg_selected}
+      sekat_proposed: {path: "KHG Sugihan Saleh/05_pompa_B_WorldDEM12m_S01_S02_S03/pump.gpkg", layer: sekat_proposed}
+      sekat_existing: {path: "KHG Sugihan Saleh/05_pompa_B_WorldDEM12m_S01_S02_S03/pump.gpkg", layer: sekat_existing_assessed}
+      canal_segments: {path: "KHG Sugihan Saleh/05_pompa_B_WorldDEM12m_S01_S02_S03/pump.gpkg", layer: canal_segments}
+      dem_basis: named
+  "14.10.01":    # Pulau Padang (11 sub-KHG)
+    demnas_full:
+      units: {path: "P Padang DEMNAS/07_DEMNAS_11subKHG_tahap1-7/pump.gpkg", layer: subkhg_selected}
+      sekat_proposed: {path: "P Padang DEMNAS/07_DEMNAS_11subKHG_tahap1-7/pump.gpkg", layer: sekat_proposed}
+      sekat_existing: {path: "P Padang DEMNAS/07_DEMNAS_11subKHG_tahap1-7/pump.gpkg", layer: sekat_existing_assessed}
+      canal_segments: {path: "P Padang DEMNAS/07_DEMNAS_11subKHG_tahap1-7/pump.gpkg", layer: canal_segments}
+      dem_basis: named
+    lidar_full:
+      units: {path: "P Padang LiDAR/05_LiDAR_11subKHG_tahap1-7/pump.gpkg", layer: subkhg_selected}
+      sekat_proposed: {path: "P Padang LiDAR/05_LiDAR_11subKHG_tahap1-7/pump.gpkg", layer: sekat_proposed}
+      sekat_existing: {path: "P Padang LiDAR/05_LiDAR_11subKHG_tahap1-7/pump.gpkg", layer: sekat_existing_assessed}
+      canal_segments: {path: "P Padang LiDAR/05_LiDAR_11subKHG_tahap1-7/pump.gpkg", layer: canal_segments}
+      dem_basis: named
+  "91.18-17.01":    # Buru Mappi - Buru Obaa
+    demnas_full:
+      dtm: "Buru Mappi - buru obaa/dtm_clipped_fix.tif"
+      units: {path: "Buru Mappi - buru obaa/pump.gpkg", layer: subkhg_selected}
+      sekat_proposed: {path: "Buru Mappi - buru obaa/pump.gpkg", layer: sekat_proposed}
+      sekat_existing: {path: "Buru Mappi - buru obaa/pump.gpkg", layer: sekat_existing_assessed}
+      canal_segments: {path: "Buru Mappi - buru obaa/pump.gpkg", layer: canal_segments}
+      dem_basis: cell size   # 8 m, the DEMNAS cell; the delivery names no DEM

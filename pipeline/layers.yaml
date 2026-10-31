@@ -1,0 +1,120 @@
+# Layer registry for build_khg.py. Paths are relative to the KHG folder (_khg/<code>_<name>/).
+# {dem} is replaced by each DEM variant that has run for the KHG (lidar, deltadtm, demnas).
+# keep: list of attribute columns to carry into the tiles; omitted = all columns.
+# geometry types follow the source; everything is written in EPSG:4326.
+
+vector:
+  - id: khg
+    group: boundary
+    src: 00_inputs/khg.gpkg
+    label: {en: "KHG boundary", id: "Batas KHG"}
+    source: SK.129/MENLHK/2017 KHG boundaries
+  - id: canals
+    group: hydrology
+    src: 00_inputs/canals.gpkg
+    keep: [KODE_KANAL, KET_KANAL, Length__KM]
+    label: {en: "Canals (primary, secondary, tertiary)", id: "Kanal (primer, sekunder, tersier)"}
+    source: KLHK canal inventory by KODE_KANAL
+  - id: rivers
+    group: hydrology
+    src: 00_inputs/rivers.gpkg
+    label: {en: "Rivers", id: "Sungai"}
+    source: RBI rivers
+  - id: blocks
+    group: interventions
+    src: 00_inputs/blocks.gpkg
+    keep: [Tipe, Jenis, Bahan, Tahun, Kegiatan, Source, KHG, DESA_2023, KEC_2023, KABKO_2023, KETERANGAN]   # holder and licence fields (PERUSAHAAN, PERIJINAN, KODE_PT) are left out
+    label: {en: "Existing canal blocks", id: "Sekat kanal eksisting"}
+    source: BRGM hydrological infrastructure
+  - id: brgm_infra
+    group: interventions
+    src: 00_inputs/national/infrastruktur_hidrologis_existing_BRGM_Indonesia.gpkg
+    keep: [Tipe, Jenis, Bahan, Tahun, Kegiatan, Source, KHG, DESA_2023, KEC_2023, KABKO_2023, KETERANGAN]   # holder and licence fields (PERUSAHAAN, PERIJINAN, KODE_PT) are left out
+    label: {en: "BRGM hydrological infrastructure", id: "Infrastruktur hidrologis BRGM"}
+    source: BlueBook 2026 PPEG BRGM
+  - id: feg
+    group: land
+    src: 00_inputs/feg_protected.gpkg
+    label: {en: "Peat ecosystem function (FEG)", id: "Fungsi ekosistem gambut (FEG)"}
+    source: KLHK FEG Indonesia 2017
+  - id: forest
+    group: land
+    national: "${REPEAT_DATA}/landstatus/KWSHUTAN_AR_250K_2023_Transcripted.gpkg"   # clipped to the KHG plus about 5 km
+    keep: [Fungsi_KWS]
+    label: {en: "Forest area function (Kawasan Hutan)", id: "Fungsi kawasan hutan"}
+    source: KLHK forest area function 2023 (1:250,000)
+  - id: licences
+    group: land
+    src: 00_inputs/national/izin_usaha_2025.gpkg
+    keep: [IZIN_USAHA, KEG_USAHA]   # holder names (PERUSAHAAN) are left out unless build_khg.py --holder-names is given
+    holder_field: PERUSAHAAN
+    label: {en: "Business licences 2025", id: "Izin usaha 2025"}
+    source: KLHK business licences 2025
+  - id: burn
+    maxzoom: 13
+    group: fire
+    src: 00_inputs/national/burnt_area_2015_2026_Indonesia.gpkg
+    label: {en: "Burnt area 2015-2026", id: "Area terbakar 2015-2026"}
+    source: KLHK burnt area, BA_<year> flags
+  - id: target_villages
+    group: land
+    src: 00_inputs/national/desa_target_pemulihan_ekosistem_gambut.gpkg
+    label: {en: "Target villages for peat restoration", id: "Desa target pemulihan gambut"}
+    source: BlueBook 2026 target villages
+  - id: dmpg
+    maxzoom: 13
+    group: land
+    src: 00_inputs/national/dpg/dpg_villages_boundaries.gpkg
+    label: {en: "DMPG villages", id: "Desa DMPG"}
+    source: SiTMAT national DMPG village layer, KLH 2023 boundaries
+  # DEM dependent
+  - id: subkhg_units
+    maxzoom: 13
+    group: ranking
+    dem: true
+    src: 04_prioritisation/{dem}/unit_prioritas.gpkg
+    label: {en: "Sub-KHG units (priority)", id: "Unit sub-KHG (prioritas)"}
+    source: repeat-prioritisation subkhg
+  - id: sekat_proposed
+    group: interventions
+    dem: true
+    src: 05_pump/{dem}/*.gpkg
+    layer: sekat_proposed
+    label: {en: "Proposed canal blocks", id: "Usulan sekat kanal"}
+    source: repeat-pump
+  - id: sekat_existing
+    group: interventions
+    dem: true
+    src: 05_pump/{dem}/*.gpkg
+    layer: sekat_existing_assessed
+    label: {en: "Existing blocks, assessed", id: "Sekat eksisting, dinilai"}
+    source: repeat-pump
+  - id: canal_segments
+    group: hydrology
+    dem: true
+    src: 05_pump/{dem}/*.gpkg
+    layer: canal_segments
+    label: {en: "Canal segments with profile", id: "Segmen kanal"}
+    source: repeat-pump
+
+# Point tables for the screengrid layers (Parquet)
+points:
+  - id: hotspots
+    sources:
+      - {src: 00_inputs/national/hotspot_viirs_snpp_2012_2025.gpkg, kind: viirs, date: acq_date, conf: confidence, frp: frp}
+      - {src: "${REPEAT_DATA}/hotspot_viirs_snpp_sp_2026.gpkg", kind: viirs, date: acq_date, conf: confidence, frp: frp}
+      - {src: "${REPEAT_DATA}/hotspot_viirs_snpp_nrt_2026.gpkg", kind: viirs, date: acq_date, conf: confidence, frp: frp}
+      - {src: "${REPEAT_DATA}/hotspots_modis_2026.gpkg", kind: modis2026, date: acq_date, conf: level, frp: frp, month: month, month_year: 2026}
+    peat: 00_inputs/national/peat_extent_gfw_v20230315_z11.tif
+    label: {en: "Hotspots", id: "Titik panas"}
+    source: VIIRS SNPP 2012-2026 (FIRMS archive, standard processing to July 2026, NRT from August 2026); MODIS 2026 (KLH to 15 September, FIRMS NRT after)
+
+# Groundwater model runs shown per DEM variant (03_neraca/<dem>/runs/model/<run>); a KHG without the run lists it as missing.
+groundwater:
+  stage: in development      # shown next to every model result
+  runs: [d22_climate_2026]
+
+# Display pyramid cap per DEM variant (owner decision: DEMNAS is shown slightly coarser than its 8.35 m cells to keep the dashboard light).
+# The native rasters are untouched; the manifest records native_zoom and max_zoom for each layer.
+raster:
+  demnas: {max_zoom: 14}
