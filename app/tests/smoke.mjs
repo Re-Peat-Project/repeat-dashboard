@@ -13,8 +13,9 @@ for (const k of cat) {
   p.on('console', (m) => { if (m.type() === 'error' && !/favicon|404/.test(m.text())) errs.push('console: ' + m.text().slice(0, 160)) })
   await p.goto(`${base}#/khg/${k.code}`)
   await p.waitForTimeout(2500)
+  const mf = JSON.parse(readFileSync(new URL(`../public/data/khg/${k.code}/manifest.json`, import.meta.url), 'utf8'))
   for (const dem of k.dems) {
-    await p.getByRole('button', { name: dem, exact: true }).click()
+    await p.getByRole('button', { name: mf.dem_labels?.[dem]?.en ?? dem, exact: true }).click()
     for (const tab of ['Fire', 'Water', 'Land & accountability', 'Interventions']) {
       await p.getByRole('tab', { name: tab, exact: true }).click()
       await p.waitForTimeout(700)
