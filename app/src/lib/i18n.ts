@@ -39,6 +39,16 @@ const ID: Record<string, string> = {
   'Indonesia': 'Indonesia', 'Hotspots on peat': 'Titik panas di gambut', 'All hotspots': 'Semua titik panas', 'no stations inside this KHG': 'tidak ada stasiun di dalam KHG ini',
   'Weights and filters': 'Bobot dan filter', 'Selected KHG': 'KHG terpilih',
   'Loading': 'Memuat', 'not testable, too few stations': 'tidak dapat diuji, stasiun terlalu sedikit', 'Month only (no day) for part of 2026': 'Hanya bulan (tanpa hari) untuk sebagian 2026',
+  'Fire by land tenure': 'Kebakaran menurut penguasaan lahan', 'Detail classes': 'Kelas rinci', 'Split by DMPG village land': 'Pisahkan lahan desa DMPG',
+  'Hotspots on peat per 100 km² of peat, 1 January to': 'Titik panas di gambut per 100 km² gambut, 1 Januari sampai', '(bar) against the mean of 2015 to 2025 (tick)': '(batang) dibanding rata-rata 2015 sampai 2025 (garis)',
+  'medium + high confidence': 'kepercayaan sedang + tinggi', '2026 vs mean': '2026 vs rata-rata', 'hotspots': 'titik panas', 'mean 2015 to 2025': 'rata-rata 2015 sampai 2025',
+  'Faded rows have few detections or little peat; read with care.': 'Baris pudar memiliki sedikit deteksi atau sedikit gambut; baca dengan hati-hati.',
+  'Hotspots per 100 km² of peat per year': 'Titik panas per 100 km² gambut per tahun', 'same calendar window': 'rentang kalender yang sama',
+  'Each point of the KHG takes one class, in this order: business licence, forest area without a licence, other land. DMPG village land can fall in any class. A comparison of rates is an association; it does not show the cause of a fire or who is responsible.': 'Setiap titik KHG masuk satu kelas, dengan urutan: izin usaha, kawasan hutan tanpa izin, lahan lain. Lahan desa DMPG dapat berada di kelas mana pun. Perbandingan laju adalah asosiasi; tidak menunjukkan penyebab kebakaran atau siapa yang bertanggung jawab.',
+  '2026 against earlier years, by land tenure': '2026 dibanding tahun sebelumnya, menurut penguasaan lahan',
+  'Ratio of the 2026 rate to the 2015 to 2025 mean, same calendar window; 1 = as in earlier years. Hollow dots: few detections. Dots at the ends of the axis are beyond it.': 'Rasio laju 2026 terhadap rata-rata 2015 sampai 2025, rentang kalender sama; 1 = seperti tahun sebelumnya. Titik kosong: sedikit deteksi. Titik di ujung sumbu berada di luar sumbu.',
+  'Business licence': 'Izin usaha', 'Forest area, no licence': 'Kawasan hutan tanpa izin', 'Other land': 'Lahan lain', 'per 100 km²': 'per 100 km²', ' · DMPG village': ' · desa DMPG',
+  'DMPG village': 'Desa DMPG', 'outside DMPG': 'di luar DMPG', 'Oil palm': 'Kelapa sawit', 'Mining': 'Pertambangan', 'Plantation forest (PPHTR)': 'Hutan tanaman (PPHTR)', 'Forest concession (PBPH)': 'Konsesi hutan (PBPH)',
 }
 
 Object.assign(ID, investigationID)

@@ -12,6 +12,7 @@ import { contextCounts, inPeriod, monthDate, type Hotspot } from '../lib/investi
 import { labelOf, useT } from '../lib/i18n'
 import { initMaplibre, maplibregl, pm, styleFor } from '../lib/map'
 import { useStore } from '../lib/store'
+import { TenurePanel, useTenure } from '../components/Tenure'
 
 type Mode = 'fire' | 'water' | 'land' | 'action'
 type Field = 'licence' | 'forest' | 'village' | 'dmpg'
@@ -282,6 +283,7 @@ export default function Khg() {
     return { name: t(`${conf} confidence`), color: conf === 'high' ? 'var(--s8)' : 'var(--s7)', points: [...m].sort((a, b) => a[0] - b[0]).map(([ym, y]) => ({ x: monthDate(ym), y })) }
   }), [points, fire, kind, t, ctxValue, field])
   const khgId = cat.find((c) => c.code === code)?.khg_id
+  const tenure = useTenure()
   const burned: Series[] = [{ name: t('Burned peat per year'), color: 'var(--s2)', points: yearly.filter((r) => r.khg_id === khgId && r.metric === 'burned_peat_km2').sort((a, b) => a.year - b.year).map((r) => ({ x: new Date(r.year, 6, 1), y: r.value })) }]
   const yearDom: [Date, Date] = [new Date(fire.year, 0, 1), new Date(fire.year, 11, 31)]
   const inYear = (d: Date) => d.getFullYear() === fire.year
@@ -433,6 +435,7 @@ export default function Khg() {
                 <tbody>{scores.map((s) => <tr key={s.station_id}><td>{String(s.station_id).split(':').pop()}</td><td className="text-right">{num(s.obs_cm, 1)}</td><td className="text-right">{num(s.sim_cm, 1)}</td><td className="pl-2">{s.flag ?? ''}</td></tr>)}</tbody></table></details>}
           </>}
 
+          {mode === 'land' && tenure && khgId && <TenurePanel data={tenure} khg={[khgId]} scope={mf.name.replace(/^KHG /, '')} />}
           {mode === 'land' && <LandStatus rows={land.filter((r) => r.khg_id === khgId)} />}
           {mode === 'land' && <div className="card p-3">
             <div className="mb-2 flex flex-wrap items-center gap-2">

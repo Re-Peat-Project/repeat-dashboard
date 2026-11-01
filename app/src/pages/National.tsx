@@ -5,6 +5,7 @@ import { DataTable, type Col } from '../components/DataTable'
 import { FilterBar } from '../components/FilterBar'
 import { LegendCard, RampLegend } from '../components/Legend'
 import { LineChart, type Series } from '../components/LineChart'
+import { TenureAcross, TenurePanel, useTenure } from '../components/Tenure'
 import { loadCatalog, readJson, readTable, type CatalogEntry } from '../lib/data'
 import { useT } from '../lib/i18n'
 import { inPeriod, monthDate } from '../lib/investigation'
@@ -100,6 +101,7 @@ export default function National() {
   useEffect(() => { const m = mapRef.current; if (m?.getLayer('khg-built') && cat.length) m.setFilter('khg-built', ['in', ['get', 'khg_id'], ['literal', cat.map((c) => c.khg_id)]]) }, [cat, mapReady])
 
   const sel = rows.find((r) => r.khg_id === selected)
+  const tenure = useTenure()
   const entry = cat.find((c) => c.khg_id === selected)
   const fmt0 = (v: number | null) => (v == null || Number.isNaN(v) ? '' : Math.round(v).toLocaleString())
   const scope = sel ? sel.nama.replace(/^KHG /, '') : t('Indonesia')
@@ -160,12 +162,14 @@ export default function National() {
                 : <div className="muted mt-3 text-xs">{t('Detailed layers have not been built for this KHG.')}</div>}
             </> : <div className="muted text-sm">{t('Select a KHG to begin investigating')}</div>}
           </div>
+          {sel && tenure?.area.some((r) => r.khg_id === sel.khg_id) && <TenurePanel data={tenure} khg={[sel.khg_id]} scope={scope} />}
           {sel && <LineChart title={`${t('Burned peat per year')} · ${scope}`} yLabel="km²" series={burned} zeroBase />}
           <LineChart title={`${t('Hotspots per month')} (VIIRS) · ${scope}`} series={monthly('viirs')} fmt={(v) => Math.round(v).toLocaleString()} zeroBase />
           {sel && !sitmat.some((s) => s.points.length) ? <div className="card muted p-3 text-sm">{t('Water level at SiTMAT stations')} · {scope}: {t('no stations inside this KHG')}</div>
             : <LineChart title={`${t('Water level at SiTMAT stations')} · ${scope}`} yLabel="cm" series={sitmat.filter((s) => s.points.length)} />}
         </div>
       </div>
+      {tenure && <TenureAcross data={tenure} names={new Map(rows.map((r) => [r.khg_id, r.nama]))} onPick={(id) => select(id)} />}
       <div className="card p-3">
         <DataTable rows={rows} cols={cols} rowKey="khg_id" searchKeys={['nama', 'province', 'island']} selectedKey={selected} onRow={(r) => select(r.khg_id)} initialSort={{ key: by === 'density' ? 'density' : 'n', dir: -1 }} />
       </div>
