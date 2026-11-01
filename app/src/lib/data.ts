@@ -1,4 +1,4 @@
-import { asyncBufferFromUrl, parquetReadObjects } from 'hyparquet'
+import { parquetReadObjects } from 'hyparquet'
 import { compressors } from 'hyparquet-compressors'
 
 export const BASE = import.meta.env.BASE_URL
@@ -10,7 +10,10 @@ const tables = new Map<string, Promise<Record<string, any>[]>>()
 export function readTable<T = Record<string, any>>(path: string): Promise<T[]> {
   if (!tables.has(path)) {
     tables.set(path, (async () => {
-      const file = await asyncBufferFromUrl({ url: dataUrl(path) })
+      // Whole-file read: a host may gzip the response, which breaks the byte ranges of asyncBufferFromUrl.
+      const res = await fetch(dataUrl(path))
+      if (!res.ok) throw new Error(`${path}: ${res.status}`)
+      const file = await res.arrayBuffer()
       const rows = await parquetReadObjects({ file, compressors })
       for (const r of rows) for (const k in r) if (typeof r[k] === 'bigint') r[k] = Number(r[k])
       return rows
