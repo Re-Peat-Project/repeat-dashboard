@@ -97,6 +97,14 @@ const ID: Record<string, string> = {
   "of the water the analysed blocks hold": "dari air yang ditahan sekat yang dianalisis",
   "Team run, earlier method: every sub-KHG processed": "Hasil tim, metode lebih awal: seluruh sub-KHG diproses",
   "The attribute that colours the sub-KHG units. Same colour range for every unit of this KHG.": "Atribut yang mewarnai unit sub-KHG. Rentang warna sama untuk setiap unit KHG ini.",
+  "Total, cost standard P.16/2022": "Total, standar biaya P.16/2022",
+  "no verified price": "tanpa harga terverifikasi",
+  "Quantities come from the run. Prices are the national cost standard (Perdirjen PPKL P.16/2022) as ranges (low, central, high) in rupiah of the price year, not adjusted for inflation. An item without a price in the standard keeps its quantity and has no cost.": "Jumlah berasal dari hasil analisis. Harga mengikuti standar biaya nasional (Perdirjen PPKL P.16/2022) berupa rentang (rendah, tengah, tinggi) dalam rupiah tahun harga, tanpa penyesuaian inflasi. Item tanpa harga dalam standar tetap tercatat jumlahnya tetapi tanpa biaya.",
+  "Quantity without a price in the cost standard": "Jumlah tanpa harga dalam standar biaya",
+  "The total leaves them out.": "Total tidak memuatnya.",
+  "The entries of the cost standard behind the unit prices.": "Butir standar biaya di balik harga satuan.",
+  "cost standard": "standar biaya",
+  "source document": "dokumen sumber",
 }
 
 Object.assign(ID, investigationID)

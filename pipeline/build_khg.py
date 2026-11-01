@@ -85,6 +85,33 @@ class Cache:
         self.path.write_text(json.dumps(self.d, indent=1))
 
 
+# The dashboard shows prices of the national cost standard only (Perdirjen PPKL P.16/2022). Items priced from other sources
+# (revegetation, pumps, fuel) keep their quantity but no cost, and only the register rows of the standard are published.
+STANDARD_ITEMS = {"sekat_standard", "sekat_tertiary", "sekat_reinforced", "sekat_ipg_estimate", "canal_closure_km", "deep_wells"}
+VERIFIED_STATUS = {"standard", "obtained"}
+
+
+def verified_budget(b):
+    b = b.copy()
+    out = ~b["item"].isin(STANDARD_ITEMS)
+    b.loc[out, ["cost_low_idr", "cost_idr", "cost_high_idr"]] = np.nan
+    b["priced"] = b["cost_idr"].notna()
+    return b
+
+
+def budget_summary(rep, b):
+    """Totals, items and classes of the run's budget over the verified items; the spend curve and the cost per m3 come from the run (blocks only)."""
+    b = verified_budget(b)
+    tot = lambda c: float(b[c].sum(min_count=1)) if b[c].notna().any() else None
+    by_item = b.groupby("item").agg(quantity=("quantity", "sum"), cost_low_idr=("cost_low_idr", lambda x: x.sum(min_count=1)),
+                                    cost_idr=("cost_idr", lambda x: x.sum(min_count=1)), cost_high_idr=("cost_high_idr", lambda x: x.sum(min_count=1)))
+    src = rep["budget"]
+    return {"price_year": src.get("price_year"), "total_low_idr": tot("cost_low_idr"), "total_idr": tot("cost_idr"), "total_high_idr": tot("cost_high_idr"),
+            "by_item": {k: {kk: (None if pd.isna(vv) else float(vv)) for kk, vv in r.items()} for k, r in by_item.iterrows()},
+            "unpriced": sorted(set(b.loc[~b["priced"] & (b["quantity"] > 0), "item"])), "not_estimable": src.get("not_estimable", {}),
+            "sekat_cost_idr": src.get("sekat_cost_idr"), "idr_per_m3_held": src.get("idr_per_m3_held"), "spend_curve": src.get("spend_curve", [])}
+
+
 def clean(o):
     """NaN and infinity are not valid JSON; write null."""
     if isinstance(o, float) and (o != o or o in (float("inf"), float("-inf"))):
@@ -268,9 +295,13 @@ def step_tables(kdir, out, dems, cache, force, manifest):
             if not src.exists():
                 manifest["missing"].append({"id": tid, "dem": dem, "reason": f"no file {pattern}", "step": "tables"})
                 continue
-            key, fp = f"table:{dem or '-'}:{tid}", fingerprint([src])
+            key, fp = f"table:{dem or '-'}:{tid}", fingerprint([src], extra="verified-v1" if tid.startswith("pump_budget") else "")
             if force or not cache.hit(key, fp, [dst]):
                 df = pd.read_csv(src, low_memory=False)
+                if tid == "pump_budget":
+                    df = verified_budget(df)
+                elif tid == "pump_budget_sources":
+                    df = df[df["status"].isin(VERIFIED_STATUS)]
                 dst.parent.mkdir(parents=True, exist_ok=True)
                 df.to_parquet(dst, index=False, compression="zstd")
                 cache.put(key, fp)
@@ -285,7 +316,8 @@ def step_tables(kdir, out, dems, cache, force, manifest):
             continue
         dst = out / "tables" / dem / "pump_budget_summary.json"
         dst.parent.mkdir(parents=True, exist_ok=True)
-        dst.write_text(json.dumps(clean({"budget": rep["budget"]}), allow_nan=False), encoding="utf-8")
+        bsrc = kdir / "05_pump" / dem / "budget.csv"
+        dst.write_text(json.dumps(clean({"budget": budget_summary(rep, pd.read_csv(bsrc))}), allow_nan=False), encoding="utf-8")
         manifest["tables"].append({"id": "pump_budget_summary", "dem": dem, "file": dst.relative_to(out).as_posix(), "mb": size_mb(dst)})
 
 
