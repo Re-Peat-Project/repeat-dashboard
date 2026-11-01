@@ -1,0 +1,37 @@
+{
+  "fingerprint": "48d3309aa8663627",
+  "sources": {
+    "licence": {
+      "available": true,
+      "source": "_khg\\63.07-08-11.01_balangan_batangalai\\00_inputs\\national\\izin_usaha_2025.gpkg",
+      "predicate": "intersects",
+      "features": 2
+    },
+    "village": {
+      "available": true,
+      "source": "_khg\\63.07-08-11.01_balangan_batangalai\\00_inputs\\national\\desa_target_pemulihan_ekosistem_gambut.gpkg",
+      "predicate": "intersects",
+      "features": 24
+    },
+    "dmpg": {
+      "available": true,
+      "source": "_khg\\63.07-08-11.01_balangan_batangalai\\00_inputs\\national\\dpg\\dpg_villages_boundaries.gpkg",
+      "predicate": "intersects",
+      "features": 13
+    },
+    "forest": {
+      "available": true,
+      "source": "_data\\landstatus\\KWSHUTAN_AR_250K_2023_Transcripted.gpkg",
+      "predicate": "intersects",
+      "features": 6
+    },
+    "burn_years": {
+      "available": true,
+      "source": "_khg\\63.07-08-11.01_balangan_batangalai\\00_inputs\\national\\burnt_area_2015_2026_Indonesia.gpkg",
+      "predicate": "intersects",
+      "features": 797
+    }
+  },
+  "holder_names": false,
+  "note": "Licence IDs are source GeoPackage FIDs. All intersecting polygons retained. Village coverage is limited to target and DMPG villages."
+}

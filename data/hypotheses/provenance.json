@@ -1,0 +1,213 @@
+{
+ "generated": "2026-11-01T17:02:09+00:00",
+ "command": "repeat-hypotheses --config configs/examples/national_profile.yaml --boot 1000 --seed 1",
+ "seed": 1,
+ "bootstrap_draws": 1000,
+ "effect_threshold": 1.25,
+ "baseline_years": [
+  2015,
+  2025
+ ],
+ "test_year": 2026,
+ "window_last_day": "2026-10-31",
+ "thresholds": {
+  "near_licence_m": 1000.0,
+  "far_licence_m": [
+   3000.0,
+   10000.0
+  ],
+  "near_canal_m": 500.0,
+  "far_canal_m": 2000.0,
+  "road_m": 1000.0
+ },
+ "khg_cell_panels": {
+  "KHG.14.03.02": {
+   "fingerprint": "be530afdb9aeb535",
+   "khg_id": "KHG.14.03.02",
+   "cell_m": 200.0,
+   "cells": 22178,
+   "hotspots_on_peat": 7394,
+   "hotspots_on_cells": 7386,
+   "licence_polygons": 1,
+   "road_vertices": 10364,
+   "dem": "deltadtm",
+   "window_last_day": "2026-10-31"
+  },
+  "KHG.14.10.01": {
+   "fingerprint": "878a541aabbbd572",
+   "khg_id": "KHG.14.10.01",
+   "cell_m": 200.0,
+   "cells": 27364,
+   "hotspots_on_peat": 5578,
+   "hotspots_on_cells": 5570,
+   "licence_polygons": 4,
+   "road_vertices": 4811,
+   "dem": "deltadtm",
+   "window_last_day": "2026-10-31"
+  },
+  "KHG.14.10.03": {
+   "fingerprint": "23d6096bb91589cb",
+   "khg_id": "KHG.14.10.03",
+   "cell_m": 200.0,
+   "cells": 33773,
+   "hotspots_on_peat": 8608,
+   "hotspots_on_cells": 8607,
+   "licence_polygons": 8,
+   "road_vertices": 8344,
+   "dem": "deltadtm",
+   "window_last_day": "2026-10-31"
+  },
+  "KHG.15-16.01": {
+   "fingerprint": "34b7d6539b288f11",
+   "khg_id": "KHG.15-16.01",
+   "cell_m": 200.0,
+   "cells": 35797,
+   "hotspots_on_peat": 14735,
+   "hotspots_on_cells": 14596,
+   "licence_polygons": 5,
+   "road_vertices": 2593,
+   "dem": "lidar_muba25",
+   "window_last_day": "2026-10-31"
+  },
+  "KHG.63.07-08-11.01": {
+   "fingerprint": "14565daa469453a0",
+   "khg_id": "KHG.63.07-08-11.01",
+   "cell_m": 200.0,
+   "cells": 3400,
+   "hotspots_on_peat": 2323,
+   "hotspots_on_cells": 2285,
+   "licence_polygons": 0,
+   "road_vertices": 10037,
+   "dem": "deltadtm",
+   "window_last_day": "2026-10-31"
+  },
+  "KHG.91.18-17.01": {
+   "fingerprint": "81f06aaaec30b877",
+   "khg_id": "KHG.91.18-17.01",
+   "cell_m": 200.0,
+   "cells": 41937,
+   "hotspots_on_peat": 4427,
+   "hotspots_on_cells": 4281,
+   "licence_polygons": 0,
+   "road_vertices": 2564,
+   "dem": "deltadtm",
+   "window_last_day": "2026-10-31"
+  },
+  "KHG.62.11-14.02": {
+   "fingerprint": "1abfc702e27a840d",
+   "khg_id": "KHG.62.11-14.02",
+   "cell_m": 200.0,
+   "cells": 98746,
+   "hotspots_on_peat": 104512,
+   "hotspots_on_cells": 104248,
+   "licence_polygons": 10,
+   "road_vertices": 12929,
+   "dem": "deltadtm",
+   "window_last_day": "2026-10-31"
+  },
+  "KHG.14.02-04-05.01": {
+   "fingerprint": "7afc592223488107",
+   "khg_id": "KHG.14.02-04-05.01",
+   "cell_m": 200.0,
+   "cells": 171295,
+   "hotspots_on_peat": 26468,
+   "hotspots_on_cells": 26416,
+   "licence_polygons": 26,
+   "road_vertices": 30747,
+   "dem": "lidar_riau25m",
+   "window_last_day": "2026-10-31"
+  },
+  "KHG.62.03-04.01": {
+   "fingerprint": "4a522ebc83c3a28a",
+   "khg_id": "KHG.62.03-04.01",
+   "cell_m": 200.0,
+   "cells": 109604,
+   "hotspots_on_peat": 32835,
+   "hotspots_on_cells": 32609,
+   "licence_polygons": 11,
+   "road_vertices": 14011,
+   "dem": "deltadtm",
+   "window_last_day": "2026-10-31"
+  },
+  "KHG.61.02-08.01": {
+   "fingerprint": "775e901e4e0d6134",
+   "khg_id": "KHG.61.02-08.01",
+   "cell_m": 200.0,
+   "cells": 9347,
+   "hotspots_on_peat": 7072,
+   "hotspots_on_cells": 7045,
+   "licence_polygons": 3,
+   "road_vertices": 4166,
+   "dem": "deltadtm",
+   "window_last_day": "2026-10-31"
+  },
+  "KHG.15.05-07-10.01": {
+   "fingerprint": "0ca3d4530c9f4aa7",
+   "khg_id": "KHG.15.05-07-10.01",
+   "cell_m": 200.0,
+   "cells": 43155,
+   "hotspots_on_peat": 16497,
+   "hotspots_on_cells": 16462,
+   "licence_polygons": 31,
+   "road_vertices": 11532,
+   "dem": "lidar_jambi25m",
+   "window_last_day": "2026-10-31"
+  },
+  "KHG.61.12-71.01": {
+   "fingerprint": "dddbe8bacf7e82e8",
+   "khg_id": "KHG.61.12-71.01",
+   "cell_m": 200.0,
+   "cells": 18538,
+   "hotspots_on_peat": 14184,
+   "hotspots_on_cells": 14143,
+   "licence_polygons": 14,
+   "road_vertices": 22339,
+   "dem": "deltadtm",
+   "window_last_day": "2026-10-31"
+  },
+  "KHG.16.02-07.01": {
+   "fingerprint": "083acdf82474ca87",
+   "khg_id": "KHG.16.02-07.01",
+   "cell_m": 200.0,
+   "cells": 39637,
+   "hotspots_on_peat": 10798,
+   "hotspots_on_cells": 10633,
+   "licence_polygons": 6,
+   "road_vertices": 13502,
+   "dem": "deltadtm",
+   "window_last_day": "2026-10-31"
+  },
+  "KHG.16.02.01": {
+   "fingerprint": "d09f82d4cd86fd4b",
+   "khg_id": "KHG.16.02.01",
+   "cell_m": 200.0,
+   "cells": 135526,
+   "hotspots_on_peat": 76141,
+   "hotspots_on_cells": 75755,
+   "licence_polygons": 14,
+   "road_vertices": 22083,
+   "dem": "lidar_oki25",
+   "window_last_day": "2026-10-31"
+  }
+ },
+ "khg_tenure_tables": 34,
+ "software": {
+  "python": "3.13.15",
+  "numpy": "2.5.4",
+  "pandas": "3.0.6",
+  "scipy": "1.18.1"
+ },
+ "csv": [
+  "q01_scar_vs_hotspot.csv",
+  "q02_tenure_pairs.csv",
+  "q03_dmpg.csv",
+  "q04_licence_gradient.csv",
+  "q05_canal_proximity.csv",
+  "q06_dome_position.csv",
+  "q07_spatial_structure.csv",
+  "q08_burn_history.csv",
+  "q09_climate.csv",
+  "q10_trend_units.csv",
+  "q11_timing.csv"
+ ]
+}
