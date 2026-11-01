@@ -368,8 +368,12 @@ def step_neraca(kdir, out, reg, dems, cache, force, manifest):
             if force or not cache.hit(key, fp, [dst]):
                 tile_vector(read_vector(gpkg, layer, None), layer, dst, 13)
                 cache.put(key, fp)
-            manifest["vector"].append({"id": layer, "group": "neraca", "label": label, "source": "repeat-neraca balance", "dem": dem,
-                                       "file": dst.relative_to(out).as_posix(), "mb": size_mb(dst)})
+            entry = {"id": layer, "group": "neraca", "label": label, "source": "repeat-neraca balance", "dem": dem,
+                     "file": dst.relative_to(out).as_posix(), "mb": size_mb(dst)}
+            if layer == "neraca_units":   # colour ranges of the unit attributes, read from the layer itself
+                cols = pyogrio.read_dataframe(gpkg, layer=layer, read_geometry=False)
+                entry["ranges"] = {c: [float(cols[c].min()), float(cols[c].max())] for c in ("u_wb_mean", "u_deficit_months", "wb_dry_mm", "p_minus_et_mean_mm") if c in cols and cols[c].notna().any()}
+            manifest["vector"].append(entry)
         for run in runs:
             rdir = nd / dem / "runs" / "model" / run
             if not (rdir / "model_units.csv").exists():

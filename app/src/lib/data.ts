@@ -31,7 +31,7 @@ export function readJson<T = any>(path: string): Promise<T> {
 export type CatalogEntry = { code: string; khg_id: string; name: string; province: string | null; bounds: [number, number, number, number]; dems: string[]; groundwater: string[] }
 export type Manifest = {
   code: string; name: string; province: string | null; bounds: [number, number, number, number]; dems: string[]; dem_labels?: Record<string, { en: string; id: string }>
-  vector: { id: string; group: string; label: { en: string; id: string }; source: string; dem: string | null; file: string; features?: number; mb: number; geometry?: string }[]
+  vector: { id: string; group: string; label: { en: string; id: string }; source: string; dem: string | null; file: string; features?: number; mb: number; geometry?: string; ranges?: Record<string, [number, number]> }[]
   raster: { id: string; dem: string; file: string; mb: number; res_m: number; cover_pct?: number; native_zoom: number; max_zoom: number; zoom_capped: boolean; z_range: [number, number]; source: string; note?: string }[]
   tables: { id: string; dem: string | null; file: string }[]
   points: { id: string; file: string; rows?: number; undated?: number }[]

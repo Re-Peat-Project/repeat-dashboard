@@ -25,6 +25,7 @@ const DEM_COLOR: Record<string, string> = { lidar: '#2a78d6', deltadtm: '#eb6834
   demnas_full: '#8a5cd6', lidar_full: '#c9a21a', worlddem_full: '#d6479a', brgmcontour_full: '#6b7280' }   // categorical slots 1-3 fixed per DEM; the team runs have their own
 const GROUPS = ['boundary', 'hydrology', 'interventions', 'land', 'fire', 'ranking', 'neraca']
 const GROUP_LABEL: Record<string, string> = { boundary: 'Boundary', hydrology: 'Hydrology', interventions: 'Interventions', land: 'Land status', fire: 'Fire', ranking: 'Sub-KHG units', neraca: 'Neraca air' }
+const NERACA_ATTRS = [['u_wb_mean', 'Mean water balance (mm)'], ['u_deficit_months', 'Deficit months'], ['wb_dry_mm', 'Dry-season balance (mm)'], ['p_minus_et_mean_mm', 'Rain minus ET (mm)']]
 const UNIT_ATTRS = [['u_deficit', 'Water deficit'], ['u_wb_mean', 'Mean water balance (mm)'], ['u_deficit_months', 'Deficit months'], ['wb_dry_mm', 'Dry-season balance (mm)']]
 const FIELDS: [Field, string][] = [['licence', 'Licence area'], ['forest', 'Forest area'], ['village', 'Target village'], ['dmpg', 'DMPG village']]
 
@@ -165,7 +166,11 @@ export default function Khg() {
 
   const unitRange = (rows: any[], k: string): [number, number] => { const e = extent(rows, (r) => r[k]) as [number, number]; return e[0] == null || e[0] === e[1] ? [0, 1] : e }
   const rampExpr = (attr: string, [lo, hi]: [number, number]) => ['interpolate', ['linear'], ['coalesce', ['get', attr], lo], ...SEQ.flatMap((c, i) => [lo + ((hi - lo) * i) / 4, c])] as any
-  const range = useMemo(() => unitRange(units, unitBy), [units, unitBy])
+  const neracaRec = mf?.vector.find((v) => v.id === 'neraca_units' && v.dem === dem)
+  const neracaOn = visible.has('neraca_units')
+  const unitAttrs = neracaOn ? NERACA_ATTRS : UNIT_ATTRS.filter((a) => units.some((r) => r[a[0]] != null))
+  const attr = unitAttrs.some((a) => a[0] === unitBy) ? unitBy : unitAttrs[0]?.[0] ?? unitBy
+  const range = useMemo<[number, number]>(() => (neracaOn ? (neracaRec?.ranges?.[attr] as [number, number] | undefined) : undefined) ?? unitRange(units, attr), [units, attr, neracaOn, neracaRec])
 
   // sync our layers
   useEffect(() => {
@@ -187,7 +192,7 @@ export default function Khg() {
       const src = { type: 'vector', url: pm(`khg/${code}/${v.file}`) }
       const sl = v.id
       if (v.id === 'subkhg_units' || v.id === 'neraca_units') {
-        add(v.id, src, { type: 'fill', 'source-layer': sl, paint: { 'fill-color': rampExpr(unitBy, range), 'fill-opacity': sat ? 0.5 : 0.75, 'fill-outline-color': sat ? '#ffffff' : '#333' } })
+        add(v.id, src, { type: 'fill', 'source-layer': sl, paint: { 'fill-color': rampExpr(attr, v.id === 'neraca_units' ? (neracaRec?.ranges?.[attr] as [number, number] | undefined) ?? range : unitRange(units, attr)), 'fill-opacity': sat ? 0.5 : 0.75, 'fill-outline-color': sat ? '#ffffff' : '#333' } })
       } else if (v.id === 'canals') {
         add(v.id, src, { type: 'line', 'source-layer': sl, paint: { 'line-color': sat ? '#4fd1ff' : '#0b6b8a', 'line-width': ['match', ['get', 'KET_KANAL'], 'Kanal Primer', 2.2, 'Kanal Sekunder', 1.3, 0.7] } })
       } else if (v.id === 'burn') {
@@ -209,7 +214,7 @@ export default function Khg() {
       const feats = filtered.map((p, i) => ({ type: 'Feature', properties: { i, conf: p.conf, date: p.date ?? '', frp: p.frp, licence: p.licence ?? '', forest: p.forest ?? '', village: p.village ?? '', dmpg: p.dmpg ?? '', burn_years: p.burn_years ?? '' }, geometry: { type: 'Point', coordinates: [p.lon, p.lat] } }))
       add('hotspots', { type: 'geojson', data: { type: 'FeatureCollection', features: feats } }, { type: 'circle', paint: { 'circle-radius': ['interpolate', ['linear'], ['zoom'], 7, 2.5, 13, 6], 'circle-color': ['match', ['get', 'conf'], 'high', '#e34948', '#6250d6'], 'circle-opacity': 0.9, 'circle-stroke-width': 0.8, 'circle-stroke-color': '#fff' } })
     }
-  }, [mf, dem, visible, raster, opacity, unitBy, range, burnView, fire.year, filtered, ready, gw, code, sat])
+  }, [mf, dem, visible, raster, opacity, attr, range, units, neracaRec, burnView, fire.year, filtered, ready, gw, code, sat])
 
   // hover popup: attributes of the features under the cursor, top layer first; click picks a hotspot
   useEffect(() => {
@@ -339,8 +344,8 @@ export default function Khg() {
             <i className="chip" style={{ background: STYLE[v.id]?.color ?? 'var(--s1)' }} />{labelOf(v.label, lang)}<span className="muted ml-auto text-xs">{v.features ?? ''}</span></label>)}
           {g === 'fire' && points.length > 0 && <label className="flex items-center gap-2 py-0.5"><input type="checkbox" checked={visible.has('hotspots')} onChange={() => toggle('hotspots')} /><i className="chip" style={{ background: 'var(--s8)', borderRadius: '50%' }} />{t('Hotspots')}<span className="muted ml-auto text-xs">{filtered.length.toLocaleString()}</span></label>}
         </div> })}
-      {units.length > 0 && <div className="flex items-center gap-2 text-xs"><span className="muted">{t('Colour units by')}</span>
-        <select className="card px-1" value={unitBy} onChange={(e) => setUnitBy(e.target.value)}>{UNIT_ATTRS.map(([k, l]) => <option key={k} value={k}>{t(l)}</option>)}</select></div>}
+      {unitsShown && unitAttrs.length > 0 && <div className="flex items-center gap-2 text-xs"><span className="muted">{t('Colour units by')}</span>
+        <select className="card px-1" value={attr} onChange={(e) => setUnitBy(e.target.value)}>{unitAttrs.map(([k, l]) => <option key={k} value={k}>{t(l)}</option>)}</select></div>}
       {missingDem.length > 0 && <div className="muted mt-2 text-xs">{t('Not available for this DEM')}: {missingDem.map((m) => m.id).join(', ')}</div>}
     </details>
   )
@@ -375,7 +380,7 @@ export default function Khg() {
                 : <><div className="text-xs font-medium">{t('Times burned')} · 2015–2026</div><div className="flex gap-1">{BURN.filter(([k]) => burnView === 'history' || k !== BURN[0][0]).map(([k, l, c]) => <span key={k} className="flex items-center gap-1 text-xs"><i className="chip" style={{ background: c, marginRight: 0 }} />{l}</span>)}</div></>)}
               {visible.has('forest') && <><div className="text-xs font-medium">{t('Forest area function')}</div><div className="grid grid-cols-2 gap-x-2">{FOREST.map(([k, l, c]) => <Swatch key={k} color={c} opacity={0.7}>{t(l)}</Swatch>)}</div></>}
               {polyLayers.map((v) => <Swatch key={v.id} color={STYLE[v.id].color} opacity={0.6}>{labelOf(v.label, lang)}</Swatch>)}
-              {unitsShown && <RampLegend title={t(UNIT_ATTRS.find((a) => a[0] === unitBy)![1])} stops={SEQ} lo={range[0]} hi={range[1]} />}
+              {unitsShown && <RampLegend title={t((unitAttrs.find((a) => a[0] === attr) ?? unitAttrs[0])[1])} stops={SEQ} lo={range[0]} hi={range[1]} />}
               {raster === 'relief' && rasterRec && <RampLegend title={`${t('Elevation (m)')} · ${dem}`} stops={TERRAIN} lo={rasterRec.z_range[0]} hi={rasterRec.z_range[1]} fmt={(v) => v.toFixed(1)} note={t('Shaded relief; colour shows elevation')} />}
               {gwRaster && <RampLegend title={labelOf(gwRaster.label, lang)} stops={FIELD} lo={gwRaster.range[0]} hi={gwRaster.range[1]} fmt={(v) => String(Math.round(v))} note={`${t('Groundwater model')} · ${t('in development')}`} />}
             </LegendCard>
