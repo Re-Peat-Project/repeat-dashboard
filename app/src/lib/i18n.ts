@@ -49,6 +49,10 @@ const ID: Record<string, string> = {
   'Ratio of the 2026 rate to the 2015 to 2025 mean, same calendar window; 1 = as in earlier years. Hollow dots: few detections. Dots at the ends of the axis are beyond it.': 'Rasio laju 2026 terhadap rata-rata 2015 sampai 2025, rentang kalender sama; 1 = seperti tahun sebelumnya. Titik kosong: sedikit deteksi. Titik di ujung sumbu berada di luar sumbu.',
   'Business licence': 'Izin usaha', 'Forest area, no licence': 'Kawasan hutan tanpa izin', 'Other land': 'Lahan lain', 'per 100 km²': 'per 100 km²', ' · DMPG village': ' · desa DMPG',
   'DMPG village': 'Desa DMPG', 'outside DMPG': 'di luar DMPG', 'Oil palm': 'Kelapa sawit', 'Mining': 'Pertambangan', 'Plantation forest (PPHTR)': 'Hutan tanaman (PPHTR)', 'Forest concession (PBPH)': 'Konsesi hutan (PBPH)',
+  'By position on the dome': 'Menurut posisi di kubah', 'No position data for this KHG': 'Tidak ada data posisi untuk KHG ini', 'crest': 'puncak', 'slope': 'lereng', 'foot': 'kaki', 'of peat': 'gambut', 'days': 'hari',
+  '2026 hotspots per 100 km² of peat by position on the dome; × shows the ratio to the 2015 to 2025 mean': 'Titik panas 2026 per 100 km² gambut menurut posisi di kubah; × menunjukkan rasio terhadap rata-rata 2015 sampai 2025',
+  'Groundwater model, dry season 2026: mean water-table depth and days deeper than 40 cm on open land': 'Model air tanah, musim kering 2026: kedalaman muka air rata-rata dan hari lebih dalam dari 40 cm di lahan terbuka',
+  'held at the managed target in the run': 'ditahan pada target kelola dalam model',
 }
 
 Object.assign(ID, investigationID)

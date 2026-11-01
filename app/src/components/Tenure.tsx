@@ -7,7 +7,9 @@ import { useT } from '../lib/i18n'
 type Area = { khg_id: string; khg: string; tenure: string; sub: string; dmpg: boolean; area_km2: number; peat_km2: number; burned_peat_km2: number }
 type Hot = { khg_id: string; tenure: string; sub: string; dmpg: boolean; year: number; conf: string; n: number }
 type Win = { window_end: string; last_2026: string }
-export type TenureData = { area: Area[]; hot: Hot[]; win: Win | null }
+type Dome = { khg_id: string; tenure: string; position: string; peat_km2: number; year: number | null; conf: string | null; n: number | null }
+type Water = { khg_id: string; dem: string; run: string; tenure: string; managed: boolean; area_km2: number; mean_depth_cm: number; days_deeper_40cm: number | null }
+export type TenureData = { area: Area[]; hot: Hot[]; win: Win | null; dome: Dome[]; water: Water[] }
 
 const PAST = [2015, 2025] as const          // comparison years: the same calendar window of each
 const TENURE: Record<string, { label: string; color: string }> = {
@@ -20,8 +22,9 @@ const SUB: Record<string, string> = { sawit: 'Oil palm', tambang: 'Mining', ppht
 export function useTenure(): TenureData | null {
   const [d, setD] = useState<TenureData | null>(null)
   useEffect(() => {
-    Promise.all([readTable<Area>('national/tenure_area.parquet'), readTable<Hot>('national/tenure_hotspots.parquet'), readJson<Win>('national/tenure_window.json').catch(() => null)])
-      .then(([area, hot, win]) => setD({ area, hot, win })).catch(() => setD(null))
+    Promise.all([readTable<Area>('national/tenure_area.parquet'), readTable<Hot>('national/tenure_hotspots.parquet'), readJson<Win>('national/tenure_window.json').catch(() => null),
+      readTable<Dome>('national/tenure_dome.parquet').catch(() => []), readTable<Water>('national/tenure_water.parquet').catch(() => [])])
+      .then(([area, hot, win, dome, water]) => setD({ area, hot, win, dome, water })).catch(() => setD(null))
   }, [])
   return d
 }
@@ -73,6 +76,7 @@ export function TenurePanel({ data, khg, scope }: { data: TenureData; khg: strin
   const high = useStore((s) => s.fire.high)
   const [detail, setDetail] = useState(false)
   const [split, setSplit] = useState(false)
+  const [dome, setDome] = useState(false)
   const gs = useMemo(() => groups(data, khg, high, detail, split), [data, khg, high, detail, split])
   const top = Math.max(1e-9, ...gs.flatMap((g) => [g.r26, g.rPast]))
   const lines: Series[] = useMemo(() => gs.filter((g) => !g.few).map((g, i) => ({
@@ -87,9 +91,10 @@ export function TenurePanel({ data, khg, scope }: { data: TenureData; khg: strin
         <div className="font-medium">{t('Fire by land tenure')} · {scope}</div>
         <label className="muted ml-auto text-xs"><input type="checkbox" checked={detail} onChange={(e) => setDetail(e.target.checked)} /> {t('Detail classes')}</label>
         <label className="muted text-xs"><input type="checkbox" checked={split} onChange={(e) => setSplit(e.target.checked)} /> {t('Split by DMPG village land')}</label>
+        {data.dome.length > 0 && <label className="muted text-xs"><input type="checkbox" checked={dome} onChange={(e) => setDome(e.target.checked)} /> {t('By position on the dome')}</label>}
       </div>
       <div className="muted mb-2 text-xs">{t('Hotspots on peat per 100 km² of peat, 1 January to')} {end ? end.slice(5).replace('-', '/') : ''}: <b style={{ color: 'var(--ink)' }}>2026</b> {t('(bar) against the mean of 2015 to 2025 (tick)')} · {high ? t('high confidence') : t('medium + high confidence')}</div>
-      <div className="flex flex-col gap-2 text-xs">
+      {dome ? <DomeGrid data={data} khg={khg} high={high} /> : <div className="flex flex-col gap-2 text-xs">
         {gs.map((g) => (
           <div key={g.key} style={{ opacity: g.few ? 0.55 : 1 }}>
             <div className="flex items-baseline gap-2">
@@ -103,9 +108,10 @@ export function TenurePanel({ data, khg, scope }: { data: TenureData; khg: strin
             </div>
           </div>
         ))}
-      </div>
+      </div>}
       {gs.some((g) => g.few) && <div className="muted mt-1 text-xs">{t('Faded rows have few detections or little peat; read with care.')}</div>}
       {lines.length > 0 && <div className="mt-3"><LineChart title={`${t('Hotspots per 100 km² of peat per year')} (${t('same calendar window')})`} series={lines} zeroBase yLabel="/100 km²" fmt={f1} xDomain={[new Date(2011, 6, 1), new Date(2026, 6, 1)]} /></div>}
+      {data.water.length > 0 && <div className="mt-3"><WaterRows data={data} khg={khg} /></div>}
       <p className="muted mt-2 text-xs">{t('Each point of the KHG takes one class, in this order: business licence, forest area without a licence, other land. DMPG village land can fall in any class. A comparison of rates is an association; it does not show the cause of a fire or who is responsible.')}</p>
     </div>
   )
@@ -139,6 +145,64 @@ export function TenureAcross({ data, names, onPick }: { data: TenureData; names:
         ))}
         <span /><div className="muted relative h-4">{TICKS.map((v) => <span key={v} className="absolute -translate-x-1/2" style={{ left: `${X(v)}%` }}>{v === 0.1 ? '≤' : v === 10 ? '≥' : '×'}{v}</span>)}</div>
       </div>
+    </div>
+  )
+}
+
+const POS = ['crest', 'slope', 'foot']
+/** Hotspot rate by tenure class and position on the peat dome (thirds of the KHG's peat by height above the nearest river). */
+function DomeGrid({ data, khg, high }: { data: TenureData; khg: string[] | null; high: boolean }) {
+  const t = useT()
+  const rows = useMemo(() => {
+    const pick = (r: { khg_id: string }) => !khg || khg.includes(r.khg_id)
+    const peat = new Map<string, number>(), c26 = new Map<string, number>(), cp = new Map<string, number>()
+    const seen = new Set<string>()
+    for (const r of data.dome) if (pick(r)) {
+      const k = `${r.tenure}|${r.position}`, u = `${r.khg_id}|${k}`
+      if (!seen.has(u)) { seen.add(u); peat.set(k, (peat.get(k) ?? 0) + r.peat_km2) }
+      if (r.year != null && r.n != null && (!high || r.conf === 'high')) {
+        if (r.year === 2026) c26.set(k, (c26.get(k) ?? 0) + r.n)
+        else if (r.year >= PAST[0] && r.year <= PAST[1]) cp.set(k, (cp.get(k) ?? 0) + r.n / (PAST[1] - PAST[0] + 1))
+      }
+    }
+    return Object.keys(TENURE).map((ten) => ({ ten, cells: POS.map((p) => { const k = `${ten}|${p}`, a = peat.get(k) ?? 0, r26 = a > 0 ? (100 * (c26.get(k) ?? 0)) / a : 0, rp = a > 0 ? (100 * (cp.get(k) ?? 0)) / a : 0; return { p, a, r26, rp, ratio: rp > 0 ? r26 / rp : null, few: a < 5 } }) })).filter((r) => r.cells.some((c) => c.a > 0))
+  }, [data, khg, high])
+  const top = Math.max(1e-9, ...rows.flatMap((r) => r.cells.map((c) => c.r26)))
+  if (!rows.length) return <div className="muted text-xs">{t('No position data for this KHG')}</div>
+  return (
+    <div className="text-xs">
+      <div className="muted mb-1">{t('2026 hotspots per 100 km² of peat by position on the dome; × shows the ratio to the 2015 to 2025 mean')}</div>
+      <div className="grid gap-1" style={{ gridTemplateColumns: 'minmax(9rem,1.4fr) repeat(3, minmax(0,1fr))' }}>
+        <span />{POS.map((p) => <span key={p} className="muted text-center">{t(p)}</span>)}
+        {rows.map((r) => (
+          <div key={r.ten} className="contents">
+            <span className="self-center truncate"><i className="chip" style={{ background: TENURE[r.ten].color }} />{t(TENURE[r.ten].label)}</span>
+            {r.cells.map((c) => <span key={c.p} className="rounded px-1 py-1 text-center" style={{ background: `color-mix(in srgb, ${TENURE[r.ten].color} ${c.a > 0 ? Math.round((75 * c.r26) / top) : 0}%, transparent)`, opacity: c.few ? 0.5 : 1 }} title={`${f0(c.a)} km² ${t('of peat')}`}>
+              {c.a > 0 ? <><b>{f1(c.r26)}</b>{c.ratio != null && <span className="muted"> ×{c.ratio >= 10 ? Math.round(c.ratio) : c.ratio.toFixed(1)}</span>}</> : <span className="muted">-</span>}</span>)}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+/** Modelled dry-season water-table depth by tenure class: open land only; managed land is held at a target level in the run. */
+function WaterRows({ data, khg }: { data: TenureData; khg: string[] | null }) {
+  const t = useT()
+  const rows = useMemo(() => {
+    const w = data.water.filter((r) => (!khg || khg.includes(r.khg_id)) && (r.dem === 'deltadtm' || !data.water.some((x) => x.khg_id === r.khg_id && x.dem === 'deltadtm')))
+    return Object.keys(TENURE).map((ten) => {
+      const open = w.filter((r) => r.tenure === ten && !r.managed), a = open.reduce((s, r) => s + r.area_km2, 0)
+      const held = w.filter((r) => r.tenure === ten && r.managed).reduce((s, r) => s + r.area_km2, 0)
+      return { ten, a, held, depth: a ? open.reduce((s, r) => s + r.mean_depth_cm * r.area_km2, 0) / a : null, days: a ? open.reduce((s, r) => s + (r.days_deeper_40cm ?? 0) * r.area_km2, 0) / a : null }
+    }).filter((r) => r.a > 0 || r.held > 0)
+  }, [data, khg])
+  if (!rows.length) return null
+  return (
+    <div className="text-xs">
+      <div className="muted mb-1">{t('Groundwater model, dry season 2026: mean water-table depth and days deeper than 40 cm on open land')} · {t('in development')}</div>
+      {rows.map((r) => <div key={r.ten} className="flex items-baseline gap-2"><span className="min-w-0 flex-1 truncate"><i className="chip" style={{ background: TENURE[r.ten].color }} />{t(TENURE[r.ten].label)}</span>
+        {r.depth != null && r.a > r.held ? <span>{f0(r.depth)} cm · {f0(r.days ?? 0)} {t('days')}</span> : <span className="muted">{t('held at the managed target in the run')} ({f0(r.held)} km²)</span>}</div>)}
     </div>
   )
 }

@@ -1,4 +1,4 @@
-"""Publish the tenure tables of `repeat-national-tenure` to the app: national/tenure_area.parquet, tenure_hotspots.parquet.
+"""Publish the tenure tables of `repeat-national-tenure` (and, when present, `-dome` and `-water`) to the app: national/tenure_area.parquet, tenure_hotspots.parquet, tenure_dome.parquet, tenure_water.parquet.
 
     python build_tenure.py
 
@@ -26,6 +26,12 @@ def main():
     hot = hot[hot["ytd"]].drop(columns="ytd")
     hot = hot.groupby(["khg_id", "tenure", "sub", "dmpg", "year", "conf"], as_index=False)["n"].sum()
     OUT.mkdir(parents=True, exist_ok=True)
+    for name in ("tenure_dome", "tenure_water"):          # optional: KHG with a licence-edge run / a groundwater model run
+        f = SRC / f"{name}.csv"
+        if f.exists():
+            pd.read_csv(f).to_parquet(OUT / f"{name}.parquet", index=False, compression="zstd")
+        elif (OUT / f"{name}.parquet").exists():
+            (OUT / f"{name}.parquet").unlink()
     area.to_parquet(OUT / "tenure_area.parquet", index=False, compression="zstd")
     hot.to_parquet(OUT / "tenure_hotspots.parquet", index=False, compression="zstd")
     (OUT / "tenure_window.json").write_text((SRC / "tenure_meta.json").read_text(encoding="utf-8"), encoding="utf-8")

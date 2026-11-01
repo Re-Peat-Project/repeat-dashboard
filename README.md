@@ -23,7 +23,7 @@ The data is built from the workspace (`_khg`, `_data`, `re-peat/reports`) with t
 .venv/Scripts/python.exe repeat-dashboard/pipeline/build_all.py --all         # every KHG folder in _khg
 .venv/Scripts/python.exe repeat-dashboard/pipeline/build_khg.py --khg 16.02.01 --steps raster,neraca
 .venv/Scripts/python.exe repeat-dashboard/pipeline/build_investigation.py --all # exact hotspot/land intersections; cached
-.venv/Scripts/python.exe repeat-dashboard/pipeline/build_tenure.py                  # fire by land tenure, from `repeat-national-tenure` (repeat-prioritisation)
+.venv/Scripts/python.exe repeat-dashboard/pipeline/build_tenure.py                  # fire by land tenure, from `repeat-national-tenure`, `-dome`, `-water` (repeat-prioritisation)
 ```
 
 Run the intersection builder after rebuilding hotspot points or replacing land inputs. Use `--khg CODE` repeatedly for a subset. It reads source polygons at their stored resolution, joins with `intersects`, and writes `khg/<code>/investigation/` with source paths and a cache fingerprint. A KHG without sub-KHG units is supported. These optional exports are independent of the profile and comparison pages.
