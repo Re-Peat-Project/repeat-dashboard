@@ -41,3 +41,7 @@ button, select, input { font: inherit; color: inherit; }
 .dr input::-moz-range-thumb { pointer-events: all; width: 10px; height: 10px; border-radius: 50%; background: var(--surface); border: 2px solid var(--s2); cursor: pointer; }
 .dr input:focus { outline: none; }
 .dr input:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px color-mix(in srgb, var(--s2) 30%, transparent); }
+
+/* hover help: elements with data-tip get a dotted underline and the TipLayer text */
+[data-tip] { cursor: help; }
+span[data-tip], b[data-tip], label[data-tip], .font-medium[data-tip] { text-decoration: underline dotted color-mix(in srgb, var(--ink) 45%, transparent); text-underline-offset: 3px; }

@@ -1,5 +1,6 @@
 import { HashRouter, Route, Routes } from 'react-router-dom'
 import { Header } from './components/Header'
+import { TipLayer } from './components/Tip'
 import Compare from './pages/Compare'
 import Khg from './pages/Khg'
 import National from './pages/National'
@@ -9,6 +10,7 @@ export default function App() {
   return (
     <HashRouter>
       <Header />
+      <TipLayer />
       <Routes>
         <Route path="/" element={<National />} />
         <Route path="/khg/:code" element={<Khg />} />

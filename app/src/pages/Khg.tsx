@@ -7,12 +7,14 @@ import { FIELD, LegendCard, RampLegend, SEQ, Swatch, TERRAIN } from '../componen
 import { MonthYearHeat } from '../components/MonthYearHeat'
 import { LandStatus, type LandRow } from '../components/LandStatus'
 import { LineChart, type Series } from '../components/LineChart'
-import { loadCatalog, loadManifest, readTable, type CatalogEntry, type Manifest } from '../lib/data'
+import { loadCatalog, loadManifest, readJson, readTable, type CatalogEntry, type Manifest } from '../lib/data'
 import { contextCounts, inPeriod, monthDate, type Hotspot } from '../lib/investigation'
 import { labelOf, useT } from '../lib/i18n'
 import { initMaplibre, maplibregl, pm, styleFor } from '../lib/map'
 import { useStore } from '../lib/store'
 import { TenurePanel, useTenure } from '../components/Tenure'
+import { BudgetPanel } from '../components/Budget'
+import { DEM_HELP, MODE_HELP, layerTip } from '../lib/help'
 
 type Mode = 'fire' | 'water' | 'land' | 'action'
 type Field = 'licence' | 'forest' | 'village' | 'dmpg'
@@ -24,6 +26,8 @@ const PRESET: Record<Mode, string[]> = {
 }
 const DEM_COLOR: Record<string, string> = { lidar: '#2a78d6', deltadtm: '#eb6834', demnas: '#1baf7a',
   demnas_full: '#8a5cd6', lidar_full: '#c9a21a', worlddem_full: '#d6479a', brgmcontour_full: '#6b7280' }   // categorical slots 1-3 fixed per DEM; the team runs have their own
+// dash patterns of a line that moves (the MapLibre line-animation pattern): the dash travels in the drawing direction of the line
+const DASH = [[0, 4, 3], [0.5, 4, 2.5], [1, 4, 2], [1.5, 4, 1.5], [2, 4, 1], [2.5, 4, 0.5], [3, 4, 0], [0, 0.5, 3, 3.5], [0, 1, 3, 3], [0, 1.5, 3, 2.5], [0, 2, 3, 2], [0, 2.5, 3, 1.5], [0, 3, 3, 1], [0, 3.5, 3, 0.5]]
 const GROUPS = ['boundary', 'hydrology', 'interventions', 'land', 'fire', 'ranking', 'neraca']
 const GROUP_LABEL: Record<string, string> = { boundary: 'Boundary', hydrology: 'Hydrology', interventions: 'Interventions', land: 'Land status', fire: 'Fire', ranking: 'Sub-KHG units', neraca: 'Neraca air' }
 const NERACA_ATTRS = [['u_wb_mean', 'Mean water balance (mm)'], ['u_deficit_months', 'Deficit months'], ['wb_dry_mm', 'Dry-season balance (mm)'], ['p_minus_et_mean_mm', 'Rain minus ET (mm)']]
@@ -34,6 +38,7 @@ type Spec = { kind: 'fill' | 'line' | 'circle'; color: string; width?: number; o
 const STYLE: Record<string, Spec> = {
   khg: { kind: 'line', color: '#1c1c1c', width: 2 }, canals: { kind: 'line', color: '#0b6b8a', width: 0.9 }, rivers: { kind: 'line', color: '#2a78d6', width: 1.6 },
   canal_segments: { kind: 'line', color: '#0b6b8a', width: 1.2 }, blocks: { kind: 'circle', color: '#7a3e00', width: 2.5 }, brgm_infra: { kind: 'circle', color: '#6250d6', width: 3 },
+  sekat_reach: { kind: 'line', color: '#2a78d6', width: 3 }, canal_flow: { kind: 'line', color: '#0b6b8a', width: 1.4 },
   sekat_proposed: { kind: 'circle', color: '#e34948', width: 5 }, sekat_existing: { kind: 'circle', color: '#52514e', width: 3 }, neraca_stations: { kind: 'circle', color: '#008300', width: 4 },
   feg: { kind: 'fill', color: '#1baf7a', opacity: 0.25 }, licences: { kind: 'fill', color: '#eda100', opacity: 0.3 }, target_villages: { kind: 'fill', color: '#e87ba4', opacity: 0.3 },
   forest: { kind: 'fill', color: '#008300', opacity: 0.3 }, dmpg: { kind: 'fill', color: '#6250d6', opacity: 0.25 }, burn: { kind: 'fill', color: '#e34948', opacity: 0.45 },
@@ -284,6 +289,44 @@ export default function Khg() {
   }), [points, fire, kind, t, ctxValue, field])
   const khgId = cat.find((c) => c.code === code)?.khg_id
   const tenure = useTenure()
+
+  // flow animation: canals redrawn downstream with moving dashes, and the water held back by each proposed block, one block at a time
+  const [anim, setAnim] = useState(false)
+  const [animNote, setAnimNote] = useState('')
+  useEffect(() => {
+    const map = mapRef.current
+    if (!anim || !map || !ready || !mf) return
+    const reach = mf.vector.find((v) => v.id === 'sekat_reach' && v.dem === dem), flow = mf.vector.find((v) => v.id === 'canal_flow' && v.dem === dem)
+    if (!reach && !flow) { setAnim(false); return }
+    const ids: string[] = []
+    const add = (id: string, file: string, layer: any) => { map.addSource(id, { type: 'vector', url: pm(`khg/${code}/${file}`) }); map.addLayer({ id, source: id, ...layer }); ids.push(id) }
+    const dash = (id: string, file: string, sl: string) => add(id, file, { type: 'line', 'source-layer': sl, layout: { 'line-cap': 'butt' }, paint: { 'line-color': '#ffffff', 'line-width': 1.6, 'line-dasharray': DASH[0] } })
+    if (flow) { add('a-canal', flow.file, { type: 'line', 'source-layer': 'canal_flow', paint: { 'line-color': sat ? '#4fd1ff' : '#0b6b8a', 'line-width': 2, 'line-opacity': 0.7 } }); dash('a-canal-dash', flow.file, 'canal_flow') }
+    let N = 0
+    const curve: { n: number; cum: number }[] = []
+    const budgetFile = mf.tables.find((x) => x.id === 'pump_budget_summary' && x.dem === dem)?.file
+    const loaded = budgetFile ? readJson<any>(`khg/${code}/${budgetFile}`).then((s) => { curve.push(...(s.budget.spend_curve ?? [])); N = curve.length ? curve[curve.length - 1].n : 0 }).catch(() => undefined) : Promise.resolve()
+    if (reach) {
+      add('a-reach-halo', reach.file, { type: 'line', 'source-layer': 'sekat_reach', layout: { 'line-cap': 'round' }, paint: { 'line-color': '#ffffff', 'line-width': 6 } })
+      add('a-reach', reach.file, { type: 'line', 'source-layer': 'sekat_reach', layout: { 'line-cap': 'round' }, paint: { 'line-color': '#2a78d6', 'line-width': ['interpolate', ['linear'], ['coalesce', ['get', 'rise_m'], 0], 0, 2, 1, 5] } })
+      dash('a-reach-dash', reach.file, 'sekat_reach')
+    }
+    const t0 = performance.now(), fillMs = 8000
+    let raf = 0, step = -1, last = -1
+    const tick = (now: number) => {
+      const el = now - t0
+      const s = Math.floor(el / 60) % DASH.length
+      if (s !== step) { step = s; for (const id of ids.filter((i) => i.endsWith('-dash'))) map.setPaintProperty(id, 'line-dasharray', DASH[s]) }
+      if (reach && N) {
+        const n = Math.min(N, Math.floor((el / fillMs) * N) + 1)
+        if (n !== last) { last = n; for (const id of ['a-reach-halo', 'a-reach', 'a-reach-dash']) map.setFilter(id, ['<=', ['get', 'benefit_rank'], n]); const c = curve.find((p) => p.n === n); setAnimNote(`${n} / ${N} ${t('blocks built')}${c ? ` · ${Math.round(100 * c.cum)} % ${t('of the water the analysed blocks hold')}` : ''}`) }
+      }
+      raf = requestAnimationFrame(tick)
+    }
+    let live = true
+    loaded.then(() => { if (live) raf = requestAnimationFrame(tick) })
+    return () => { live = false; cancelAnimationFrame(raf); for (const id of [...ids].reverse()) { if (map.getLayer(id)) map.removeLayer(id); if (map.getSource(id)) map.removeSource(id) }; setAnimNote('') }
+  }, [anim, ready, mf, dem, code, sat])
   const burned: Series[] = [{ name: t('Burned peat per year'), color: 'var(--s2)', points: yearly.filter((r) => r.khg_id === khgId && r.metric === 'burned_peat_km2').sort((a, b) => a.year - b.year).map((r) => ({ x: new Date(r.year, 6, 1), y: r.value })) }]
   const yearDom: [Date, Date] = [new Date(fire.year, 0, 1), new Date(fire.year, 11, 31)]
   const inYear = (d: Date) => d.getFullYear() === fire.year
@@ -342,11 +385,11 @@ export default function Khg() {
       {gw && raster !== 'relief' && raster !== 'none' && <div className="muted mb-2 text-xs">{t('Groundwater model')}: {t(gw.stage)} · {gw.res_m} m · {gw.season}</div>}
       {GROUPS.map((g) => { const vs = mf.vector.filter((v) => v.group === g && (v.dem == null || v.dem === dem)); if (!vs.length && g !== 'fire') return null
         return <div key={g} className="mb-2"><div className="muted text-xs uppercase">{t(GROUP_LABEL[g])}</div>
-          {vs.map((v) => <label key={v.id} className="flex items-center gap-2 py-0.5"><input type="checkbox" checked={visible.has(v.id)} onChange={() => toggle(v.id)} />
+          {vs.map((v) => <label key={v.id} data-tip={layerTip(v.id, lang, v.source)} className="flex items-center gap-2 py-0.5"><input type="checkbox" checked={visible.has(v.id)} onChange={() => toggle(v.id)} />
             <i className="chip" style={{ background: STYLE[v.id]?.color ?? 'var(--s1)' }} />{labelOf(v.label, lang)}<span className="muted ml-auto text-xs">{v.features ?? ''}</span></label>)}
           {g === 'fire' && points.length > 0 && <label className="flex items-center gap-2 py-0.5"><input type="checkbox" checked={visible.has('hotspots')} onChange={() => toggle('hotspots')} /><i className="chip" style={{ background: 'var(--s8)', borderRadius: '50%' }} />{t('Hotspots')}<span className="muted ml-auto text-xs">{filtered.length.toLocaleString()}</span></label>}
         </div> })}
-      {unitsShown && unitAttrs.length > 0 && <div className="flex items-center gap-2 text-xs"><span className="muted">{t('Colour units by')}</span>
+      {unitsShown && unitAttrs.length > 0 && <div className="flex items-center gap-2 text-xs"><span className="muted" data-tip={t('The attribute that colours the sub-KHG units. Same colour range for every unit of this KHG.')}>{t('Colour units by')}</span>
         <select className="card px-1" value={attr} onChange={(e) => setUnitBy(e.target.value)}>{unitAttrs.map(([k, l]) => <option key={k} value={k}>{t(l)}</option>)}</select></div>}
       {missingDem.length > 0 && <div className="muted mt-2 text-xs">{t('Not available for this DEM')}: {missingDem.map((m) => m.id).join(', ')}</div>}
     </details>
@@ -358,7 +401,7 @@ export default function Khg() {
         <div className="text-lg font-semibold">{mf.name}</div><div className="muted">{mf.province}</div>
         <div className="ml-auto flex items-center gap-1">
           <span className="muted text-xs">{t('DEM')}</span>
-          {mf.dems.map((d) => <button key={d} className="btn" aria-pressed={dem === d} onClick={() => setDem(d)}><i className="chip" style={{ background: DEM_COLOR[d] }} />{mf.dem_labels?.[d] ? labelOf(mf.dem_labels[d], lang) : d}</button>)}
+          {mf.dems.map((d) => <button key={d} className="btn" data-tip={DEM_HELP[d]?.[lang] ?? (mf.dem_labels?.[d] ? t('Team run, earlier method: every sub-KHG processed') : undefined)} aria-pressed={dem === d} onClick={() => setDem(d)}><i className="chip" style={{ background: DEM_COLOR[d] }} />{mf.dem_labels?.[d] ? labelOf(mf.dem_labels[d], lang) : d}</button>)}
           <button className="btn ml-2" onClick={exportCsv} disabled={!filtered.length}>{t('Export selection')} ↓</button>
         </div>
       </div>
@@ -366,7 +409,7 @@ export default function Khg() {
         {ctxValue && <button className="btn text-xs" onClick={() => pickArea(null)}>{ctxValue === NONE ? t('Outside mapped areas') : ctxValue} ×</button>}
       </FilterBar>
       <div className="flex gap-1" role="tablist">
-        {MODES.map(([m, l]) => <button key={m} role="tab" className="btn" aria-pressed={mode === m} onClick={() => chooseMode(m)}>{t(l)}</button>)}
+        {MODES.map(([m, l]) => <button key={m} role="tab" className="btn" data-tip={MODE_HELP[m][lang]} aria-pressed={mode === m} onClick={() => chooseMode(m)}>{t(l)}</button>)}
         <button className="btn ml-auto text-xs" onClick={() => nav('/')}>← {t('Indonesia')}</button>
       </div>
       <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_440px]">
@@ -451,10 +494,12 @@ export default function Khg() {
           {mode === 'action' && <div className="card p-3 text-sm">
             <div className="mb-1 font-medium">{t('Interventions')}</div>
             <p className="muted mb-2 text-xs">{t('Proposed interventions are design outputs, not completed works.')}</p>
-            {mf.vector.filter((v) => (v.group === 'interventions' || v.id === 'canal_segments') && (v.dem == null || v.dem === dem)).map((v) => <label key={v.id} className="flex items-center gap-2 py-0.5"><input type="checkbox" checked={visible.has(v.id)} onChange={() => toggle(v.id)} />
+            {mf.vector.filter((v) => (v.group === 'interventions' || v.id === 'canal_segments' || v.id === 'canal_flow') && (v.dem == null || v.dem === dem)).map((v) => <label key={v.id} data-tip={layerTip(v.id, lang, v.source)} className="flex items-center gap-2 py-0.5"><input type="checkbox" checked={visible.has(v.id)} onChange={() => toggle(v.id)} />
               <i className="chip" style={{ background: STYLE[v.id]?.color }} />{labelOf(v.label, lang)}<b className="ml-auto">{fmt0(v.features)}</b></label>)}
+            {mf.vector.some((v) => (v.id === 'sekat_reach' || v.id === 'canal_flow') && v.dem === dem) && <div className="mt-2 flex items-center gap-2"><button className="btn" aria-pressed={anim} onClick={() => setAnim(!anim)}>{anim ? `■ ${t('Stop')}` : `▶ ${t('Animate flow')}`}</button><span className="muted text-xs">{animNote}</span></div>}
             <p className="muted mt-2 text-xs">{t('Hover a block or canal on the map to see its design attributes.')}</p>
           </div>}
+          {mode === 'action' && dem && <BudgetPanel code={code} dem={dem} mf={mf} />}
 
           {layerPanel}
         </div>

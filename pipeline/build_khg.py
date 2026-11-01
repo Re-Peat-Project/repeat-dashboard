@@ -23,6 +23,7 @@ import geopandas as gpd
 import numpy as np
 import pandas as pd
 import pyogrio
+import shapely
 import rasterio
 import rasterio.warp
 import yaml
@@ -174,7 +175,7 @@ def step_vector(kdir, out, reg, dems, cache, force, holder_names, manifest):
             keep = spec.get("keep")
             if holder_names and spec.get("holder_field") and keep is not None:
                 keep = [*keep, spec["holder_field"]]
-            fp = fingerprint([src], extra=json.dumps([layer, keep, TIPPECANOE, spec.get("maxzoom"), "clip-v1" if spec.get("national") else ""]))
+            fp = fingerprint([src], extra=json.dumps([layer, keep, TIPPECANOE, spec.get("maxzoom"), "clip-v1" if spec.get("national") else "", spec.get("orient")]))
             dst = out / rel
             info = pyogrio.read_info(src, layer=layer)
             if not info["features"]:
@@ -182,6 +183,9 @@ def step_vector(kdir, out, reg, dems, cache, force, holder_names, manifest):
                 continue
             if force or not cache.hit(key, fp, [dst]):
                 gdf = read_national_clip(src, kdir / "00_inputs" / "khg.gpkg", keep) if spec.get("national") else read_vector(src, layer, keep)
+                if spec.get("orient") and spec["orient"] in gdf:   # make every line run downstream, so a moving dash shows the flow
+                    rev = (gdf[spec["orient"]] == "reverse").to_numpy()
+                    gdf.loc[rev, gdf.geometry.name] = shapely.reverse(gdf.geometry.values[rev])
                 tile_vector(gdf, spec["id"], dst, spec.get("maxzoom", 15))
                 cache.put(key, fp)
                 print(f"  vector {dem or ''} {spec['id']}: {len(gdf)} features, {size_mb(dst)} MB", flush=True)
@@ -246,6 +250,7 @@ TABLES = [
     ("sekat_need", "04_prioritisation/{dem}/kebutuhan_sekat.csv", True),
     ("pump_budget", "05_pump/{dem}/budget.csv", True),
     ("pump_interventions", "05_pump/{dem}/interventions.csv", True),
+    ("pump_budget_sources", "05_pump/{dem}/budget_sources.csv", True),
     ("sitmat_stations", "00_inputs/sitmat/stations_geo.csv", False),
     ("sitmat_daily", "00_inputs/sitmat/daily_long.csv", False),
 ]
@@ -271,6 +276,17 @@ def step_tables(kdir, out, dems, cache, force, manifest):
                 cache.put(key, fp)
                 print(f"  table {dem or ''} {tid}: {len(df)} rows", flush=True)
             manifest["tables"].append({"id": tid, "dem": dem, "file": dst.relative_to(out).as_posix(), "mb": size_mb(dst)})
+    for dem in dems:        # budget totals, items and spend curve of the run (run_report.json), for the budget panel
+        src = kdir / "05_pump" / dem / "run_report.json"
+        if not src.exists():
+            continue
+        rep = json.loads(src.read_text(encoding="utf-8"))
+        if not rep.get("budget"):
+            continue
+        dst = out / "tables" / dem / "pump_budget_summary.json"
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        dst.write_text(json.dumps(clean({"budget": rep["budget"]}), allow_nan=False), encoding="utf-8")
+        manifest["tables"].append({"id": "pump_budget_summary", "dem": dem, "file": dst.relative_to(out).as_posix(), "mb": size_mb(dst)})
 
 
 # raster ----------------------------------------------------------------------

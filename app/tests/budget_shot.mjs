@@ -1,0 +1,16 @@
+// usage: node tests/budget_shot.mjs [code]   Interventions mode: flow animation on the map and the budget panel
+import { chromium } from 'playwright-core'
+const [code = '15.05-07-10.01'] = process.argv.slice(2)
+const b = await chromium.launch({ channel: 'chrome', args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] })
+const p = await b.newPage({ viewport: { width: 1500, height: 1100 } })
+const errs = []; p.on('pageerror', (e) => errs.push(String(e)))
+await p.goto(`http://localhost:5173/#/khg/${code}?m=action`); await p.waitForTimeout(3000)
+await p.getByRole('button', { name: 'LiDAR', exact: false }).first().click().catch(() => {})
+await p.waitForTimeout(2500)
+await p.getByRole('button', { name: /Animate flow/ }).click()
+await p.waitForTimeout(5500)
+await p.screenshot({ path: `tests/screenshots/flow_${code}.png` })
+const panel = p.locator('text=Budget estimate').first().locator('xpath=ancestor::div[contains(@class,"card")][1]')
+await panel.screenshot({ path: `tests/screenshots/budget_${code}.png` })
+console.log(errs.length ? errs : 'no page errors')
+await b.close()

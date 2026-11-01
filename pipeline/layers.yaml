@@ -89,6 +89,22 @@ vector:
     layer: sekat_existing_assessed
     label: {en: "Existing blocks, assessed", id: "Sekat eksisting, dinilai"}
     source: repeat-pump
+  - id: sekat_reach
+    group: interventions
+    dem: true
+    src: 05_pump/{dem}/*.gpkg
+    layer: sekat_reach
+    label: {en: "Water held back by the sekat", id: "Air yang ditahan sekat"}
+    source: repeat-pump
+  - id: canal_flow
+    group: hydrology
+    dem: true
+    src: 05_pump/{dem}/*.gpkg
+    layer: canal_segments
+    orient: direction          # lines redrawn so that they run downstream (direction = reverse: digitised against the flow)
+    keep: [canal_id, canal_class, direction, selected, need_rank, i_lahan_pct, z_up_m, z_down_m, length_m]
+    label: {en: "Canal flow direction", id: "Arah aliran kanal"}
+    source: repeat-pump
   - id: canal_segments
     group: hydrology
     dem: true
