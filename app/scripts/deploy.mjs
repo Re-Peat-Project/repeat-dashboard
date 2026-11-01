@@ -45,6 +45,7 @@ for (const k of json(join(data, 'catalog.json'))) {
   for (const sec of ['vector', 'raster', 'tables', 'points']) for (const e of m[sec] ?? []) keep.add(`${base}/${e.file}`)
   for (const g of m.groundwater ?? []) for (const e of [...(g.files ?? []), ...(g.rasters ?? [])]) keep.add(`${base}/${e.file}`)
 }
+if (existsSync(join(data, 'hypotheses'))) for (const n of readdirSync(join(data, 'hypotheses'))) keep.add(`hypotheses/${n}`)   // the investigation page
 const nm = json(join(data, 'national', 'manifest.json'))
 for (const e of [...(nm.tables ?? []), ...(nm.files ?? [])]) keep.add(`national/${e.file}`)
 
@@ -60,6 +61,9 @@ for (const p of files) {
 const prune = (d) => { for (const n of readdirSync(d)) { const p = join(d, n); if (statSync(p).isDirectory()) { prune(p); if (!readdirSync(p).length) rmSync(p, { recursive: true }) } } }
 prune(data)
 writeFileSync(join(out, '.nojekyll'), '')
+// /investigation/ opens the investigation page (the app routes by hash, so a plain folder redirects to it)
+mkdirSync(join(out, 'investigation'), { recursive: true })
+writeFileSync(join(out, 'investigation', 'index.html'), '<!doctype html><meta charset="utf-8"><title>Investigation</title><meta http-equiv="refresh" content="0; url=../#/investigation"><script>location.replace("../#/investigation" + location.search)</script><a href="../#/investigation">Investigation</a>')
 console.log(`pruned ${dropped} unreferenced files (${(droppedBytes / MB).toFixed(1)} MB: build caches, logs, orphan tiles)`)
 
 // 3. size budget

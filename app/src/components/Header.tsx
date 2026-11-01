@@ -16,6 +16,7 @@ export function Header() {
       <div className="font-semibold">RE-PEAT</div>
       <NavLink to="/" end className={link}>{t('Fire situation')}</NavLink>
       <NavLink to="/compare" className={link}>{t('Compare KHG')}</NavLink>
+      <NavLink to="/investigation" className={link}>{t('Investigation')}</NavLink>
       <select className="card px-2 py-1" value="" onChange={(e) => e.target.value && nav(`/khg/${e.target.value}`)} aria-label={t('KHG profile')}>
         <option value="">{t('KHG profile')}: {t('Choose a KHG')}</option>
         {cat.map((c) => <option key={c.code} value={c.code}>{c.name.replace(/^KHG /, '')} ({c.province})</option>)}
