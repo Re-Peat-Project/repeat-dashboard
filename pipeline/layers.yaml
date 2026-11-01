@@ -112,7 +112,9 @@ points:
 # Groundwater model runs shown per DEM variant (03_neraca/<dem>/runs/model/<run>); a KHG without the run lists it as missing.
 groundwater:
   stage: in development      # shown next to every model result
-  runs: [d22_climate_2026]
+  runs:                      # per DEM variant; the same set-up (D22: climatic supply cap, 0.4 m managed target) on each DEM
+    deltadtm: [d22_climate_2026]
+    lidar: [cap_climate]
 
 # Display pyramid cap per DEM variant (owner decision: DEMNAS is shown slightly coarser than its 8.35 m cells to keep the dashboard light).
 # The native rasters are untouched; the manifest records native_zoom and max_zoom for each layer.

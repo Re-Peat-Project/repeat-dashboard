@@ -11,6 +11,7 @@ A KHG without a DEM variant, a layer or a table gets no file for it, and the man
 import argparse
 import hashlib
 import json
+import re
 import os
 import subprocess
 import sys
@@ -40,6 +41,12 @@ CONF = {"l": "low", "n": "medium", "h": "high", "low": "low", "medium": "medium"
         "rendah": "low", "sedang": "medium", "tinggi": "high"}
 FILE_LIMIT_MB = 95   # GitHub rejects files over 100 MB; a pyramid over this is rebuilt one zoom lower, the native raster is untouched
 DEMS = ["lidar", "deltadtm", "demnas"]
+
+
+def season_text(cfg):
+    """The run's dry window as 'YYYY-MM-DD to YYYY-MM-DD'; some runs store it as 'MM-DD,MM-DD'."""
+    m = re.fullmatch(r"(\d\d-\d\d),(\d\d-\d\d)", str(cfg.get("season") or ""))
+    return f"{str(cfg['end'])[:4]}-{m[1]} to {str(cfg['end'])[:4]}-{m[2]}" if m and cfg.get("end") else cfg.get("season")
 
 
 def resolve(kdir, src):
@@ -374,7 +381,7 @@ def step_neraca(kdir, out, reg, dems, cache, force, manifest):
                 cols = pyogrio.read_dataframe(gpkg, layer=layer, read_geometry=False)
                 entry["ranges"] = {c: [float(cols[c].min()), float(cols[c].max())] for c in ("u_wb_mean", "u_deficit_months", "wb_dry_mm", "p_minus_et_mean_mm") if c in cols and cols[c].notna().any()}
             manifest["vector"].append(entry)
-        for run in runs:
+        for run in (runs.get(dem, []) if isinstance(runs, dict) else runs):
             rdir = nd / dem / "runs" / "model" / run
             if not (rdir / "model_units.csv").exists():
                 manifest["missing"].append({"id": f"model_{run}", "dem": dem, "reason": f"no groundwater run {run}", "step": "neraca"})
@@ -382,7 +389,7 @@ def step_neraca(kdir, out, reg, dems, cache, force, manifest):
             cfg = json.loads((rdir / "run_config.json").read_text(encoding="utf-8"))
             base = out / "tables" / dem / "model" / run
             entry = {"dem": dem, "run": run, "res_m": cfg.get("res_m"), "start": cfg.get("start"), "end": cfg.get("end"),
-                     "season": cfg.get("season"), "peat_table": cfg.get("peat_table"), "managed_target": cfg.get("managed_target"),
+                     "season": season_text(cfg), "peat_table": cfg.get("peat_table"), "managed_target": cfg.get("managed_target"),
                      "rain": cfg.get("rain"), "et": cfg.get("et"), "canal_cells": cfg.get("canal_cells"),
                      "stage": reg["groundwater"].get("stage"), "files": [], "rasters": []}
             fp = fingerprint([f for f in [*rdir.glob("*.csv"), *rdir.glob("*.tif"), rdir / "run_config.json", rdir / "station_scores.json"] if f.exists()])
