@@ -5,6 +5,7 @@ import Compare from './pages/Compare'
 import Hypotheses from './pages/Hypotheses'
 import Khg from './pages/Khg'
 import National from './pages/National'
+import Summary from './pages/Summary'
 
 // hash routing: works on GitHub Pages and Netlify without rewrite rules
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<National />} />
         <Route path="/khg/:code" element={<Khg />} />
+        <Route path="/summary" element={<Summary />} />
         <Route path="/compare" element={<Compare />} />
         <Route path="/investigation" element={<Hypotheses />} />
       </Routes>

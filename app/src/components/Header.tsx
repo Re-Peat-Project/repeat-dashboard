@@ -15,6 +15,7 @@ export function Header() {
     <header className="card mx-3 mt-3 flex flex-wrap items-center gap-3 px-3 py-2">
       <div className="font-semibold">RE-PEAT</div>
       <NavLink to="/" end className={link}>{t('Fire situation')}</NavLink>
+      <NavLink to="/summary" className={link}>{t('National summary')}</NavLink>
       <NavLink to="/compare" className={link}>{t('Compare KHG')}</NavLink>
       <NavLink to="/investigation" className={link}>{t('Investigation')}</NavLink>
       <select className="card px-2 py-1" value="" onChange={(e) => e.target.value && nav(`/khg/${e.target.value}`)} aria-label={t('KHG profile')}>

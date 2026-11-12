@@ -2,7 +2,7 @@
 
 Static visual analytics dashboard for RE-PEAT, built for fire investigation: a national fire view of the 865 KHG and a workspace per KHG with four modes (Fire, Water, Land & accountability, Interventions). Vite, React, MapLibre. No server: every layer is a PMTiles or Parquet file read with HTTP range requests.
 
-One fire filter (year, months, confidence, on peat) drives the map, charts and ledger on both pages. The workspace keeps every layer toggleable (DEM and groundwater rasters with legends, canals, blocks, licences, forest area, villages, burn footprint, hotspots); a mode only chooses which layers start on. The Land & accountability ledger counts hotspots per licence, forest area, village and DMPG village, and picking a row filters the map. The Land & accountability mode opens with fire by land tenure: 2026 hotspots per 100 km² of peat against the 2015 to 2025 mean over the same calendar window, for business licences, forest area without a licence and other land, with a DMPG split. The national page compares the profiled KHG. The Interventions mode animates the canal flow (canals redrawn downstream, moving dashes) and the water held back by the proposed blocks, one block at a time, and shows the budget estimate of the pump run: totals with their low to high range, cost by item and by sub-KHG, the spend curve, the rows, and the register of unit costs with its verification status. Labels and layers carry hover help. Compare KHG provides small-multiple maps and time series with shared scales.
+One fire filter (year, months, confidence, on peat) drives the map, charts and ledger on both pages. The workspace keeps every layer toggleable (DEM and groundwater rasters with legends, canals, blocks, licences, forest area, villages, burn footprint, hotspots); a mode only chooses which layers start on. The Land & accountability ledger counts hotspots per licence, forest area, village and DMPG village, and picking a row filters the map. The Land & accountability mode opens with fire by land tenure: 2026 hotspots per 100 km² of peat against the 2015 to 2025 mean over the same calendar window, for business licences, forest area without a licence and other land, with a DMPG split. The national page compares the profiled KHG. The National summary page gives burned area and hotspots by concession, forest area and DMPG village for all of Indonesia, all land or peat, inside or outside KHG, by island and province. The Interventions mode animates the canal flow (canals redrawn downstream, moving dashes) and the water held back by the proposed blocks, one block at a time, and shows the budget estimate of the pump run: totals with their low to high range, cost by item and by sub-KHG, the spend curve, the rows, and the register of unit costs with its verification status. Labels and layers carry hover help. Compare KHG provides small-multiple maps and time series with shared scales.
 
 ## Run locally
 
@@ -24,6 +24,7 @@ The data is built from the workspace (`_khg`, `_data`, `re-peat/reports`) with t
 .venv/Scripts/python.exe repeat-dashboard/pipeline/build_khg.py --khg 16.02.01 --steps raster,neraca
 .venv/Scripts/python.exe repeat-dashboard/pipeline/build_investigation.py --all # exact hotspot/land intersections; cached
 .venv/Scripts/python.exe repeat-dashboard/pipeline/build_tenure.py                  # fire by land tenure, from `repeat-national-tenure`, `-dome`, `-water` (repeat-prioritisation)
+.venv/Scripts/python.exe repeat-dashboard/pipeline/build_fire_summary.py            # national summary: burned area and hotspots by concession, forest area and DMPG, from `repeat-national-fire-tables`
 ```
 
 Run the intersection builder after rebuilding hotspot points or replacing land inputs. Use `--khg CODE` repeatedly for a subset. It reads source polygons at their stored resolution, joins with `intersects`, and writes `khg/<code>/investigation/` with source paths and a cache fingerprint. A KHG without sub-KHG units is supported. These optional exports are independent of the profile and comparison pages.
@@ -52,7 +53,7 @@ The satellite basemap is Esri World Imagery (attribution is shown on the map); t
 ## Layout
 
 ```
-app/src/pages/       National.tsx (fire situation), Khg.tsx (investigation workspace), Compare.tsx
+app/src/pages/       National.tsx (fire situation), Summary.tsx (national summary by land status), Khg.tsx (investigation workspace), Compare.tsx
 app/src/components/  LineChart.tsx, DataTable.tsx, FilterBar.tsx, Legend.tsx, Header.tsx
 app/src/lib/         data.ts (Parquet, manifests), map.ts, store.ts, i18n.ts
 pipeline/            build_national.py, build_khg.py, build_all.py, dem_tiles.py, layers.yaml
