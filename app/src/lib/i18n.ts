@@ -176,7 +176,7 @@ const ID: Record<string, string> = {
   "All land": "Seluruh lahan",
   "Peat only": "Hanya gambut",
   "Every cell inside the village boundaries of 2023.": "Setiap sel di dalam batas desa 2023.",
-  "Cells of the GFW peat extent (composite of Miettinen et al. 2016 and Gumbricht et al. 2017).": "Sel sebaran gambut GFW (gabungan Miettinen dkk. 2016 dan Gumbricht dkk. 2017).",
+  "Cells in KLH's peat land map (integrated thematic analysis for peat restoration, April 2026).": "Sel dalam peta lahan gambut KLH (analisis integrasi tematik pemulihan ekosistem gambut, April 2026).",
   "Inside KHG": "Di dalam KHG",
   "Outside KHG": "Di luar KHG",
   "MODIS and VIIRS near-real-time hotspots carry no type. Those within 1 km (MODIS) or 375 m (VIIRS) of a VIIRS detection typed as volcano, static land source (such as a gas flare) or offshore are left out unless included here.": "Titik panas MODIS dan VIIRS hampir waktu nyata tidak memiliki tipe. Titik dalam jarak 1 km (MODIS) atau 375 m (VIIRS) dari deteksi VIIRS bertipe gunung api, sumber darat statis (misalnya suar gas) atau lepas pantai tidak dihitung kecuali disertakan di sini.",

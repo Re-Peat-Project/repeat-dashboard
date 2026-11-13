@@ -151,7 +151,7 @@ export default function Summary() {
   return (
     <div className="flex flex-col gap-3 p-3">
       <div className="card flex flex-wrap items-end gap-x-5 gap-y-2 px-3 py-2 text-sm" role="group" aria-label={t('Filters')}>
-        <Seg label={t('Area basis')} value={basis} set={setBasis} opts={[['all', t('All land'), t('Every cell inside the village boundaries of 2023.')], ['peat', t('Peat only'), t('Cells of the GFW peat extent (composite of Miettinen et al. 2016 and Gumbricht et al. 2017).')]]} />
+        <Seg label={t('Area basis')} value={basis} set={setBasis} opts={[['all', t('All land'), t('Every cell inside the village boundaries of 2023.')], ['peat', t('Peat only'), t('Cells in KLH's peat land map (integrated thematic analysis for peat restoration, April 2026).')]]} />
         <Seg label={t('KHG')} value={scope} set={setScope} opts={[['all', t('All')], ['in', t('Inside KHG')], ['out', t('Outside KHG')]]} />
         <label className="flex flex-col gap-1"><span className="muted text-xs">{t('Island')}</span>
           <select className="card px-2 py-1" value={island} onChange={(e) => { setIsland(e.target.value); setProvince('') }}><option value="">{t('Indonesia')}</option>{islands.map((s) => <option key={s} value={s}>{s.replace(/^Pulau /, '')}</option>)}</select></label>
