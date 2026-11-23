@@ -45,4 +45,23 @@ describe.skipIf(!have)('priority scoring', () => {
     const P = load()
     for (const d of Object.values(P.meta.rule.dims)) for (const k of Object.keys(d)) expect(core.IND[k], k).toBeTruthy()
   })
+
+  it('starts the dashboard with the updated fire weights and preserves the reference rule', () => {
+    const P = load()
+    const reference = core.refW(P)
+    expect(core.defaultW(P)).toEqual({ ...reference, u_fire_freq: 0.5, u_hotspot_now: 2.5 })
+    expect(core.refW(P)).toMatchObject({ u_fire_freq: 2, u_hotspot_now: 1 })
+  })
+
+  it('explains urgency using the live weights, confidence setting and missing-data policy', () => {
+    const P = load()
+    const w = core.defaultW(P)
+    for (const options of [{ conf: 'mh', missing: 'skip' }, { conf: 'h', missing: 'median' }] as const) {
+      const score = core.finCompute(P, w, options)
+      const j = P.idx.get('16.02.01')!
+      const drivers = core.urgencyDrivers(P, j, w, options)
+      expect(drivers.length).toBeGreaterThanOrEqual(3)
+      expect(drivers.reduce((sum, driver) => sum + driver.points, 50)).toBeCloseTo(100 * score.u[j]!, 8)
+    }
+  })
 })

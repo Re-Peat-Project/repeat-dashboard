@@ -4,7 +4,7 @@ import { useMemo } from 'react'
 import * as d3 from 'd3'
 import { create } from 'zustand'
 import * as maplibregl from 'maplibre-gl'
-import { finCompute, refW, type FC, type PD, type ScoreOpts, type Weights } from './core'
+import { defaultW, finCompute, refW, type FC, type PD, type ScoreOpts, type Weights } from './core'
 import positron from './basemap-positron.json'
 import { isDark } from './core'
 
@@ -19,7 +19,7 @@ export function useScores(P: PD | null) {
   const { w, missing, conf } = usePrio()
   return useMemo(() => {
     if (!P) return null
-    const r = refW(P), ww = w ?? r
+    const r = refW(P), ww = w ?? defaultW(P)
     const FC: FC = finCompute(P, ww, { missing, conf }), FC0: FC = finCompute(P, r, { missing: 'skip', conf: 'mh' })
     const atRef = conf === 'mh' && missing === 'skip' && Object.keys(r).every((k) => Math.abs((ww[k] ?? 0) - r[k]) < 1e-9)
     return { FC, FC0, w: ww, atRef, P }
@@ -29,7 +29,7 @@ export function useScores(P: PD | null) {
 /** Query string of the scoring state (only what differs from the defaults). */
 export function prioQuery(P: PD | null) {
   const s = usePrio.getState(); if (!P) return ''
-  const r = refW(P), q = new URLSearchParams()
+  const r = defaultW(P), q = new URLSearchParams()
   if (s.w) { const ks = Object.keys(r).filter((k) => Math.abs((s.w![k] ?? 0) - r[k]) > 1e-9); if (ks.length) q.set('fw', ks.map((k) => k + ':' + s.w![k]).join(',')) }
   if (s.missing !== 'skip') q.set('fm', s.missing)
   if (s.conf !== 'mh') q.set('fh', '1')
@@ -39,7 +39,7 @@ export function prioQuery(P: PD | null) {
   return q.toString()
 }
 export function readPrioQuery(P: PD, q: URLSearchParams) {
-  const w = refW(P)
+  const w = defaultW(P)
   if (q.get('fw')) for (const p of q.get('fw')!.split(',')) { const [k, v] = p.split(':'); if (k in w && isFinite(+v)) w[k] = +v }
   usePrio.getState().set({
     w, missing: q.get('fm') === 'median' ? 'median' : 'skip', conf: q.get('fh') === '1' ? 'h' : 'mh', only337: q.get('fa') !== '1',

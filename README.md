@@ -2,7 +2,7 @@
 
 Static visual analytics dashboard for RE-PEAT. Vite, React, MapLibre, shadcn/ui on Tailwind. No server: every layer is a PMTiles, Parquet or CSV file.
 
-Four sections, each with its state in the URL hash:
+Dashboard sections use hash routes:
 
 | Section | Route | What it shows |
 |---|---|---|
@@ -10,8 +10,15 @@ Four sections, each with its state in the URL hash:
 | KHG prioritisation | `#/priority` | The national prioritisation (rule of `repeat-national-final`): map by type, intervention or dimension; types; rank shift; weights; the ranked list. Weights and filters are in the query (`fw`, `fm`, `fh`, `fc`, `fa`, `fi`). The live scoring reproduces the pipeline at the pre-registered weights (`data-parity`, `tests/priority.test.ts`). |
 | KHG profiles | `#/khg/<code>` (`?k2=<code>` compares) | Key figures, map, indicators, land status, fire by land tenure, time series and DMPG villages. The **Compare with** picker opens side-by-side profiles on the same page. |
 | KHG table | `#/table` | KHG indicators, filters, CSV, fire trends and weekly SiTMAT water-table change sparklines. |
+| About | `#/about` | Project and partner credits. |
+
+The dashboard opens with weights of 0.5 for burned share of peat per year and 2.5 for hotspots this year. The pre-registered rule remains available as a preset and is the reference for rank shifts.
+
+The decision summary on each KHG profile shows what contributed most to its live urgency score, evidence gaps, and a suggested next step. Each contribution is measured in score points relative to the midpoint of the reference pool using the active weights and confidence settings. The weekly water and fire link carries the KHG code into the National Profile.
 
 The Water Table Profile reads the same SiTMAT Parquet tables as the daily chart. It groups unflagged readings by station and week (Monday to Sunday), then gives each reporting station one vote. Hexagons show measured station medians. Contours interpolate only within the local station hull, with three or more stations in a radius of approximately 25 km. The KHG table shows median weekly changes from each station's first two observed weeks, with a minimum of three comparable stations per point.
+
+The observation week slider also controls the paired hotspot and water-level charts. Selecting a province or KHG in the weekly heatmap changes both charts to that region. Counts use medium- and high-confidence land detections and exclude likely static sources. VIIRS S-NPP and the dated FIRMS segment of the MODIS splice have separate coverage. The charts show gaps where seven dated days are unavailable.
 
 The fire map's clustered rings sum detections from filtered monthly grid cells, with separate colours for high and medium confidence. This adapts the glyph approach used by [AGNI](https://github.com/danylaksono/apps/tree/main/agni) to the attributes in the national grid. Individual 2026 points are a separate map mode. The VIIRS seasonal chart uses 2015 as its initial full-year reference and lets readers select another year.
 
@@ -42,6 +49,7 @@ The data is built from the workspace (`_khg`, `_data`, `re-peat/reports`) with t
 .venv/Scripts/python.exe repeat-dashboard/pipeline/build_fire_summary.py            # national summary: burned area and hotspots by concession, forest area and DMPG, from `repeat-national-fire-tables`
 .venv/Scripts/python.exe repeat-dashboard/pipeline/build_priority.py                # prioritisation, KHG profiles and KHG table, from `repeat-national-final` and `repeat-national-dashboard`
 .venv/Scripts/python.exe repeat-dashboard/pipeline/build_national_fire_tiles.py      # national map layers: 2026 hotspot points (VIIRS, MODIS; last date in fire_tiles.json) and KLHK burned area 2015-2026, PMTiles via tippecanoe
+.venv/Scripts/python.exe repeat-dashboard/pipeline/build_weekly_hotspots.py          # dated 2026 hotspot counts for comparison with SiTMAT weeks
 ```
 
 Run the intersection builder after rebuilding hotspot points or replacing land inputs. Use `--khg CODE` repeatedly for a subset. It reads source polygons at their stored resolution, joins with `intersects`, and writes `khg/<code>/investigation/` with source paths and a cache fingerprint. A KHG without sub-KHG units is supported. These optional exports are independent of the profile and comparison pages.

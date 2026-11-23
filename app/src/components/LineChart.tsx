@@ -9,11 +9,11 @@ import { useT } from '../lib/i18n'
 export type Series = { name: string; color: string; points: { x: Date; y: number }[]; dash?: string }
 
 /** Lines with a crosshair tooltip, a legend for two or more series, and a table view. */
-export function LineChart({ title, series, yLabel, height = 190, fmt = (v: number) => v.toFixed(1), zeroBase = false, yDomain, xDomain, sync = false, compact = false, selectedRange, onDateSelect, area = zeroBase, monthOfYear = false }: {
+export function LineChart({ title, series, yLabel, height = 190, fmt = (v: number) => v.toFixed(1), zeroBase = false, yDomain, xDomain, sync = false, compact = false, selectedRange, onDateSelect, area = zeroBase, monthOfYear = false, discrete = false, formatDate }: {
   title: string; series: Series[]; yLabel?: string; height?: number; fmt?: (v: number) => string; zeroBase?: boolean
   yDomain?: [number, number]; xDomain?: [Date, Date]; sync?: boolean; compact?: boolean   // sync: crosshair follows the other synced charts
   selectedRange?: [Date, Date]; onDateSelect?: (date: Date) => void; area?: boolean   // area: light fill under each line, a peak label on a single series
-  monthOfYear?: boolean
+  monthOfYear?: boolean; discrete?: boolean; formatDate?: (date: Date) => string
 }) {
   const hoverDate = useStore((s) => s.hoverDate)
   const setHoverDate = useStore((s) => s.setHoverDate)
@@ -42,9 +42,10 @@ export function LineChart({ title, series, yLabel, height = 190, fmt = (v: numbe
   const peak = series.length === 1 && area ? series[0].points.reduce<{ x: Date; y: number } | null>((a, p) => (Number.isFinite(p.y) && (!a || p.y > a.y) ? p : a), null) : null
   const bis = bisector((p: { x: Date }) => p.x).center
   const first = series[0]?.points ?? []
-  const at = hover != null ? x.invert(hover) : sync ? hoverDate : null
-  const idx = at == null || !first.length || at < dom[0] || at > dom[1] ? null : Math.max(0, Math.min(first.length - 1, bis(first, at)))
-  const fmtX = timeFormat(monthOfYear ? '%b' : '%Y-%m-%d')
+  const pointerDate = hover != null ? x.invert(hover) : sync ? hoverDate : null
+  const idx = pointerDate == null || !first.length || pointerDate < dom[0] || pointerDate > dom[1] ? null : bis(first, pointerDate)
+  const at = discrete && idx != null ? first[idx].x : pointerDate
+  const fmtX = formatDate ?? timeFormat(monthOfYear ? '%b' : '%Y-%m-%d')
   const span = +dom[1] - +dom[0]
   const tableDates = [...new Set(all.map(p => +p.x))].sort((a, b) => a - b)
   const tickFormat = timeFormat(monthOfYear ? '%b' : span > 4e10 ? '%Y' : '%b %Y')
@@ -53,6 +54,7 @@ export function LineChart({ title, series, yLabel, height = 190, fmt = (v: numbe
   const atPoint = (s: Series) => {
     if (!at || !s.points.length || at < s.points[0].x || at > s.points[s.points.length - 1].x) return null
     const i = bisector((p: { x: Date }) => p.x).left(s.points, at)
+    if (discrete) return +s.points[i].x === +at && Number.isFinite(s.points[i].y) ? s.points[i].y : null
     const a = s.points[Math.max(0, i - 1)], b = s.points[Math.min(i, s.points.length - 1)]
     const value = +b.x === +a.x ? a.y : a.y + (b.y - a.y) * ((+at - +a.x) / (+b.x - +a.x))
     return Number.isFinite(value) ? value : null

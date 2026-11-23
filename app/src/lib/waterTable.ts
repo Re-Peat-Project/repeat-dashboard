@@ -11,6 +11,17 @@ export type WeeklyStation = Station & { lon: number; lat: number; levels: (numbe
 export type WaterData = { through: string; weeks: string[]; stations: WeeklyStation[] }
 export type WaterSample = { lon: number; lat: number; level: number }
 export type WeekStat = { level: number; count: number; dry: number; change: number | null }
+export type Sensor = 'viirs' | 'modis'
+export type WeeklyHotspots = Record<Sensor, {
+  weeks: string[]
+  counts: { national: Record<string, number>; province: Record<string, Record<string, number>>; khg_id: Record<string, Record<string, number>> }
+}>
+
+export function weeklyHotspotCounts(data: WeeklyHotspots[Sensor] | undefined, weeks: string[], region: string, boundary: 'adm1' | 'khg') {
+  const covered = new Set(data?.weeks)
+  const counts = region ? data?.counts[boundary === 'adm1' ? 'province' : 'khg_id'][region] : data?.counts.national
+  return weeks.map((week) => covered.has(week) ? counts?.[week] ?? 0 : null)
+}
 
 const iso = (time: number) => new Date(time).toISOString().slice(0, 10)
 const monday = (date: string) => {

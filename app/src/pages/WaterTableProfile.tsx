@@ -1,16 +1,20 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { Seg } from '../components/Seg'
 import { WaterMap, type WaterMode } from '../components/WaterMap'
+import { WeeklyWaterFire } from '../components/WeeklyWaterFire'
 import { readJson } from '../lib/data'
 import { useT } from '../lib/i18n'
 import type { ScoringData } from '../lib/scoring'
 import { useStore } from '../lib/store'
-import { DRY_LEVEL, loadWeeklyWater, waterRegions, weekEnd, type WaterData } from '../lib/waterTable'
+import { DRY_LEVEL, loadWeeklyWater, waterRegions, waterWeek, weekEnd, weeklyHotspotCounts, type Sensor, type WaterData, type WeeklyHotspots } from '../lib/waterTable'
 import { waterColor, WATER_COLORS, WATER_LEVEL_LABELS } from '../lib/waterSurface'
 
 export default function WaterTableProfile() {
   const t = useT()
   const lang = useStore((s) => s.lang)
+  const [params, setParams] = useSearchParams()
+  const requestedKhg = params.get('khg') ?? ''
   const [data, setData] = useState<WaterData | null>(null)
   const [error, setError] = useState(false)
   const [names, setNames] = useState(new Map<string, string>())
@@ -18,15 +22,28 @@ export default function WaterTableProfile() {
   const [kind, setKind] = useState('all')
   const [mode, setMode] = useState<WaterMode>('hexbin')
   const [outlines, setOutlines] = useState(true)
-  const [level, setLevel] = useState<'adm1' | 'khg'>('adm1')
-  const [focus, setFocus] = useState('')
+  const [regionMode, setRegionMode] = useState<'adm1' | 'khg'>(requestedKhg ? 'khg' : 'adm1')
+  const [province, setProvince] = useState('')
+  const level = requestedKhg ? 'khg' : regionMode
+  const focus = level === 'khg' ? requestedKhg : province
+  const setFocus = (id: string) => {
+    if (level === 'adm1') { setProvince(id); return }
+    const next = new URLSearchParams(params)
+    if (id) next.set('khg', id)
+    else next.delete('khg')
+    setParams(next, { replace: true })
+  }
   const [query, setQuery] = useState('')
   const [metric, setMetric] = useState<'level' | 'dry'>('level')
+  const [hotspots, setHotspots] = useState<WeeklyHotspots | null>(null)
+  const [hotspotError, setHotspotError] = useState(false)
+  const [sensor, setSensor] = useState<Sensor>('modis')
   const heatmap = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     loadWeeklyWater().then(setData, () => setError(true))
     readJson<ScoringData>('national/scoring.json').then(({ khg }) => setNames(new Map(khg.id.map((id, i) => [id, khg.name[i]])))).catch(() => {})
+    readJson<WeeklyHotspots>('national/hotspots_weekly.json').then(setHotspots, () => setHotspotError(true))
   }, [])
   const weeks = data?.weeks ?? []
   const current = week ?? (data ? Math.max(0, data.weeks.findLastIndex((w) => weekEnd(w) <= data.through)) : 0)
@@ -44,6 +61,11 @@ export default function WaterTableProfile() {
   }, [data, current, level])
   const regions = useMemo(() => data ? waterRegions(data, level, kind) : [], [data, level, kind])
   const chosen = regions.find((r) => r.id === focus)
+  const nationalWeeks = useMemo(() => {
+    if (!data) return []
+    const stations = kind === 'all' ? data.stations : data.stations.filter((s) => s.kind === kind)
+    return data.weeks.map((_, i) => waterWeek(stations, i))
+  }, [data, kind])
   const points = useMemo(() => (data?.stations ?? []).flatMap((s) => {
     const v = s.levels[current]
     return v != null && (kind === 'all' || s.kind === kind) && (!focus || s[level] === focus)
@@ -60,6 +82,13 @@ export default function WaterTableProfile() {
   if (error) return <p role="alert" className="card p-4">{t('Could not load the SiTMAT observations.')}</p>
   if (!data) return <p role="status" className="card p-4">{t('Loading SiTMAT observations…')}</p>
   if (!weeks.length) return <p className="card p-4">{t('No observations available')}</p>
+  const formatWeek = (w: string) => `${date.format(new Date(w))} – ${date.format(new Date(weekEnd(w)))}`
+  const selectedWeek = `${formatWeek(weeks[current])}${weekEnd(weeks[current]) > data.through ? ` (${t('partial week')})` : ''}`
+  const regionName = focus ? name(focus) : t('Indonesia')
+  const water = focus ? chosen?.weeks ?? weeks.map(() => null) : nationalWeeks
+  const counts = weeklyHotspotCounts(hotspots?.[sensor], weeks, focus, level)
+  const selectedCount = counts[current]
+  const selectedMedian = water[current]?.level
   return (
     <section className="min-w-0 space-y-3" aria-labelledby="water-table-title">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
@@ -67,14 +96,13 @@ export default function WaterTableProfile() {
         <p className="muted text-xs">SiTMAT · {t('to {d}').replace('{d}', data.through)}</p>
       </div>
       <div className="card flex flex-wrap items-end gap-x-4 gap-y-2 p-3">
-        <label className="flex flex-col gap-1 text-xs">
-          <span className="muted">{t('Observation week')}</span>
-          <select className="btn h-7" value={current} onChange={(e) => setWeek(Number(e.target.value))}>
-            {weeks.map((w, i) => <option key={w} value={i}>{date.format(new Date(w))} – {date.format(new Date(weekEnd(w)))}{weekEnd(w) > data.through ? ` (${t('partial week')})` : ''}</option>)}
-          </select>
+        <label className="flex min-w-52 flex-1 flex-col gap-1 text-xs sm:max-w-72">
+          <span className="flex flex-wrap items-baseline justify-between gap-x-2"><span className="muted" id="observation-week-label">{t('Observation week')}</span><strong>{selectedWeek}</strong></span>
+          <input type="range" className="h-7 w-full cursor-pointer accent-primary" min={0} max={weeks.length - 1} step={1}
+            value={current} onChange={(e) => setWeek(e.target.valueAsNumber)} aria-labelledby="observation-week-label" aria-valuetext={selectedWeek} />
         </label>
         <div className="space-y-1"><p className="muted text-xs">{t('Station type')}</p>
-          <Seg value={kind} onChange={(v) => { setKind(v); setFocus('') }} items={[
+          <Seg value={kind} onChange={setKind} items={[
             { v: 'all', label: t('All stations') }, { v: 'community', label: t('Community') }, { v: 'concession', label: t('Concession') },
           ]} />
         </div>
@@ -86,18 +114,24 @@ export default function WaterTableProfile() {
         <label className="flex h-7 items-center gap-1.5 text-xs"><input type="checkbox" checked={outlines} onChange={(e) => setOutlines(e.target.checked)} />{t('KHG boundaries')}</label>
       </div>
       <div className="card flex flex-wrap items-center gap-x-5 gap-y-2 px-3 py-2 text-sm">
-        <strong>{chosen ? name(chosen.id) : t('Indonesia')}</strong>
+        <strong>{regionName}</strong>
         <span><b className="tabular-nums">{points.length.toLocaleString(lang)}</b> {t('reporting stations')}</span>
         <span><b className="tabular-nums">{points.filter((p) => p.level < DRY_LEVEL).length.toLocaleString(lang)}</b> {t('below −40 cm')}</span>
         {focus && <button className="btn text-xs" onClick={() => setFocus('')}>{t('Clear region')}</button>}
+        <dl className="flex w-full flex-wrap gap-x-6 gap-y-2 border-t border-border pt-2 text-sm">
+          <div><dt className="muted text-xs">{t('Median water level this week')}</dt><dd className="font-semibold tabular-nums">{selectedMedian == null ? '—' : `${Math.round(selectedMedian).toLocaleString(lang)} cm`}</dd></div>
+          <div><dt className="muted text-xs">{t('Hotspot detections this week')} · {sensor === 'viirs' ? 'VIIRS S-NPP' : 'MODIS FIRMS'}</dt><dd className="font-semibold tabular-nums">{selectedCount?.toLocaleString(lang) ?? '—'}</dd></div>
+        </dl>
       </div>
       <WaterMap points={points} mode={mode} outlines={outlines} focus={focus} />
+      <WeeklyWaterFire data={hotspots?.[sensor]} error={hotspotError} sensor={sensor} setSensor={setSensor} regionName={regionName}
+        weeks={weeks} counts={counts} water={water} current={current} setWeek={setWeek} />
       <section className="card space-y-3 p-3" aria-labelledby="region-week-title">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <h3 id="region-week-title" className="font-semibold">{t('Water levels by region and week')}</h3>
           <div className="flex flex-wrap items-center gap-2">
             <input className="card px-2 py-1 text-xs" value={query} onChange={(e) => setQuery(e.target.value)} placeholder={t('Search region')} aria-label={t('Search region')} />
-            <Seg value={level} onChange={(v) => { setLevel(v); setFocus(''); setQuery('') }} items={[
+              <Seg value={level} onChange={(v) => { setFocus(''); setProvince(''); setRegionMode(v); setQuery('') }} items={[
               { v: 'adm1', label: t('Province') }, { v: 'khg', label: t('KHG') },
             ]} />
             <Seg value={metric} onChange={setMetric} items={[

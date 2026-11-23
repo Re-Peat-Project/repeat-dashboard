@@ -1,9 +1,20 @@
 import { describe, expect, it } from 'vitest'
-import { weeklyWater, waterWeek } from '../src/lib/waterTable'
+import { weeklyWater, waterWeek, weeklyHotspotCounts } from '../src/lib/waterTable'
 import { waterContours, waterHexes } from '../src/lib/waterSurface'
 import { hotspotCells } from '../src/lib/hotspotGlyphs'
 
 describe('weekly SiTMAT views', () => {
+  it('keeps covered weeks with zero detections distinct from unavailable weeks', () => {
+    const weeks = ['2026-11-02', '2026-11-09', '2026-11-16']
+    const data = {
+      weeks: [weeks[0], weeks[2]],
+      counts: { national: { [weeks[0]]: 17 }, province: { Riau: { [weeks[0]]: 3 } }, khg_id: { 'KHG.1': { [weeks[2]]: 1 } } },
+    }
+    expect(weeklyHotspotCounts(data, weeks, '', 'adm1')).toEqual([17, null, 0])
+    expect(weeklyHotspotCounts(data, weeks, 'Riau', 'adm1')).toEqual([3, null, 0])
+    expect(weeklyHotspotCounts(data, weeks, 'KHG.1', 'khg')).toEqual([0, null, 1])
+  })
+
   it('counts each station once and withholds changes until three stations have a baseline', () => {
     const roster = ['a', 'b', 'c'].map((station_id) => ({ station_id, kind: 'community', lon: 101, lat: 0, khg: 'KHG.1', adm1: 'Riau' }))
     const reading = (station_id: string, date: string, water_level_cm: number, flag: string | null = null) =>

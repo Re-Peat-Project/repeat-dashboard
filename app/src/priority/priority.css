@@ -289,6 +289,8 @@
 .pz .pf-r .fbar{width:140px}
 @media (max-width:760px){
 .pz .pfinal{grid-template-columns:minmax(0,1fr)}
+.pz .pf-r{grid-template-columns:minmax(0,1fr) minmax(0,140px) 44px}
+.pz .pf-r .fbar{width:100%}
 }
 .pz dialog#export{max-width:760px}
 .pz .exportl{list-style:none;padding:0!important;margin:10px 0!important}

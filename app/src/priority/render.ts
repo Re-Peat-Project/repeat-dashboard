@@ -18,7 +18,8 @@ export function ivTip(P: PD, v: string) {
 export const ivBadge = (P: PD, v: string | null) => (v ? `<span class="ivb" style="--c:${IV_COL[v]}"${tipAttr(ivTip(P, v))}>${esc(t(IV_SHORT[v]))}</span>` : '')
 export function indTip(P: PD, k: string) {
   const m = IND[k] || [k, '', (x: number) => fx(x, 2)]; const dir = (P.meta.rule.dirs || {})[k] === '-' ? t('Lower values raise the score.') : ''
-  return `<b>${esc(t(m[0]))}</b><br>${esc(t(m[1]))}${dir ? '<br><span>' + esc(dir) + '</span>' : ''}`
+  const description = k === 'u_fire_freq' ? m[1].replace(/ Counts double\.$/, '') : m[1]
+  return `<b>${esc(t(m[0]))}</b><br>${esc(t(description))}${dir ? '<br><span>' + esc(dir) + '</span>' : ''}`
 }
 export function tercile(C: Ctx, v: number | null, key: string) {
   if (v == null) return ''

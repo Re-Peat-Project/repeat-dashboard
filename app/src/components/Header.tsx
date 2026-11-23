@@ -32,11 +32,12 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-border bg-[var(--surface)]/95 backdrop-blur">
       <div className="mx-auto flex max-w-[1680px] flex-wrap items-center gap-x-2 px-3 md:px-5">
         <NavLink to="/" className="mr-3 py-2 text-[15px] font-semibold tracking-tight">RE-PEAT</NavLink>
-        <nav className="order-last grid w-full grid-cols-4 items-end md:order-none md:flex md:w-auto" aria-label={t('Sections')}>
+        <nav className="order-last grid w-full grid-cols-5 items-end md:order-none md:flex md:w-auto" aria-label={t('Sections')}>
           <NavLink to="/" end className={link}>{t('National profile')}</NavLink>
           <NavLink to="/priority" className={link}>{t('KHG prioritisation')}</NavLink>
           <NavLink to={`/khg/${profileCode}`} className={() => cn(tab, inProfile ? on : off)}>{t('KHG profiles')}</NavLink>
           <NavLink to="/table" className={link}>{t('KHG table')}</NavLink>
+          <NavLink to="/about" className={link}>{t('About')}</NavLink>
         </nav>
         <div className="ml-auto flex items-center gap-2 py-1.5">
           <Popover open={open} onOpenChange={setOpen}>

@@ -152,8 +152,31 @@ export type FC = {
 }
 export const finDims = (P: PD) => DIMS.filter((d) => P.meta.rule.dims[d[2]])
 export function refW(P: PD): Weights { const w: Weights = {}; for (const [, , dn] of finDims(P)) for (const k in P.meta.rule.dims[dn]) w[k] = P.meta.rule.dims[dn][k]; return w }
+
+export function defaultW(P: PD): Weights {
+  return { ...refW(P), u_fire_freq: 0.5, u_hotspot_now: 2.5 }
+}
 const qs = (sorted: number[], p: number) => (sorted.length ? d3.quantileSorted(sorted, p)! : NaN)
 const indVals = (P: PD, k: string, o: ScoreOpts) => (k === 'u_hotspot_now' && o.conf === 'h' ? P.n1h : P.ind[k])
+const weightedPercentile = (sorted: number[], value: number, weight: number) => weight * (d3.bisectLeft(sorted, value) + d3.bisectRight(sorted, value)) / 2 / sorted.length
+
+/** Contributions to urgency relative to the middle of the national reference pool. */
+export function urgencyDrivers(P: PD, j: number, w: Weights, o: ScoreOpts) {
+  let total = 0
+  const parts = Object.keys(P.meta.rule.dims.urgency).flatMap((key) => {
+    const values = indVals(P, key, o), weight = w[key]
+    if (!values || !(weight > 0)) return []
+    const direction = P.meta.rule.dirs?.[key] === '-' ? -1 : 1
+    const sorted = values.flatMap((v, i) => P.pool[i] && v != null ? [direction * v] : []).sort(d3.ascending)
+    const value = values[j]
+    if (!sorted.length || (value == null && o.missing === 'skip')) return []
+    total += weight
+    if (value == null) return []
+    return [{ key, value, part: weightedPercentile(sorted, direction * value, weight) - 0.5 * weight }]
+  })
+  return parts.sort((a, b) => Math.abs(b.part) - Math.abs(a.part)).map(({ key, value, part }) => ({ key, value, points: 100 * part / total }))
+}
+
 export function finCompute(P: PD, w: Weights, o: ScoreOpts): FC {
   const n = P.n, out: Record<string, Num[]> = {}, dirs = P.meta.rule.dirs || {}
   for (const [key, , dn] of finDims(P)) {
@@ -164,7 +187,7 @@ export function finCompute(P: PD, w: Weights, o: ScoreOpts): FC {
       const ref: number[] = []; for (let j = 0; j < n; j++) if (P.pool[j] && x[j] != null) ref.push(sg * (x[j] as number)); ref.sort(d3.ascending); if (!ref.length) continue
       for (let j = 0; j < n; j++) {
         if (x[j] == null) { if (o.missing === 'median') { num[j] += wk * 0.5; den[j] += wk } continue }
-        const v = sg * (x[j] as number); const lo = d3.bisectLeft(ref, v), hi = d3.bisectRight(ref, v); num[j] += wk * (lo + hi) / 2 / ref.length; den[j] += wk
+        const v = sg * (x[j] as number); num[j] += weightedPercentile(ref, v, wk); den[j] += wk
       }
     }
     out[key] = Array.from({ length: n }, (_, j) => (P.scored[j] && den[j] > 0 ? num[j] / den[j] : null))

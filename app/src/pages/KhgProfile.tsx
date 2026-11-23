@@ -4,6 +4,7 @@
 import { Fragment, useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { ArrowLeft, Check, ChevronsUpDown, X } from 'lucide-react'
+import { KhgDecisionBrief } from '@/components/KhgDecisionBrief'
 import { RampLegend, TERRAIN } from '@/components/Legend'
 import { Seg } from '@/components/Seg'
 import { Button } from '@/components/ui/button'
@@ -113,15 +114,18 @@ export default function KhgProfile() {
         : <p className="mb-3 muted" role="status">{t('Loading comparison profile')}…</p>)}
       {profileError === code ? <p className="card" role="alert">{t('Could not load the KHG profile.')}</p>
         : !profile ? <p className="card muted" role="status">{t('Loading')}…</p>
-          : <div className="card">
+          : <>
+            <KhgDecisionBrief C={C} profile={profile} compare={!!other} options={{ missing: st.missing, conf: st.conf }} />
+            <div className="card">
             {!other && <div className="pfinal" dangerouslySetInnerHTML={{ __html: profileFinalHtml(C, j) }} />}
             <Kpis C={C} j={j} jc={jc} conf={st.conf} pr={profile} prc={other} />
-            <MapBlock key={code} P={P} pr={profile} prc={other} code={code} cmpName={jc != null ? P.name[jc] : null} confHigh={st.conf === 'h'} />
+            <div id="khg-evidence-map" className="scroll-mt-28"><MapBlock key={code} P={P} pr={profile} prc={other} code={code} cmpName={jc != null ? P.name[jc] : null} confHigh={st.conf === 'h'} /></div>
             <Mid C={C} j={j} jc={jc} pr={profile} prc={other} conf={st.conf} />
             <details className="data"><summary>{t('Data table')}</summary>
               <div id="p-table" dangerouslySetInnerHTML={{ __html: yearTable(profile, other ? P.name[j] : null) + monthTable(profile, other ? P.name[j] : null) + (other && jc != null ? yearTable(other, P.name[jc]) + monthTable(other, P.name[jc]) : ovTable(profile)) }} />
             </details>
-          </div>}
+            </div>
+          </>}
     </div>
   )
 }
@@ -346,7 +350,7 @@ function Mid({ C, j, jc, pr, prc, conf }: { C: Ctx; j: number; jc: number | null
     <div className={cn('p-mid', !ov && 'noov')}>
       <div ref={strips} id="p-strips" className="p-strips" />
       {ov ? <div className="p-ov" dangerouslySetInnerHTML={{ __html: ov }} /> : null}
-      {ten ? <div className="p-ten" onChange={(e) => { const k = (e.target as HTMLInputElement).dataset.tn as 'high' | 'split'; if (k) setTn({ ...tn, [k]: (e.target as HTMLInputElement).checked }) }} dangerouslySetInnerHTML={{ __html: ten }} /> : null}
+      {ten ? <div id="khg-evidence-tenure" className="p-ten scroll-mt-28" onChange={(e) => { const k = (e.target as HTMLInputElement).dataset.tn as 'high' | 'split'; if (k) setTn({ ...tn, [k]: (e.target as HTMLInputElement).checked }) }} dangerouslySetInnerHTML={{ __html: ten }} /> : null}
       <div ref={charts} id="p-charts" className="charts" />
       {vil ? <div className="p-vil" onClick={(e) => { const r = (e.target as HTMLElement).closest('tr.zr') as HTMLElement | null; if (r) { const v = pr.ov!.v[+r.dataset.i!]; dispatchEvent(new CustomEvent('khg-zoom', { detail: v[8] })) } }} dangerouslySetInnerHTML={{ __html: vil }} /> : null}
     </div>

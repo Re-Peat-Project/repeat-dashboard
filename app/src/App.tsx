@@ -10,6 +10,7 @@ const Priority = lazy(() => import('./pages/Priority'))
 const KhgProfile = lazy(() => import('./pages/KhgProfile'))
 const KhgTable = lazy(() => import('./pages/KhgTable'))
 const Khg = lazy(() => import('./pages/Khg'))
+const About = lazy(() => import('./pages/About'))
 const ModelRunComparison = import.meta.env.DEV ? lazy(() => import('./pages/Compare')) : null
 
 function CompareRedirect() {
@@ -37,6 +38,7 @@ export default function App() {
           <Route path="/priority" element={<Priority />} />
           <Route path="/khg/:code" element={<KhgProfile />} />
           <Route path="/table" element={<KhgTable />} />
+          <Route path="/about" element={<About />} />
           <Route path="/workspace/:code" element={<Khg />} />
           <Route path="/summary" element={<Navigate to="/?v=status" replace />} />
           <Route path="/compare" element={<CompareRedirect />} />

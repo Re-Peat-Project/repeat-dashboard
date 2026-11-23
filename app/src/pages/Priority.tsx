@@ -13,7 +13,7 @@ import { dataUrl } from '@/lib/data'
 import { initMaplibre, maplibregl } from '@/lib/map'
 import { useStore } from '@/lib/store'
 import {
-  confChar, confName, css, esc, finDims, fmt, fx, IND, IV_COL, IV_ORDER, IV_SHORT, IV_NOTE, loadGeo, loadPriority, parity, refW, t, tipAttr, TYPE_LABEL, TYPE_ORDER, TYPE_RULE, type PD,
+  confChar, confName, css, defaultW, esc, finDims, fmt, fx, IND, IV_COL, IV_ORDER, IV_SHORT, IV_NOTE, loadGeo, loadPriority, parity, refW, t, tipAttr, TYPE_LABEL, TYPE_ORDER, TYPE_RULE, type PD,
 } from '@/priority/core'
 import { dimTip, finTip, indTip, ivBadge, ivTip, profBar, renderShift, typeTip, typeVar, type Ctx } from '@/priority/render'
 import { firstSymbol, mapLabels, mutedStyle, prioQuery, readPrioQuery, restyleBase, usePrio, useScores } from '@/priority/state'
@@ -70,6 +70,7 @@ function Head({ C }: { C: Ctx }) {
   const P = C.P, M = P.meta, st = usePrio()
   const r = refW(P), ks = Object.keys(r)
   const presets: [string, Record<string, number>, string][] = [
+    ['Dashboard defaults', defaultW(P), t('The starting weights for this dashboard.')],
     ['Pre-registered rule', r, t('The weights written down on {d}, before any result: the reference for every comparison.', { d: M.rule.written })],
     ['Equal weights', Object.fromEntries(ks.map((k) => [k, 1])), t('Every indicator weight 1.')],
     ['Fire history only', Object.fromEntries(ks.map((k) => [k, M.rule.dims.urgency[k] !== undefined ? (k === 'u_fire_freq' ? 1 : 0) : r[k]])), t('Urgency from the burned share of peat per year alone, as a check: the other dimensions keep their weights.')],
@@ -262,7 +263,7 @@ function Weights({ C }: { C: Ctx }) {
           ))}
         </div>
       ))}
-      <Button variant="outline" size="sm" className="mt-3 w-full" data-tip={t('Back to the pre-registered weights.')} onClick={() => st.set({ w: refW(P) })}>{t('Reset weights')}</Button>
+      <Button variant="outline" size="sm" className="mt-3 w-full" data-tip={t('Back to the dashboard defaults.')} onClick={() => st.set({ w: defaultW(P) })}>{t('Reset weights')}</Button>
       {P.meta.rule.reported.length ? <p className="hint fw-rep" data-tip={P.meta.rule.reported.map((k) => indTip(P, k)).join('<br><br>')}>{t('Reported, not scored: {x}', { x: P.meta.rule.reported.map((k) => t((IND[k] || [k])[0])).join(', ') })}</p> : null}
     </aside>
   )
