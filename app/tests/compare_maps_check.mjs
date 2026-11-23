@@ -6,7 +6,7 @@ const p = await b.newPage({ viewport: { width: 1440, height: 1300 } })
 const errs = []
 p.on('pageerror', (e) => errs.push(e.message.slice(0, 200)))
 p.on('console', (m) => { if (m.type() === 'error' && !/favicon|404/.test(m.text())) errs.push('console: ' + m.text().slice(0, 160)) })
-await p.goto('http://localhost:5173/#/compare')
+await p.goto((process.env.BASE ?? 'http://localhost:5173/') + '#/dev/model-runs')
 await p.waitForTimeout(6000)
 const res = {}
 for (const dem of ['deltadtm', 'lidar', 'demnas']) {

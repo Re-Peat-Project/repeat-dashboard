@@ -3,6 +3,7 @@ import { chromium } from 'playwright-core'
 import assert from 'node:assert/strict'
 import { mkdir } from 'node:fs/promises'
 
+const base = process.argv[2] ?? 'http://127.0.0.1:5173/'
 const browser = await chromium.launch({ channel: 'chrome', args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] })
 const page = await browser.newPage({ viewport: { width: 1600, height: 1000 }, acceptDownloads: true })
 const errors = []
@@ -11,7 +12,7 @@ page.on('response', (r) => { if (r.status() >= 400 && r.url().includes('/data/')
 await mkdir('tests/screenshots', { recursive: true })
 const count = async () => Number((await page.locator('[role=group] .font-semibold').first().innerText()).replace(/\D/g, ''))
 
-await page.goto('http://127.0.0.1:5173/#/')
+await page.goto(`${base}#/`)
 await page.waitForFunction(() => document.querySelectorAll('table tbody tr').length > 10, { timeout: 30000 })
 await page.waitForFunction(() => /[1-9]/.test(document.querySelector('[role=group] .font-semibold')?.textContent ?? ''), { timeout: 30000 })
 const nat = await count()
@@ -19,11 +20,12 @@ assert(nat > 0, 'national count')
 await page.waitForTimeout(5000)
 await page.screenshot({ path: 'tests/screenshots/national.png' })
 assert(!(await page.locator('text=Ranking').count()), 'no ranking panel')
-await page.getByRole('button', { name: 'Medium + high' }).click()
+const nationalFilter = page.getByRole('group', { name: 'Fire filter' })
+await nationalFilter.getByRole('button', { name: 'Medium + high' }).click()
 assert((await count()) > nat, 'medium + high adds detections')
-await page.getByRole('button', { name: 'High confidence' }).click()
+await nationalFilter.getByRole('button', { name: 'High confidence' }).click()
 
-await page.goto('http://127.0.0.1:5173/#/khg/16.02.01')
+await page.goto(`${base}#/workspace/16.02.01`)
 await page.waitForFunction(() => document.querySelector('[data-ready=true]'), { timeout: 30000 })
 await page.waitForFunction(() => document.querySelectorAll('svg[role=img]').length > 0, { timeout: 30000 })
 const fireN = await count()

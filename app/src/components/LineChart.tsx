@@ -9,10 +9,11 @@ import { useT } from '../lib/i18n'
 export type Series = { name: string; color: string; points: { x: Date; y: number }[]; dash?: string }
 
 /** Lines with a crosshair tooltip, a legend for two or more series, and a table view. */
-export function LineChart({ title, series, yLabel, height = 190, fmt = (v: number) => v.toFixed(1), zeroBase = false, yDomain, xDomain, sync = false, compact = false, selectedRange, onDateSelect, area = zeroBase }: {
+export function LineChart({ title, series, yLabel, height = 190, fmt = (v: number) => v.toFixed(1), zeroBase = false, yDomain, xDomain, sync = false, compact = false, selectedRange, onDateSelect, area = zeroBase, monthOfYear = false }: {
   title: string; series: Series[]; yLabel?: string; height?: number; fmt?: (v: number) => string; zeroBase?: boolean
   yDomain?: [number, number]; xDomain?: [Date, Date]; sync?: boolean; compact?: boolean   // sync: crosshair follows the other synced charts
   selectedRange?: [Date, Date]; onDateSelect?: (date: Date) => void; area?: boolean   // area: light fill under each line, a peak label on a single series
+  monthOfYear?: boolean
 }) {
   const hoverDate = useStore((s) => s.hoverDate)
   const setHoverDate = useStore((s) => s.setHoverDate)
@@ -43,10 +44,10 @@ export function LineChart({ title, series, yLabel, height = 190, fmt = (v: numbe
   const first = series[0]?.points ?? []
   const at = hover != null ? x.invert(hover) : sync ? hoverDate : null
   const idx = at == null || !first.length || at < dom[0] || at > dom[1] ? null : Math.max(0, Math.min(first.length - 1, bis(first, at)))
-  const fmtX = timeFormat('%Y-%m-%d')
+  const fmtX = timeFormat(monthOfYear ? '%b' : '%Y-%m-%d')
   const span = +dom[1] - +dom[0]
   const tableDates = [...new Set(all.map(p => +p.x))].sort((a, b) => a - b)
-  const tickFormat = timeFormat(span > 4e10 ? '%Y' : '%b %Y')
+  const tickFormat = timeFormat(monthOfYear ? '%b' : span > 4e10 ? '%Y' : '%b %Y')
   const seenTicks = new Set<string>()
   const xTicks = x.ticks(Math.max(2, Math.floor(w / 110))).filter(d => { const label = tickFormat(d); if (seenTicks.has(label)) return false; seenTicks.add(label); return true })
   const atPoint = (s: Series) => {
@@ -58,7 +59,7 @@ export function LineChart({ title, series, yLabel, height = 190, fmt = (v: numbe
   }
 
   return (
-    <div className={`card ${compact ? "p-2" : "p-3"}`} ref={container}>
+    <div className={`card min-w-0 ${compact ? "p-2" : "p-3"}`} ref={container}>
       <div className="flex items-center justify-between gap-2">
         <div className={compact ? "truncate text-sm font-medium" : "font-medium"} title={title}>{title}</div>
         <button className="btn text-xs" aria-pressed={table} onClick={() => setTable(!table)}>{t(table ? 'Chart' : 'Table')}</button>
@@ -68,7 +69,7 @@ export function LineChart({ title, series, yLabel, height = 190, fmt = (v: numbe
       )}
       {!all.length ? <div className="chart-empty" style={{ height }}>{t('No observations available')}</div> : table ? (
         <div className="mt-2 max-h-[190px] overflow-auto text-xs">
-          <table className="w-full"><thead><tr><th className="text-left">date</th>{series.map((s) => <th key={s.name} className="text-right">{s.name}</th>)}</tr></thead>
+          <table className="w-full"><thead><tr><th className="text-left">{monthOfYear ? t('Month') : 'date'}</th>{series.map((s) => <th key={s.name} className="text-right">{s.name}</th>)}</tr></thead>
             <tbody>{tableDates.map(d => <tr key={d}><td>{fmtX(new Date(d))}</td>{series.map(s => { const p = s.points.find(p => +p.x === d); return <td key={s.name} className="text-right">{p ? fmt(p.y) : '—'}</td> })}</tr>)}</tbody></table>
         </div>
       ) : (

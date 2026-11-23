@@ -108,10 +108,9 @@ export default function Compare() {
   }
 
   return (
-    <div className="flex flex-col gap-3 p-3">
+    <div className="flex min-w-0 flex-col gap-3">
       <div className="card p-3">
         <div className="mb-2 flex flex-wrap items-center gap-3">
-          <div className="text-base font-semibold">{t('Compare KHG')}</div>
           <div className="flex items-center gap-1"><span className="muted text-xs">{t('DEM')}</span>
             {DEMS.map((d) => <button key={d} className="btn text-xs" aria-pressed={dem === d} onClick={() => setDem(d)}><i className="chip" style={{ background: DEM_COLOR[d] }} />{d}</button>)}</div>
           <div className="flex items-center gap-1"><span className="muted text-xs">{t('Sort by')}</span>
@@ -135,7 +134,7 @@ export default function Compare() {
         <div className="flex flex-col gap-2">
           <div className="card flex flex-wrap items-center gap-2 p-2">
             <span className="muted text-xs">{t('Layer')}</span>
-            <select className="card px-2 py-1" value={mapMode} onChange={(e) => { const m = e.target.value as MapMode; setMapMode(m); setMapAttr('u_wb_mean') }}>
+            <select className="card max-w-full px-2 py-1" value={mapMode} aria-label={t('Layer')} onChange={(e) => { const m = e.target.value as MapMode; setMapMode(m); setMapAttr('u_wb_mean') }}>
               {([['sat', 'Satellite image only'], ['relief', 'DEM relief'], ['depth', 'Groundwater model: mean depth, dry season'], ['days', 'Groundwater model: days deeper than 40 cm'], ['units', 'Sub-KHG units'], ['balance', 'Climatic balance per sub-KHG']] as const).map(([k, l]) => <option key={k} value={k}>{t(l)}</option>)}
             </select>
             {(mapMode === 'units' || mapMode === 'balance') && <select className="card px-2 py-1" value={mapAttr} onChange={(e) => setMapAttr(e.target.value)}>{unitAttrs.map(([k, l]) => <option key={k} value={k}>{t(l)}</option>)}</select>}

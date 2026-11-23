@@ -3,7 +3,7 @@
 //   node scripts/deploy.mjs                       build + prune + budget report; writes ../deploy/ (nothing leaves this machine)
 //   node scripts/deploy.mjs --publish pages       push ../deploy/ to the gh-pages branch of the remote (asks first; --yes to skip the question)
 //   node scripts/deploy.mjs --publish netlify     netlify deploy --prod from ../deploy/ (needs `netlify login`; --site <id> optional)
-//   options: --skip-build  --remote <url>  --branch gh-pages
+//   options: --skip-build  --out <new-directory>  --remote <url>  --branch gh-pages
 //
 // Limits: GitHub rejects a file over 100 MB and a Pages site is limited to about 1 GB. Files over 95 MB, or a total over 800 MB, are reported.
 import { spawnSync } from 'node:child_process'
@@ -17,10 +17,12 @@ const here = dirname(fileURLToPath(import.meta.url))
 const app = resolve(here, '..')
 const repo = resolve(app, '..')
 const dist = join(app, 'dist')
-const out = join(repo, 'deploy')
 const args = process.argv.slice(2)
 const flag = (n) => args.includes(`--${n}`)
 const opt = (n, d) => { const i = args.indexOf(`--${n}`); return i >= 0 ? args[i + 1] : d }
+const customOut = opt('out')
+const out = customOut ? resolve(customOut) : join(repo, 'deploy')
+if (customOut && existsSync(out)) { console.error('--out must point to a new directory'); process.exit(1) }
 const MB = 1e6
 const run = (cmd, a, cwd, inherit = true) => { const r = spawnSync(cmd, a, { cwd, stdio: inherit ? 'inherit' : 'pipe', shell: process.platform === 'win32', encoding: 'utf8' }); if (r.status !== 0) { console.error(`failed: ${cmd} ${a.join(' ')}\n${r.stderr ?? ''}`); process.exit(1) } return r.stdout }
 
@@ -29,7 +31,7 @@ if (!flag('skip-build')) run('npm', ['run', 'build'], app)
 if (!existsSync(join(dist, 'index.html'))) { console.error('app/dist/index.html is missing: run without --skip-build'); process.exit(1) }
 
 // 2. copy to deploy/ and keep only the data files the manifests reference
-rmSync(out, { recursive: true, force: true })
+if (existsSync(out)) rmSync(out, { recursive: true })
 cpSync(dist, out, { recursive: true })
 const data = join(out, 'data')
 const json = (p) => JSON.parse(readFileSync(p, 'utf8'))
@@ -45,9 +47,13 @@ for (const k of json(join(data, 'catalog.json'))) {
   for (const sec of ['vector', 'raster', 'tables', 'points']) for (const e of m[sec] ?? []) keep.add(`${base}/${e.file}`)
   for (const g of m.groundwater ?? []) for (const e of [...(g.files ?? []), ...(g.rasters ?? [])]) keep.add(`${base}/${e.file}`)
 }
-if (existsSync(join(data, 'hypotheses'))) for (const n of readdirSync(join(data, 'hypotheses'))) keep.add(`hypotheses/${n}`)   // the investigation page
 const nm = json(join(data, 'national', 'manifest.json'))
 for (const e of [...(nm.tables ?? []), ...(nm.files ?? [])]) keep.add(`national/${e.file}`)
+// pages that read national/ and priority/ files the manifest does not list (tenure, fire summary, the prioritisation tables)
+for (const dir of ['national', 'priority']) {
+  const walkKeep = (d, rel) => { for (const n of readdirSync(d)) { const p = join(d, n), r = `${rel}/${n}`; if (statSync(p).isDirectory()) walkKeep(p, r); else if (!n.startsWith('.')) keep.add(r) } }
+  if (existsSync(join(data, dir))) walkKeep(join(data, dir), dir)
+}
 
 const files = []
 const walk = (d) => { for (const n of readdirSync(d)) { const p = join(d, n); statSync(p).isDirectory() ? walk(p) : files.push(p) } }
@@ -61,9 +67,6 @@ for (const p of files) {
 const prune = (d) => { for (const n of readdirSync(d)) { const p = join(d, n); if (statSync(p).isDirectory()) { prune(p); if (!readdirSync(p).length) rmSync(p, { recursive: true }) } } }
 prune(data)
 writeFileSync(join(out, '.nojekyll'), '')
-// /investigation/ opens the investigation page (the app routes by hash, so a plain folder redirects to it)
-mkdirSync(join(out, 'investigation'), { recursive: true })
-writeFileSync(join(out, 'investigation', 'index.html'), '<!doctype html><meta charset="utf-8"><title>Investigation</title><meta http-equiv="refresh" content="0; url=../#/investigation"><script>location.replace("../#/investigation" + location.search)</script><a href="../#/investigation">Investigation</a>')
 console.log(`pruned ${dropped} unreferenced files (${(droppedBytes / MB).toFixed(1)} MB: build caches, logs, orphan tiles)`)
 
 // 3. size budget

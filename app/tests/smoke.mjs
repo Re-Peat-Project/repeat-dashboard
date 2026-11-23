@@ -11,7 +11,7 @@ for (const k of cat) {
   const errs = []
   p.on('pageerror', (e) => errs.push('pageerror: ' + e.message.slice(0, 160)))
   p.on('console', (m) => { if (m.type() === 'error' && !/favicon|404/.test(m.text())) errs.push('console: ' + m.text().slice(0, 160)) })
-  await p.goto(`${base}#/khg/${k.code}`)
+  await p.goto(`${base}#/workspace/${k.code}`)
   await p.waitForTimeout(2500)
   const mf = JSON.parse(readFileSync(new URL(`../public/data/khg/${k.code}/manifest.json`, import.meta.url), 'utf8'))
   for (const dem of k.dems) {

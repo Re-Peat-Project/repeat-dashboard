@@ -4,8 +4,8 @@ import { useT } from '../lib/i18n'
 export type Col<R> = { key: string; label: string; unit?: string; fmt?: (v: any, r: R) => string; align?: 'left' | 'right' }
 
 /** Sortable, searchable table; the unit is shown in the header. */
-export function DataTable<R extends Record<string, any>>({ rows, cols, searchKeys, onRow, selectedKey, rowKey, limit = 300, initialSort, placeholder }: {
-  rows: R[]; cols: Col<R>[]; searchKeys: string[]; onRow?: (r: R) => void; selectedKey?: string | null; rowKey: string; limit?: number; initialSort?: { key: string; dir: 1 | -1 }; placeholder?: string
+export function DataTable<R extends Record<string, any>>({ rows, cols, searchKeys, onRow, selectedKey, rowKey, limit = 300, initialSort, placeholder, fit = false }: {
+  rows: R[]; cols: Col<R>[]; searchKeys: string[]; onRow?: (r: R) => void; selectedKey?: string | null; rowKey: string; limit?: number; initialSort?: { key: string; dir: 1 | -1 }; placeholder?: string; fit?: boolean
 }) {
   const t = useT()
   const [q, setQ] = useState('')
@@ -21,21 +21,23 @@ export function DataTable<R extends Record<string, any>>({ rows, cols, searchKey
     })
   }, [rows, q, sort, searchKeys])
   return (
-    <div>
-      <input value={q} onChange={(e) => setQ(e.target.value)} placeholder={placeholder ?? t('Search KHG')} className="card mb-2 w-full px-2 py-1" />
-      <div className="max-h-[420px] overflow-auto">
-        <table className="w-full text-sm">
+    <div className={fit ? 'flex min-h-0 flex-1 flex-col' : undefined}>
+      <input value={q} onChange={(e) => setQ(e.target.value)} aria-label={placeholder ?? t('Search KHG')} placeholder={placeholder ?? t('Search KHG')} className="card mb-2 w-full px-2 py-1" />
+      <div className={fit ? 'max-h-72 overflow-auto xl:max-h-none' : 'max-h-[420px] overflow-auto'}>
+        <table className={fit ? 'w-full text-xs' : 'w-full text-sm'}>
           <thead className="sticky top-0" style={{ background: 'var(--surface)' }}><tr>
             {cols.map((c) => <th key={c.key} className={`cursor-pointer whitespace-nowrap px-2 py-1 ${c.align === 'right' ? 'text-right' : 'text-left'}`}
               onClick={() => setSort({ key: c.key, dir: sort.key === c.key ? ((-sort.dir) as 1 | -1) : 1 })}>
-              {c.label}{c.unit ? <span className="muted"> ({c.unit})</span> : ''}{sort.key === c.key ? (sort.dir === 1 ? ' ▲' : ' ▼') : ''}
+              {c.label}{sort.key === c.key ? (sort.dir === 1 ? ' ▲' : ' ▼') : ''}{c.unit ? <span className={fit ? 'muted block whitespace-normal text-[10px] font-normal' : 'muted'}> ({c.unit})</span> : ''}
             </th>)}
           </tr></thead>
           <tbody>
             {shown.slice(0, limit).map((r) => (
               <tr key={r[rowKey]} onClick={() => onRow?.(r)} className="cursor-pointer hover:opacity-80"
                 style={{ background: selectedKey === r[rowKey] ? 'var(--seq-100)' : undefined, color: selectedKey === r[rowKey] ? '#0b0b0b' : undefined }}>
-                {cols.map((c) => <td key={c.key} className={`px-2 py-0.5 ${c.align === 'right' ? 'text-right tabular-nums' : ''}`}>{c.fmt ? c.fmt(r[c.key], r) : r[c.key] ?? ''}</td>)}
+                {cols.map((c, i) => <td key={c.key} className={`px-2 py-0.5 ${c.align === 'right' ? 'text-right tabular-nums' : ''}`}>
+                  {onRow && i === 0 ? <button type="button" className="text-left hover:underline" onClick={(e) => { e.stopPropagation(); onRow(r) }}>{c.fmt ? c.fmt(r[c.key], r) : r[c.key] ?? ''}</button> : c.fmt ? c.fmt(r[c.key], r) : r[c.key] ?? ''}
+                </td>)}
               </tr>
             ))}
           </tbody>

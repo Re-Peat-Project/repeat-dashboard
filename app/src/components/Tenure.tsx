@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { LineChart, type Series } from './LineChart'
 import { readTable, readJson } from '../lib/data'
 import { useStore } from '../lib/store'
@@ -118,9 +119,10 @@ export function TenurePanel({ data, khg, scope }: { data: TenureData; khg: strin
 }
 
 /** Dot plot over the profiled KHG: this year's rate divided by the 2015-2025 mean (same calendar window), one dot per tenure class, log scale. */
-export function TenureAcross({ data, names, onPick }: { data: TenureData; names: Map<string, string>; onPick?: (khgId: string) => void }) {
+export function TenureAcross({ data, names }: { data: TenureData; names: Map<string, string> }) {
   const t = useT()
-  const high = useStore((s) => s.fire.high)
+  const lang = useStore((s) => s.lang)
+  const [high, setHigh] = useState(true)
   const rows = useMemo(() => [...new Set(data.area.map((r) => r.khg_id))].map((id) => {
     const gs = groups(data, [id], high, false, false)
     return { id, name: names.get(id) ?? id, gs: Object.fromEntries(gs.map((g) => [g.tenure, g])) as Record<string, Group> }
@@ -128,24 +130,45 @@ export function TenureAcross({ data, names, onPick }: { data: TenureData; names:
   const TICKS = [0.1, 0.25, 0.5, 1, 2, 4, 10]
   const lo = Math.log10(0.1), hi = Math.log10(10)
   const X = (r: number) => 3 + ((Math.log10(Math.min(10, Math.max(0.1, r))) - lo) / (hi - lo)) * 94
+  const end = data.win?.last_2026
+  const cutoff = end ? new Date(end).toLocaleDateString(lang, { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }) : null
   return (
-    <div className="card p-3">
-      <div className="mb-1 font-medium">{t('2026 against earlier years, by land tenure')}</div>
-      <div className="muted mb-2 flex flex-wrap gap-x-3 text-xs">{Object.entries(TENURE).map(([k, v]) => <span key={k}><i className="chip" style={{ background: v.color }} />{t(v.label)}</span>)}
-        <span>{t('Ratio of the 2026 rate to the 2015 to 2025 mean, same calendar window; 1 = as in earlier years. Hollow dots: few detections. Dots at the ends of the axis are beyond it.')}</span></div>
-      <div className="grid gap-y-0.5 text-xs" style={{ gridTemplateColumns: 'minmax(8rem,14rem) 1fr' }}>
+    <section className="card space-y-2 p-3 sm:p-4" aria-labelledby="tenure-comparison-title">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <h3 id="tenure-comparison-title" className="font-semibold">{t('2026 against earlier years, by land tenure')}</h3>
+        <div className="flex gap-1" role="group" aria-label={t('Hotspot confidence')}>
+          <button type="button" className="btn text-xs" aria-pressed={high} onClick={() => setHigh(true)}>{t('High confidence')}</button>
+          <button type="button" className="btn text-xs" aria-pressed={!high} onClick={() => setHigh(false)}>{t('Medium + high')}</button>
+        </div>
+      </div>
+      {cutoff && <p className="muted text-xs">VIIRS S-NPP · {t('to {d}').replace('{d}', cutoff)}</p>}
+      <p className="muted text-xs">{t('The middle line marks the average for the same dates in 2015–2025. A dot to the right means more hotspots per unit of peat in 2026. A dot to the left means fewer.')}</p>
+      <div className="muted flex flex-wrap gap-x-3 gap-y-1 text-xs">{Object.entries(TENURE).map(([k, v]) => <span key={k} className="inline-flex items-center gap-1.5"><i className="size-2 shrink-0 rounded-full" style={{ background: v.color }} />{t(v.label)}</span>)}</div>
+      <p className="muted flex items-start gap-1.5 text-xs"><i className="mt-0.5 size-2.5 shrink-0 rounded-full border border-current" aria-hidden />
+        {t('Hollow circles mark comparisons based on less than 5 km² of peat or fewer than 20 detections across all the periods shown. Small samples can make the ratio swing sharply.')}</p>
+      <div className="grid grid-cols-[minmax(0,2fr)_minmax(0,3fr)] gap-x-2 text-xs sm:grid-cols-[minmax(0,14rem)_minmax(0,1fr)]">
         {rows.map((r) => (
           <div key={r.id} className="contents">
-            <button className="truncate text-left hover:underline" onClick={() => onPick?.(r.id)} title={r.name}>{r.name.replace(/^KHG /, '')}</button>
-            <svg viewBox="0 0 100 10" className="h-4 w-full" preserveAspectRatio="none" aria-hidden>
-              {TICKS.map((v) => <line key={v} x1={X(v)} x2={X(v)} y1={0} y2={10} stroke="var(--ink)" strokeOpacity={v === 1 ? 0.55 : 0.12} strokeWidth={1} vectorEffect="non-scaling-stroke" />)}
-              {Object.entries(TENURE).map(([k, v]) => { const g = r.gs[k]; return g && g.ratio != null ? <ellipse key={k} cx={X(g.ratio)} cy={5} rx={1.1} ry={3.6} fill={g.few ? 'var(--surface)' : v.color} stroke={v.color} strokeWidth={1} vectorEffect="non-scaling-stroke"><title>{`${t(v.label)}: ×${g.ratio.toFixed(2)} (${f1(g.r26)} / ${f1(g.rPast)} ${t('per 100 km²')}, ${f0(g.peat)} km²)`}</title></ellipse> : null })}
-            </svg>
+            <Link to={`/khg/${r.id.replace(/^KHG\./, '')}`} className="self-center text-left underline-offset-2 hover:underline">{r.name.replace(/^KHG /, '')}</Link>
+            <div className="relative min-h-8">
+              {TICKS.map((v) => <i key={v} className="absolute inset-y-0 w-px" style={{ left: `${X(v)}%`, background: 'var(--ink)', opacity: v === 1 ? 0.5 : 0.12 }} />)}
+              {Object.entries(TENURE).map(([k, v], i) => {
+                const g = r.gs[k]
+                if (!g || g.ratio == null) return null
+                const difference = Math.abs(g.ratio - 1) < 0.05 ? t('About the same as usual')
+                  : g.ratio < 1 ? t('{n}% fewer hotspots per unit of peat than usual').replace('{n}', String(Math.round((1 - g.ratio) * 100)))
+                    : t('{n} times as many hotspots per unit of peat as usual').replace('{n}', new Intl.NumberFormat(lang, { maximumFractionDigits: 1 }).format(g.ratio))
+                const rates = t('In 2026, {a} hotspots per 100 km² of peat. Earlier average, {b}.').replace('{a}', f1(g.r26)).replace('{b}', f1(g.rPast))
+                const description = [t(v.label), difference, rates, g.few ? t('Small sample. Read this comparison with care.') : ''].filter(Boolean).join('\n')
+                return <span key={k} role="img" tabIndex={0} aria-label={description} data-tip={description} onClick={(e) => e.currentTarget.focus()} className="absolute size-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full border focus-visible:outline-2 focus-visible:outline-ring"
+                  style={{ left: `${X(g.ratio)}%`, top: `${(i + 1) * 25}%`, background: g.few ? 'var(--surface)' : v.color, borderColor: v.color }} />
+              })}
+            </div>
           </div>
         ))}
-        <span /><div className="muted relative h-4">{TICKS.map((v) => <span key={v} className="absolute -translate-x-1/2" style={{ left: `${X(v)}%` }}>{v === 0.1 ? '≤' : v === 10 ? '≥' : '×'}{v}</span>)}</div>
+        <span /><div className="muted relative h-5 pt-1">{TICKS.map((v) => <span key={v} className={`absolute -translate-x-1/2 whitespace-nowrap ${[0.25, 0.5, 2, 4].includes(v) ? 'hidden sm:inline' : ''}`} style={{ left: `${X(v)}%` }}>{v === 0.1 ? '≤' : v === 10 ? '≥' : '×'}{v}</span>)}</div>
       </div>
-    </div>
+    </section>
   )
 }
 

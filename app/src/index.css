@@ -1,34 +1,52 @@
 @import "tailwindcss";
 @import "maplibre-gl/dist/maplibre-gl.css";
+@import "./priority/priority.css";
+
+@custom-variant dark (&:is([data-theme="dark"] *, [data-theme="dark"]));
+
+/* shadcn/ui tokens on the validated palette: --muted stays the grey text colour of this app, --sc-muted is the quiet fill */
+@theme inline {
+  --color-background: var(--bg); --color-foreground: var(--ink);
+  --color-card: var(--surface); --color-card-foreground: var(--ink); --color-popover: var(--surface); --color-popover-foreground: var(--ink);
+  --color-primary: var(--ink); --color-primary-foreground: var(--surface); --color-secondary: var(--sc-muted); --color-secondary-foreground: var(--ink);
+  --color-muted: var(--sc-muted); --color-muted-foreground: var(--muted); --color-accent: var(--sc-muted); --color-accent-foreground: var(--ink);
+  --color-destructive: var(--s8); --color-border: var(--line); --color-input: var(--line); --color-ring: var(--s1);
+  --radius-sm: 4px; --radius-md: 6px; --radius-lg: 8px; --radius-xl: 12px;
+}
 
 /* validated reference palette (categorical slots 1-8, sequential blue); light and dark steps */
 :root {
   color-scheme: light;
   --bg: #f4f4f1; --surface: #fcfcfb; --ink: #0b0b0b; --muted: #52514e; --line: #dcdcd6;
   --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100; --s5: #e87ba4; --s6: #008300; --s7: #6250d6; --s8: #e34948;
+  --sc-muted: #ecebe6;
   --seq-100: #cde2fb; --seq-250: #86b6ef; --seq-400: #3987e5; --seq-550: #1c5cab; --seq-700: #0d366b;
 }
 @media (prefers-color-scheme: dark) {
   :root:where(:not([data-theme="light"])) {
     color-scheme: dark;
     --bg: #121211; --surface: #1a1a19; --ink: #f0efec; --muted: #c3c2b7; --line: #343432;
+    --sc-muted: #262624;
     --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300; --s7: #9085e9; --s8: #e66767;
   }
 }
 :root[data-theme="dark"] {
   color-scheme: dark;
   --bg: #121211; --surface: #1a1a19; --ink: #f0efec; --muted: #c3c2b7; --line: #343432;
-  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300; --s7: #9085e9; --s8: #e66767;
+  --sc-muted: #262624;
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300; --s7: #9085e9; --s8: #e66767;
 }
 body { margin: 0; background: var(--bg); color: var(--ink); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 14px; }
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
 .muted { color: var(--muted); }
-button, select, input { font: inherit; color: inherit; }
+@layer base { button, select, input { font: inherit; color: inherit; } }
 .btn { border: 1px solid var(--line); border-radius: 6px; padding: 2px 10px; background: var(--surface); cursor: pointer; }
 .btn[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
 .chip { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; }
 .maplibregl-popup-content { background: var(--surface); color: var(--ink); }
 .chart-empty { display: grid; place-items: center; color: var(--muted); font-size: 12px; }
+.hotspot-glyph { width: var(--glyph-size); height: var(--glyph-size); display: grid; place-items: center; border: 1px solid var(--surface); border-radius: 50%; box-shadow: 0 1px 4px #0005; cursor: pointer; }
+.hotspot-glyph > span { width: calc(var(--glyph-size) - 10px); height: calc(var(--glyph-size) - 10px); display: grid; place-items: center; border-radius: 50%; background: var(--surface); color: var(--ink); font-size: 10px; font-weight: 700; font-variant-numeric: tabular-nums; }
 
 /* single and two-thumb sliders for year and month range */
 .dr { position: relative; height: 22px; }

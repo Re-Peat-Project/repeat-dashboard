@@ -6,7 +6,7 @@ const b = await chromium.launch({ channel: 'chrome', args: ['--use-gl=angle', '-
 const p = await b.newPage({ viewport: { width: 1440, height: 1500 } })
 const errs = []
 p.on('pageerror', (e) => errs.push(e.message.slice(0, 200)))
-await p.goto(`${base}#/compare`)
+await p.goto(`${base}#/dev/model-runs`)
 await p.waitForTimeout(6000)
 const res = {}
 for (const dem of ['deltadtm', 'lidar', 'demnas']) {

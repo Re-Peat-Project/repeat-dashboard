@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useState } from 'react'
 import { DataTable, type Col } from '../components/DataTable'
 import { LineChart, type Series } from '../components/LineChart'
+import { TenureAcross, useTenure } from '../components/Tenure'
 import { readJson, readTable } from '../lib/data'
 import { useT } from '../lib/i18n'
+import type { ScoringData } from '../lib/scoring'
 
 type Area = { island: string; province: string; in_khg: boolean; forest_group: string; kawasan: string; concession: string; lic_bits: number; dmpg: boolean; peat: number; area_ha: number; burned_any_ha: number; burned_2plus_ha: number; [k: string]: any }
 type Hot = { island: string; province: string; in_khg: boolean; forest_group: string; kawasan: string; concession: string; lic_bits: number; dmpg: boolean; peat: number; source: string; year: number; month: number; conf: string; static: boolean; ytd: boolean; n: number }
@@ -60,8 +62,16 @@ function Seg<T extends string>({ value, set, opts, label }: { value: T; set: (v:
 
 export default function Summary() {
   const t = useT()
-  const [src, setSrc] = useState<'viirs' | 'modis'>('viirs')
+  const tenure = useTenure()
+  const [names, setNames] = useState(new Map<string, string>())
+  useEffect(() => {
+    readJson<ScoringData>('national/scoring.json')
+      .then(({ khg }) => setNames(new Map(khg.id.map((id, i) => [id, khg.name[i]]))))
+      .catch(() => {})
+  }, [])
+  const [src, setSrc] = useState<'viirs' | 'modis'>('modis')
   const [year, setYear] = useState(NOW)
+  const [referenceYear, setReferenceYear] = useState(PAST[0])
   const [high, setHigh] = useState(false)
   const sel = useMemo<Sel>(() => ({ src, year: src === 'modis' ? NOW : year }), [src, year])
   const yr = sel.year, srcName = src === 'viirs' ? 'VIIRS' : 'MODIS'
@@ -104,13 +114,28 @@ export default function Summary() {
   const burnedLines: Series[] = shown.map((c) => ({ name: t(c.label), color: c.color, points: years.map((y) => ({ x: new Date(y, 6, 1), y: (cls.get(c.key)?.burned.get(y) ?? 0) / 100 })) }))
   const viirsYears = useMemo(() => [...new Set(hot.filter((r) => r.source === 'viirs').map((r) => r.year))].sort(), [hot])
   const viirsLines: Series[] = shown.map((c) => ({ name: t(c.label), color: c.color, points: viirsYears.map((y) => ({ x: new Date(y, 6, 1), y: cls.get(c.key)?.viirsYtd.get(y) ?? 0 })) }))
-  const lastM = Number((src === 'viirs' ? meta?.viirs_last : meta?.modis_last)?.slice(5, 7) ?? 12)
-  const monthMean = useMemo(() => { const s = new Map<number, number>(); for (const r of H) if (r.source === 'viirs' && r.ytd && r.year >= PAST[0] && r.year <= PAST[1]) add(s, r.month, r.n / (PAST[1] - PAST[0] + 1)); return s }, [H])
-  const monthLines: Series[] = [{ name: `${srcName} ${yr}`, color: 'var(--s2)', points: Array.from({ length: lastM }, (_, i) => ({ x: new Date(NOW, i, 15), y: total.modisM.get(i + 1) ?? 0 })) },
-    ...(src === 'viirs' ? [{ name: `${t('mean')} ${PAST[0]}–${PAST[1]}`, color: 'var(--muted)', dash: '4 3', points: Array.from({ length: lastM }, (_, i) => ({ x: new Date(NOW, i, 15), y: monthMean.get(i + 1) ?? 0 })) }] : [])]
+  const observedMonths = Number(meta?.viirs_last?.slice(5, 7) ?? 12)
+  const viirsYear = src === 'viirs' ? yr : NOW
+  const monthPoints = (counts: Map<number, number>, months: number) =>
+    Array.from({ length: months }, (_, i) => ({ x: new Date(NOW, i, 15), y: counts.get(i + 1) ?? 0 }))
+  const [selectedMonths, referenceMonths, monthMean] = useMemo(() => {
+    const selected = new Map<number, number>(), reference = new Map<number, number>(), baseline = new Map<number, number>()
+    for (const r of H) {
+      if (r.source !== 'viirs') continue
+      if (r.year === viirsYear && r.ytd) add(selected, r.month, r.n)
+      if (r.year === referenceYear) add(reference, r.month, r.n)
+      if (r.ytd && r.year >= PAST[0] && r.year <= PAST[1]) add(baseline, r.month, r.n / (PAST[1] - PAST[0] + 1))
+    }
+    return [selected, reference, baseline]
+  }, [H, viirsYear, referenceYear])
+  const viirsMonths: Series[] = [
+    { name: `VIIRS ${viirsYear}`, color: 'var(--s2)', points: monthPoints(selectedMonths, observedMonths) },
+    { name: `${referenceYear} ${t('(full year)')}`, color: 'var(--s7)', points: monthPoints(referenceMonths, 12) },
+    { name: `${t('mean')} ${PAST[0]}–${PAST[1]}`, color: 'var(--muted)', dash: '4 3', points: monthPoints(monthMean, observedMonths) },
+  ]
 
   const kpi = (label: string, value: string, sub: string, tip: string) => (
-    <div className="card flex flex-col p-3" title={tip}><div className="muted text-xs">{label}</div><div className="text-2xl font-semibold tabular-nums">{value}</div><div className="muted mt-auto text-xs">{sub}</div></div>)
+    <div className="min-w-0 p-3" title={tip}><dt className="muted text-xs">{label}</dt><dd className="text-xl font-semibold tabular-nums sm:text-2xl">{value}</dd><dd className="muted mt-1 text-xs">{sub}</dd></div>)
   const share = (m: Map<string, Agg>, k: string) => `${pct(sumPast(m.get(k)), sumPast(total))} ${t('of burned area')} ${PAST[0]}–${PAST[1]} · ${pct(m.get(k)?.area ?? 0, total.area)} ${t('of the area')}`
 
   const provRows = useMemo(() => {
@@ -149,9 +174,9 @@ export default function Summary() {
   const maxCls = Math.max(1e-9, ...shown.map((c) => rate(cls.get(c.key)?.modis ?? 0, cls.get(c.key)?.area ?? 0) ?? 0))
 
   return (
-    <div className="flex flex-col gap-3 p-3">
+    <div className="space-y-3">
       <div className="card flex flex-wrap items-end gap-x-5 gap-y-2 px-3 py-2 text-sm" role="group" aria-label={t('Filters')}>
-        <Seg label={t('Area basis')} value={basis} set={setBasis} opts={[['all', t('All land'), t('Every cell inside the village boundaries of 2023.')], ['peat', t('Peat only'), t('Cells in KLH's peat land map (integrated thematic analysis for peat restoration, April 2026).')]]} />
+        <Seg label={t('Area basis')} value={basis} set={setBasis} opts={[['all', t('All land'), t('Every cell inside the village boundaries of 2023.')], ['peat', t('Peat only'), t("Cells in KLH's peat land map (integrated thematic analysis for peat restoration, April 2026).")]]} />
         <Seg label={t('KHG')} value={scope} set={setScope} opts={[['all', t('All')], ['in', t('Inside KHG')], ['out', t('Outside KHG')]]} />
         <label className="flex flex-col gap-1"><span className="muted text-xs">{t('Island')}</span>
           <select className="card px-2 py-1" value={island} onChange={(e) => { setIsland(e.target.value); setProvince('') }}><option value="">{t('Indonesia')}</option>{islands.map((s) => <option key={s} value={s}>{s.replace(/^Pulau /, '')}</option>)}</select></label>
@@ -166,20 +191,20 @@ export default function Summary() {
         <span className="muted ml-auto pb-1 text-xs">{srcName} {yr}: 1/1 {t('to')} {src === 'viirs' ? last : meta.modis_last.slice(5).replace('-', '/')} · {t('Burned area')}: KLHK {meta.years[0]}–{meta.years[1]}</span>
       </div>
 
-      <div className="grid gap-3 md:grid-cols-3 xl:grid-cols-6">
+      <dl className="card grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6">
         {kpi(basis === 'peat' ? t('Peat area') : t('Land area'), f0(total.area / 100), `km² · ${scopeName}`, t('Area of the selection on the equal-area grid.'))}
         {kpi(`${t('Burned')} ${yr}${incomplete ? ` (${t('incomplete')})` : ''}`, f0(bY(total)), `ha · ${t('mean')} ${PAST[0]}–${PAST[1]}: ${f0(pastMean(total.burned))} ha/${t('yr')}`, t('KLHK burnt-area polygons of the year, on the 30 m grid. The 2026 layer holds 0.2 ha per VIIRS hotspot against 2 to 6 ha in 2015 to 2023 and 2025: incomplete as delivered, so compare 2026 with earlier years through the hotspots. 2024 is also incomplete (0.6 ha per hotspot).'))}
         {kpi(`${t('Hotspots')} ${yr}`, f0(total.modis), `${srcName}, ${high ? t('high confidence') : t('medium + high')} · ${f1(rate(total.modis, total.area))} ${t('per 100 km²')} ${unit}${src === 'viirs' ? ` · ×${(total.modis / Math.max(1, pastMean(total.viirsYtd))).toFixed(1)} ${t('mean')} ${PAST[0]}–${PAST[1]}` : ''}`, src === 'viirs' ? t('VIIRS hotspots from 1 January to the last 2026 date, the same window in every year, and their ratio to the 2015 to 2025 mean.') : t('MODIS hotspots of the year: KLH file, then NASA FIRMS MODIS near real time.'))}
         {kpi(t('In concessions'), pct(conc.get('yes')?.modis ?? 0, total.modis), share(conc, 'yes'), t('Share of the selected year\'s hotspots (large figure), of the burned area of 2015 to 2025 and of the area (line) inside a business licence. A hotspot inside a licence is a spatial overlap, not responsibility.'))}
         {kpi(t('In forest area'), pct(forest.get('kawasan')?.modis ?? 0, total.modis), share(forest, 'kawasan'), t('Share inside the forest area (kawasan hutan), with or without a licence.'))}
         {kpi(t('In DMPG villages'), pct(dmpg.get('yes')?.modis ?? 0, total.modis), share(dmpg, 'yes'), t('Share inside DMPG village land.'))}
-      </div>
+      </dl>
 
       <div className="grid gap-3 xl:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
-        <div className="card p-3">
+        <div className="card min-w-0 p-3">
           <div className="font-medium">{t('Concession and forest area')} · {scopeName}</div>
           <div className="muted mb-2 text-xs">{t('Each cell')}: {t('area')} km² · {t('burned')} {yr} ha · {t('hotspots')} {yr} ({srcName}) · <b style={{ color: 'var(--ink)' }}>{t('per 100 km²')}</b>. {t('Shade: hotspot density.')}</div>
-          <div className="grid gap-1 text-xs" style={{ gridTemplateColumns: 'minmax(6rem,auto) repeat(3, minmax(0,1fr))' }}>
+          <div className="overflow-x-auto"><div className="grid min-w-[24rem] gap-1 text-xs" style={{ gridTemplateColumns: 'minmax(6rem,auto) repeat(3, minmax(0,1fr))' }}>
             <span />{MATRIX_COLS.map((c) => <span key={c.key} className="muted px-1" title={SPLITS.forest.help}>{t(c.label)}</span>)}
             {MATRIX_ROWS.map((r) => <div key={r.key} className="contents">
               <span className="self-center font-medium" title={SPLITS.concession.help}><i className="chip" style={{ background: r.color }} />{t(r.label)}</span>
@@ -191,15 +216,15 @@ export default function Summary() {
                   <div className="tabular-nums">{f0(a.modis)} {t('hotspots')}</div>
                 </div>) })}
             </div>)}
-          </div>
+          </div></div>
         </div>
 
-        <div className="card p-3">
+        <div className="card min-w-0 p-3">
           <div className="mb-2 flex flex-wrap items-center gap-2">
             <div className="font-medium">{t('By')} {t(sp.label).toLowerCase()} · {scopeName}</div>
             <div className="ml-auto flex flex-wrap gap-1">{(Object.keys(SPLITS) as Split[]).map((k) => <button key={k} className="btn text-xs" aria-pressed={split === k} title={t(SPLITS[k].help)} onClick={() => setSplit(k)}>{t(SPLITS[k].label)}</button>)}</div>
           </div>
-          <table className="w-full text-xs">
+          <div className="overflow-x-auto"><table className="w-full min-w-[31rem] text-xs">
             <thead><tr className="muted text-right">
               <th className="text-left font-normal" />
               <th className="font-normal" title={t('Area of the class on the equal-area grid.')}>{basis === 'peat' ? t('Peat') : t('Land')} <span>(km²)</span></th>
@@ -219,16 +244,28 @@ export default function Summary() {
                 <td className="text-right tabular-nums">{f0(a.modis)}</td>
                 <td className="pl-2"><div className="flex items-center gap-1"><div className="h-2.5 rounded" style={{ width: `${(70 * (d ?? 0)) / maxCls}%`, background: c.color }} /><span className="tabular-nums">{f1(d)}</span></div></td>
               </tr>) })}</tbody>
-          </table>
+          </table></div>
           {incomplete && <div className="muted mt-1 text-xs">* {t('Burned area of 2026 (and 2024) is incomplete as delivered: it holds far less burned area per hotspot than the other years.')}</div>}
           {split === 'type' && <div className="muted mt-1 text-xs">{t('Overlapping licences: the land counts once, under the first type in the list.')}</div>}
         </div>
       </div>
 
-      <div className="grid gap-3 lg:grid-cols-3">
+      <div className={`grid gap-3 md:grid-cols-2 ${src === 'viirs' ? 'xl:grid-cols-3' : ''}`}>
         <LineChart title={`${t('Burned area per year')} · ${t(sp.label)}`} yLabel="km²" series={burnedLines} fmt={(v) => f0(v)} zeroBase area={false} />
         <LineChart title={`${t('VIIRS hotspots per year')}, 1/1–${last}`} series={viirsLines} fmt={(v) => f0(v)} zeroBase area={false} />
-        <LineChart title={`${srcName} ${t('hotspots per month')}, ${yr}`} series={monthLines} fmt={(v) => f0(v)} zeroBase area={false} />
+        {src === 'modis' && <LineChart title={`MODIS ${t('hotspots per month')}, ${NOW}`}
+          series={[{ name: `MODIS ${NOW}`, color: 'var(--s2)', points: monthPoints(total.modisM, Number(meta.modis_last.slice(5, 7))) }]} fmt={(v) => f0(v)} zeroBase area={false} />}
+        <section className="min-w-0 space-y-1">
+          <LineChart title={`VIIRS ${t('hotspots per month')}, ${viirsYear}`} series={viirsMonths} monthOfYear fmt={(v) => f0(v)} zeroBase area={false} />
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 px-1 text-xs muted">
+            <label className="flex items-center gap-1.5">{t('Reference year')}
+              <select className="btn" value={referenceYear} onChange={(e) => setReferenceYear(Number(e.target.value))}>
+                {viirsYears.filter((y) => y < NOW).map((y) => <option key={y} value={y}>{y}</option>)}
+              </select>
+            </label>
+            <span>{t('The reference year shows all 12 months. The selected year and earlier-years average use the 2026 cutoff date.')} ({last})</span>
+          </div>
+        </section>
       </div>
 
       <div className="card p-3">
@@ -238,6 +275,7 @@ export default function Summary() {
           onRow={(r) => { setIsland(r.island); setProvince(province === r.province ? '' : r.province) }} initialSort={{ key: 'modis', dir: -1 }} />
       </div>
       <p className="muted px-1 text-xs">{t('Every layer is laid on one equal-area grid of 30 m cells; a cell takes the class of the polygon its centre falls in, and a hotspot the class of the cell it falls in. Licences 2025 and forest area 2023 are matched to every year, so land may have had another status in earlier years. Hotspots and burns inside a licence are a spatial overlap; they do not show the cause of a fire or who is responsible.')}</p>
+      {tenure && names.size > 0 && <TenureAcross data={tenure} names={names} />}
     </div>
   )
 }

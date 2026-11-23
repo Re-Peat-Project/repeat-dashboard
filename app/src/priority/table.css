@@ -1,0 +1,42 @@
+/* KHG table page (ported from repeat-prioritisation .../national/assets/khg_table.html), scoped under .pz */
+.pz .tp{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+.pz .tp>*{min-width:0}
+.pz .tbar2{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:flex-end}
+.pz .tbar2 .ctl{display:flex;flex-direction:column;gap:4px}
+.pz .tbar2 .ctl>span{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.pz .groups{display:flex;flex-wrap:wrap;gap:6px}
+.pz .gchip{border:1px solid var(--border);border-radius:999px;padding:2px 10px;font-size:12.5px;cursor:pointer;background:transparent;color:var(--ink2)}
+.pz .gchip.on{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.pz .rchips{display:flex;flex-wrap:wrap;gap:6px;min-height:0}
+.pz .rchip{border:1px solid var(--border);border-radius:999px;padding:1px 4px 1px 10px;font-size:12px;background:var(--wash)}
+.pz .rchip button{border:0;background:none;padding:0 4px;cursor:pointer;color:var(--muted)}
+.pz .sumrow{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.pz .sumrow .kpi{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px 12px}
+.pz .sumrow .kpi .v{font-size:20px;font-weight:600;font-variant-numeric:tabular-nums}
+.pz .sumrow .kpi .l{font-size:12px;color:var(--muted)}
+.pz .sumrow .kpi svg{display:block;width:100%;height:26px;margin-top:2px}
+.pz .twrap{overflow:auto;max-height:calc(100vh - 120px);border:1px solid var(--border);border-radius:10px;background:var(--surface)}
+.pz table.kt{border-collapse:separate;border-spacing:0;font-size:12.5px;font-variant-numeric:tabular-nums;width:auto}
+.pz .kt thead th{position:sticky;top:0;z-index:3;background:var(--surface);vertical-align:bottom;text-align:left;font-weight:500;color:var(--ink2);padding:4px 6px 2px;border-bottom:1px solid var(--border);white-space:normal;min-width:92px;max-width:130px;line-height:1.2}
+.pz .kt thead tr.g th{top:0;z-index:4;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);border-bottom:0;padding-top:6px;text-align:left;min-width:0;border-left:1px solid var(--grid)}
+.pz .kt thead tr.h th{top:22px}
+.pz .kt thead th .lb{cursor:pointer;display:block;min-height:2.4em}
+.pz .kt thead th .lb.on{color:var(--ink);font-weight:650}
+.pz .kt thead th svg.hist{display:block;width:100%;height:26px;margin-top:3px;cursor:crosshair}
+.pz .kt td{padding:4px 6px;border-bottom:1px solid var(--grid);white-space:nowrap;text-align:right;position:relative}
+.pz .kt td.l{text-align:left}
+.pz .kt th.sticky,.pz .kt td.sticky{position:sticky;left:0;z-index:2;background:var(--surface)}
+.pz .kt thead th.sticky{z-index:5}
+.pz .kt td.sticky{min-width:250px;max-width:300px;white-space:normal}
+.pz .kt tbody tr:hover td{background:var(--wash)}
+.pz .kt tbody tr:hover td.sticky{background:linear-gradient(var(--wash),var(--wash)),var(--surface)}
+.pz .kt tbody tr{cursor:pointer}
+.pz .kt td small{display:block;color:var(--muted);font-size:11px}
+.pz .kt td .cb{position:absolute;left:6px;right:6px;bottom:2px;height:3px;border-radius:2px;background:var(--grid)}
+.pz .kt td .cb i{display:block;height:100%;border-radius:2px;background:var(--c,var(--hist));opacity:.75}
+.pz .kt td.na{color:var(--muted)}
+.pz .kt td svg.spark{display:block;width:96px;height:22px}
+.pz .kt .gstart{border-left:1px solid var(--grid)}
+.pz .pager{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:space-between}
+.pz .hbrush .selection{fill:var(--ink);fill-opacity:.12;stroke:var(--ink);stroke-opacity:.4}
+@media (max-width:1100px){.pz .sumrow{grid-template-columns:repeat(3,minmax(0,1fr))}}

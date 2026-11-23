@@ -26,6 +26,7 @@ from build_khg import Cache, OUT_DEFAULT, WORK, fingerprint, size_mb, tile_vecto
 REPORTS = Path(os.environ.get("REPEAT_WORK", WORK / "re-peat" / "reports")) / "national_profile"
 DATA = Path(os.environ.get("REPEAT_DATA", WORK / "_data"))
 SITMAT = Path(os.environ.get("SITMAT_PROCESSED", WORK / "repeat-sitmat" / "sitmat_out" / "processed"))
+KHG_PROFILE = REPORTS / "operational" / "profile.gpkg"
 GRID_DEG = 0.1
 GRID_ORIGIN = (94.0, -11.5)   # lon, lat of the grid's south-west corner
 CONF = {"l": "low", "n": "medium", "h": "high", "low": "low", "medium": "medium", "high": "high"}
@@ -70,7 +71,7 @@ def step_tables(out, cache, force, manifest):
 
 
 def step_tiles(out, cache, force, manifest):
-    src = REPORTS / "operational" / "profile.gpkg"
+    src = KHG_PROFILE
     dst = out / "khg_outlines.pmtiles"
     key, fp = "tiles:outlines", fingerprint([src], extra="z0-10")
     if force or not cache.hit(key, fp, [dst]):
@@ -83,17 +84,21 @@ def step_tiles(out, cache, force, manifest):
 
 
 def khg_polygons():
-    return pyogrio.read_dataframe(REPORTS / "operational" / "profile.gpkg", columns=["khg_id"], force_2d=True).to_crs(4326)
+    return pyogrio.read_dataframe(KHG_PROFILE, columns=["khg_id"], force_2d=True).to_crs(4326)
 
 
 def step_sitmat(out, cache, force, manifest):
     for name, f in [("sitmat_daily", "daily_long.csv"), ("sitmat_stations", "stations_geo.csv")]:
         src = SITMAT / f
         dst = out / f"{name}.parquet"
-        if not src.exists():
-            manifest["missing"].append({"id": name, "reason": f"no file {f}"})
+        inputs = [src]
+        if name == "sitmat_stations":
+            inputs.extend([SITMAT / "stations.csv", KHG_PROFILE])
+        missing = [p.name for p in inputs if not p.exists()]
+        if missing:
+            manifest["missing"].append({"id": name, "reason": f"missing {', '.join(missing)}"})
             continue
-        key, fp = f"table:{name}", fingerprint([src])
+        key, fp = f"table:{name}", fingerprint(inputs)
         if force or not cache.hit(key, fp, [dst]):
             df = pd.read_csv(src, low_memory=False)
             for c in df.columns:
@@ -179,7 +184,7 @@ def step_khg_monthly(out, cache, force, manifest):
             ("viirs", DATA / "hotspot_viirs_snpp_nrt_2026.gpkg", "acq_date", "confidence", "frp", None),
             ("modis2026", DATA / "hotspots_modis_2026.gpkg", "acq_date", "level", "frp", ("month", 2026))]
     dst = out / "khg_hotspot_monthly.parquet"
-    files = [x[1] for x in srcs if x[1].exists()] + [REPORTS / "operational" / "profile.gpkg", DATA / "peat_extent_gfw_v20230315_z11.tif"]
+    files = [x[1] for x in srcs if x[1].exists()] + [KHG_PROFILE, DATA / "peat_extent_gfw_v20230315_z11.tif"]
     key, fp = "khg_monthly", fingerprint(files)
     entry = {"id": "khg_hotspot_monthly", "file": dst.name}
     if not force and cache.hit(key, fp, [dst]):
@@ -233,9 +238,9 @@ def main():
     manifest = {"tables": [], "files": [], "missing": []}
     if mf.exists():
         old = json.loads(mf.read_text(encoding="utf-8"))
-        if "tables" not in steps and "sitmat" not in steps:
-            manifest["tables"] = old.get("tables", [])
-        keep_files = {"tiles": "khg_outlines", "grid": "hotspot_grid", "tables": None}
+        manifest["tables"] = old.get("tables", [])
+        if steps == {"sitmat"}:
+            manifest["missing"] = [m for m in old.get("missing", []) if not m["id"].startswith("sitmat")]
         manifest["files"] = [f for f in old.get("files", []) if not (("tables" in steps and f["id"] in ("scoring", "khg_geo")) or ("khgmonthly" in steps and f["id"] == "khg_hotspot_monthly") or
                              ("tiles" in steps and f["id"] == "khg_outlines") or ("grid" in steps and f["id"] == "hotspot_grid"))]
     if "tables" in steps:
