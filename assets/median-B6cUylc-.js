@@ -1,0 +1,1 @@
+import{f as e}from"./data-Bji6QKO0.js";function t(t,n){return e(t,.5,n)}export{t};

@@ -1,1 +1,0 @@
-import{f as e}from"./data-DBVw6X48.js";function t(t,n){return e(t,.5,n)}export{t};
