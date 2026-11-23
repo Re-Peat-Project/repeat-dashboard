@@ -38,7 +38,7 @@
   {
    "id": "sitmat_daily",
    "file": "sitmat_daily.parquet",
-   "mb": 0.571
+   "mb": 0.603
   },
   {
    "id": "sitmat_stations",
