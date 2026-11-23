@@ -1,16 +1,16 @@
 {
  "hotspots": {
   "file": "fire_hotspots_2026.pmtiles",
-  "mb": 32.3,
+  "mb": 32.6,
   "maxzoom": 12,
   "count": {
-   "viirs": 619852,
-   "modis": 224161
+   "viirs": 622473,
+   "modis": 230494
   },
-  "fingerprint": "cd6d8cfe24f4e0c56051029cfb19d0e3fb731f9721539c25a6d8486a013928d6",
+  "fingerprint": "92208ad560288a97ad639cddbce47cee70aff0134ffbc36cbd992458c5286318",
   "last": {
-   "viirs": "2026-10-31",
-   "modis": "2026-10-29"
+   "viirs": "2026-11-02",
+   "modis": "2026-11-22"
   },
   "source": "VIIRS S-NPP (FIRMS standard and near real time) and MODIS (KLH file, then FIRMS near real time), medium and high confidence"
  },

@@ -60,8 +60,8 @@
   {
    "id": "hotspot_grid",
    "file": "hotspot_grid.parquet",
-   "mb": 2.377,
-   "rows": 643112,
+   "mb": 2.39,
+   "rows": 646810,
    "grid": {
     "deg": 0.1,
     "origin_lon": 94.0,
@@ -74,7 +74,7 @@
    "id": "khg_hotspot_monthly",
    "file": "khg_hotspot_monthly.parquet",
    "mb": 0.086,
-   "rows": 46835,
+   "rows": 47050,
    "note": "points counted in every KHG polygon they lie in; peat from the GFW composite extent"
   }
  ],
