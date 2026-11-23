@@ -1,14 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { median } from 'd3-array'
 import { DataTable, type Col } from '../components/DataTable'
 import { FilterBar } from '../components/FilterBar'
 import { LegendCard, RampLegend } from '../components/Legend'
-import { LineChart, type Series } from '../components/LineChart'
+import { FireTrends } from '../components/FireTrends'
 import { Seg } from '../components/Seg'
 import { loadCatalog, readJson, readTable, type CatalogEntry } from '../lib/data'
 import { useT } from '../lib/i18n'
-import { inPeriod, lastFireMonth, limitFireMonths, monthDate } from '../lib/investigation'
+import { inPeriod, lastFireMonth, limitFireMonths } from '../lib/investigation'
 import { initMaplibre, maplibregl, pm, styleFor } from '../lib/map'
 import type { ScoringData } from '../lib/scoring'
 import { useStore } from '../lib/store'
@@ -24,7 +23,7 @@ const DENSITY_MAX = 50   // hotspots per 100 km² of peat at the top of the colo
 export default function National() {
   const t = useT()
   const nav = useNavigate()
-  const { selected, select, basemap, setBasemap, fire: rawFire, lang } = useStore()
+  const { selected, select, basemap, setBasemap, fire: rawFire, setFire, lang } = useStore()
   const cam = useRef<{ center: maplibregl.LngLatLike; zoom: number } | null>(null)
   const el = useRef<HTMLDivElement>(null)
   const mapRef = useRef<maplibregl.Map | null>(null)
@@ -32,8 +31,6 @@ export default function National() {
   const [mapReady, setMapReady] = useState(false)
   const [meta, setMeta] = useState<ScoringData['khg'] | null>(null)
   const [grid, setGrid] = useState<HotspotCell[]>([])
-  const [sit, setSit] = useState<any[]>([])
-  const [stations, setStations] = useState<any[]>([])
   const [hotM, setHotM] = useState<Monthly[]>([])
   const [cat, setCat] = useState<CatalogEntry[]>([])
   const [by, setBy] = useState<'density' | 'count'>('density')
@@ -52,8 +49,6 @@ export default function National() {
   useEffect(() => {
     readJson<ScoringData>('national/scoring.json').then((d) => setMeta(d.khg))
     readTable<HotspotCell>('national/hotspot_grid.parquet').then(setGrid)
-    readTable('national/sitmat_daily.parquet').then(setSit)
-    readTable('national/sitmat_stations.parquet').then(setStations)
     readTable<Monthly>('national/khg_hotspot_monthly.parquet').then(setHotM)
     loadCatalog().then(setCat)
   }, [])
@@ -162,21 +157,7 @@ export default function National() {
   const entry = cat.find((c) => c.khg_id === selected)
   const fmt0 = (v: number | null) => (v == null || Number.isNaN(v) ? '' : Math.round(v).toLocaleString())
   const scope = sel ? sel.nama.replace(/^KHG /, '') : t('Indonesia')
-  const chosenMonths: [Date, Date] = [new Date(fire.year, fire.start - 1, 1), new Date(fire.year, fire.end, 0)]
   const total = [...counts.values()].reduce((a, b) => a + b, 0)
-
-  const monthly = (): Series[] => (fire.high ? ['high'] : ['medium', 'high']).map((conf) => {
-    const m = new Map<number, number>()
-    const src: { kind: string; conf: string; ym: number; n: number; peat: boolean }[] = selected ? hotM.filter((g) => g.khg_id === selected) : grid
-    for (const g of src) if (g.kind === kind && g.conf === conf && (!fire.peat || g.peat)) m.set(g.ym, (m.get(g.ym) ?? 0) + g.n)
-    return { name: t(`${conf} confidence`), color: conf === 'high' ? 'var(--s8)' : 'var(--s7)', points: [...m].sort((a, b) => a[0] - b[0]).map(([ym, y]) => ({ x: monthDate(ym), y })) }
-  })
-  const stationSet = useMemo(() => (selected ? new Set(stations.filter((s) => s.khg === selected).map((s) => `${s.kind}/${s.station_id}`)) : null), [stations, selected])
-  const sitmat = useMemo<Series[]>(() => ['community', 'concession'].map((kind) => {
-    const d = new Map<string, number[]>()
-    for (const r of sit) if ((!stationSet || stationSet.has(`${r.kind}/${r.station_id}`)) && r.kind === kind && r.flag == null && r.water_level_cm != null && !Number.isNaN(r.water_level_cm)) { const a = d.get(r.date) ?? []; a.push(r.water_level_cm); d.set(r.date, a) }
-    return { name: t(kind), color: kind === 'community' ? 'var(--s5)' : 'var(--s6)', points: [...d].sort().map(([date, v]) => ({ x: new Date(date), y: median(v) as number })) }
-  }), [sit, t, stationSet])
 
   const cols: Col<(typeof rows)[number]>[] = [
     { key: 'nama', label: t('KHG') }, { key: 'province', label: t('Province') },
@@ -265,11 +246,8 @@ export default function National() {
           </div>
         </div>
       </div>
-      <div className="grid gap-3 md:grid-cols-2">
-          <LineChart title={`${t('Hotspots per month')} (${sensorLabel}) · ${scope}`} series={monthly()} fmt={(v) => Math.round(v).toLocaleString()} zeroBase selectedRange={chosenMonths} />
-          {sel && !sitmat.some((s) => s.points.length) ? <div className="card muted p-3 text-sm">{t('Water level at SiTMAT stations')} · {scope}: {t('no stations inside this KHG')}</div>
-            : <LineChart title={`${t('Water level at SiTMAT stations')} · ${scope}`} yLabel="cm" series={sitmat.filter((s) => s.points.length)} />}
-      </div>
+      <FireTrends data={grid} khgData={hotM} khg={selected} scope={scope} fire={fire} kind={kind} sensorLabel={sensorLabel}
+        cutoff={cutoff} viirsCutoff={ft?.hotspots?.last.viirs} onMonth={(month) => setFire({ start: month, end: month })} />
     </section>
   )
 }

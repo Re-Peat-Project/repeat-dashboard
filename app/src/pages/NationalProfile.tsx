@@ -34,7 +34,7 @@ export default function NationalProfile() {
       </header>
       {water ? <Suspense fallback={<p className="muted">{t('Loading SiTMAT observations…')}</p>}><WaterTableProfile /></Suspense> : <>
       <National />
-      <section id="fire-by-land-status" className="min-h-screen scroll-mt-32 space-y-3 border-t border-border pt-5 lg:scroll-mt-16" aria-labelledby="land-status-title">
+      <section id="fire-by-land-status" className="scroll-mt-32 space-y-3 border-t border-border pt-5 lg:scroll-mt-16" aria-labelledby="land-status-title">
         <h2 id="land-status-title" className="text-xl font-semibold tracking-tight">{t('Fire by land status')}</h2>
         <Summary />
       </section>

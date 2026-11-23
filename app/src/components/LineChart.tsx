@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { extent, bisector } from 'd3-array'
 import { scaleLinear, scaleTime } from 'd3-scale'
 import { area as d3area, line } from 'd3-shape'
@@ -6,20 +6,22 @@ import { timeFormat } from 'd3-time-format'
 import { useStore } from '../lib/store'
 import { useT } from '../lib/i18n'
 
-export type Series = { name: string; color: string; points: { x: Date; y: number }[]; dash?: string }
+export type Series = { name: string; color: string; points: { x: Date; y: number; count?: number }[]; dash?: string }
 
 /** Lines with a crosshair tooltip, a legend for two or more series, and a table view. */
-export function LineChart({ title, series, yLabel, height = 190, fmt = (v: number) => v.toFixed(1), zeroBase = false, yDomain, xDomain, sync = false, compact = false, selectedRange, onDateSelect, area = zeroBase, monthOfYear = false, discrete = false, formatDate }: {
+export function LineChart({ title, series, yLabel, height = 190, fmt = (v: number) => v.toFixed(1), zeroBase = false, yDomain, xDomain, sync = false, compact = false, selectedRange, onDateSelect, area = zeroBase, monthOfYear = false, discrete = false, formatDate, countLabel, note }: {
   title: string; series: Series[]; yLabel?: string; height?: number; fmt?: (v: number) => string; zeroBase?: boolean
   yDomain?: [number, number]; xDomain?: [Date, Date]; sync?: boolean; compact?: boolean   // sync: crosshair follows the other synced charts
   selectedRange?: [Date, Date]; onDateSelect?: (date: Date) => void; area?: boolean   // area: light fill under each line, a peak label on a single series
   monthOfYear?: boolean; discrete?: boolean; formatDate?: (date: Date) => string
+  countLabel?: string; note?: ReactNode
 }) {
   const hoverDate = useStore((s) => s.hoverDate)
   const setHoverDate = useStore((s) => s.setHoverDate)
   const ref = useRef<SVGSVGElement>(null)
   const container = useRef<HTMLDivElement>(null)
   const t = useT()
+  const lang = useStore((s) => s.lang)
   const [w, setW] = useState(480)
   const [hover, setHover] = useState<number | null>(null)
   const [table, setTable] = useState(false)
@@ -40,25 +42,29 @@ export function LineChart({ title, series, yLabel, height = 190, fmt = (v: numbe
   const path = line<{ x: Date; y: number }>().defined((p) => Number.isFinite(p.y)).x((p) => x(p.x)).y((p) => y(p.y))
   const areaPath = d3area<{ x: Date; y: number }>().defined((p) => Number.isFinite(p.y)).x((p) => x(p.x)).y0(y(Math.max(0, y.domain()[0]))).y1((p) => y(p.y))
   const peak = series.length === 1 && area ? series[0].points.reduce<{ x: Date; y: number } | null>((a, p) => (Number.isFinite(p.y) && (!a || p.y > a.y) ? p : a), null) : null
-  const bis = bisector((p: { x: Date }) => p.x).center
-  const first = series[0]?.points ?? []
+  const discreteDates = useMemo(() => discrete ? [...new Set(series.flatMap((s) => s.points.map((p) => +p.x)))].filter(Number.isFinite).sort((a, b) => a - b) : [], [discrete, series])
   const pointerDate = hover != null ? x.invert(hover) : sync ? hoverDate : null
-  const idx = pointerDate == null || !first.length || pointerDate < dom[0] || pointerDate > dom[1] ? null : bis(first, pointerDate)
-  const at = discrete && idx != null ? first[idx].x : pointerDate
+  const at = !pointerDate || pointerDate < dom[0] || pointerDate > dom[1] ? null
+    : discrete && discreteDates.length ? new Date(discreteDates[bisector((d: number) => d).center(discreteDates, +pointerDate)]) : pointerDate
   const fmtX = formatDate ?? timeFormat(monthOfYear ? '%b' : '%Y-%m-%d')
   const span = +dom[1] - +dom[0]
   const tableDates = [...new Set(all.map(p => +p.x))].sort((a, b) => a - b)
-  const tickFormat = timeFormat(monthOfYear ? '%b' : span > 4e10 ? '%Y' : '%b %Y')
+  const tickFormat = monthOfYear && formatDate ? formatDate : timeFormat(monthOfYear ? '%b' : span > 4e10 ? '%Y' : '%b %Y')
   const seenTicks = new Set<string>()
   const xTicks = x.ticks(Math.max(2, Math.floor(w / 110))).filter(d => { const label = tickFormat(d); if (seenTicks.has(label)) return false; seenTicks.add(label); return true })
-  const atPoint = (s: Series) => {
+  const atPoint = (s: Series): { y: number; count?: number } | null => {
     if (!at || !s.points.length || at < s.points[0].x || at > s.points[s.points.length - 1].x) return null
     const i = bisector((p: { x: Date }) => p.x).left(s.points, at)
-    if (discrete) return +s.points[i].x === +at && Number.isFinite(s.points[i].y) ? s.points[i].y : null
+    if (discrete) {
+      const p = s.points[i]
+      return p && +p.x === +at && Number.isFinite(p.y) ? p : null
+    }
     const a = s.points[Math.max(0, i - 1)], b = s.points[Math.min(i, s.points.length - 1)]
     const value = +b.x === +a.x ? a.y : a.y + (b.y - a.y) * ((+at - +a.x) / (+b.x - +a.x))
-    return Number.isFinite(value) ? value : null
+    return Number.isFinite(value) ? { y: value } : null
   }
+  const inspect = at ? series.map((s) => ({ series: s, point: atPoint(s) })) : []
+  const rowHeight = countLabel ? 27 : 14
 
   return (
     <div className={`card min-w-0 ${compact ? "p-2" : "p-3"}`} ref={container}>
@@ -72,7 +78,10 @@ export function LineChart({ title, series, yLabel, height = 190, fmt = (v: numbe
       {!all.length ? <div className="chart-empty" style={{ height }}>{t('No observations available')}</div> : table ? (
         <div className="mt-2 max-h-[190px] overflow-auto text-xs">
           <table className="w-full"><thead><tr><th className="text-left">{monthOfYear ? t('Month') : 'date'}</th>{series.map((s) => <th key={s.name} className="text-right">{s.name}</th>)}</tr></thead>
-            <tbody>{tableDates.map(d => <tr key={d}><td>{fmtX(new Date(d))}</td>{series.map(s => { const p = s.points.find(p => +p.x === d); return <td key={s.name} className="text-right">{p ? fmt(p.y) : '—'}</td> })}</tr>)}</tbody></table>
+            <tbody>{tableDates.map(d => <tr key={d}><td>{fmtX(new Date(d))}</td>{series.map(s => {
+              const p = s.points.find(p => +p.x === d && Number.isFinite(p.y))
+              return <td key={s.name} className="text-right">{p ? fmt(p.y) : '—'}{countLabel && p?.count != null && <small className="muted block">{p.count.toLocaleString(lang)} {countLabel}</small>}</td>
+            })}</tr>)}</tbody></table>
         </div>
       ) : (
         <svg ref={ref} role="img" aria-label={`${title}${yLabel ? ` (${yLabel})` : ''}`} width={w} height={height} className="mt-1 block" onClick={(e) => onDateSelect?.(x.invert(Math.max(m.l, Math.min(w - m.r, e.clientX - (ref.current?.getBoundingClientRect().left ?? 0)))))} onMouseLeave={() => { setHover(null); if (sync) setHoverDate(null) }}
@@ -86,17 +95,21 @@ export function LineChart({ title, series, yLabel, height = 190, fmt = (v: numbe
           {series.filter((s) => s.points.length > 1).map((s) => { const e = s.points[s.points.length - 1]; return Number.isFinite(e.y) && <circle key={`e-${s.name}`} cx={x(e.x)} cy={y(e.y)} r={3.5} fill={s.color} stroke="var(--surface)" strokeWidth={1.5} /> })}
           {peak && peak.y > 0 && <text x={Math.max(m.l + 2, Math.min(w - m.r - 2, x(peak.x)))} y={y(peak.y) - 6} textAnchor={x(peak.x) > w - 60 ? 'end' : x(peak.x) < m.l + 30 ? 'start' : 'middle'} fontSize="11" fill="var(--muted)">{fmt(peak.y)}</text>}
           {series.filter(s => s.points.length === 1 && Number.isFinite(s.points[0].y)).map(s => <circle key={s.name} cx={x(s.points[0].x)} cy={y(s.points[0].y)} r={3} fill={s.color} />)}
-          {idx != null && first[idx] && <g>
-            <line x1={x(at!)} x2={x(at!)} y1={m.t} y2={height - m.b} stroke="var(--muted)" strokeDasharray="3 3" />
-            {series.map(s => { const v = atPoint(s); return v != null && <circle key={s.name} cx={x(at!)} cy={y(v)} r={4} fill={s.color} stroke="var(--surface)" strokeWidth={2} /> })}
-            <g transform={`translate(${Math.max(0, Math.min(x(at!) + 8, w - 150))},${m.t + 4})`}>
-              <rect width="142" height={16 + series.length * 14} rx="4" fill="var(--surface)" stroke="var(--line)" />
-              <text x="6" y="12" fontSize="10" fill="var(--muted)">{fmtX(at!)}</text>
-              {series.map((s, i) => <text key={s.name} x="6" y={26 + i * 14} fontSize="11" fill="var(--ink)">{s.name}: {atPoint(s) != null ? fmt(atPoint(s)!) : '—'}</text>)}
+          {at && inspect.length > 0 && <g pointerEvents="none">
+            <line x1={x(at)} x2={x(at)} y1={m.t} y2={height - m.b} stroke="var(--muted)" strokeDasharray="3 3" />
+            {inspect.map(({ series: s, point }) => point && <circle key={s.name} cx={x(at)} cy={y(point.y)} r={4} fill={s.color} stroke="var(--surface)" strokeWidth={2} />)}
+            <g transform={`translate(${Math.max(0, Math.min(x(at) + 8, w - 150))},${m.t + 4})`}>
+              <rect width="142" height={16 + series.length * rowHeight} rx="4" fill="var(--surface)" stroke="var(--line)" />
+              <text x="6" y="12" fontSize="10" fill="var(--muted)">{fmtX(at)}</text>
+              {inspect.map(({ series: s, point }, i) => <g key={s.name}>
+                <text x="6" y={26 + i * rowHeight} fontSize="11" fill="var(--ink)">{s.name}: {point ? fmt(point.y) : '—'}</text>
+                {countLabel && point?.count != null && <text x="6" y={38 + i * rowHeight} fontSize="10" fill="var(--muted)">{point.count.toLocaleString(lang)} {countLabel}</text>}
+              </g>)}
             </g>
           </g>}
         </svg>
       )}
+      {note && <p className="muted mt-2 text-xs leading-relaxed">{note}</p>}
     </div>
   )
 }

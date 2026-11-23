@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 import { Seg } from '../components/Seg'
 import { WaterMap, type WaterMode } from '../components/WaterMap'
 import { WeeklyWaterFire } from '../components/WeeklyWaterFire'
+import { SitmatDailyChart } from '../components/SitmatDailyChart'
 import { readJson } from '../lib/data'
 import { useT } from '../lib/i18n'
 import type { ScoringData } from '../lib/scoring'
@@ -126,6 +127,7 @@ export default function WaterTableProfile() {
       <WaterMap points={points} mode={mode} outlines={outlines} focus={focus} />
       <WeeklyWaterFire data={hotspots?.[sensor]} error={hotspotError} sensor={sensor} setSensor={setSensor} regionName={regionName}
         weeks={weeks} counts={counts} water={water} current={current} setWeek={setWeek} />
+      <SitmatDailyChart scope={regionName} focus={focus} level={level} kind={kind} />
       <section className="card space-y-3 p-3" aria-labelledby="region-week-title">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <h3 id="region-week-title" className="font-semibold">{t('Water levels by region and week')}</h3>

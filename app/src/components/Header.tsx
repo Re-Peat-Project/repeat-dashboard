@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { Moon, Search, Sun } from 'lucide-react'
+import { AboutDialog } from '@/components/AboutDialog'
 import { Button } from '@/components/ui/button'
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
@@ -37,7 +38,7 @@ export function Header() {
           <NavLink to="/priority" className={link}>{t('KHG prioritisation')}</NavLink>
           <NavLink to={`/khg/${profileCode}`} className={() => cn(tab, inProfile ? on : off)}>{t('KHG profiles')}</NavLink>
           <NavLink to="/table" className={link}>{t('KHG table')}</NavLink>
-          <NavLink to="/about" className={link}>{t('About')}</NavLink>
+          <AboutDialog triggerClassName={cn(tab, off, 'cursor-pointer')} />
         </nav>
         <div className="ml-auto flex items-center gap-2 py-1.5">
           <Popover open={open} onOpenChange={setOpen}>

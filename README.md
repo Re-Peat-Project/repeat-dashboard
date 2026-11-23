@@ -6,11 +6,12 @@ Dashboard sections use hash routes:
 
 | Section | Route | What it shows |
 |---|---|---|
-| National profile | `#/`, `#/#fire-by-land-status`, `#/?v=water` | Fire map, KHG search, monthly hotspots and SiTMAT, followed by fire by land status. The Water Table Profile maps weekly station observations and compares regions by week. |
+| National profile | `#/`, `#/#fire-by-land-status`, `#/?v=water` | Fire map, KHG search and fire trends, followed by annual and land-class breakdowns. The Water Table Profile maps weekly observations and includes daily SiTMAT trends. |
 | KHG prioritisation | `#/priority` | The national prioritisation (rule of `repeat-national-final`): map by type, intervention or dimension; types; rank shift; weights; the ranked list. Weights and filters are in the query (`fw`, `fm`, `fh`, `fc`, `fa`, `fi`). The live scoring reproduces the pipeline at the pre-registered weights (`data-parity`, `tests/priority.test.ts`). |
 | KHG profiles | `#/khg/<code>` (`?k2=<code>` compares) | Key figures, map, indicators, land status, fire by land tenure, time series and DMPG villages. The **Compare with** picker opens side-by-side profiles on the same page. |
 | KHG table | `#/table` | KHG indicators, filters, CSV, fire trends and weekly SiTMAT water-table change sparklines. |
-| About | `#/about` | Project and partner credits. |
+
+The About button opens the project and partner credits over the current view.
 
 The dashboard opens with weights of 0.5 for burned share of peat per year and 2.5 for hotspots this year. The pre-registered rule remains available as a preset and is the reference for rank shifts.
 
@@ -20,7 +21,7 @@ The Water Table Profile reads the same SiTMAT Parquet tables as the daily chart.
 
 The observation week slider also controls the paired hotspot and water-level charts. Selecting a province or KHG in the weekly heatmap changes both charts to that region. Counts use medium- and high-confidence land detections and exclude likely static sources. VIIRS S-NPP and the dated FIRMS segment of the MODIS splice have separate coverage. The charts show gaps where seven dated days are unavailable.
 
-The fire map's clustered rings sum detections from filtered monthly grid cells, with separate colours for high and medium confidence. This adapts the glyph approach used by [AGNI](https://github.com/danylaksono/apps/tree/main/agni) to the attributes in the national grid. Individual 2026 points are a separate map mode. The VIIRS seasonal chart uses 2015 as its initial full-year reference and lets readers select another year.
+The fire map's clustered rings sum detections from filtered monthly grid cells, with separate colours for high and medium confidence. This adapts the glyph approach used by [AGNI](https://github.com/danylaksono/apps/tree/main/agni) to the attributes in the national grid. Individual 2026 points are a separate map mode. The monthly chart follows the map's filters and can select a month. The VIIRS seasonal comparison uses the same complete months for the selected and earlier years. It shows 2015 as the initial full-year reference and lets readers select another year.
 
 The per-KHG map tiles of the prioritisation (`khg_tiles/KHG.<code>.pmtiles`, about 390 MB) are read where the prioritisation dashboard publishes them (`tiles` in `priority_meta.json`), with CORS and range requests, so they do not count against this site's size.
 

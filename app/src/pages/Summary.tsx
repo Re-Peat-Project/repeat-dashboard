@@ -33,8 +33,8 @@ const f0 = (v: number | null | undefined) => (v == null || !Number.isFinite(v) ?
 const f1 = (v: number | null | undefined) => (v == null || !Number.isFinite(v) ? '–' : v >= 100 ? f0(v) : v.toFixed(1))
 const pct = (a: number, b: number) => (b > 0 ? `${Math.round((100 * a) / b)}%` : '–')
 
-type Agg = { area: number; burned: Map<number, number>; ever: number; twice: number; modis: number; modisM: Map<number, number>; viirs: Map<number, number>; viirsYtd: Map<number, number> }
-const agg = (): Agg => ({ area: 0, burned: new Map(), ever: 0, twice: 0, modis: 0, modisM: new Map(), viirs: new Map(), viirsYtd: new Map() })
+type Agg = { area: number; burned: Map<number, number>; ever: number; twice: number; modis: number; viirsYtd: Map<number, number> }
+const agg = (): Agg => ({ area: 0, burned: new Map(), ever: 0, twice: 0, modis: 0, viirsYtd: new Map() })
 const add = (m: Map<number, number>, k: number, v: number) => m.set(k, (m.get(k) ?? 0) + v)
 const sumPast = (a?: Agg) => { let s = 0; if (a) for (let y = PAST[0]; y <= PAST[1]; y++) s += a.burned.get(y) ?? 0; return s }
 const pastMean = (m: Map<number, number>) => { let s = 0; for (let y = PAST[0]; y <= PAST[1]; y++) s += m.get(y) ?? 0; return s / (PAST[1] - PAST[0] + 1) }
@@ -49,8 +49,8 @@ function aggregate(area: Area[], hot: Hot[], key: (r: Area | Hot) => string, yea
   }
   for (const r of hot) {
     const a = get(key(r))
-    if (r.source === sel.src && r.year === sel.year && (r.source === 'modis' || r.ytd)) { a.modis += r.n; add(a.modisM, r.month, r.n) }   // "modis" = the selected series
-    if (r.source === 'viirs') { add(a.viirs, r.year, r.n); if (r.ytd) add(a.viirsYtd, r.year, r.n) }
+    if (r.source === sel.src && r.year === sel.year && (r.source === 'modis' || r.ytd)) a.modis += r.n // "modis" = the selected series
+    if (r.source === 'viirs' && r.ytd) add(a.viirsYtd, r.year, r.n)
   }
   return out
 }
@@ -71,7 +71,6 @@ export default function Summary() {
   }, [])
   const [src, setSrc] = useState<'viirs' | 'modis'>('modis')
   const [year, setYear] = useState(NOW)
-  const [referenceYear, setReferenceYear] = useState(PAST[0])
   const [high, setHigh] = useState(false)
   const sel = useMemo<Sel>(() => ({ src, year: src === 'modis' ? NOW : year }), [src, year])
   const yr = sel.year, srcName = src === 'viirs' ? 'VIIRS' : 'MODIS'
@@ -114,26 +113,6 @@ export default function Summary() {
   const burnedLines: Series[] = shown.map((c) => ({ name: t(c.label), color: c.color, points: years.map((y) => ({ x: new Date(y, 6, 1), y: (cls.get(c.key)?.burned.get(y) ?? 0) / 100 })) }))
   const viirsYears = useMemo(() => [...new Set(hot.filter((r) => r.source === 'viirs').map((r) => r.year))].sort(), [hot])
   const viirsLines: Series[] = shown.map((c) => ({ name: t(c.label), color: c.color, points: viirsYears.map((y) => ({ x: new Date(y, 6, 1), y: cls.get(c.key)?.viirsYtd.get(y) ?? 0 })) }))
-  const observedMonths = Number(meta?.viirs_last?.slice(5, 7) ?? 12)
-  const viirsYear = src === 'viirs' ? yr : NOW
-  const monthPoints = (counts: Map<number, number>, months: number) =>
-    Array.from({ length: months }, (_, i) => ({ x: new Date(NOW, i, 15), y: counts.get(i + 1) ?? 0 }))
-  const [selectedMonths, referenceMonths, monthMean] = useMemo(() => {
-    const selected = new Map<number, number>(), reference = new Map<number, number>(), baseline = new Map<number, number>()
-    for (const r of H) {
-      if (r.source !== 'viirs') continue
-      if (r.year === viirsYear && r.ytd) add(selected, r.month, r.n)
-      if (r.year === referenceYear) add(reference, r.month, r.n)
-      if (r.ytd && r.year >= PAST[0] && r.year <= PAST[1]) add(baseline, r.month, r.n / (PAST[1] - PAST[0] + 1))
-    }
-    return [selected, reference, baseline]
-  }, [H, viirsYear, referenceYear])
-  const viirsMonths: Series[] = [
-    { name: `VIIRS ${viirsYear}`, color: 'var(--s2)', points: monthPoints(selectedMonths, observedMonths) },
-    { name: `${referenceYear} ${t('(full year)')}`, color: 'var(--s7)', points: monthPoints(referenceMonths, 12) },
-    { name: `${t('mean')} ${PAST[0]}–${PAST[1]}`, color: 'var(--muted)', dash: '4 3', points: monthPoints(monthMean, observedMonths) },
-  ]
-
   const kpi = (label: string, value: string, sub: string, tip: string) => (
     <div className="min-w-0 p-3" title={tip}><dt className="muted text-xs">{label}</dt><dd className="text-xl font-semibold tabular-nums sm:text-2xl">{value}</dd><dd className="muted mt-1 text-xs">{sub}</dd></div>)
   const share = (m: Map<string, Agg>, k: string) => `${pct(sumPast(m.get(k)), sumPast(total))} ${t('of burned area')} ${PAST[0]}–${PAST[1]} · ${pct(m.get(k)?.area ?? 0, total.area)} ${t('of the area')}`
@@ -250,22 +229,10 @@ export default function Summary() {
         </div>
       </div>
 
-      <div className={`grid gap-3 md:grid-cols-2 ${src === 'viirs' ? 'xl:grid-cols-3' : ''}`}>
-        <LineChart title={`${t('Burned area per year')} · ${t(sp.label)}`} yLabel="km²" series={burnedLines} fmt={(v) => f0(v)} zeroBase area={false} />
+      <div className="grid gap-3 md:grid-cols-2">
+        <LineChart title={`${t('Burned area per year')} · ${t(sp.label)}`} yLabel="km²" series={burnedLines} fmt={(v) => f0(v)} zeroBase area={false}
+          note={t('KLHK burned-area coverage for 2024 and 2026 is incomplete.')}/>
         <LineChart title={`${t('VIIRS hotspots per year')}, 1/1–${last}`} series={viirsLines} fmt={(v) => f0(v)} zeroBase area={false} />
-        {src === 'modis' && <LineChart title={`MODIS ${t('hotspots per month')}, ${NOW}`}
-          series={[{ name: `MODIS ${NOW}`, color: 'var(--s2)', points: monthPoints(total.modisM, Number(meta.modis_last.slice(5, 7))) }]} fmt={(v) => f0(v)} zeroBase area={false} />}
-        <section className="min-w-0 space-y-1">
-          <LineChart title={`VIIRS ${t('hotspots per month')}, ${viirsYear}`} series={viirsMonths} monthOfYear fmt={(v) => f0(v)} zeroBase area={false} />
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 px-1 text-xs muted">
-            <label className="flex items-center gap-1.5">{t('Reference year')}
-              <select className="btn" value={referenceYear} onChange={(e) => setReferenceYear(Number(e.target.value))}>
-                {viirsYears.filter((y) => y < NOW).map((y) => <option key={y} value={y}>{y}</option>)}
-              </select>
-            </label>
-            <span>{t('The reference year shows all 12 months. The selected year and earlier-years average use the 2026 cutoff date.')} ({last})</span>
-          </div>
-        </section>
       </div>
 
       <div className="card p-3">
