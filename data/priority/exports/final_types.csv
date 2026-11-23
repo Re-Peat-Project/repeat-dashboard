@@ -1,0 +1,6 @@
+type,type_id,type_en,khg,in_337,peat_km2,priority_ha,low_feasibility,high_exposure,pop_on_peat
+A,Aksi cepat,Quick action,46,45,4988.1,163365.0,19,16,73121.0
+B,Koordinasi multipihak,Multi-party coordination,79,79,72233.3,2128059.5,43,53,1450977.7
+C,Urgensi sedang,Medium urgency,158,150,34592.4,883435.0,30,43,565883.3
+D,Lindungi dan pantau,Protect and monitor,23,1,4453.0,2.1,11,0,2051.6
+E,Pantau,Monitor,127,62,11161.3,17958.2,17,5,50165.7

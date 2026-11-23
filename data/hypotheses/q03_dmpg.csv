@@ -1,0 +1,55 @@
+khg_id,khg,tenure,peat_dmpg_km2,peat_other_km2,n26_dmpg,base_dmpg,n26_other,base_other
+KHG.14.03.02,KHG Pulau Bengkalis,forest,233.26,47.21,420.0,1718.0,0.0,106.0
+KHG.14.03.02,KHG Pulau Bengkalis,other_land,409.39,164.87,155.0,774.0,2.0,93.0
+KHG.14.10.01,KHG Pulau Padang,forest,219.375,40.477500000000006,5.0,470.0,15.0,47.0
+KHG.14.10.01,KHG Pulau Padang,licence,415.7325,145.17,0.0,295.0,0.0,13.0
+KHG.14.10.01,KHG Pulau Padang,other_land,191.115,89.6625,4.0,413.0,0.0,66.0
+KHG.14.10.03,KHG Pulau Tebing Tinggi,forest,447.57,428.15250000000003,5.0,1047.0,0.0,518.0
+KHG.14.10.03,KHG Pulau Tebing Tinggi,licence,220.05,51.5025,0.0,195.0,0.0,49.0
+KHG.14.10.03,KHG Pulau Tebing Tinggi,other_land,102.5775,114.5025,0.0,160.0,0.0,32.0
+KHG.15-16.01,KHG Sungai Air Hitam Laut - Sungai Buntu Kecil,forest,348.21,615.5325,36.0,939.0,1546.0,4851.0
+KHG.15-16.01,KHG Sungai Air Hitam Laut - Sungai Buntu Kecil,licence,316.935,94.0725,0.0,5341.0,0.0,767.0
+KHG.15.02-03.01,KHG Batang Tembei - Sungai Merak,licence,51.1,50.63,28.0,911.0,65.0,940.0
+KHG.15.05-07-10.01,KHG Sungai Mendahara - Sungai Batanghari,forest,344.4,14.76,104.0,5533.0,0.0,114.0
+KHG.15.05-07-10.01,KHG Sungai Mendahara - Sungai Batanghari,licence,197.0,220.4,1.0,2097.0,0.0,841.0
+KHG.15.05-07-10.01,KHG Sungai Mendahara - Sungai Batanghari,other_land,505.96,444.36,14.0,3991.0,6.0,371.0
+KHG.16.02-07.01,KHG Sungai Saleh - Sungai Sugihan,forest,373.0,560.52,670.0,2037.0,1273.0,3117.0
+KHG.16.02-07.01,KHG Sungai Saleh - Sungai Sugihan,other_land,227.48,398.84,103.0,427.0,33.0,217.0
+KHG.16.02.01,KHG Sungai Sugihan - Sungai Lumpur,forest,150.79749999999999,412.70250000000004,39.0,2103.0,26.0,1165.0
+KHG.16.02.01,KHG Sungai Sugihan - Sungai Lumpur,licence,2312.7999999999997,1979.2325,1816.0,23506.0,522.0,24905.0
+KHG.16.02.01,KHG Sungai Sugihan - Sungai Lumpur,other_land,198.695,367.6225,33.0,198.0,22.0,320.0
+KHG.16.02.02,KHG Sungai Ulakkedondong - Sungai Lumpur,forest,18.27,11.18,30.0,119.0,36.0,279.0
+KHG.16.02.02,KHG Sungai Ulakkedondong - Sungai Lumpur,licence,410.38,54.09,586.0,8552.0,258.0,583.0
+KHG.16.02.02,KHG Sungai Ulakkedondong - Sungai Lumpur,other_land,22.85,37.61,23.0,92.0,59.0,239.0
+KHG.16.02.04,KHG Sungai Sibumbung - Sungai Talangrimba,licence,261.225,76.77,2867.0,3790.0,1330.0,914.0
+KHG.16.02.04,KHG Sungai Sibumbung - Sungai Talangrimba,other_land,385.6725,26.91,1691.0,5184.0,43.0,519.0
+KHG.16.02.05,KHG Sungai Burnai - Sungai Sibumbung,licence,212.89,149.53,150.0,2363.0,188.0,4687.0
+KHG.16.02.05,KHG Sungai Burnai - Sungai Sibumbung,other_land,194.63,101.91,217.0,1553.0,63.0,415.0
+KHG.16.03-06.01,KHG Sungai Musi - Sungai Penu,other_land,56.57,85.73,324.0,576.0,70.0,81.0
+KHG.16.05-06.01,KHG Sungai Musi - Sungai Rawas,other_land,53.11,17.92,56.0,831.0,28.0,299.0
+KHG.16.05.03,KHG Sungai Rumpit - Sungai Rawas,licence,159.82,41.84,336.0,1533.0,45.0,96.0
+KHG.16.05.03,KHG Sungai Rumpit - Sungai Rawas,other_land,62.68,26.59,23.0,692.0,3.0,48.0
+KHG.16.06-07.04,KHG Sungai Bentayan - Sungai Penimpahan,licence,174.03,95.61,216.0,1840.0,569.0,374.0
+KHG.16.06-07.04,KHG Sungai Bentayan - Sungai Penimpahan,other_land,30.15,22.92,17.0,157.0,2.0,5.0
+KHG.61.01.05,KHG Sungai Sambas Besar - Sungai Seiyung,other_land,198.32,168.42,70.0,507.0,15.0,73.0
+KHG.61.02-08.01,KHG Sungai Mempawah - Sungai Peniti,forest,80.13,24.87,226.0,1579.0,94.0,369.0
+KHG.61.02-08.01,KHG Sungai Mempawah - Sungai Peniti,other_land,162.83,108.44,98.0,505.0,72.0,380.0
+KHG.61.04.06,KHG Sungai Tolak - Sungai Siduk,licence,69.42,22.4,1024.0,572.0,459.0,151.0
+KHG.61.04.06,KHG Sungai Tolak - Sungai Siduk,other_land,11.64,24.08,46.0,104.0,597.0,883.0
+KHG.61.04.08,KHG Sungai Pawan - Sungai Kepulu,licence,20.87,176.33,115.0,421.0,1248.0,1437.0
+KHG.61.04.08,KHG Sungai Pawan - Sungai Kepulu,other_land,121.42,88.19,2140.0,3209.0,367.0,695.0
+KHG.61.05-10.01,KHG Sungai Melawi - Sungai Batunanta,other_land,36.95,25.26,410.0,644.0,292.0,98.0
+KHG.61.12-71.01,KHG Sungai Pungurbesar -  Sungai Kapuas,licence,124.8975,53.01,694.0,1961.0,306.0,538.0
+KHG.61.12-71.01,KHG Sungai Pungurbesar -  Sungai Kapuas,other_land,335.4075,219.15,926.0,4553.0,267.0,1139.0
+KHG.62.03-04.01,KHG Sungai Kapuas - Sungai Barito,forest,1493.82,1718.55,4475.0,12016.0,691.0,2151.0
+KHG.62.03-04.01,KHG Sungai Kapuas - Sungai Barito,licence,156.60000000000002,287.64,218.0,1077.0,202.0,334.0
+KHG.62.03-04.01,KHG Sungai Kapuas - Sungai Barito,other_land,352.8,402.48,424.0,3100.0,241.0,1144.0
+KHG.62.03.03,KHG Sungai Mangkatip - Sungai Barito 1,other_land,119.84,55.59,265.0,1087.0,124.0,332.0
+KHG.62.11-14.02,KHG Sungai Kahayan - Sungai Sebangau,forest,2212.375,307.6875,16516.0,37781.0,2332.0,5624.0
+KHG.62.11-14.02,KHG Sungai Kahayan - Sungai Sebangau,other_land,1017.0625,288.0625,2895.0,11400.0,222.0,1038.0
+KHG.63.04-05-06-08.01,KHG Sungai Barito - Sungai Taping,forest,205.46999999999997,49.635000000000005,720.0,2395.0,154.0,335.0
+KHG.63.04-05-06-08.01,KHG Sungai Barito - Sungai Taping,licence,117.0225,39.2625,309.0,863.0,114.0,139.0
+KHG.63.04-05-06-08.01,KHG Sungai Barito - Sungai Taping,other_land,214.695,103.05,612.0,1272.0,135.0,492.0
+KHG.63.07-08-11.01,KHG Sungai Balangan - Sungai Batangalai,other_land,80.04,56.48,257.0,879.0,133.0,648.0
+KHG.91.01.07,KHG Sungai Ifileki Bian - Sungai Lekiage Sentuf,forest,19.09,28.85,82.0,158.0,23.0,137.0
+KHG.91.18-17.01,KHG Sungai Buru Mappi - Sungai Buru Obaa,forest,397.375,1279.1875,586.0,1143.0,943.0,1284.0

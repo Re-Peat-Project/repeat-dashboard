@@ -1,0 +1,18 @@
+type,intervention,khg,in_337,peat_km2,priority_ha
+A,revegetation,9,8,1797.1,11736.7
+A,rewetting,20,20,1482.6,88391.4
+A,rewetting and revegetation,17,17,1708.4,63236.9
+B,protect,1,1,6534.7,27971.2
+B,revegetation,8,8,7919.7,72881.2
+B,rewetting,39,39,35119.2,1296401.9
+B,rewetting and revegetation,31,31,22659.6,730805.1
+C,protect,18,17,2179.6,7765.7
+C,revegetation,20,14,6882.5,24907.8
+C,rewetting,104,103,21664.9,731371.4
+C,rewetting and revegetation,16,16,3865.5,119390.1
+D,protect,22,1,4151.8,2.1
+D,revegetation,1,0,301.2,0.0
+E,protect,69,20,7752.4,2117.0
+E,revegetation,25,10,2456.7,383.2
+E,rewetting,30,30,878.0,15056.8
+E,rewetting and revegetation,3,2,74.2,401.2

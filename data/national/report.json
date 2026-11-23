@@ -1,0 +1,200 @@
+{
+  "weights": {
+    "u_deficit": 0.5,
+    "u_wb_mean": 1.0,
+    "u_deficit_months": 1.0,
+    "u_deficit_elnino": 0.5,
+    "u_ndmi": 1.0,
+    "u_dryspell": 0.5,
+    "u_spell14": 0.5,
+    "u_fire_freq": 2.0,
+    "u_hotspot": 1.0,
+    "u_burn_repeat": 1.0,
+    "u_hotspot_now": 1.0,
+    "u_canal_primary": 0.5,
+    "u_canal_secondary": 0.3,
+    "u_canal_tertiary": 0.2,
+    "u_tma": 1.0,
+    "u_tma_recession": 1.0,
+    "u_ipg_gap": 1.5,
+    "i_protected": 1.0,
+    "i_exposure": 1.0,
+    "i_forest": 1.0,
+    "f_reach": 2.0,
+    "f_water_dist": 1.0,
+    "f_lift": 1.0,
+    "f_access": 0.5
+  },
+  "ahp": {},
+  "class_thresholds": {
+    "risk": [
+      0.002631733235789569,
+      0.143171854024469
+    ],
+    "feasibility": []
+  },
+  "indicators_used": [
+    "u_fire_freq",
+    "u_hotspot",
+    "u_burn_repeat",
+    "u_hotspot_now",
+    "u_canal_primary",
+    "u_canal_secondary",
+    "u_canal_tertiary"
+  ],
+  "class_counts": {
+    "Fokus nasional: sedang": 159,
+    "Fokus nasional: rendah": 159,
+    "Fokus nasional: tinggi": 158
+  },
+  "correlated_pairs": [
+    {
+      "a": "u_fire_freq",
+      "b": "u_hotspot",
+      "spearman": 0.891
+    },
+    {
+      "a": "u_fire_freq",
+      "b": "u_burn_repeat",
+      "spearman": 0.867
+    },
+    {
+      "a": "u_hotspot",
+      "b": "u_hotspot_now",
+      "spearman": 0.85
+    }
+  ],
+  "_corr": "                     n_u_fire_freq  ...  n_u_canal_tertiary\nn_u_fire_freq             1.000000  ...            0.132535\nn_u_hotspot               0.891196  ...            0.089421\nn_u_burn_repeat           0.867257  ...            0.093390\nn_u_hotspot_now           0.763801  ...           -0.086634\nn_u_canal_primary         0.141140  ...            0.391307\nn_u_canal_secondary       0.020469  ...            0.641916\nn_u_canal_tertiary        0.132535  ...            1.000000\n\n[7 rows x 7 columns]",
+  "validation": {},
+  "sensitivity": {
+    "runs": 300,
+    "share_units_stable_class": 0.8970588235294118,
+    "median_rank_sd": 13.663825973190896
+  },
+  "now": {
+    "weight": 1.0,
+    "last_date": "2026-10-29",
+    "n_points": 238425,
+    "n_kept": 225977,
+    "months": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ]
+  },
+  "n_ranked": 476,
+  "n_profiled": 865,
+  "mode": "operational",
+  "config": {
+    "years": {
+      "baseline": [
+        2015,
+        2025
+      ],
+      "validation": [
+        2023,
+        2025
+      ]
+    },
+    "hotspots": {
+      "confidence": [
+        "n",
+        "h"
+      ],
+      "types": [
+        0
+      ]
+    },
+    "min_area_km2": 50,
+    "indicators": {
+      "u_fire_freq": {
+        "weight": 2.0
+      },
+      "u_burn_repeat": {
+        "weight": 1.0
+      },
+      "u_hotspot": {
+        "weight": 1.0
+      },
+      "u_frp": {
+        "weight": 0.0
+      },
+      "u_canal_density": {
+        "weight": 0.0
+      },
+      "u_canal_primary": {
+        "weight": 0.5
+      },
+      "u_canal_secondary": {
+        "weight": 0.3
+      },
+      "u_canal_tertiary": {
+        "weight": 0.2
+      },
+      "i_peat_depth": {
+        "weight": 0.0
+      },
+      "u_hotspot_now": {
+        "weight": 1.0
+      },
+      "u_burned_now": {
+        "weight": 0.0
+      }
+    },
+    "scoring": {
+      "alpha_urgency": 0.6,
+      "normalise_quantiles": [
+        0.05,
+        0.95
+      ],
+      "fixed_thresholds": null,
+      "correlation_warn": 0.8,
+      "min_units_per_indicator": 20,
+      "sensitivity_runs": 300,
+      "sensitivity_concentration": 20,
+      "top_fraction": 0.2,
+      "validation_burn_threshold": 0.05,
+      "seed": 42,
+      "normalise_scope": "all",
+      "tidal_mode": "none",
+      "national": true,
+      "top_n": 25
+    },
+    "tma": {
+      "path": "C:/Users/danyl/Documents/Github/_repeat-project/repeat-sitmat/sitmat_out/processed",
+      "kinds": [
+        "concession"
+      ],
+      "drop_flags": [
+        "range",
+        "spike"
+      ],
+      "threshold_m": 0.4,
+      "min_days": 30
+    },
+    "peat": {
+      "extent": "C:/Users/danyl/Documents/Github/_repeat-project/_data/peat_extent_gfw_v20230315_z11.tif",
+      "global": "C:/Users/danyl/Documents/Github/_repeat-project/_data/peat_extent_gpm2022_1km.tif",
+      "basis": "peat",
+      "min_peat_km2": 25
+    }
+  },
+  "inputs": {
+    "khg": "C:\\Users\\danyl\\Documents\\Github\\_repeat-project\\_data\\batas_khg_indonesia.gpkg",
+    "burned": "C:\\Users\\danyl\\Documents\\Github\\_repeat-project\\_data\\burnt_area_2015_2026_Indonesia.gpkg",
+    "hotspots": "C:\\Users\\danyl\\Documents\\Github\\_repeat-project\\_data\\hotspot_viirs_snpp_2012_2025.gpkg",
+    "canals": "C:\\Users\\danyl\\Documents\\Github\\_repeat-project\\_data\\kanal_osgm_khg_existing_Indonesia.gpkg",
+    "blocks": "C:\\Users\\danyl\\Documents\\Github\\_repeat-project\\_data\\infrastruktur_hidrologis_existing_BRGM_Indonesia.gpkg",
+    "villages": "C:\\Users\\danyl\\Documents\\Github\\_repeat-project\\_data\\desa_target_pemulihan_ekosistem_gambut.gpkg",
+    "dmpg": "C:\\Users\\danyl\\Documents\\Github\\_repeat-project\\_data\\dpg\\dmpg_villages_sitmat.gpkg",
+    "peat_depth": "C:\\Users\\danyl\\Documents\\Github\\_repeat-project\\_data\\kedalaman_gambut_bbsdlp.gpkg",
+    "hotspots_now": "C:\\Users\\danyl\\Documents\\Github\\_repeat-project\\_data\\hotspots_modis_2026.gpkg"
+  }
+}

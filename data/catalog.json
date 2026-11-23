@@ -1,0 +1,302 @@
+[
+ {
+  "code": "14.02-04-05.01",
+  "khg_id": "KHG.14.02-04-05.01",
+  "name": "KHG Sungai Kampar - Sungai Gaung",
+  "province": "Riau",
+  "bounds": [
+   102.28089,
+   -0.25848,
+   103.81362,
+   0.54502
+  ],
+  "dems": [
+   "lidar",
+   "deltadtm",
+   "demnas"
+  ],
+  "groundwater": [
+   "deltadtm",
+   "lidar"
+  ],
+  "built": "2026-11-01T11:13:34+00:00"
+ },
+ {
+  "code": "14.03.02",
+  "khg_id": "KHG.14.03.02",
+  "name": "KHG Pulau Bengkalis",
+  "province": "Riau",
+  "bounds": [
+   102.00076,
+   1.25034,
+   102.50818,
+   1.60889
+  ],
+  "dems": [
+   "deltadtm",
+   "demnas",
+   "worlddem_full"
+  ],
+  "groundwater": [
+   "deltadtm"
+  ],
+  "built": "2026-11-01T11:13:39+00:00"
+ },
+ {
+  "code": "14.10.01",
+  "khg_id": "KHG.14.10.01",
+  "name": "KHG Pulau Padang",
+  "province": "Riau",
+  "bounds": [
+   102.20578,
+   0.91301,
+   102.48748,
+   1.41894
+  ],
+  "dems": [
+   "deltadtm",
+   "demnas",
+   "demnas_full",
+   "lidar_full"
+  ],
+  "groundwater": [
+   "deltadtm"
+  ],
+  "built": "2026-11-01T11:13:43+00:00"
+ },
+ {
+  "code": "14.10.03",
+  "khg_id": "KHG.14.10.03",
+  "name": "KHG Pulau Tebing Tinggi",
+  "province": "Riau",
+  "bounds": [
+   102.4079,
+   0.68523,
+   103.05662,
+   1.02226
+  ],
+  "dems": [
+   "deltadtm",
+   "demnas"
+  ],
+  "groundwater": [
+   "deltadtm"
+  ],
+  "built": "2026-11-01T11:13:48+00:00"
+ },
+ {
+  "code": "15-16.01",
+  "khg_id": "KHG.15-16.01",
+  "name": "KHG Sungai Air Hitam Laut - Sungai Buntu Kecil",
+  "province": "Jambi, Sumatera Selatan",
+  "bounds": [
+   104.00003,
+   -1.97167,
+   104.46954,
+   -1.34897
+  ],
+  "dems": [
+   "lidar",
+   "deltadtm",
+   "demnas",
+   "lidar_full"
+  ],
+  "groundwater": [
+   "deltadtm"
+  ],
+  "built": "2026-11-01T11:13:52+00:00"
+ },
+ {
+  "code": "15.05-07-10.01",
+  "khg_id": "KHG.15.05-07-10.01",
+  "name": "KHG Sungai Mendahara - Sungai Batanghari",
+  "province": "Jambi",
+  "bounds": [
+   103.47982,
+   -1.5889,
+   104.09039,
+   -0.94736
+  ],
+  "dems": [
+   "lidar",
+   "deltadtm",
+   "demnas",
+   "lidar_full"
+  ],
+  "groundwater": [
+   "deltadtm",
+   "lidar"
+  ],
+  "built": "2026-11-01T11:13:57+00:00"
+ },
+ {
+  "code": "16.02-07.01",
+  "khg_id": "KHG.16.02-07.01",
+  "name": "KHG Sungai Saleh - Sungai Sugihan",
+  "province": "Sumatera Selatan",
+  "bounds": [
+   104.96427,
+   -3.14964,
+   105.56734,
+   -2.32609
+  ],
+  "dems": [
+   "lidar",
+   "deltadtm",
+   "demnas",
+   "lidar_full",
+   "worlddem_full"
+  ],
+  "groundwater": [
+   "deltadtm"
+  ],
+  "built": "2026-11-01T11:14:02+00:00"
+ },
+ {
+  "code": "16.02.01",
+  "khg_id": "KHG.16.02.01",
+  "name": "KHG Sungai Sugihan - Sungai Lumpur",
+  "province": "Sumatera Selatan",
+  "bounds": [
+   105.17325,
+   -3.42177,
+   106.0969,
+   -2.39086
+  ],
+  "dems": [
+   "lidar",
+   "deltadtm",
+   "demnas",
+   "demnas_full",
+   "worlddem_full"
+  ],
+  "groundwater": [
+   "deltadtm",
+   "lidar"
+  ],
+  "built": "2026-11-01T11:14:06+00:00"
+ },
+ {
+  "code": "61.02-08.01",
+  "khg_id": "KHG.61.02-08.01",
+  "name": "KHG Sungai Mempawah - Sungai Peniti",
+  "province": "Kalimantan Barat",
+  "bounds": [
+   108.95541,
+   0.14816,
+   109.27177,
+   0.42677
+  ],
+  "dems": [
+   "deltadtm",
+   "demnas",
+   "worlddem_full",
+   "demnas_full"
+  ],
+  "groundwater": [
+   "deltadtm"
+  ],
+  "built": "2026-11-01T11:14:11+00:00"
+ },
+ {
+  "code": "61.12-71.01",
+  "khg_id": "KHG.61.12-71.01",
+  "name": "KHG Sungai Pungurbesar - Sungai Kapuas",
+  "province": "Kalimantan Barat",
+  "bounds": [
+   109.1593,
+   -0.39722,
+   109.58523,
+   0.03388
+  ],
+  "dems": [
+   "deltadtm",
+   "demnas",
+   "demnas_full",
+   "lidar_full"
+  ],
+  "groundwater": [
+   "deltadtm"
+  ],
+  "built": "2026-11-01T11:14:15+00:00"
+ },
+ {
+  "code": "62.03-04.01",
+  "khg_id": "KHG.62.03-04.01",
+  "name": "KHG Sungai Kapuas - Sungai Barito",
+  "province": "Kalimantan Tengah",
+  "bounds": [
+   114.35437,
+   -3.02591,
+   114.91662,
+   -1.36589
+  ],
+  "dems": [
+   "deltadtm",
+   "demnas",
+   "brgmcontour_full"
+  ],
+  "groundwater": [],
+  "built": "2026-11-01T11:14:20+00:00"
+ },
+ {
+  "code": "62.11-14.02",
+  "khg_id": "KHG.62.11-14.02",
+  "name": "KHG Sungai Kahayan - Sungai Sebangau",
+  "province": "Kalimantan Tengah",
+  "bounds": [
+   113.58105,
+   -3.46941,
+   114.28024,
+   -2.16877
+  ],
+  "dems": [
+   "deltadtm",
+   "demnas",
+   "demnas_full",
+   "worlddem_full"
+  ],
+  "groundwater": [],
+  "built": "2026-11-01T11:14:25+00:00"
+ },
+ {
+  "code": "63.07-08-11.01",
+  "khg_id": "KHG.63.07-08-11.01",
+  "name": "KHG Sungai Balangan - Sungai Batangalai",
+  "province": "Kalimantan Selatan",
+  "bounds": [
+   115.2202,
+   -2.56239,
+   115.41737,
+   -2.34539
+  ],
+  "dems": [
+   "deltadtm",
+   "demnas",
+   "worlddem_full"
+  ],
+  "groundwater": [
+   "deltadtm"
+  ],
+  "built": "2026-11-01T11:14:29+00:00"
+ },
+ {
+  "code": "91.18-17.01",
+  "khg_id": "KHG.91.18-17.01",
+  "name": "KHG Sungai Buru Mappi - Sungai Buru Obaa",
+  "province": "Papua",
+  "bounds": [
+   138.96185,
+   -6.98778,
+   139.56085,
+   -5.50787
+  ],
+  "dems": [
+   "deltadtm",
+   "demnas",
+   "demnas_full"
+  ],
+  "groundwater": [],
+  "built": "2026-11-01T11:14:34+00:00"
+ }
+]

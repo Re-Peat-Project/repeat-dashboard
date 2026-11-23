@@ -1,0 +1,26 @@
+{
+ "validation": {
+  "target": "u_burned_now",
+  "n_pool": 334,
+  "n_burned": 94,
+  "excluded": [
+   "u_hotspot_now"
+  ],
+  "urgency": {
+   "spearman": 0.489,
+   "auc": 0.801,
+   "capture_top20pct": 0.781
+  },
+  "fire_history_only": {
+   "spearman": 0.466,
+   "auc": 0.784,
+   "capture_top20pct": 0.583
+  }
+ },
+ "sensitivity": {
+  "runs": 500,
+  "share_keeping_type_mean": 0.92,
+  "share_khg_type_stable_80pct": 0.829,
+  "median_rank_sd": 5.2
+ }
+}

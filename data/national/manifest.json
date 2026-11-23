@@ -1,0 +1,82 @@
+{
+ "tables": [
+  {
+   "id": "khg",
+   "file": "khg.parquet",
+   "mb": 0.238
+  },
+  {
+   "id": "yearly",
+   "file": "yearly.parquet",
+   "mb": 0.115
+  },
+  {
+   "id": "stage3_profile",
+   "file": "stage3_profile.parquet",
+   "mb": 0.017
+  },
+  {
+   "id": "stage3_yearly",
+   "file": "stage3_yearly.parquet",
+   "mb": 0.009
+  },
+  {
+   "id": "land_summary",
+   "file": "land_summary.parquet",
+   "mb": 0.13
+  },
+  {
+   "id": "land_dmpg_villages",
+   "file": "land_dmpg_villages.parquet",
+   "mb": 0.036
+  },
+  {
+   "id": "overlay_summary",
+   "file": "overlay_summary.parquet",
+   "mb": 0.031
+  },
+  {
+   "id": "sitmat_daily",
+   "file": "sitmat_daily.parquet",
+   "mb": 0.571
+  },
+  {
+   "id": "sitmat_stations",
+   "file": "sitmat_stations.parquet",
+   "mb": 0.045
+  }
+ ],
+ "files": [
+  {
+   "id": "scoring",
+   "file": "scoring.json",
+   "mb": 0.141
+  },
+  {
+   "id": "khg_outlines",
+   "file": "khg_outlines.pmtiles",
+   "mb": 3.18
+  },
+  {
+   "id": "hotspot_grid",
+   "file": "hotspot_grid.parquet",
+   "mb": 2.377,
+   "rows": 643112,
+   "grid": {
+    "deg": 0.1,
+    "origin_lon": 94.0,
+    "origin_lat": -11.5
+   },
+   "source": "VIIRS SNPP 2012-2026 (FIRMS); MODIS 2026 (KLH to 15 September, FIRMS NRT after)",
+   "peat_basis": "GFW composite peat extent"
+  },
+  {
+   "id": "khg_hotspot_monthly",
+   "file": "khg_hotspot_monthly.parquet",
+   "mb": 0.086,
+   "rows": 46835,
+   "note": "points counted in every KHG polygon they lie in; peat from the GFW composite extent"
+  }
+ ],
+ "missing": []
+}

@@ -1,0 +1,1260 @@
+{
+ "code": "16.02.01",
+ "khg_id": "KHG.16.02.01",
+ "name": "KHG Sungai Sugihan - Sungai Lumpur",
+ "province": "Sumatera Selatan",
+ "bounds": [
+  105.17325,
+  -3.42177,
+  106.0969,
+  -2.39086
+ ],
+ "folder": "16.02.01_sugihan_lumpur",
+ "built": "2026-11-01T11:14:06+00:00",
+ "dems": [
+  "lidar",
+  "deltadtm",
+  "demnas",
+  "demnas_full",
+  "worlddem_full"
+ ],
+ "vector": [
+  {
+   "id": "neraca_units",
+   "group": "neraca",
+   "label": {
+    "en": "Climatic balance per sub-KHG",
+    "id": "Neraca iklim per sub-KHG"
+   },
+   "source": "repeat-neraca balance",
+   "dem": "lidar",
+   "file": "vector/lidar/neraca_units.pmtiles",
+   "mb": 0.568,
+   "ranges": {
+    "u_wb_mean": [
+     56.456,
+     94.072
+    ],
+    "u_deficit_months": [
+     2.125,
+     2.75
+    ],
+    "wb_dry_mm": [
+     -16.07875,
+     31.0228125
+    ],
+    "p_minus_et_mean_mm": [
+     104.411,
+     135.41
+    ]
+   }
+  },
+  {
+   "id": "neraca_stations",
+   "group": "neraca",
+   "label": {
+    "en": "Water-table stations",
+    "id": "Stasiun muka air"
+   },
+   "source": "repeat-neraca balance",
+   "dem": "lidar",
+   "file": "vector/lidar/neraca_stations.pmtiles",
+   "mb": 0.033
+  },
+  {
+   "id": "neraca_units",
+   "group": "neraca",
+   "label": {
+    "en": "Climatic balance per sub-KHG",
+    "id": "Neraca iklim per sub-KHG"
+   },
+   "source": "repeat-neraca balance",
+   "dem": "deltadtm",
+   "file": "vector/deltadtm/neraca_units.pmtiles",
+   "mb": 0.561,
+   "ranges": {
+    "u_wb_mean": [
+     57.614,
+     88.024
+    ],
+    "u_deficit_months": [
+     2.125,
+     2.75
+    ],
+    "wb_dry_mm": [
+     -10.303125,
+     23.6490625
+    ],
+    "p_minus_et_mean_mm": [
+     110.48,
+     132.075
+    ]
+   }
+  },
+  {
+   "id": "neraca_stations",
+   "group": "neraca",
+   "label": {
+    "en": "Water-table stations",
+    "id": "Stasiun muka air"
+   },
+   "source": "repeat-neraca balance",
+   "dem": "deltadtm",
+   "file": "vector/deltadtm/neraca_stations.pmtiles",
+   "mb": 0.033
+  },
+  {
+   "id": "neraca_units",
+   "group": "neraca",
+   "label": {
+    "en": "Climatic balance per sub-KHG",
+    "id": "Neraca iklim per sub-KHG"
+   },
+   "source": "repeat-neraca balance",
+   "dem": "demnas",
+   "file": "vector/demnas/neraca_units.pmtiles",
+   "mb": 0.553,
+   "ranges": {
+    "u_wb_mean": [
+     60.505,
+     87.981
+    ],
+    "u_deficit_months": [
+     2.125,
+     2.625
+    ],
+    "wb_dry_mm": [
+     -12.185,
+     22.6253125
+    ],
+    "p_minus_et_mean_mm": [
+     108.462,
+     130.662
+    ]
+   }
+  },
+  {
+   "id": "neraca_stations",
+   "group": "neraca",
+   "label": {
+    "en": "Water-table stations",
+    "id": "Stasiun muka air"
+   },
+   "source": "repeat-neraca balance",
+   "dem": "demnas",
+   "file": "vector/demnas/neraca_stations.pmtiles",
+   "mb": 0.033
+  },
+  {
+   "id": "khg",
+   "group": "boundary",
+   "label": {
+    "en": "KHG boundary",
+    "id": "Batas KHG"
+   },
+   "source": "SK.129/MENLHK/2017 KHG boundaries",
+   "dem": null,
+   "file": "vector/khg.pmtiles",
+   "features": 1,
+   "mb": 0.187,
+   "geometry": "Polygon"
+  },
+  {
+   "id": "canals",
+   "group": "hydrology",
+   "label": {
+    "en": "Canals (primary, secondary, tertiary)",
+    "id": "Kanal (primer, sekunder, tersier)"
+   },
+   "source": "KLHK canal inventory by KODE_KANAL",
+   "dem": null,
+   "file": "vector/canals.pmtiles",
+   "features": 14928,
+   "mb": 5.166,
+   "geometry": "MultiLineString"
+  },
+  {
+   "id": "rivers",
+   "group": "hydrology",
+   "label": {
+    "en": "Rivers",
+    "id": "Sungai"
+   },
+   "source": "RBI rivers",
+   "dem": null,
+   "file": "vector/rivers.pmtiles",
+   "features": 2,
+   "mb": 0.022,
+   "geometry": "MultiLineString"
+  },
+  {
+   "id": "blocks",
+   "group": "interventions",
+   "label": {
+    "en": "Existing canal blocks",
+    "id": "Sekat kanal eksisting"
+   },
+   "source": "BRGM hydrological infrastructure",
+   "dem": null,
+   "file": "vector/blocks.pmtiles",
+   "features": 2861,
+   "mb": 0.605,
+   "geometry": "Point"
+  },
+  {
+   "id": "brgm_infra",
+   "group": "interventions",
+   "label": {
+    "en": "BRGM hydrological infrastructure",
+    "id": "Infrastruktur hidrologis BRGM"
+   },
+   "source": "BlueBook 2026 PPEG BRGM",
+   "dem": null,
+   "file": "vector/brgm_infra.pmtiles",
+   "features": 3051,
+   "mb": 0.674,
+   "geometry": "Point"
+  },
+  {
+   "id": "feg",
+   "group": "land",
+   "label": {
+    "en": "Peat ecosystem function (FEG)",
+    "id": "Fungsi ekosistem gambut (FEG)"
+   },
+   "source": "KLHK FEG Indonesia 2017",
+   "dem": null,
+   "file": "vector/feg.pmtiles",
+   "features": 154,
+   "mb": 1.277,
+   "geometry": "Polygon"
+  },
+  {
+   "id": "forest",
+   "group": "land",
+   "label": {
+    "en": "Forest area function (Kawasan Hutan)",
+    "id": "Fungsi kawasan hutan"
+   },
+   "source": "KLHK forest area function 2023 (1:250,000)",
+   "dem": null,
+   "file": "vector/forest.pmtiles",
+   "features": 4265,
+   "mb": 0.679,
+   "geometry": "MultiPolygon"
+  },
+  {
+   "id": "licences",
+   "group": "land",
+   "label": {
+    "en": "Business licences 2025",
+    "id": "Izin usaha 2025"
+   },
+   "source": "KLHK business licences 2025",
+   "dem": null,
+   "file": "vector/licences.pmtiles",
+   "features": 16,
+   "mb": 0.33,
+   "geometry": "MultiPolygon"
+  },
+  {
+   "id": "burn",
+   "group": "fire",
+   "label": {
+    "en": "Burnt area 2015-2026",
+    "id": "Area terbakar 2015-2026"
+   },
+   "source": "KLHK burnt area, BA_<year> flags",
+   "dem": null,
+   "file": "vector/burn.pmtiles",
+   "features": 2062,
+   "mb": 2.435,
+   "geometry": "MultiPolygon"
+  },
+  {
+   "id": "target_villages",
+   "group": "land",
+   "label": {
+    "en": "Target villages for peat restoration",
+    "id": "Desa target pemulihan gambut"
+   },
+   "source": "BlueBook 2026 target villages",
+   "dem": null,
+   "file": "vector/target_villages.pmtiles",
+   "features": 18,
+   "mb": 0.773,
+   "geometry": "MultiPolygon"
+  },
+  {
+   "id": "dmpg",
+   "group": "land",
+   "label": {
+    "en": "DMPG villages",
+    "id": "Desa DMPG"
+   },
+   "source": "SiTMAT national DMPG village layer, KLH 2023 boundaries",
+   "dem": null,
+   "file": "vector/dmpg.pmtiles",
+   "features": 244,
+   "mb": 1.382,
+   "geometry": "MultiPolygon"
+  },
+  {
+   "id": "subkhg_units",
+   "group": "ranking",
+   "label": {
+    "en": "Sub-KHG units (priority)",
+    "id": "Unit sub-KHG (prioritas)"
+   },
+   "source": "repeat-prioritisation subkhg",
+   "dem": "lidar",
+   "file": "vector/lidar/subkhg_units.pmtiles",
+   "features": 29,
+   "mb": 1.293,
+   "geometry": "MultiPolygon"
+  },
+  {
+   "id": "subkhg_units",
+   "group": "ranking",
+   "label": {
+    "en": "Sub-KHG units (priority)",
+    "id": "Unit sub-KHG (prioritas)"
+   },
+   "source": "repeat-prioritisation subkhg",
+   "dem": "deltadtm",
+   "file": "vector/deltadtm/subkhg_units.pmtiles",
+   "features": 29,
+   "mb": 1.271,
+   "geometry": "MultiPolygon"
+  },
+  {
+   "id": "subkhg_units",
+   "group": "ranking",
+   "label": {
+    "en": "Sub-KHG units (priority)",
+    "id": "Unit sub-KHG (prioritas)"
+   },
+   "source": "repeat-prioritisation subkhg",
+   "dem": "demnas",
+   "file": "vector/demnas/subkhg_units.pmtiles",
+   "features": 27,
+   "mb": 1.323,
+   "geometry": "MultiPolygon"
+  },
+  {
+   "id": "sekat_proposed",
+   "group": "interventions",
+   "label": {
+    "en": "Proposed canal blocks",
+    "id": "Usulan sekat kanal"
+   },
+   "source": "repeat-pump",
+   "dem": "lidar",
+   "file": "vector/lidar/sekat_proposed.pmtiles",
+   "features": 43,
+   "mb": 0.058,
+   "geometry": "Point"
+  },
+  {
+   "id": "sekat_proposed",
+   "group": "interventions",
+   "label": {
+    "en": "Proposed canal blocks",
+    "id": "Usulan sekat kanal"
+   },
+   "source": "repeat-pump",
+   "dem": "deltadtm",
+   "file": "vector/deltadtm/sekat_proposed.pmtiles",
+   "features": 39,
+   "mb": 0.056,
+   "geometry": "Point"
+  },
+  {
+   "id": "sekat_proposed",
+   "group": "interventions",
+   "label": {
+    "en": "Proposed canal blocks",
+    "id": "Usulan sekat kanal"
+   },
+   "source": "repeat-pump",
+   "dem": "demnas",
+   "file": "vector/demnas/sekat_proposed.pmtiles",
+   "features": 62,
+   "mb": 0.082,
+   "geometry": "Point"
+  },
+  {
+   "id": "sekat_existing",
+   "group": "interventions",
+   "label": {
+    "en": "Existing blocks, assessed",
+    "id": "Sekat eksisting, dinilai"
+   },
+   "source": "repeat-pump",
+   "dem": "lidar",
+   "file": "vector/lidar/sekat_existing.pmtiles",
+   "features": 173,
+   "mb": 0.061,
+   "geometry": "Point"
+  },
+  {
+   "id": "sekat_existing",
+   "group": "interventions",
+   "label": {
+    "en": "Existing blocks, assessed",
+    "id": "Sekat eksisting, dinilai"
+   },
+   "source": "repeat-pump",
+   "dem": "deltadtm",
+   "file": "vector/deltadtm/sekat_existing.pmtiles",
+   "features": 273,
+   "mb": 0.078,
+   "geometry": "Point"
+  },
+  {
+   "id": "sekat_existing",
+   "group": "interventions",
+   "label": {
+    "en": "Existing blocks, assessed",
+    "id": "Sekat eksisting, dinilai"
+   },
+   "source": "repeat-pump",
+   "dem": "demnas",
+   "file": "vector/demnas/sekat_existing.pmtiles",
+   "features": 380,
+   "mb": 0.089,
+   "geometry": "Point"
+  },
+  {
+   "id": "sekat_reach",
+   "group": "interventions",
+   "label": {
+    "en": "Water held back by the sekat",
+    "id": "Air yang ditahan sekat"
+   },
+   "source": "repeat-pump",
+   "dem": "lidar",
+   "file": "vector/lidar/sekat_reach.pmtiles",
+   "features": 87,
+   "mb": 0.116,
+   "geometry": "LineString"
+  },
+  {
+   "id": "sekat_reach",
+   "group": "interventions",
+   "label": {
+    "en": "Water held back by the sekat",
+    "id": "Air yang ditahan sekat"
+   },
+   "source": "repeat-pump",
+   "dem": "deltadtm",
+   "file": "vector/deltadtm/sekat_reach.pmtiles",
+   "features": 120,
+   "mb": 0.141,
+   "geometry": "LineString"
+  },
+  {
+   "id": "sekat_reach",
+   "group": "interventions",
+   "label": {
+    "en": "Water held back by the sekat",
+    "id": "Air yang ditahan sekat"
+   },
+   "source": "repeat-pump",
+   "dem": "demnas",
+   "file": "vector/demnas/sekat_reach.pmtiles",
+   "features": 148,
+   "mb": 0.177,
+   "geometry": "LineString"
+  },
+  {
+   "id": "canal_flow",
+   "group": "hydrology",
+   "label": {
+    "en": "Canal flow direction",
+    "id": "Arah aliran kanal"
+   },
+   "source": "repeat-pump",
+   "dem": "lidar",
+   "file": "vector/lidar/canal_flow.pmtiles",
+   "features": 1148,
+   "mb": 0.837,
+   "geometry": "LineString"
+  },
+  {
+   "id": "canal_flow",
+   "group": "hydrology",
+   "label": {
+    "en": "Canal flow direction",
+    "id": "Arah aliran kanal"
+   },
+   "source": "repeat-pump",
+   "dem": "deltadtm",
+   "file": "vector/deltadtm/canal_flow.pmtiles",
+   "features": 927,
+   "mb": 0.7,
+   "geometry": "LineString"
+  },
+  {
+   "id": "canal_flow",
+   "group": "hydrology",
+   "label": {
+    "en": "Canal flow direction",
+    "id": "Arah aliran kanal"
+   },
+   "source": "repeat-pump",
+   "dem": "demnas",
+   "file": "vector/demnas/canal_flow.pmtiles",
+   "features": 1048,
+   "mb": 0.768,
+   "geometry": "LineString"
+  },
+  {
+   "id": "canal_segments",
+   "group": "hydrology",
+   "label": {
+    "en": "Canal segments with profile",
+    "id": "Segmen kanal"
+   },
+   "source": "repeat-pump",
+   "dem": "lidar",
+   "file": "vector/lidar/canal_segments.pmtiles",
+   "features": 1148,
+   "mb": 2.885,
+   "geometry": "LineString"
+  },
+  {
+   "id": "canal_segments",
+   "group": "hydrology",
+   "label": {
+    "en": "Canal segments with profile",
+    "id": "Segmen kanal"
+   },
+   "source": "repeat-pump",
+   "dem": "deltadtm",
+   "file": "vector/deltadtm/canal_segments.pmtiles",
+   "features": 927,
+   "mb": 2.552,
+   "geometry": "LineString"
+  },
+  {
+   "id": "canal_segments",
+   "group": "hydrology",
+   "label": {
+    "en": "Canal segments with profile",
+    "id": "Segmen kanal"
+   },
+   "source": "repeat-pump",
+   "dem": "demnas",
+   "file": "vector/demnas/canal_segments.pmtiles",
+   "features": 1048,
+   "mb": 2.687,
+   "geometry": "LineString"
+  },
+  {
+   "id": "subkhg_units",
+   "group": "ranking",
+   "label": {
+    "en": "Sub-KHG units (all processed)",
+    "id": "Unit sub-KHG (seluruhnya)"
+   },
+   "source": "Team run, earlier method (all sub-KHG processed)",
+   "dem": "demnas_full",
+   "file": "vector/demnas_full/subkhg_units.pmtiles",
+   "features": 30,
+   "mb": 0.305,
+   "geometry": "MultiPolygon"
+  },
+  {
+   "id": "sekat_proposed",
+   "group": "interventions",
+   "label": {
+    "en": "Proposed canal blocks",
+    "id": "Usulan sekat kanal"
+   },
+   "source": "Team run, earlier method (all sub-KHG processed)",
+   "dem": "demnas_full",
+   "file": "vector/demnas_full/sekat_proposed.pmtiles",
+   "features": 434,
+   "mb": 0.486,
+   "geometry": "Point"
+  },
+  {
+   "id": "canal_segments",
+   "group": "hydrology",
+   "label": {
+    "en": "Canal segments with profile",
+    "id": "Segmen kanal"
+   },
+   "source": "Team run, earlier method (all sub-KHG processed)",
+   "dem": "demnas_full",
+   "file": "vector/demnas_full/canal_segments.pmtiles",
+   "features": 10078,
+   "mb": 24.867,
+   "geometry": "LineString"
+  },
+  {
+   "id": "subkhg_units",
+   "group": "ranking",
+   "label": {
+    "en": "Sub-KHG units (all processed)",
+    "id": "Unit sub-KHG (seluruhnya)"
+   },
+   "source": "Team run, earlier method (all sub-KHG processed)",
+   "dem": "worlddem_full",
+   "file": "vector/worlddem_full/subkhg_units.pmtiles",
+   "features": 5,
+   "mb": 0.086,
+   "geometry": "MultiPolygon"
+  },
+  {
+   "id": "sekat_proposed",
+   "group": "interventions",
+   "label": {
+    "en": "Proposed canal blocks",
+    "id": "Usulan sekat kanal"
+   },
+   "source": "Team run, earlier method (all sub-KHG processed)",
+   "dem": "worlddem_full",
+   "file": "vector/worlddem_full/sekat_proposed.pmtiles",
+   "features": 54,
+   "mb": 0.08,
+   "geometry": "Point"
+  },
+  {
+   "id": "sekat_existing",
+   "group": "interventions",
+   "label": {
+    "en": "Existing blocks, assessed",
+    "id": "Sekat eksisting, dinilai"
+   },
+   "source": "Team run, earlier method (all sub-KHG processed)",
+   "dem": "worlddem_full",
+   "file": "vector/worlddem_full/sekat_existing.pmtiles",
+   "features": 370,
+   "mb": 0.102,
+   "geometry": "Point"
+  },
+  {
+   "id": "canal_segments",
+   "group": "hydrology",
+   "label": {
+    "en": "Canal segments with profile",
+    "id": "Segmen kanal"
+   },
+   "source": "Team run, earlier method (all sub-KHG processed)",
+   "dem": "worlddem_full",
+   "file": "vector/worlddem_full/canal_segments.pmtiles",
+   "features": 1569,
+   "mb": 3.571,
+   "geometry": "LineString"
+  }
+ ],
+ "points": [
+  {
+   "id": "hotspots",
+   "file": "points/hotspots.parquet",
+   "mb": 1.001,
+   "rows": 110995,
+   "label": {
+    "en": "Hotspots",
+    "id": "Titik panas"
+   },
+   "source": "VIIRS SNPP 2012-2026 (FIRMS archive, standard processing to July 2026, NRT from August 2026); MODIS 2026 (KLH to 15 September, FIRMS NRT after)",
+   "kinds": {
+    "viirs": 109587,
+    "modis2026": 1408
+   },
+   "undated": 92,
+   "note": "rows without a date carry only the month (ym)"
+  }
+ ],
+ "tables": [
+  {
+   "id": "deficit_khg",
+   "dem": null,
+   "file": "tables/deficit_khg.parquet",
+   "mb": 0.013
+  },
+  {
+   "id": "deficit_series",
+   "dem": null,
+   "file": "tables/deficit_series.parquet",
+   "mb": 0.004
+  },
+  {
+   "id": "balance_unit",
+   "dem": "lidar",
+   "file": "tables/lidar/balance_unit.parquet",
+   "mb": 0.01
+  },
+  {
+   "id": "balance_monthly",
+   "dem": "lidar",
+   "file": "tables/lidar/balance_monthly.parquet",
+   "mb": 0.03
+  },
+  {
+   "id": "balance_unit",
+   "dem": "deltadtm",
+   "file": "tables/deltadtm/balance_unit.parquet",
+   "mb": 0.01
+  },
+  {
+   "id": "balance_monthly",
+   "dem": "deltadtm",
+   "file": "tables/deltadtm/balance_monthly.parquet",
+   "mb": 0.03
+  },
+  {
+   "id": "balance_unit",
+   "dem": "demnas",
+   "file": "tables/demnas/balance_unit.parquet",
+   "mb": 0.01
+  },
+  {
+   "id": "balance_monthly",
+   "dem": "demnas",
+   "file": "tables/demnas/balance_monthly.parquet",
+   "mb": 0.029
+  },
+  {
+   "id": "subkhg_priority",
+   "dem": "lidar",
+   "file": "tables/lidar/subkhg_priority.parquet",
+   "mb": 0.072
+  },
+  {
+   "id": "subkhg_priority",
+   "dem": "deltadtm",
+   "file": "tables/deltadtm/subkhg_priority.parquet",
+   "mb": 0.072
+  },
+  {
+   "id": "subkhg_priority",
+   "dem": "demnas",
+   "file": "tables/demnas/subkhg_priority.parquet",
+   "mb": 0.073
+  },
+  {
+   "id": "sekat_need",
+   "dem": "lidar",
+   "file": "tables/lidar/sekat_need.parquet",
+   "mb": 0.004
+  },
+  {
+   "id": "sekat_need",
+   "dem": "deltadtm",
+   "file": "tables/deltadtm/sekat_need.parquet",
+   "mb": 0.004
+  },
+  {
+   "id": "sekat_need",
+   "dem": "demnas",
+   "file": "tables/demnas/sekat_need.parquet",
+   "mb": 0.004
+  },
+  {
+   "id": "pump_budget",
+   "dem": "lidar",
+   "file": "tables/lidar/pump_budget.parquet",
+   "mb": 0.007
+  },
+  {
+   "id": "pump_budget",
+   "dem": "deltadtm",
+   "file": "tables/deltadtm/pump_budget.parquet",
+   "mb": 0.007
+  },
+  {
+   "id": "pump_budget",
+   "dem": "demnas",
+   "file": "tables/demnas/pump_budget.parquet",
+   "mb": 0.007
+  },
+  {
+   "id": "pump_interventions",
+   "dem": "lidar",
+   "file": "tables/lidar/pump_interventions.parquet",
+   "mb": 0.02
+  },
+  {
+   "id": "pump_interventions",
+   "dem": "deltadtm",
+   "file": "tables/deltadtm/pump_interventions.parquet",
+   "mb": 0.02
+  },
+  {
+   "id": "pump_interventions",
+   "dem": "demnas",
+   "file": "tables/demnas/pump_interventions.parquet",
+   "mb": 0.02
+  },
+  {
+   "id": "pump_budget_sources",
+   "dem": "lidar",
+   "file": "tables/lidar/pump_budget_sources.parquet",
+   "mb": 0.014
+  },
+  {
+   "id": "pump_budget_sources",
+   "dem": "deltadtm",
+   "file": "tables/deltadtm/pump_budget_sources.parquet",
+   "mb": 0.014
+  },
+  {
+   "id": "pump_budget_sources",
+   "dem": "demnas",
+   "file": "tables/demnas/pump_budget_sources.parquet",
+   "mb": 0.014
+  },
+  {
+   "id": "sitmat_stations",
+   "dem": null,
+   "file": "tables/sitmat_stations.parquet",
+   "mb": 0.006
+  },
+  {
+   "id": "sitmat_daily",
+   "dem": null,
+   "file": "tables/sitmat_daily.parquet",
+   "mb": 0.023
+  },
+  {
+   "id": "pump_budget_summary",
+   "dem": "lidar",
+   "file": "tables/lidar/pump_budget_summary.json",
+   "mb": 0.007
+  },
+  {
+   "id": "pump_budget_summary",
+   "dem": "deltadtm",
+   "file": "tables/deltadtm/pump_budget_summary.json",
+   "mb": 0.008
+  },
+  {
+   "id": "pump_budget_summary",
+   "dem": "demnas",
+   "file": "tables/demnas/pump_budget_summary.json",
+   "mb": 0.015
+  }
+ ],
+ "raster": [
+  {
+   "id": "relief",
+   "dem": "lidar",
+   "file": "raster/lidar/relief.pmtiles",
+   "mb": 0.589,
+   "native_zoom": 13,
+   "max_zoom": 13,
+   "zoom_capped": false,
+   "source": "lidar_oki25.tif",
+   "res_m": 25.0,
+   "cover_pct": 100.0,
+   "z_range": [
+    0.21,
+    7.22
+   ],
+   "note": "airborne LiDAR"
+  },
+  {
+   "id": "relief",
+   "dem": "deltadtm",
+   "file": "raster/deltadtm/relief.pmtiles",
+   "mb": 2.623,
+   "native_zoom": 13,
+   "max_zoom": 13,
+   "zoom_capped": false,
+   "source": "deltadtm.tif",
+   "res_m": 30.92,
+   "cover_pct": 98.4,
+   "z_range": [
+    1.01,
+    9.26
+   ],
+   "note": "DeltaDTM v1.1 via Earth Engine; land below about 10 m +MSL only"
+  },
+  {
+   "id": "relief",
+   "dem": "demnas",
+   "file": "raster/demnas/relief.pmtiles",
+   "mb": 30.578,
+   "native_zoom": 15,
+   "max_zoom": 14,
+   "zoom_capped": true,
+   "source": "demnas.tif",
+   "res_m": 8.35,
+   "cover_pct": 100.0,
+   "z_range": [
+    -2.31,
+    20.0
+   ],
+   "note": "BIG DEMNAS, 20 sheets; DSM"
+  },
+  {
+   "id": "relief",
+   "dem": "worlddem_full",
+   "file": "raster/worlddem_full/relief.pmtiles",
+   "mb": 1.607,
+   "native_zoom": 14,
+   "max_zoom": 14,
+   "zoom_capped": false,
+   "source": "KHG Sugihan Lumpur WorldDEM 12m/DTM_worlddem_12m.tif",
+   "res_m": 12.311979887330704,
+   "z_range": [
+    1.2631053924560547,
+    9.5892915725708
+   ],
+   "note": "DEM identified by named"
+  }
+ ],
+ "groundwater": [
+  {
+   "dem": "lidar",
+   "run": "cap_climate",
+   "res_m": 200.0,
+   "start": "2025-11-01",
+   "end": "2026-10-01",
+   "season": "2026-06-01 to 2026-09-30",
+   "peat_table": "tropical-large",
+   "managed_target": "0.4",
+   "rain": "chirps",
+   "et": "mod16nrt",
+   "canal_cells": "leak",
+   "stage": "in development",
+   "files": [
+    {
+     "id": "model_series",
+     "file": "tables/lidar/model/cap_climate/model_series.parquet",
+     "mb": 0.029
+    },
+    {
+     "id": "model_units",
+     "file": "tables/lidar/model/cap_climate/model_units.parquet",
+     "mb": 0.008
+    },
+    {
+     "id": "station_scores",
+     "file": "tables/lidar/model/cap_climate/station_scores.parquet",
+     "mb": 0.009
+    },
+    {
+     "id": "station_sim",
+     "file": "tables/lidar/model/cap_climate/station_sim.parquet",
+     "mb": 0.014
+    }
+   ],
+   "rasters": [
+    {
+     "id": "season_mean_depth",
+     "file": "raster/lidar/model/cap_climate/season_mean_depth.pmtiles",
+     "mb": 0.106,
+     "range": [
+      0,
+      100
+     ],
+     "label": {
+      "en": "Mean water-table depth, dry season (cm)",
+      "id": "Kedalaman muka air rata-rata, musim kering (cm)"
+     }
+    },
+    {
+     "id": "days_deeper_40cm",
+     "file": "raster/lidar/model/cap_climate/days_deeper_40cm.pmtiles",
+     "mb": 0.07,
+     "range": [
+      0,
+      122
+     ],
+     "label": {
+      "en": "Days deeper than 40 cm in the dry season",
+      "id": "Hari lebih dalam dari 40 cm pada musim kering"
+     }
+    },
+    {
+     "id": "depth_end",
+     "file": "raster/lidar/model/cap_climate/depth_end.pmtiles",
+     "mb": 0.077,
+     "range": [
+      0,
+      150
+     ],
+     "label": {
+      "en": "Water-table depth at the end of the run (cm)",
+      "id": "Kedalaman muka air di akhir simulasi (cm)"
+     }
+    }
+   ],
+   "station_scores": {
+    "all": {
+     "model": {
+      "n": 51,
+      "spearman": -0.13554186732591195,
+      "bias_cm": -10.863524767340884,
+      "rmse_cm": 14.39094283910313,
+      "mae_cm": 11.078811298908283
+     },
+     "constant": {
+      "n": 51,
+      "spearman": null,
+      "bias_cm": 0.2613853847884059,
+      "rmse_cm": 3.378114827806126,
+      "mae_cm": 2.0121219900143523
+     },
+     "distance": {
+      "n": 51,
+      "spearman": 0.11728506787330316,
+      "bias_cm": -1.0240174721248503e-14,
+      "rmse_cm": 3.3504387871944075,
+      "mae_cm": 1.9707716772789143
+     },
+     "distance_fit": {
+      "slope_cm_per_log_m": 0.5285417234981344,
+      "intercept_cm": 38.586103246195904
+     }
+    },
+    "unflagged": {
+     "model": {
+      "n": 0
+     },
+     "constant": {
+      "n": 0
+     },
+     "distance": {
+      "n": 0
+     },
+     "distance_fit": {
+      "slope_cm_per_log_m": 0.0,
+      "intercept_cm": null
+     }
+    },
+    "gate": {
+     "checks": {
+      "spearman >= 0.3": null,
+      "spearman above the distance prediction": null,
+      "rmse below the constant prediction": null,
+      "median station r >= 0.5": null,
+      "community level and drawdown within 20 cm": null,
+      "managed supply within x2 or 50 mm of the station deficit": true
+     },
+     "pass": true
+    },
+    "dynamics": {
+     "median_station_r": null,
+     "n_stations": 51,
+     "n_unflagged": 0,
+     "khg_mean_r": null,
+     "khg_mean_bias_cm": null,
+     "obs_khg_mean_cm": null,
+     "sim_khg_mean_cm": null,
+     "drawdown_spearman": null,
+     "obs_drawdown_median_cm": null,
+     "sim_drawdown_median_cm": null
+    },
+    "by_kind": {},
+    "excluded": {
+     "on_fixed_cell": 18,
+     "outside_khg": 0
+    },
+    "on_leaky_canal_cell": 0,
+    "supply_check": {
+     "period": "2026-06-01 to 2026-10-09",
+     "station_deficit_mm": 290.238,
+     "model_canal_in_mm": 2.1484730424148992,
+     "model_edge_in_mm": -0.16032636839132172,
+     "model_managed_supply_mm": 235.47642292505074,
+     "model_managed_supply_m3": 691942759.236803
+    }
+   }
+  },
+  {
+   "dem": "deltadtm",
+   "run": "d22_climate_2026",
+   "res_m": 200.0,
+   "start": "2025-11-01",
+   "end": "2026-10-01",
+   "season": "2026-06-01 to 2026-09-30 (dry window of the cap)",
+   "peat_table": "tropical-large",
+   "managed_target": "0.4",
+   "rain": "chirps",
+   "et": "mod16nrt",
+   "canal_cells": "leak",
+   "stage": "in development",
+   "files": [
+    {
+     "id": "model_series",
+     "file": "tables/deltadtm/model/d22_climate_2026/model_series.parquet",
+     "mb": 0.027
+    },
+    {
+     "id": "model_units",
+     "file": "tables/deltadtm/model/d22_climate_2026/model_units.parquet",
+     "mb": 0.008
+    },
+    {
+     "id": "station_scores",
+     "file": "tables/deltadtm/model/d22_climate_2026/station_scores.parquet",
+     "mb": 0.009
+    },
+    {
+     "id": "station_sim",
+     "file": "tables/deltadtm/model/d22_climate_2026/station_sim.parquet",
+     "mb": 0.013
+    }
+   ],
+   "rasters": [
+    {
+     "id": "season_mean_depth",
+     "file": "raster/deltadtm/model/d22_climate_2026/season_mean_depth.pmtiles",
+     "mb": 0.106,
+     "range": [
+      0,
+      100
+     ],
+     "label": {
+      "en": "Mean water-table depth, dry season (cm)",
+      "id": "Kedalaman muka air rata-rata, musim kering (cm)"
+     }
+    },
+    {
+     "id": "days_deeper_40cm",
+     "file": "raster/deltadtm/model/d22_climate_2026/days_deeper_40cm.pmtiles",
+     "mb": 0.071,
+     "range": [
+      0,
+      122
+     ],
+     "label": {
+      "en": "Days deeper than 40 cm in the dry season",
+      "id": "Hari lebih dalam dari 40 cm pada musim kering"
+     }
+    },
+    {
+     "id": "depth_end",
+     "file": "raster/deltadtm/model/d22_climate_2026/depth_end.pmtiles",
+     "mb": 0.065,
+     "range": [
+      0,
+      150
+     ],
+     "label": {
+      "en": "Water-table depth at the end of the run (cm)",
+      "id": "Kedalaman muka air di akhir simulasi (cm)"
+     }
+    }
+   ],
+   "station_scores": {
+    "all": {
+     "model": {
+      "n": 51,
+      "spearman": -0.2004637019196871,
+      "bias_cm": -11.708313460371238,
+      "rmse_cm": 14.826289067783842,
+      "mae_cm": 11.923599991938643
+     },
+     "constant": {
+      "n": 51,
+      "spearman": null,
+      "bias_cm": 0.2613853847884059,
+      "rmse_cm": 3.378114827806126,
+      "mae_cm": 2.0121219900143523
+     },
+     "distance": {
+      "n": 51,
+      "spearman": 0.11728506787330316,
+      "bias_cm": -1.0240174721248503e-14,
+      "rmse_cm": 3.3504387871944075,
+      "mae_cm": 1.9707716772789143
+     },
+     "distance_fit": {
+      "slope_cm_per_log_m": 0.5285417234981344,
+      "intercept_cm": 38.586103246195904
+     }
+    },
+    "unflagged": {
+     "model": {
+      "n": 0
+     },
+     "constant": {
+      "n": 0
+     },
+     "distance": {
+      "n": 0
+     },
+     "distance_fit": {
+      "slope_cm_per_log_m": 0.0,
+      "intercept_cm": null
+     }
+    },
+    "gate": {
+     "checks": {
+      "spearman >= 0.3": null,
+      "spearman above the distance prediction": null,
+      "rmse below the constant prediction": null,
+      "median station r >= 0.5": null,
+      "community level and drawdown within 20 cm": null,
+      "managed supply within x2 or 50 mm of the station deficit": true
+     },
+     "pass": true
+    },
+    "dynamics": {
+     "median_station_r": null,
+     "n_stations": 51,
+     "n_unflagged": 0,
+     "khg_mean_r": null,
+     "khg_mean_bias_cm": null,
+     "obs_khg_mean_cm": null,
+     "sim_khg_mean_cm": null,
+     "drawdown_spearman": null,
+     "obs_drawdown_median_cm": null,
+     "sim_drawdown_median_cm": null
+    },
+    "by_kind": {},
+    "excluded": {
+     "on_fixed_cell": 18,
+     "outside_khg": 0
+    },
+    "on_leaky_canal_cell": 0,
+    "supply_check": {
+     "period": "2026-06-01 to 2026-10-09",
+     "station_deficit_mm": 290.238,
+     "model_canal_in_mm": 2.7084501537261083,
+     "model_edge_in_mm": 0.17892270611050184,
+     "model_managed_supply_mm": 237.33803920940284,
+     "model_managed_supply_m3": 697413081.4560461
+    }
+   }
+  }
+ ],
+ "missing": [
+  {
+   "id": "sekat_existing",
+   "group": "interventions",
+   "label": {
+    "en": "Existing blocks, assessed",
+    "id": "Sekat eksisting, dinilai"
+   },
+   "source": "Team run, earlier method (all sub-KHG processed)",
+   "dem": "demnas_full",
+   "file": "vector/demnas_full/sekat_existing.pmtiles",
+   "reason": "not in the delivery",
+   "step": "team"
+  },
+  {
+   "id": "relief",
+   "dem": "demnas_full",
+   "reason": "no DTM in the delivery",
+   "step": "team"
+  }
+ ],
+ "dem_labels": {
+  "demnas_full": {
+   "en": "DEMNAS (full sub-KHG)",
+   "id": "DEMNAS (seluruh sub-KHG)"
+  },
+  "worlddem_full": {
+   "en": "WorldDEM 12 m (full sub-KHG)",
+   "id": "WorldDEM 12 m (seluruh sub-KHG)"
+  }
+ }
+}

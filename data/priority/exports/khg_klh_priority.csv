@@ -1,0 +1,866 @@
+khg_code,khg_name,area_ha_sk,island,provinces,klh_337,klh_337_no,klh_337_team,klh_337_area_ha,klh_337_c01_ha,klh_337_c02_ha,klh_337_c03_ha,klh_337_c04_ha,klh_priority_362,priority_reason,priority_rank,target_village_ha,priority_ha,priority_in_target_villages_ha
+KHG.11-12.01,KHG Lae Silabuhan - Lae Tambiski,12834.5402396,Pulau Sumatera,"Aceh, Sumatera Utara",True,21,Tim 1,7343.0,634.0,85.0,3467.0,3156.0,True,target villages + SKEG 2024 damage,129,8015.03,3260.99,1915.34
+KHG.11.01-10-23.01,KHG Krueng Trumon - Lae Tarap,118136.418271,Pulau Sumatera,Aceh,True,15,Tim 1,37015.0,505.0,797.0,4127.0,31587.0,True,target villages + SKEG 2024 damage,169,37015.31,1502.88,1483.77
+KHG.11.01.01,KHG Krueng Baru - Krueng Aluetho,971.592481929,Pulau Sumatera,Aceh,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.11.01.02,KHG Alue Baksukon - Alue Semerah,600.07992426,Pulau Sumatera,Aceh,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.11.01.03,KHG Alue Semerah - Krueng Batee,1474.13552625,Pulau Sumatera,Aceh,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.11.01.04,KHG Krueng Batee - Krueng Kluet,1083.68131307,Pulau Sumatera,Aceh,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.11.01.05,KHG Krueng Kluet - Krueng Lembang,436.181758263,Pulau Sumatera,Aceh,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.11.01.06,KHG Krueng Lembang - Krueng Bakongan,15745.261941,Pulau Sumatera,Aceh,True,3,Tim 1,5271.0,0.0,559.0,0.0,4713.0,True,target villages + SKEG 2024 damage,250,5271.18,213.44,213.44
+KHG.11.01.07,KHG Krueng Trumon,850.872970071,Pulau Sumatera,Aceh,True,14,Tim 1,89.0,0.0,0.0,0.0,89.0,True,target villages,,88.54,0.0,0.0
+KHG.11.01.08,KHG Krueng Naca - Krueng Kapaksesak,2450.09628427,Pulau Sumatera,Aceh,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.11.05-14.01,KHG Krueng Pneunom - Krueng Lambalik,8314.75665513,Pulau Sumatera,Aceh,True,8,Tim 1,8067.0,952.0,350.0,2926.0,3840.0,True,target villages + SKEG 2024 damage,142,8067.1,2675.0,2675.0
+KHG.11.05-15.01,KHG Krueng Meureubo - Krueng Matee,5044.03505271,Pulau Sumatera,Aceh,True,5,Tim 1,4894.0,312.0,106.0,3064.0,1412.0,True,target villages + SKEG 2024 damage,150,4893.81,2314.96,2241.09
+KHG.11.05.01,KHG Krueng Wonki - Krueng Gubon,10394.5162622,Pulau Sumatera,Aceh,True,16,Tim 1,8688.0,48.0,240.0,4136.0,4263.0,True,target villages + SKEG 2024 damage,126,8687.51,3524.9,3474.3
+KHG.11.05.02,KHG Krueng Gubon - Krueng Meureubo,12505.2694681,Pulau Sumatera,Aceh,True,2,Tim 1,7151.0,214.0,1105.0,1535.0,4296.0,True,target villages + SKEG 2024 damage,170,7150.75,1496.79,1478.96
+KHG.11.10-23.01,KHG Lae Tarap - Lae Sulampi,4726.09344968,Pulau Sumatera,Aceh,True,19,Tim 1,1120.0,0.0,0.0,899.0,221.0,True,target villages,,1119.77,0.0,0.0
+KHG.11.10.01,KHG Lae Sulampi - Lae Rimo,728.978671823,Pulau Sumatera,Aceh,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.11.10.02,KHG Lae Sulampi - Lae Gosong,17310.9136752,Pulau Sumatera,Aceh,True,17,Tim 1,11851.0,0.0,0.0,8169.0,3682.0,True,target villages + SKEG 2024 damage,120,11851.2,4292.41,4246.61
+KHG.11.12.01,KHG Alue Getah - Krueng Le Mirah,8045.55663014,Pulau Sumatera,Aceh,True,1,Tim 1,102.0,0.0,0.0,75.0,27.0,True,target villages,,102.2,0.0,0.0
+KHG.11.12.02,KHG Krueng Surin - Krueng Batee,14278.0705291,Pulau Sumatera,Aceh,True,9,Tim 1,8206.0,13.0,20.0,4994.0,3179.0,True,target villages + SKEG 2024 damage,183,8205.84,1023.03,1023.03
+KHG.11.12.03,KHG Krueng Susoh - Krueng Batee,483.720044067,Pulau Sumatera,Aceh,False,,,,,,,,True,target villages,,2.75,0.0,0.0
+KHG.11.12.04,KHG Krueng Susoh,1693.79296047,Pulau Sumatera,Aceh,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.11.12.05,KHG Krueng Manggeng - Krueng Baru,1344.24895388,Pulau Sumatera,Aceh,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.11.14.01,KHG Krueng Ligan - Krueng Masem,3033.49467127,Pulau Sumatera,Aceh,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.11.14.02,KHG Krueng Masem,2877.62802391,Pulau Sumatera,Aceh,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.11.14.03,KHG Krueng Peungapet,4104.45768064,Pulau Sumatera,Aceh,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.11.14.04,KHG Krueng Pango - Krueng On,7825.71747786,Pulau Sumatera,Aceh,True,7,Tim 1,2132.0,0.0,170.0,0.0,1962.0,True,target villages + SKEG 2024 damage,322,2131.7,4.03,4.03
+KHG.11.14.05,KHG Krueng On - Krueng Pneunom,6769.40352784,Pulau Sumatera,Aceh,True,6,Tim 1,22.0,0.0,0.0,0.0,22.0,True,target villages,,22.43,0.0,0.0
+KHG.11.15.01,KHG Krueng Matee - Krueng Teumiyee,4258.92587468,Pulau Sumatera,Aceh,True,4,Tim 1,1664.0,0.0,0.0,1588.0,76.0,True,target villages,,1663.57,0.0,0.0
+KHG.11.15.02,KHG Krueng Teumiyee - Krueng Tadu,11976.9534169,Pulau Sumatera,Aceh,True,12,Tim 1,11232.0,116.0,1.0,9281.0,1834.0,True,target villages + SKEG 2024 damage,97,11231.74,5736.26,5736.26
+KHG.11.15.03,KHG Krueng Tadu - Krueng Tripa,14025.6653831,Pulau Sumatera,Aceh,True,11,Tim 1,10059.0,35.0,0.0,7126.0,2897.0,True,target villages + SKEG 2024 damage,124,10058.59,3952.02,3886.2
+KHG.11.15.04,KHG Krueng Tripa - Krueng Seuneuam,16171.9180144,Pulau Sumatera,Aceh,True,13,Tim 1,15916.0,614.0,36.0,10570.0,4695.0,True,target villages + SKEG 2024 damage,96,15916.17,5785.23,5785.23
+KHG.11.15.05,KHG Krueng Surin - Krueng Muling,22238.730358,Pulau Sumatera,Aceh,True,10,Tim 1,21904.0,109.0,13.0,12446.0,9335.0,True,target villages + SKEG 2024 damage,77,21903.74,8554.16,8554.16
+KHG.11.23.01,KHG Lae Puncu - Lae Tarap,1831.04908063,Pulau Sumatera,Aceh,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.11.23.02,KHG Lae Rih - Lae Puncu,1586.34262664,Pulau Sumatera,Aceh,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.11.23.03,KHG Lae Kumbi,1098.89800045,Pulau Sumatera,Aceh,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.11.23.04,KHG Lae Tarap - Lae Kumbi,2029.43128648,Pulau Sumatera,Aceh,True,18,Tim 1,1203.0,198.0,14.0,808.0,184.0,True,target villages,,1203.05,0.0,0.0
+KHG.12-14.01,KHG Sungai Barumun - Sungai Kubu,251333.520902,Pulau Sumatera,"Riau, Sumatera Utara",True,44,Tim 1,113798.0,3846.0,759.0,84557.0,24635.0,True,target villages + SKEG 2024 damage,9,232193.17,64749.71,62285.8
+KHG.12.01.01,KHG Lae Sibungkuang,8860.07295393,Pulau Sumatera,"Aceh, Sumatera Utara",True,20,Tim 1,93.0,0.0,0.0,82.0,11.0,True,target villages + SKEG 2024 damage,254,8748.67,197.25,197.25
+KHG.12.01.02,KHG Lae Sibungkuang - Aek Tarutungol,3268.78128639,Pulau Sumatera,Sumatera Utara,True,34,Tim 1,619.0,0.0,0.0,334.0,285.0,True,target villages + SKEG 2024 damage,272,619.33,112.97,110.46
+KHG.12.01.03,KHG Lae Rapus - Aek Pardomuan,1399.88626707,Pulau Sumatera,Sumatera Utara,True,33,Tim 1,1352.0,0.0,0.0,1315.0,37.0,True,target villages + SKEG 2024 damage,282,1352.03,76.46,76.46
+KHG.12.01.04,KHG Aek Sordang - Aek Kalang,2010.90971118,Pulau Sumatera,Sumatera Utara,True,29,Tim 1,1491.0,34.0,10.0,1125.0,322.0,True,target villages + SKEG 2024 damage,241,1490.91,296.08,296.08
+KHG.12.01.05,KHG Aek Maros - Aek Pandan,4601.13531594,Pulau Sumatera,Sumatera Utara,True,26,Tim 1,4597.0,10.0,0.0,3583.0,1004.0,True,target villages + SKEG 2024 damage,270,4597.04,123.48,123.48
+KHG.12.01.06,KHG Aek Garoga - Batang Toru,2726.59274032,Pulau Sumatera,Sumatera Utara,True,22,Tim 1,2721.0,147.0,0.0,2058.0,516.0,True,target villages + SKEG 2024 damage,262,2720.93,168.58,168.58
+KHG.12.03.01,KHG Aek Na Birong - Aek Batang Toru,16767.9040514,Pulau Sumatera,Sumatera Utara,True,27,Tim 1,16183.0,21.0,170.0,11597.0,4396.0,True,target villages + SKEG 2024 damage,131,16183.48,3144.93,3114.32
+KHG.12.09-23.01,KHG Sungai Asahan - Sungai Leidong,88666.1803149,Pulau Sumatera,Sumatera Utara,True,35,Tim 1,67630.0,280.0,177.0,52822.0,14351.0,True,target villages + SKEG 2024 damage,46,67629.7,15098.81,14170.89
+KHG.12.09-23.02,KHG Sungai Leidong - Sungai Kuala,33199.4501828,Pulau Sumatera,Sumatera Utara,True,41,Tim 1,25585.0,81.0,129.0,19397.0,5979.0,True,target villages + SKEG 2024 damage,81,25585.18,8068.57,7359.1
+KHG.12.10-22.01,KHG Sungai Kualuh Bilah - Sungai Barumun,77619.0955066,Pulau Sumatera,Sumatera Utara,True,39,Tim 1,67474.0,692.0,439.0,49535.0,16808.0,True,target villages + SKEG 2024 damage,30,67474.12,26753.09,26753.09
+KHG.12.10-23.01,KHG Sungai Kuo - Sungai Kualuh Bilah,74601.2968799,Pulau Sumatera,Sumatera Utara,True,40,Tim 1,70181.0,568.0,254.0,52615.0,16745.0,True,target villages + SKEG 2024 damage,42,70180.97,16490.36,16382.63
+KHG.12.10-23.02,KHG Sungai Marbau - Sungai Kualuh Bilah,11863.9111414,Pulau Sumatera,Sumatera Utara,True,42,Tim 1,11862.0,56.0,107.0,6532.0,5168.0,True,target villages + SKEG 2024 damage,222,11862.21,478.74,478.74
+KHG.12.13.01,KHG Batang Toru - Aek Maraitgadang,2041.63217415,Pulau Sumatera,Sumatera Utara,True,32,Tim 1,2020.0,0.0,0.0,1013.0,1007.0,True,target villages + SKEG 2024 damage,295,2020.19,50.11,50.11
+KHG.12.13.02,KHG Aek Maraitgadang - Batang Maraitgodang,1500.05805318,Pulau Sumatera,Sumatera Utara,True,25,Tim 1,1499.0,0.0,0.0,1157.0,343.0,True,target villages + SKEG 2024 damage,277,1499.33,96.17,96.17
+KHG.12.13.03,KHG Aek Maraitgadang - Aek Sikapas,2360.46128367,Pulau Sumatera,Sumatera Utara,True,24,Tim 1,255.0,0.0,0.0,220.0,36.0,True,target villages + SKEG 2024 damage,216,255.34,554.42,17.85
+KHG.12.13.04,KHG Aek Siriam - Batang Singkuang,4552.86859416,Pulau Sumatera,Sumatera Utara,True,28,Tim 1,3642.0,89.0,12.0,2781.0,760.0,True,target villages + SKEG 2024 damage,201,3641.83,711.0,711.0
+KHG.12.13.05,KHG Batang Singkuang - Nainjan Nu Godang,20381.8456142,Pulau Sumatera,Sumatera Utara,True,31,Tim 1,18844.0,200.0,110.0,11769.0,6765.0,True,target villages + SKEG 2024 damage,156,18844.04,1918.29,1915.79
+KHG.12.13.06,KHG Sungai Nata - Sungai Sinunukan,2727.62726851,Pulau Sumatera,Sumatera Utara,True,43,Tim 1,1624.0,0.0,0.0,1306.0,319.0,True,target villages + SKEG 2024 damage,305,1624.28,27.41,11.05
+KHG.12.13.07,KHG Batang Batahan - Batang Tamak,3730.64464758,Pulau Sumatera,Sumatera Utara,True,30,Tim 1,3573.0,0.0,0.0,3319.0,255.0,True,target villages + SKEG 2024 damage,256,3573.4,183.02,183.02
+KHG.12.16.01,KHG Aek Sulpi - Aek Sibundong,6542.03752372,Pulau Sumatera,Sumatera Utara,False,,,,,,,,True,SKEG 2024 damage,323,0.0,3.19,0.0
+KHG.12.16.02,KHG Aek Panggainsira - Aek Arong,3006.72989836,Pulau Sumatera,Sumatera Utara,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.12.17.01,KHG Aek Silang - Lae Renun,554.020122512,Pulau Sumatera,Sumatera Utara,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.12.22.01,KHG Sungai Barumun - Sungai Mabar,5188.64433383,Pulau Sumatera,Sumatera Utara,True,36,Tim 1,5189.0,12.0,0.0,3416.0,1760.0,True,target villages + SKEG 2024 damage,182,5188.64,1049.43,1049.43
+KHG.12.23.01,KHG Sungai Kanopan - Sungai Kuala,9196.37358195,Pulau Sumatera,Sumatera Utara,True,37,Tim 1,5675.0,0.0,0.0,5034.0,641.0,True,target villages + SKEG 2024 damage,316,5675.44,6.81,0.07
+KHG.12.23.02,KHG Sungai Kuala - Sungai Kuo,20798.5333826,Pulau Sumatera,Sumatera Utara,True,38,Tim 1,20799.0,21.0,8.0,18921.0,1848.0,True,target villages + SKEG 2024 damage,74,20798.53,8878.84,8878.84
+KHG.13-17.01,KHG Aek Silaut - Aek Menjuto,13084.7009114,Pulau Sumatera,"Bengkulu, Sumatera Barat",True,149,Tim 3,5265.0,0.0,0.0,3181.0,2084.0,True,target villages + SKEG 2024 damage,114,12272.49,4659.1,4659.1
+KHG.13.01.01,KHG Aek Tapan - Aek Silaut,48508.3342438,Pulau Sumatera,Sumatera Barat,True,150,Tim 3,48425.0,2394.0,2974.0,31805.0,11252.0,True,target villages + SKEG 2024 damage,34,48425.24,25341.09,25341.09
+KHG.13.01.02,KHG Aek Lunang - Aek Sidang,14098.6783923,Pulau Sumatera,Sumatera Barat,True,23,Tim 1,13944.0,41.0,29.0,11048.0,2826.0,True,target villages + SKEG 2024 damage,121,13944.32,4106.11,4106.11
+KHG.13.01.03,KHG Aek Ubar - Aek Lunang,23274.2946224,Pulau Sumatera,Sumatera Barat,True,152,Tim 3,12997.0,248.0,5385.0,829.0,6535.0,True,target villages + SKEG 2024 damage,176,12996.88,1192.48,1051.63
+KHG.13.01.04,KHG Aek Tapan - Aek Ubar,7059.0905765,Pulau Sumatera,Sumatera Barat,True,151,Tim 3,5714.0,1.0,62.0,2564.0,3086.0,True,target villages + SKEG 2024 damage,161,5713.77,1718.8,1718.8
+KHG.13.01.05,KHG Muara Sakai - Aek Bentayan,4859.11870263,Pulau Sumatera,Sumatera Barat,True,158,Tim 3,4445.0,0.0,0.0,3710.0,735.0,True,target villages + SKEG 2024 damage,147,4445.43,2448.0,2424.31
+KHG.13.01.06,KHG Bah Kambang - Batang Airlakitan,3963.72224773,Pulau Sumatera,Sumatera Barat,False,,,,,,,,True,target villages,,5.44,0.0,0.0
+KHG.13.01.07,KHG Sungai Sangku - Bah Kambang,4853.09387292,Pulau Sumatera,Sumatera Barat,True,159,Tim 3,4406.0,0.0,0.0,3251.0,1155.0,True,target villages + SKEG 2024 damage,160,4406.26,1788.67,1736.16
+KHG.13.06-12.01,KHG Sungai Tabat - Batang Masangkiri,15353.9829899,Pulau Sumatera,Sumatera Barat,True,160,Tim 3,15318.0,23.0,0.0,14189.0,1106.0,True,target villages + SKEG 2024 damage,106,15318.34,4968.86,4968.86
+KHG.13.06.01,KHG Bah Antokan - Sungai Tiku,3950.35947979,Pulau Sumatera,Sumatera Barat,True,153,Tim 3,3950.0,0.0,13.0,2298.0,1639.0,True,target villages + SKEG 2024 damage,192,3950.36,860.72,860.72
+KHG.13.06.02,KHG Batang Masangkiri - Bah Antokan,3169.90077155,Pulau Sumatera,Sumatera Barat,True,157,Tim 3,3170.0,0.0,0.0,3060.0,110.0,True,target villages + SKEG 2024 damage,223,3169.9,459.1,459.1
+KHG.13.12.01,KHG Bah Btung - Sungai Tabat,7608.14468741,Pulau Sumatera,Sumatera Barat,True,154,Tim 3,7608.0,0.0,0.0,6999.0,610.0,True,target villages + SKEG 2024 damage,134,7608.14,3004.56,3004.56
+KHG.13.12.02,KHG Bah Mandiangin - Bah Btung,3096.64998543,Pulau Sumatera,Sumatera Barat,True,155,Tim 3,3097.0,0.0,0.0,2533.0,564.0,True,target villages + SKEG 2024 damage,171,3096.65,1449.17,1449.17
+KHG.13.12.03,KHG Batang Ampu - Bah Mandiangin,5475.62981503,Pulau Sumatera,Sumatera Barat,True,156,Tim 3,5443.0,0.0,0.0,4572.0,871.0,True,target villages + SKEG 2024 damage,212,5442.51,566.15,566.15
+KHG.14-15.01,KHG Sungai Batang - Sungai Tungkal,84345.79874110002,Pulau Sumatera,"Jambi, Riau",True,100,Tim 2,22557.0,235.0,55.0,16434.0,5833.0,True,target villages + SKEG 2024 damage,57,51947.58,11964.75,11083.56
+KHG.14.01-03-06-08.01,KHG Sungai Rokan Kiri - Sungai Mandau,222561.746986,Pulau Sumatera,Riau,True,93,Tim 2,155733.0,1241.0,78.0,146126.0,8288.0,True,target villages + SKEG 2024 damage,13,155732.91,49085.44,19867.94
+KHG.14.01-05-11.01,KHG Sungai Kiyap - Sungai Kerinci,58476.594891,Pulau Sumatera,Riau,True,80,Tim 2,47458.0,2318.0,122.0,35992.0,9026.0,True,target villages + SKEG 2024 damage,37,47458.05,22263.88,22261.35
+KHG.14.01-05.01,KHG Sungai Kiyap - Sungai Kampar Kiri,72672.4987493,Pulau Sumatera,Riau,True,79,Tim 2,56284.0,1033.0,94.0,47367.0,7789.0,True,target villages + SKEG 2024 damage,39,56283.84,20182.57,20182.57
+KHG.14.01-05.02,KHG Sungai Kampar Kiri - Sungai Segati,20210.1155106,Pulau Sumatera,Riau,True,77,Tim 2,16519.0,867.0,78.0,11997.0,3578.0,True,target villages + SKEG 2024 damage,112,16518.73,4682.38,4612.28
+KHG.14.01-11.01,KHG Sungai Tapung Kiri - Sungai Kiyap,46862.9001744,Pulau Sumatera,Riau,True,98,Tim 2,41339.0,2926.0,2282.0,16379.0,19753.0,True,target villages + SKEG 2024 damage,80,41338.96,8303.96,8303.96
+KHG.14.01.01,KHG Sungai Kampar Kiri - Sungai Lipai,3976.85603231,Pulau Sumatera,Riau,True,76,Tim 2,3711.0,0.0,0.0,3493.0,218.0,True,target villages + SKEG 2024 damage,175,3711.14,1303.38,1303.38
+KHG.14.01.02,KHG Sungai Lipai - Sungai Bunut,4624.28796384,Pulau Sumatera,Riau,True,83,Tim 2,4452.0,0.0,0.0,4127.0,324.0,True,target villages + SKEG 2024 damage,178,4451.78,1171.73,1171.73
+KHG.14.02-04-05.01,KHG Sungai Kampar - Sungai Gaung,710822.816739,Pulau Sumatera,Riau,True,75,Tim 2,654901.0,17901.0,11062.0,346502.0,279437.0,True,target villages + SKEG 2024 damage,2,654901.21,239881.61,228612.9
+KHG.14.02-04.01,KHG Sungai Gaung - Sungai Batangtuaka,315357.314887,Pulau Sumatera,Riau,True,67,Tim 2,299143.0,12072.0,4148.0,145265.0,137657.0,True,target villages + SKEG 2024 damage,5,299142.61,103175.84,101170.44
+KHG.14.02-04.02,KHG Sungai Indragiri - Sungai Batang,82821.9061722,Pulau Sumatera,Riau,True,69,Tim 2,45705.0,371.0,271.0,28104.0,16960.0,True,target villages + SKEG 2024 damage,35,45705.31,25164.51,15089.06
+KHG.14.02-04.03,KHG Sungai Batang - Sungai Keritang 1,47439.9369762,Pulau Sumatera,Riau,True,60,Tim 2,45528.0,631.0,943.0,24112.0,19842.0,True,target villages + SKEG 2024 damage,54,45528.39,12278.49,11751.51
+KHG.14.02.01,KHG Sungai Indragiri - Sungai Belilas,23869.1993173,Pulau Sumatera,Riau,True,70,Tim 2,11191.0,0.0,0.0,9546.0,1645.0,True,target villages + SKEG 2024 damage,138,11191.34,2758.78,2653.91
+KHG.14.02.02,KHG Sungai Indragiri - Sungai Ekok,4264.3737358,Pulau Sumatera,Riau,True,72,Tim 2,918.0,0.0,0.0,761.0,158.0,True,target villages + SKEG 2024 damage,309,918.11,16.32,16.32
+KHG.14.02.03,KHG Sungai Indragiri,1934.92720681,Pulau Sumatera,Riau,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.14.02.04,KHG Sungai Indragiri - Sungai Cenaku,32627.2909078,Pulau Sumatera,Riau,True,71,Tim 2,25881.0,1596.0,188.0,16500.0,7598.0,True,target villages + SKEG 2024 damage,59,25881.38,11790.87,11027.02
+KHG.14.03-07-12.01,KHG Sungai Rokan - Sungai Siak Kecil,832458.327802,Pulau Sumatera,Riau,True,92,Tim 2,651836.0,29724.0,25088.0,258298.0,338726.0,True,target villages + SKEG 2024 damage,3,651836.48,179861.75,162686.43
+KHG.14.03-08.01,KHG Sungai Siak Kecil - Sungai Siak,163786.611324,Pulau Sumatera,Riau,True,97,Tim 2,135805.0,4573.0,2638.0,79498.0,49096.0,True,target villages + SKEG 2024 damage,17,135805.29,43282.63,36208.89
+KHG.14.03-08.02,KHG Sungai Bunut - Sungai Umban,17426.4938774,Pulau Sumatera,Riau,True,64,Tim 2,17304.0,390.0,82.0,10665.0,6168.0,True,target villages + SKEG 2024 damage,101,17304.18,5545.04,5531.29
+KHG.14.03.01,KHG Pulau Rupat,118479.268262,Pulau Sumatera,Riau,True,54,Tim 1,115378.0,19532.0,4314.0,63069.0,28462.0,True,target villages + SKEG 2024 damage,14,115377.77,45113.18,45113.18
+KHG.14.03.02,KHG Pulau Bengkalis,90686.0892291,Pulau Sumatera,Riau,True,46,Tim 1,87328.0,6180.0,2212.0,65739.0,13196.0,True,target villages + SKEG 2024 damage,11,87327.65,55297.04,55253.49
+KHG.14.04.01,KHG Sungai Pelanduk - Sungai Tumu,42852.8576691,Pulau Sumatera,Riau,True,90,Tim 2,36990.0,249.0,14.0,32394.0,4333.0,True,target villages + SKEG 2024 damage,41,36989.66,17659.7,17485.78
+KHG.14.04.02,KHG Sungai Senama Kecil - Sungai Rajaelok,12431.042959,Pulau Sumatera,Riau,True,95,Tim 2,5113.0,0.0,0.0,2211.0,2902.0,True,target villages + SKEG 2024 damage,236,5113.14,333.95,101.08
+KHG.14.04.03,KHG Sungai Merusi - Sungai Belanak,5585.09430458,Pulau Sumatera,Riau,True,86,Tim 2,5584.0,0.0,0.0,2109.0,3475.0,True,target villages + SKEG 2024 damage,237,5583.91,320.79,320.79
+KHG.14.04.04,KHG Sungai Kanan - Sungai Buluh,13001.6468359,Pulau Sumatera,Riau,True,78,Tim 2,2990.0,0.0,0.0,1286.0,1705.0,True,target villages + SKEG 2024 damage,319,2990.49,4.79,0.91
+KHG.14.04.05,KHG Sungai Pergam - Sungai Pucuk Besar,8992.35147039,Pulau Sumatera,Riau,False,,,,,,,,True,SKEG 2024 damage,300,0.0,36.94,0.0
+KHG.14.04.06,KHG Sungai Boang - Sungai Basira,8039.19760989,Pulau Sumatera,Riau,True,63,Tim 2,8039.0,0.0,0.0,3251.0,4788.0,True,target villages + SKEG 2024 damage,257,8039.2,180.11,180.11
+KHG.14.04.07,KHG Sungai Rotoh - Sungai Bang,5130.49138373,Pulau Sumatera,Riau,True,94,Tim 2,5130.0,0.0,0.0,3397.0,1733.0,True,target villages + SKEG 2024 damage,209,5130.49,594.19,594.19
+KHG.14.04.08,KHG Sungai Indragiri - Sungai Enok,56002.536773,Pulau Sumatera,Riau,True,73,Tim 2,24387.0,94.0,63.0,12060.0,12170.0,True,target villages + SKEG 2024 damage,206,24386.78,613.14,453.62
+KHG.14.04.09,KHG Sungai Indragiri - Sungai Tuana,16257.1912087,Pulau Sumatera,Riau,True,74,Tim 2,6589.0,0.0,446.0,1472.0,4671.0,True,target villages + SKEG 2024 damage,244,6589.17,280.85,280.85
+KHG.14.04.10,KHG Sungai Nidir - Sungai Enok,18957.4236434,Pulau Sumatera,Riau,True,88,Tim 2,16911.0,0.0,0.0,13744.0,3167.0,True,target villages + SKEG 2024 damage,117,16911.06,4391.78,4296.13
+KHG.14.04.11,KHG Sungai Enok - Sungai Batang,96169.2727142,Pulau Sumatera,Riau,True,65,Tim 2,72557.0,1781.0,387.0,55070.0,15319.0,True,target villages + SKEG 2024 damage,25,72557.32,33230.16,33021.76
+KHG.14.04.12,KHG Sungai Batang - Sungai Keritang 2,15248.7498008,Pulau Sumatera,Riau,True,61,Tim 2,14035.0,5.0,73.0,7726.0,6231.0,True,target villages + SKEG 2024 damage,111,14035.26,4697.32,4697.32
+KHG.14.04.13,KHG Sungai Tumu,946.185888976,Pulau Sumatera,Riau,True,99,Tim 2,946.0,0.0,0.0,0.0,946.0,True,target villages,,946.07,0.0,0.0
+KHG.14.05-08.01,KHG Sungai Siak - Sungai Kampar,722929.073437,Pulau Sumatera,Riau,True,96,Tim 2,705817.0,16501.0,4583.0,298494.0,386239.0,True,target villages + SKEG 2024 damage,1,705817.08,259769.28,257101.09
+KHG.14.05.01,KHG Pulau Mendol,30995.4418402,Pulau Sumatera,Riau,True,48,Tim 1,30662.0,1257.0,3001.0,14492.0,11912.0,True,target villages + SKEG 2024 damage,76,30662.27,8621.85,8621.85
+KHG.14.05.02,KHG Pulau Serapung,2870.28088327,Pulau Sumatera,Riau,True,55,Tim 1,2784.0,0.0,32.0,791.0,1961.0,True,target villages + SKEG 2024 damage,313,2784.0,8.63,8.63
+KHG.14.05.03,KHG Pulau Labu,590.086172566,Pulau Sumatera,Riau,True,47,Tim 1,534.0,0.0,0.0,0.0,534.0,True,target villages,,534.2,0.0,0.0
+KHG.14.05.04,KHG Pulau Muda,3419.76055349,Pulau Sumatera,Riau,True,51,Tim 1,3420.0,0.0,0.0,0.0,3420.0,True,target villages,,3419.76,0.0,0.0
+KHG.14.05.05,KHG Sungai Kiyap - Sungai Kerumutan,103161.724818,Pulau Sumatera,Riau,True,81,Tim 2,100579.0,5952.0,1229.0,75836.0,17561.0,True,target villages + SKEG 2024 damage,10,100578.87,55833.19,54206.11
+KHG.14.05.06,KHG Sungai Nilo - Sungai Napuh,25340.9413349,Pulau Sumatera,Riau,True,89,Tim 2,18344.0,58.0,2111.0,4197.0,11978.0,True,target villages + SKEG 2024 damage,197,18344.21,810.0,780.51
+KHG.14.05.07,KHG Sungai Gongan - Sungai Nilo,23740.1440457,Pulau Sumatera,Riau,True,68,Tim 2,17178.0,2967.0,297.0,9387.0,4527.0,True,target villages + SKEG 2024 damage,118,17177.79,4318.47,4222.34
+KHG.14.06-07.01,KHG Batang Rokan Kiri - Batang Sosa,58997.8958784,Pulau Sumatera,Riau,True,45,Tim 1,34463.0,1949.0,205.0,24773.0,7536.0,True,target villages + SKEG 2024 damage,91,34462.8,6580.89,4133.29
+KHG.14.07.01,KHG Sungai Rokan - Sungai Kubu,142165.193938,Pulau Sumatera,Riau,True,91,Tim 2,111975.0,6494.0,3192.0,69386.0,32902.0,True,target villages + SKEG 2024 damage,26,111974.62,32334.2,27728.98
+KHG.14.07.02,KHG Sungai Bangko - Sungai Rokan,45633.7879141,Pulau Sumatera,Riau,True,58,Tim 2,35263.0,42.0,690.0,15683.0,18848.0,True,target villages + SKEG 2024 damage,87,35262.95,7348.23,7348.23
+KHG.14.07.03,KHG Sungai Bangko - Sungai Rokan Kanan,43367.0763302,Pulau Sumatera,Riau,True,59,Tim 2,18703.0,106.0,26.0,13267.0,5304.0,True,target villages + SKEG 2024 damage,75,18703.41,8647.55,4809.49
+KHG.14.08.01,KHG Sungai Belutu - Sungai Leko,8475.02640099,Pulau Sumatera,Riau,True,62,Tim 2,8469.0,1403.0,53.0,6772.0,241.0,True,target villages + SKEG 2024 damage,104,8469.46,5234.16,5233.3
+KHG.14.08.02,KHG Sungai Leko - Sungai Minas,9793.08675708,Pulau Sumatera,Riau,True,82,Tim 2,887.0,1.0,0.0,828.0,58.0,True,target villages + SKEG 2024 damage,113,886.64,4672.76,390.51
+KHG.14.08.03,KHG Sungai Minas - Sungai Mandiangin,5116.69702379,Pulau Sumatera,Riau,True,87,Tim 2,1254.0,5.0,7.0,818.0,424.0,True,target villages + SKEG 2024 damage,163,1254.02,1673.0,334.0
+KHG.14.08.04,KHG Sungai Mandiangin - Sungai Siak,17647.4506688,Pulau Sumatera,Riau,True,84,Tim 2,15401.0,886.0,138.0,9961.0,4415.0,True,target villages + SKEG 2024 damage,78,15400.8,8532.43,7780.24
+KHG.14.08.05,KHG Sungai Gasip - Sungai Siak,7856.39384482,Pulau Sumatera,Riau,True,66,Tim 2,7856.0,0.0,0.0,6704.0,1152.0,True,target villages + SKEG 2024 damage,133,7856.39,3029.66,3029.66
+KHG.14.08.06,KHG Sungai Mendawai - Sungai Gasip,4681.32610475,Pulau Sumatera,Riau,True,85,Tim 2,1584.0,0.0,0.0,1492.0,92.0,True,target villages + SKEG 2024 damage,248,1583.71,252.48,84.8
+KHG.14.10.01,KHG Pulau Padang,111286.267856,Pulau Sumatera,Riau,True,52,Tim 1,110837.0,1881.0,2286.0,44065.0,62604.0,True,target villages + SKEG 2024 damage,19,110836.89,40184.45,40184.45
+KHG.14.10.02,KHG Pulau Merbau,21601.1965243,Pulau Sumatera,Riau,True,50,Tim 1,14920.0,72.0,88.0,6150.0,8610.0,True,target villages + SKEG 2024 damage,127,14920.4,3492.28,3491.25
+KHG.14.10.03,KHG Pulau Tebing Tinggi,138060.598874,Pulau Sumatera,Riau,True,56,Tim 1,136129.0,2009.0,2339.0,52470.0,79310.0,True,target villages + SKEG 2024 damage,16,136128.62,44755.43,44755.43
+KHG.14.10.04,KHG Pulau Rangsang,88959.7799266,Pulau Sumatera,Riau,True,53,Tim 1,85445.0,6135.0,5465.0,46190.0,27655.0,True,target villages + SKEG 2024 damage,21,85444.54,38816.18,38816.18
+KHG.14.10.05,KHG Pulau Menggung,654.336059086,Pulau Sumatera,Riau,True,49,Tim 1,625.0,0.0,0.0,0.0,625.0,True,target villages,,624.76,0.0,0.0
+KHG.14.10.06,KHG Pulau Topang,2914.02241484,Pulau Sumatera,Riau,True,57,Tim 2,2845.0,45.0,175.0,1132.0,1493.0,True,target villages + SKEG 2024 damage,242,2845.23,291.37,291.37
+KHG.15-16.01,KHG Sungai Air Hitam Laut - Sungai Buntu Kecil,183856.369722,Pulau Sumatera,"Jambi, Sumatera Selatan",True,110,Tim 2,115551.0,5634.0,8476.0,20630.0,80811.0,True,target villages + SKEG 2024 damage,32,125475.0,26274.18,23870.1
+KHG.15-16.02,KHG Sungai Lalan - Sungai Merang,84090.8941808,Pulau Sumatera,"Jambi, Sumatera Selatan",True,111,Tim 2,3351.0,6.0,2.0,2466.0,876.0,True,target villages + SKEG 2024 damage,47,81593.66,14298.79,13520.91
+KHG.15.02-03.01,KHG Batang Tembei - Sungai Merak,29595.9923922,Pulau Sumatera,Jambi,True,102,Tim 2,19929.0,4111.0,1512.0,11615.0,2690.0,True,target villages + SKEG 2024 damage,92,19928.62,6318.84,4900.47
+KHG.15.02-03.02,KHG Batang Merangin - Batang Tembesi,20397.344683,Pulau Sumatera,Jambi,True,101,Tim 2,17595.0,285.0,94.0,15190.0,2026.0,True,target villages + SKEG 2024 damage,73,17594.57,9116.95,9116.95
+KHG.15.03.01,KHG Sungai Mesao - Aek Rawas,5182.35838608,Pulau Sumatera,Jambi,True,108,Tim 2,5031.0,0.0,0.0,4374.0,657.0,True,target villages + SKEG 2024 damage,153,5030.95,2066.45,2066.45
+KHG.15.05-07-10.01,KHG Sungai Mendahara - Sungai Batanghari,201382.802217,Pulau Sumatera,Jambi,True,107,Tim 2,177268.0,14897.0,14366.0,115006.0,33.0,True,target villages + SKEG 2024 damage,18,177268.31,40584.17,40583.99
+KHG.15.05-07.01,KHG Sungai Batanghari - Sungai Air Hitam Laut,189862.337173,Pulau Sumatera,Jambi,True,103,Tim 2,183933.0,17129.0,20460.0,57301.0,89042.0,True,target villages + SKEG 2024 damage,15,183933.08,44999.2,44985.14
+KHG.15.05.01,KHG Sungai Batanghari - Sungai Kampeh,59466.3822312,Pulau Sumatera,Jambi,True,104,Tim 2,42842.0,1974.0,46.0,35157.0,5665.0,True,target villages + SKEG 2024 damage,71,42842.11,9471.89,9471.89
+KHG.15.06-07.01,KHG Sungai Betara - Sungai Mendahara,84737.1282315,Pulau Sumatera,Jambi,True,106,Tim 2,56661.0,508.0,35.0,38795.0,17322.0,True,target villages + SKEG 2024 damage,100,56660.8,5546.07,5430.47
+KHG.15.06.01,KHG Sungai Pengabuan - Sungai Baung,32001.1349422,Pulau Sumatera,Jambi,True,109,Tim 2,32001.0,84.0,0.0,28972.0,2946.0,True,target villages + SKEG 2024 damage,56,32001.13,12137.51,12137.51
+KHG.15.06.02,KHG Sungai Baung - Sungai Betara,77859.33628410002,Pulau Sumatera,Jambi,True,105,Tim 2,38304.0,453.0,4.0,26191.0,11655.0,True,target villages + SKEG 2024 damage,109,38303.5,4821.38,4051.46
+KHG.15.10.01,KHG Sungai Batanghari - Sungai Mandahara,1133.68822655,Pulau Sumatera,Jambi,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.16.02-07.01,KHG Sungai Saleh - Sungai Sugihan,190230.336438,Pulau Sumatera,Sumatera Selatan,True,137,Tim 3,111244.0,36943.0,43589.0,18718.0,11994.0,True,target villages + SKEG 2024 damage,20,111243.74,38930.76,34385.31
+KHG.16.02.01,KHG Sungai Sugihan - Sungai Lumpur,636828.471381,Pulau Sumatera,Sumatera Selatan,True,140,Tim 3,296376.0,77372.0,49955.0,116795.0,52253.0,True,target villages + SKEG 2024 damage,7,296375.78,74850.65,39994.42
+KHG.16.02.02,KHG Sungai Ulakkedondong - Sungai Lumpur,71760.97138,Pulau Sumatera,Sumatera Selatan,True,143,Tim 3,22814.0,2424.0,7207.0,6121.0,7062.0,True,target villages + SKEG 2024 damage,82,22814.36,7900.68,2883.18
+KHG.16.02.03,KHG Sungai Talang - Sungai Ulakkedondong,10431.957109,Pulau Sumatera,Sumatera Selatan,True,141,Tim 3,16.0,6.0,9.0,0.0,0.0,True,target villages + SKEG 2024 damage,252,15.51,198.89,0.0
+KHG.16.02.04,KHG Sungai Sibumbung - Sungai Talangrimba,105307.924599,Pulau Sumatera,Sumatera Selatan,True,139,Tim 3,96805.0,13830.0,41090.0,14590.0,27295.0,True,target villages + SKEG 2024 damage,53,96805.18,12331.21,11945.26
+KHG.16.02.05,KHG Sungai Burnai - Sungai Sibumbung,86679.2451824,Pulau Sumatera,Sumatera Selatan,True,121,Tim 3,79700.0,17361.0,4265.0,40587.0,17488.0,True,target villages + SKEG 2024 damage,22,79700.11,38077.42,37997.6
+KHG.16.02.06,KHG Sungai Tandatuan - Sungai Beberi,8707.23008928,Pulau Sumatera,"Lampung, Sumatera Selatan",True,142,Tim 3,5747.0,188.0,353.0,836.0,4370.0,True,target villages + SKEG 2024 damage,146,5747.03,2520.76,951.77
+KHG.16.02.07,KHG Sungai Beberi - Sungai Way Mesuji,8638.56908584,Pulau Sumatera,Sumatera Selatan,True,119,Tim 3,8639.0,1537.0,1910.0,1884.0,3307.0,True,target villages + SKEG 2024 damage,145,8638.57,2564.72,2564.72
+KHG.16.02.08,KHG Sungai Burung - Sungai Way Mesuji,87495.6430989,Pulau Sumatera,Sumatera Selatan,True,122,Tim 3,78030.0,6676.0,1714.0,57645.0,11995.0,True,target villages + SKEG 2024 damage,58,78030.36,11943.64,11943.64
+KHG.16.03-06.01,KHG Sungai Musi - Sungai Penu,27814.0711275,Pulau Sumatera,Sumatera Selatan,True,129,Tim 3,25879.0,6089.0,360.0,10830.0,8600.0,True,target villages + SKEG 2024 damage,89,25878.94,6676.94,6674.72
+KHG.16.03-07.01,KHG Sungai Musi - Sungai Blidah,31166.6229255,Pulau Sumatera,Sumatera Selatan,True,127,Tim 3,21954.0,2649.0,487.0,10653.0,8166.0,True,target villages + SKEG 2024 damage,102,21954.34,5541.96,4674.57
+KHG.16.03.01,KHG Sungai Penu - Sungai Abah,7709.74392775,Pulau Sumatera,Sumatera Selatan,True,134,Tim 3,7710.0,181.0,205.0,4381.0,2943.0,True,target villages + SKEG 2024 damage,162,7709.74,1693.37,1693.37
+KHG.16.03.02,KHG Sungai Musi - Sungai Aek Lematang,25677.1855118,Pulau Sumatera,Sumatera Selatan,True,126,Tim 3,23241.0,1847.0,543.0,17721.0,3129.0,True,target villages + SKEG 2024 damage,52,23240.76,12861.11,12861.1
+KHG.16.05-06.01,KHG Sungai Musi - Sungai Rawas,14356.3274231,Pulau Sumatera,Sumatera Selatan,True,130,Tim 3,12351.0,4763.0,1814.0,3817.0,1957.0,True,target villages + SKEG 2024 damage,110,12351.17,4716.58,4716.5
+KHG.16.05-06.02,KHG Sungai Musi - Sungai Empasan,21934.0700023,Pulau Sumatera,Sumatera Selatan,True,128,Tim 3,18882.0,75.0,8.0,10363.0,8437.0,True,target villages + SKEG 2024 damage,221,18881.8,497.58,497.58
+KHG.16.05.01,KHG Sungai Alur - Sungai Lintang,5062.96379957,Pulau Sumatera,Sumatera Selatan,True,118,Tim 3,5014.0,52.0,15.0,3546.0,1401.0,True,target villages + SKEG 2024 damage,238,5014.12,318.14,318.14
+KHG.16.05.02,KHG Sungai Kalumpang,7207.74727171,Pulau Sumatera,Sumatera Selatan,True,123,Tim 3,6714.0,2836.0,580.0,1811.0,1487.0,True,target villages + SKEG 2024 damage,122,6713.72,4033.82,3830.37
+KHG.16.05.03,KHG Sungai Rumpit - Sungai Rawas,48297.7665739,Pulau Sumatera,Sumatera Selatan,True,135,Tim 3,38669.0,8172.0,6325.0,10837.0,13336.0,True,target villages + SKEG 2024 damage,69,38669.23,9640.5,9379.98
+KHG.16.06-07.01,KHG Sungai Merang - Sungai Ngirawan,82020.7001825,Pulau Sumatera,Sumatera Selatan,True,125,Tim 3,78739.0,11310.0,11075.0,29207.0,27147.0,True,target villages + SKEG 2024 damage,36,78738.71,23290.24,23016.84
+KHG.16.06-07.02,KHG Sungai Ngirawan - Sungai Sembilang,73475.2818629,Pulau Sumatera,Sumatera Selatan,True,132,Tim 3,73465.0,1142.0,4451.0,31511.0,36362.0,True,target villages + SKEG 2024 damage,67,73465.45,9881.4,9881.4
+KHG.16.06-07.03,KHG Sungai Sembilang - Sungai Lalan,84669.9883245,Pulau Sumatera,Sumatera Selatan,True,138,Tim 3,71464.0,4362.0,1645.0,50362.0,15095.0,True,target villages + SKEG 2024 damage,79,71464.0,8403.85,8403.85
+KHG.16.06-07.04,KHG Sungai Bentayan - Sungai Penimpahan,42998.9017266,Pulau Sumatera,Sumatera Selatan,True,120,Tim 3,39768.0,7806.0,1902.0,24074.0,5985.0,True,target villages + SKEG 2024 damage,84,39767.75,7595.45,7595.45
+KHG.16.06.01,KHG Sungai Medak - Sungai Lalan,24589.0540662,Pulau Sumatera,Sumatera Selatan,True,124,Tim 3,19233.0,2877.0,171.0,14492.0,1693.0,True,target villages + SKEG 2024 damage,85,19233.34,7385.7,7045.33
+KHG.16.06.02,KHG Sei Lalan - Sungai Bentayan,21117.5407897,Pulau Sumatera,Sumatera Selatan,True,117,Tim 3,21118.0,410.0,390.0,19143.0,1174.0,True,target villages + SKEG 2024 damage,119,21117.54,4303.52,4303.52
+KHG.16.07.01,KHG Sungai Penimpahan - Sungai Air Hitam,14467.3342459,Pulau Sumatera,Sumatera Selatan,True,133,Tim 3,3385.0,739.0,217.0,1607.0,822.0,True,target villages + SKEG 2024 damage,288,3385.18,56.6,56.6
+KHG.16.07.02,KHG Air Banyuasin - Air Lalang,60757.6937594,Pulau Sumatera,Sumatera Selatan,True,114,Tim 3,51010.0,992.0,545.0,45125.0,4347.0,True,target villages + SKEG 2024 damage,40,51009.64,19165.5,16593.02
+KHG.16.07.03,KHG Air Banyuasin - Sungai Musi,39513.6846603,Pulau Sumatera,Sumatera Selatan,True,115,Tim 3,14907.0,430.0,23.0,13595.0,858.0,True,target villages + SKEG 2024 damage,149,14906.6,2341.52,2337.54
+KHG.16.07.04,KHG Aek Sebatik - Aek Musi,31801.1337603,Pulau Sumatera,Sumatera Selatan,True,113,Tim 3,10510.0,0.0,0.0,9910.0,600.0,True,target villages + SKEG 2024 damage,205,10510.22,623.6,622.45
+KHG.16.07.05,KHG Aek Musi - Sungai Upang,26020.8500805,Pulau Sumatera,Sumatera Selatan,True,112,Tim 2,12245.0,348.0,34.0,10209.0,1655.0,True,target villages + SKEG 2024 damage,191,12244.61,870.17,732.16
+KHG.16.07.06,KHG Sungai Musi - Sungai Saleh,45027.23267650001,Pulau Sumatera,Sumatera Selatan,True,131,Tim 3,21417.0,126.0,199.0,18746.0,2345.0,True,target villages + SKEG 2024 damage,143,21416.64,2632.98,2632.98
+KHG.16.07.07,KHG Sungai Saleh - Sungai Batanghari,11760.3050063,Pulau Sumatera,Sumatera Selatan,True,136,Tim 3,9933.0,48.0,0.0,9883.0,3.0,True,target villages + SKEG 2024 damage,188,9933.3,897.9,897.9
+KHG.16.07.08,KHG Delta Talang,1576.39054485,Pulau Sumatera,Sumatera Selatan,True,116,Tim 3,1576.0,0.0,0.0,1576.0,0.0,True,target villages,,1576.39,0.0,0.0
+KHG.17.06.01,KHG Sungai Mejunto - Aek Selangkanan,6184.74641187,Pulau Sumatera,Bengkulu,True,148,Tim 3,5695.0,12.0,0.0,4435.0,1247.0,True,target villages + SKEG 2024 damage,132,5694.53,3127.72,3046.52
+KHG.17.06.02,KHG Sungai Selangkanan - Aek Bakal Kecil,2758.4953426,Pulau Sumatera,Bengkulu,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.18.02.01,KHG Way Seputih,1737.6857726,Pulau Sumatera,Lampung,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.18.05-11.01,KHG Sungai Mesuji - Sungai Tulangbawang,53171.0047092,Pulau Sumatera,"Lampung, Sumatera Selatan",True,162,Tim 3,18560.0,284.0,293.0,15231.0,2752.0,True,target villages + SKEG 2024 damage,152,18560.54,2111.86,2111.86
+KHG.18.05.01,KHG Way Terusan,1046.62653599,Pulau Sumatera,Lampung,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.18.07.01,KHG Way Wako - Way Kambas,4784.20105894,Pulau Sumatera,Lampung,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.18.11.01,KHG Sungai Mesuji - Sungai Kebumangah,37046.05258670001,Pulau Sumatera,"Lampung, Sumatera Selatan",True,161,Tim 3,20619.0,4713.0,405.0,14167.0,1334.0,True,target villages + SKEG 2024 damage,99,20619.1,5611.06,5611.06
+KHG.19.01-04.01,KHG Sungai Selan,16105.4762943,Pulau Sumatera,Kepulauan Bangka Belitung,True,146,Tim 3,5855.0,338.0,57.0,1646.0,3813.0,True,target villages + SKEG 2024 damage,232,5854.54,375.52,367.31
+KHG.19.01.01,KHG Sungai Tanjung Mangkubung - Sungai Gendir,838.795696446,Pulau Sumatera,Kepulauan Bangka Belitung,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.19.01.02,KHG Sungai Tanjung Mangkubung - Sungai Kayu Anak,3601.96281295,Pulau Sumatera,Kepulauan Bangka Belitung,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.19.01.03,KHG Tanjung Raya - Sungai Songehitfun,1336.7253674,Pulau Sumatera,Kepulauan Bangka Belitung,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.19.01.04,KHG Sungai Jeruk - Selat Bangka,2044.09567409,Pulau Sumatera,Kepulauan Bangka Belitung,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.19.03-04.01,KHG Sungai Selan - Sungai Bangka,9695.49374033,Pulau Sumatera,Kepulauan Bangka Belitung,True,147,Tim 3,8216.0,0.0,308.0,0.0,7908.0,True,target villages + SKEG 2024 damage,320,8215.92,4.56,4.56
+KHG.19.03.01,KHG Sungai Ulin - Sungai Kemis,5192.56207873,Pulau Sumatera,Kepulauan Bangka Belitung,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.19.03.02,KHG Sungai Ketiak - Sengai Bikang,14368.8146298,Pulau Sumatera,Kepulauan Bangka Belitung,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.19.03.03,KHG Sungai Senua,7164.0429431,Pulau Sumatera,Kepulauan Bangka Belitung,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.19.03.04,KHG Sungai Lepar,1919.96286288,Pulau Sumatera,Kepulauan Bangka Belitung,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.19.04.01,KHG Sungai Kurau - Sungai Kepuh,4230.06420057,Pulau Sumatera,Kepulauan Bangka Belitung,True,145,Tim 3,4229.0,174.0,179.0,592.0,3284.0,True,target villages + SKEG 2024 damage,229,4229.37,402.43,402.43
+KHG.19.04.02,KHG Sungai Belikat - Sungai Lengko,6063.00169717,Pulau Sumatera,Kepulauan Bangka Belitung,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.19.05.01,KHG Sungai Tanjung Kampak - Sungai Kampak,2198.247678,Pulau Sumatera,Kepulauan Bangka Belitung,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.19.05.02,KHG Sungai Tanjung Mangkubung - Sungai Antan,3990.49002583,Pulau Sumatera,Kepulauan Bangka Belitung,False,,,,,,,,True,SKEG 2024 damage,315,0.0,7.1,0.0
+KHG.19.05.03,KHG Sungai Tanjung Mangkubung - Sungai Sampul,2381.1644283,Pulau Sumatera,Kepulauan Bangka Belitung,False,,,,,,,,True,SKEG 2024 damage,280,0.0,78.22,0.0
+KHG.19.05.04,KHG Sungai Mencong 1,13022.9382145,Pulau Sumatera,Kepulauan Bangka Belitung,False,,,,,,,,True,SKEG 2024 damage,289,0.0,56.37,0.0
+KHG.19.07.01,KHG Sungai Baturusa,4363.76889514,Pulau Sumatera,Kepulauan Bangka Belitung,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.21.02.01,KHG Pulau Karimun,640.653161871,Pulau Sumatera,Kepulauan Riau,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.21.02.02,KHG Pulau Parit,759.794078887,Pulau Sumatera,Kepulauan Riau,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.21.02.03,KHG Pulau Papan,4491.62845307,Pulau Sumatera,Kepulauan Riau,False,,,,,,,,True,SKEG 2024 damage,317,0.0,6.73,0.0
+KHG.21.02.04,KHG Pulau Kundur,7919.42160323,Pulau Sumatera,Kepulauan Riau,True,144,Tim 3,3462.0,0.0,128.0,0.0,3334.0,True,target villages + SKEG 2024 damage,301,3461.9,34.82,34.82
+KHG.21.02.05,KHG Pulau Urgar,2625.09402209,Pulau Sumatera,Kepulauan Riau,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.61-62.01,KHG Sungai Jelai - Sungai Bila,31559.038198,Pulau Kalimantan,"Kalimantan Barat, Kalimantan Tengah",True,261,Tim 5,16953.0,167.0,1575.0,1643.0,13568.0,True,target villages + SKEG 2024 damage,267,16953.11,128.93,128.93
+KHG.61.01-07.01,KHG Sungai Sentinok - Sungai Kumba,15125.6246304,Pulau Kalimantan,Kalimantan Barat,True,243,Tim 5,11232.0,53.0,0.0,11178.0,0.0,True,target villages + SKEG 2024 damage,251,11231.84,204.55,204.55
+KHG.61.01-07.02,KHG Sungai Kumba - Sungai Setap,32003.6370692,Pulau Kalimantan,Kalimantan Barat,True,204,Tim 4,19321.0,171.0,0.0,17204.0,1946.0,True,target villages + SKEG 2024 damage,116,19320.85,4478.44,3144.45
+KHG.61.01.01,KHG Sungai Mange - Sungai Dadau,29506.026351,Pulau Kalimantan,Kalimantan Barat,True,212,Tim 4,23823.0,2406.0,285.0,17317.0,3816.0,True,target villages + SKEG 2024 damage,148,23823.34,2378.07,2378.07
+KHG.61.01.02,KHG Sungai Dadau - Sungai Sikan,14023.0367252,Pulau Kalimantan,Kalimantan Barat,True,167,Tim 3,14023.0,109.0,108.0,5912.0,7895.0,True,target villages + SKEG 2024 damage,193,14023.04,826.35,826.35
+KHG.61.01.03,KHG Sungai Sijang - Sungai Bantanan,7113.50856598,Pulau Kalimantan,Kalimantan Barat,True,245,Tim 5,4315.0,0.0,0.0,3525.0,790.0,True,target villages + SKEG 2024 damage,276,4315.3,98.02,98.02
+KHG.61.01.04,KHG Sungai Sambas Besar - Sungai Sijang,20766.4190063,Pulau Kalimantan,Kalimantan Barat,True,232,Tim 5,12022.0,0.0,0.0,9539.0,2484.0,True,target villages + SKEG 2024 damage,217,12022.15,547.01,462.38
+KHG.61.01.05,KHG Sungai Sambas Besar - Sungai Seiyung,68299.89600550002,Pulau Kalimantan,Kalimantan Barat,True,231,Tim 5,48387.0,7404.0,2486.0,31473.0,7024.0,True,target villages + SKEG 2024 damage,48,48387.26,14176.72,14175.53
+KHG.61.01.06,KHG Sungai Samabas Kecil - Sungai Teberau,8907.69883888,Pulau Kalimantan,Kalimantan Barat,True,229,Tim 5,1386.0,0.0,0.0,906.0,481.0,True,target villages + SKEG 2024 damage,281,1386.26,76.84,76.84
+KHG.61.01.07,KHG Sungai Teberau - Sungai Sambas Kecil,7538.06427844,Pulau Kalimantan,Kalimantan Barat,False,,,,,,,,True,SKEG 2024 damage,269,0.0,123.52,0.0
+KHG.61.01.08,KHG Sungai Sambas Kecil - Sungai Sambas Besar,7446.17515126,Pulau Kalimantan,Kalimantan Barat,True,233,Tim 5,5760.0,0.0,0.0,4507.0,1253.0,True,target villages + SKEG 2024 damage,224,5760.4,425.44,425.44
+KHG.61.01.09,KHG Sungai Sambas Besar - Sungai Kumba,9365.01497619,Pulau Kalimantan,Kalimantan Barat,True,230,Tim 5,9365.0,9.0,0.0,7641.0,1715.0,True,target villages + SKEG 2024 damage,293,9365.01,51.23,51.23
+KHG.61.01.10,KHG Sungai Sedawar - Sungai Sambas Besar,827.211982948,Pulau Kalimantan,Kalimantan Barat,True,236,Tim 5,513.0,0.0,0.0,122.0,390.0,True,target villages + SKEG 2024 damage,308,512.77,19.02,14.69
+KHG.61.01.11,KHG Sungai Selakau - Sungai Sebangkau,13064.9254038,Pulau Kalimantan,Kalimantan Barat,True,240,Tim 5,6121.0,695.0,199.0,4922.0,305.0,True,target villages + SKEG 2024 damage,157,6120.6,1898.41,1233.56
+KHG.61.02-08-12-71.01,KHG Sungai Kapuas - Sungai Mandor,76505.7285245,Pulau Kalimantan,Kalimantan Barat,True,187,Tim 4,69508.0,4068.0,83.0,55151.0,10206.0,True,target villages + SKEG 2024 damage,23,69507.7,34481.71,34481.71
+KHG.61.02-08.01,KHG Sungai Mempawah - Sungai Peniti,51045.4955319,Pulau Kalimantan,Kalimantan Barat,True,218,Tim 4,46531.0,5860.0,105.0,35803.0,4764.0,True,target villages + SKEG 2024 damage,29,46531.21,26950.26,26866.69
+KHG.61.02.01,KHG Sungai Mempawah - Sungai Duri,39028.3992787,Pulau Kalimantan,Kalimantan Barat,True,217,Tim 4,29178.0,2144.0,394.0,12724.0,13916.0,True,target villages + SKEG 2024 damage,86,29178.22,7353.84,7324.57
+KHG.61.03-09.01,KHG Sungai Kedukul,1649.36723028,Pulau Kalimantan,Kalimantan Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.61.03-09.02,KHG Sungai Inggis - Sungai Kapuas,5765.55031579,Pulau Kalimantan,Kalimantan Barat,True,171,Tim 4,1934.0,0.0,13.0,513.0,1409.0,True,target villages + SKEG 2024 damage,286,1934.02,61.69,61.69
+KHG.61.03.01,KHG Sungai Kapuas - Sungai Campedik,6049.8337752,Pulau Kalimantan,Kalimantan Barat,True,179,Tim 4,3970.0,86.0,13.0,1715.0,2156.0,True,target villages + SKEG 2024 damage,298,3970.02,44.77,44.77
+KHG.61.03.02,KHG Sungai Tayan,2653.61346383,Pulau Kalimantan,Kalimantan Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.61.03.03,KHG Sungai Tayan - Sungai Muna,3799.14074302,Pulau Kalimantan,Kalimantan Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.61.03.04,KHG Sungai Mias - Sungai Perogang,3046.26833192,Pulau Kalimantan,Kalimantan Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.61.03.05,KHG Sungai Kapuas - Sungai Tayan,1412.77365187,Pulau Kalimantan,Kalimantan Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.61.03.06,KHG Sungai Kapuas - Sungai Mendawak,70291.9122863,Pulau Kalimantan,Kalimantan Barat,True,189,Tim 4,66337.0,91.0,219.0,19838.0,46190.0,True,target villages + SKEG 2024 damage,65,66337.21,10263.29,10263.29
+KHG.61.03.07,KHG Sungai Kapuas - Sungai Segelam,2613.81146321,Pulau Kalimantan,Kalimantan Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.61.03.08,KHG Sungai Kapuas - Sungai Muna,1808.86019412,Pulau Kalimantan,Kalimantan Barat,True,190,Tim 4,1208.0,0.0,0.0,264.0,943.0,True,target villages + SKEG 2024 damage,261,1207.76,168.92,168.92
+KHG.61.03.09,KHG Sungai Rambai - Sungai Meliau,705.186060803,Pulau Kalimantan,Kalimantan Barat,True,226,Tim 5,17.0,0.0,0.0,0.0,17.0,True,target villages,,17.0,0.0,0.0
+KHG.61.03.10,KHG Sungai Kapuas - Sungai Dekan Besar,1162.22901615,Pulau Kalimantan,Kalimantan Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.61.03.11,KHG Sungai Kapuas - Sungai Rusan,691.91668071,Pulau Kalimantan,Kalimantan Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.61.03.12,KHG Sungai Kapuas - Sungai Tembaga,1358.4432982,Pulau Kalimantan,Kalimantan Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.61.03.13,KHG Sungai Kapuas -  Sungai Menukung,4840.19047564,Pulau Kalimantan,Kalimantan Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.61.03.14,KHG Sungai Labai - Sungai Ambawang Besar,1786.0959496,Pulau Kalimantan,Kalimantan Barat,True,207,Tim 4,1786.0,0.0,0.0,1386.0,400.0,True,target villages + SKEG 2024 damage,279,1786.1,93.46,93.46
+KHG.61.04.01,KHG Sungai Labai,11288.7021581,Pulau Kalimantan,Kalimantan Barat,True,206,Tim 4,7183.0,0.0,0.0,229.0,6955.0,True,target villages + SKEG 2024 damage,211,7183.41,576.1,93.42
+KHG.61.04.02,KHG Sungai Labai - Sungai Bantilkecil,1344.70429826,Pulau Kalimantan,Kalimantan Barat,True,208,Tim 4,1345.0,0.0,0.0,1073.0,272.0,True,target villages + SKEG 2024 damage,297,1344.7,47.28,47.28
+KHG.61.04.03,KHG Sungai Labai - Sungai Kualan,40807.59677950001,Pulau Kalimantan,Kalimantan Barat,False,,,,,,,,True,target villages + SKEG 2024 damage,93,0.23,6187.88,0.0
+KHG.61.04.04,KHG Sungai Kualan - Sungai Sekucing,10525.1730184,Pulau Kalimantan,Kalimantan Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.61.04.05,KHG Sungai Kualan - Sungai Lelayang,2017.24214735,Pulau Kalimantan,Kalimantan Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.61.04.06,KHG Sungai Tolak - Sungai Siduk,28008.3694114,Pulau Kalimantan,Kalimantan Barat,True,253,Tim 5,28002.0,2861.0,2264.0,14806.0,8070.0,True,target villages + SKEG 2024 damage,154,28001.59,2054.99,2054.99
+KHG.61.04.07,KHG Sungai Pawan - Sungai Tolak,113800.471753,Pulau Kalimantan,Kalimantan Barat,True,222,Tim 4,104079.0,14425.0,4183.0,32177.0,53294.0,True,target villages + SKEG 2024 damage,72,104079.05,9464.83,9464.83
+KHG.61.04.08,KHG Sungai Pawan - Sungai Kepulu,64537.5740164,Pulau Kalimantan,Kalimantan Barat,True,221,Tim 4,51179.0,6827.0,6438.0,20917.0,16997.0,True,target villages + SKEG 2024 damage,50,51178.69,13226.45,12609.69
+KHG.61.04.09,KHG Sungai Kepulu - Sungai Pesaguan,13570.2985372,Pulau Kalimantan,Kalimantan Barat,True,196,Tim 4,13570.0,1205.0,2733.0,215.0,9417.0,True,target villages + SKEG 2024 damage,198,13570.3,786.49,786.49
+KHG.61.04.10,KHG Sungai Tapah - Sungai Pesaguan,19755.3045431,Pulau Kalimantan,Kalimantan Barat,True,247,Tim 5,19755.0,2982.0,2442.0,1388.0,12944.0,True,target villages + SKEG 2024 damage,144,19755.3,2596.79,2596.79
+KHG.61.04.11,KHG Sungai Tengar - Sungai Tapah,39733.5475501,Pulau Kalimantan,Kalimantan Barat,True,251,Tim 5,36566.0,3239.0,4274.0,6818.0,22236.0,True,target villages + SKEG 2024 damage,155,36566.33,2000.47,2000.37
+KHG.61.04.12,KHG Sungai Berantai - Sungai Penyengat Besar,3373.65158501,Pulau Kalimantan,Kalimantan Barat,False,,,,,,,,True,SKEG 2024 damage,314,0.0,7.74,0.0
+KHG.61.04.14,KHG Sungai Keramat - Sungai Jelai,21640.9698981,Pulau Kalimantan,"Kalimantan Barat, Kalimantan Tengah",True,197,Tim 4,21637.0,311.0,3502.0,3514.0,14309.0,True,target villages + SKEG 2024 damage,185,21639.81,1005.9,1005.9
+KHG.61.04.15,KHG Sungai Mading - Sungai Jelai,18282.1996295,Pulau Kalimantan,Kalimantan Barat,True,209,Tim 4,18074.0,3161.0,2509.0,11803.0,600.0,True,target villages + SKEG 2024 damage,283,18074.35,74.23,74.23
+KHG.61.05-10.01,KHG Sungai Melawi - Sungai Batunanta,13447.3890325,Pulau Kalimantan,Kalimantan Barat,True,215,Tim 4,11096.0,1894.0,117.0,4465.0,4621.0,True,target villages + SKEG 2024 damage,137,11096.47,2837.09,2837.09
+KHG.61.05.01,KHG Sungai Ketungau - Sungai Sejelu,682.029599185,Pulau Kalimantan,Kalimantan Barat,True,201,Tim 4,682.0,8.0,0.0,333.0,341.0,True,target villages + SKEG 2024 damage,274,682.03,111.31,111.31
+KHG.61.05.02,KHG Sungai Ketungau - Sungai Serasau,345.86038149,Pulau Kalimantan,Kalimantan Barat,True,202,Tim 4,346.0,0.0,0.0,0.0,346.0,True,target villages,,345.86,0.0,0.0
+KHG.61.05.03,KHG Sungai Ketungau - Sungai Mualang,1376.47331786,Pulau Kalimantan,Kalimantan Barat,True,199,Tim 4,1376.0,0.0,37.0,0.0,1340.0,True,target villages,,1376.47,0.0,0.0
+KHG.61.05.04,KHG Sungai Kungan - Sungai Ketungau,1662.83855021,Pulau Kalimantan,Kalimantan Barat,True,205,Tim 4,1663.0,11.0,14.0,672.0,965.0,True,target villages + SKEG 2024 damage,255,1662.84,188.44,188.44
+KHG.61.05.05,KHG Sungai Sekatau - Sungai Kebangak,1008.81974696,Pulau Kalimantan,Kalimantan Barat,True,239,Tim 5,988.0,0.0,0.0,778.0,210.0,True,target villages + SKEG 2024 damage,253,988.39,198.58,195.35
+KHG.61.05.06,KHG Sungai Keludai - Sungai Merakai,936.366819658,Pulau Kalimantan,Kalimantan Barat,True,195,Tim 4,936.0,0.0,8.0,0.0,928.0,True,target villages,,936.37,0.0,0.0
+KHG.61.05.07,KHG Sungai Ketungau - Sungai Segarau,13220.2939883,Pulau Kalimantan,Kalimantan Barat,True,200,Tim 4,13002.0,9.0,0.0,8795.0,4198.0,True,target villages + SKEG 2024 damage,123,13001.58,3964.35,3964.35
+KHG.61.05.08,KHG Sungai Kapuas - Sungai Ketungau,36098.416271,Pulau Kalimantan,Kalimantan Barat,True,184,Tim 4,34514.0,563.0,457.0,9971.0,23524.0,True,target villages + SKEG 2024 damage,128,34514.33,3322.44,3321.19
+KHG.61.05.09,KHG Sungai Kapuas - Sungai Manyam,688.489611461,Pulau Kalimantan,Kalimantan Barat,True,188,Tim 4,628.0,0.0,0.0,540.0,88.0,True,target villages + SKEG 2024 damage,260,628.12,173.92,173.92
+KHG.61.05.10,KHG Sungai Kapuas - Sungai Baiangtuk,26269.6819631,Pulau Kalimantan,Kalimantan Barat,True,177,Tim 4,20462.0,21.0,216.0,7621.0,12605.0,True,target villages + SKEG 2024 damage,199,20462.13,735.67,735.67
+KHG.61.05.11,KHG Sungai Kapuas - Sungai Melawi,1523.74239349,Pulau Kalimantan,Kalimantan Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.61.05.12,KHG Sungai Jerora - Sungai Majau,3745.74399822,Pulau Kalimantan,Kalimantan Barat,True,172,Tim 4,3328.0,0.0,0.0,2757.0,571.0,True,target villages + SKEG 2024 damage,214,3328.19,560.7,560.7
+KHG.61.05.13,KHG Sungai Talungai - Sungai Emparayau,5506.71700414,Pulau Kalimantan,Kalimantan Barat,True,246,Tim 5,5490.0,74.0,5.0,4228.0,1183.0,True,target villages + SKEG 2024 damage,159,5490.29,1806.21,1806.21
+KHG.61.05.14,KHG Sungai Munguk - Sungai Melawi,1464.23713757,Pulau Kalimantan,Kalimantan Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.61.05.15,KHG Sungai Bulu - Sungai Mangkurat,876.494279388,Pulau Kalimantan,Kalimantan Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.61.05.16,KHG Sungai Tempunak,6333.85845777,Pulau Kalimantan,Kalimantan Barat,True,249,Tim 5,6329.0,0.0,7.0,3807.0,2515.0,True,target villages + SKEG 2024 damage,174,6328.88,1314.62,1314.62
+KHG.61.05.17,KHG Sungai Tempunak - Sungai Penjernang,5587.38447941,Pulau Kalimantan,Kalimantan Barat,True,250,Tim 5,5407.0,0.0,20.0,2606.0,2780.0,True,target villages + SKEG 2024 damage,202,5406.77,665.85,665.85
+KHG.61.05.18,KHG Sungai Melawi - Sungai Sirai,2997.2363333,Pulau Kalimantan,Kalimantan Barat,True,216,Tim 4,1695.0,0.0,1.0,796.0,897.0,True,target villages + SKEG 2024 damage,249,1694.83,234.5,233.32
+KHG.61.05.19,KHG Sungai Melawi,559.296908509,Pulau Kalimantan,Kalimantan Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.61.06-05.01,KHG Sungai Kapuas - Sungai Jentu,18471.8281412,Pulau Kalimantan,Kalimantan Barat,True,183,Tim 4,17701.0,17.0,13.0,6147.0,11525.0,True,target villages + SKEG 2024 damage,141,17700.8,2693.15,2693.15
+KHG.61.06-05.02,KHG Sungai Ketungau - Sungai Berau,5888.49611108,Pulau Kalimantan,Kalimantan Barat,True,198,Tim 4,5888.0,10.0,1.0,2420.0,3458.0,True,target villages + SKEG 2024 damage,207,5888.5,597.42,597.42
+KHG.61.06-05.03,KHG Sungai Kapuas - Sungai Jelawat Besar,3749.4770655,Pulau Kalimantan,Kalimantan Barat,True,182,Tim 4,2722.0,18.0,0.0,739.0,1966.0,True,target villages + SKEG 2024 damage,290,2722.45,55.21,55.21
+KHG.61.06.01,KHG Sungai Belitung - Sungai Kapuas,112133.043599,Pulau Kalimantan,Kalimantan Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.61.06.02,KHG Sungai Embalon - Sungai Palin,42754.99516630001,Pulau Kalimantan,Kalimantan Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.61.06.03,KHG Sungai Nyabau - Sungai Palin,4113.15793839,Pulau Kalimantan,Kalimantan Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.61.06.04,KHG Sungai Kapuas - Sungai Sibau,73236.3740744,Pulau Kalimantan,Kalimantan Barat,True,194,Tim 4,26073.0,254.0,24.0,5354.0,20441.0,True,target villages + SKEG 2024 damage,136,26072.52,2956.33,2956.33
+KHG.61.06.05,KHG Sungai Mendalam - Sungai Sambus,2214.73747324,Pulau Kalimantan,Kalimantan Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.61.06.06,KHG Sungai Kapuas - Sungai Embau,21596.5201701,Pulau Kalimantan,Kalimantan Barat,True,181,Tim 4,3140.0,21.0,0.0,1591.0,1529.0,True,target villages + SKEG 2024 damage,278,3139.88,95.0,95.0
+KHG.61.06.07,KHG Sungai Embau - Sungai Kapuas,43358.1143563,Pulau Kalimantan,Kalimantan Barat,False,,,,,,,,True,target villages,,4.17,0.0,0.0
+KHG.61.06.08,KHG Sungai Bunut -  Sungai Kapuas,91959.8204568,Pulau Kalimantan,Kalimantan Barat,True,166,Tim 3,1733.0,0.0,64.0,0.0,1670.0,True,target villages + SKEG 2024 damage,325,1733.23,2.06,2.06
+KHG.61.06.09,KHG Sungai Kapuas - Sungai Maday,38543.2028957,Pulau Kalimantan,Kalimantan Barat,True,186,Tim 4,5574.0,0.0,69.0,0.0,5505.0,True,target villages,,5574.07,0.0,0.0
+KHG.61.06.10,KHG Sungai Batang Kalis - Sungai Maday,13874.0840785,Pulau Kalimantan,Kalimantan Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.61.06.11,KHG Sungai Suruk - Sungai Mentebah,5742.26226462,Pulau Kalimantan,Kalimantan Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.61.06.12,KHG Sungai Kapuas - Sungai Muntik,397.980702079,Pulau Kalimantan,Kalimantan Barat,True,191,Tim 4,271.0,0.0,0.0,0.0,271.0,True,target villages,,270.82,0.0,0.0
+KHG.61.06.13,KHG Sungai Kapuas - Sungai Beran,2762.10189733,Pulau Kalimantan,Kalimantan Barat,True,178,Tim 4,10.0,0.0,0.0,8.0,2.0,True,target villages + SKEG 2024 damage,324,10.24,2.16,0.0
+KHG.61.07.01,KHG Sungai Selakau,1441.97160374,Pulau Kalimantan,Kalimantan Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.61.07.02,KHG Sungai Duri - Sungai Raya,21240.8554621,Pulau Kalimantan,Kalimantan Barat,True,168,Tim 3,18010.0,1304.0,70.0,9861.0,6776.0,True,target villages + SKEG 2024 damage,181,18010.2,1061.65,1061.65
+KHG.61.07.03,KHG Sungai Sabuak - Sungai Landak,6189.86837392,Pulau Kalimantan,Kalimantan Barat,True,228,Tim 5,5960.0,23.0,3.0,5060.0,874.0,True,target villages + SKEG 2024 damage,166,5960.2,1537.18,1530.76
+KHG.61.08-12-3.1,KHG Sungai Yebour - Sungai Landak,33779.1372969,Pulau Kalimantan,Kalimantan Barat,True,254,Tim 5,28422.0,5.0,0.0,14253.0,14164.0,True,target villages + SKEG 2024 damage,95,28421.67,6050.87,5600.38
+KHG.61.08-12.01,KHG Sungai Mandor - Sungai Temila,20765.0985876,Pulau Kalimantan,Kalimantan Barat,True,211,Tim 4,16747.0,41.0,3.0,12614.0,4089.0,True,target villages + SKEG 2024 damage,98,16747.47,5671.2,5662.34
+KHG.61.08.01,KHG Sungai Temila - Sungai Mandor,13518.2654638,Pulau Kalimantan,Kalimantan Barat,True,248,Tim 5,13518.0,117.0,18.0,8356.0,5028.0,True,target villages + SKEG 2024 damage,219,13518.27,514.2,514.2
+KHG.61.08.02,KHG Sungai Mandor - Sungai Landak,8320.43929238,Pulau Kalimantan,Kalimantan Barat,True,210,Tim 4,4791.0,0.0,0.0,2851.0,1940.0,True,target villages,,4790.85,0.0,0.0
+KHG.61.08.03,KHG Sungai Sambih,1959.91338895,Pulau Kalimantan,Kalimantan Barat,True,234,Tim 5,1960.0,0.0,0.0,981.0,979.0,True,target villages + SKEG 2024 damage,259,1959.91,174.79,174.79
+KHG.61.08.04,KHG Sungai Sambih - Sungai Landak,19165.690351,Pulau Kalimantan,Kalimantan Barat,True,235,Tim 5,14760.0,115.0,0.0,8316.0,6329.0,True,target villages + SKEG 2024 damage,135,14760.4,2986.17,2986.16
+KHG.61.08.05,KHG Sungai Sengah - Sungai Landak,8320.4913051,Pulau Kalimantan,Kalimantan Barat,True,242,Tim 5,7630.0,30.0,24.0,4798.0,2779.0,True,target villages + SKEG 2024 damage,230,7630.37,399.75,399.75
+KHG.61.08.06,KHG Sungai Nahaya - Sungai Landak,4294.38647544,Pulau Kalimantan,Kalimantan Barat,True,220,Tim 4,2418.0,0.0,2.0,7.0,2408.0,True,target villages,,2417.77,0.0,0.0
+KHG.61.09.01,KHG Sungai Akar,4077.95408607,Pulau Kalimantan,Kalimantan Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.61.09.02,KHG Sungai Kapuas - Sungai Ayak,7390.97503087,Pulau Kalimantan,Kalimantan Barat,True,176,Tim 4,7391.0,0.0,0.0,3243.0,4148.0,True,target villages + SKEG 2024 damage,268,7390.98,124.52,124.52
+KHG.61.09.03,KHG Sungai Kapuas - Sungai Kubu,1796.12157799,Pulau Kalimantan,Kalimantan Barat,True,185,Tim 4,1638.0,0.0,0.0,746.0,891.0,True,target villages + SKEG 2024 damage,239,1637.6,308.61,308.61
+KHG.61.09.04,KHG Sungai Kapuas - Sungai Asam,641.992407012,Pulau Kalimantan,Kalimantan Barat,True,175,Tim 4,625.0,0.0,0.0,163.0,462.0,True,target villages + SKEG 2024 damage,299,625.25,43.44,43.44
+KHG.61.09.05,KHG Sungai Kapuas - Sungai Sebidau,1563.78425522,Pulau Kalimantan,Kalimantan Barat,True,192,Tim 4,1217.0,3.0,6.0,836.0,373.0,True,target villages + SKEG 2024 damage,328,1216.95,0.26,0.26
+KHG.61.09.06,KHG Sungai Sekadau - Sungai Kenawan,2030.11646251,Pulau Kalimantan,Kalimantan Barat,True,237,Tim 5,1320.0,0.0,3.0,26.0,1291.0,True,target villages,,1319.73,0.0,0.0
+KHG.61.09.07,KHG Sungai Sekadau - Sungai Menterap,3514.75242681,Pulau Kalimantan,Kalimantan Barat,True,238,Tim 5,2816.0,4.0,9.0,591.0,2213.0,True,target villages + SKEG 2024 damage,285,2815.61,71.76,71.76
+KHG.61.09.08,KHG Sungai Menterap - Sungai Kerabat,1433.19899765,Pulau Kalimantan,Kalimantan Barat,True,219,Tim 4,1142.0,9.0,1.0,491.0,640.0,True,target villages + SKEG 2024 damage,326,1141.75,1.46,1.46
+KHG.61.10.01,KHG Sungai Melawi - Sungai Belimbing,1453.73133114,Pulau Kalimantan,Kalimantan Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.61.10.02,KHG Sungai Melawi - Sungai Takelak,1359.01022619,Pulau Kalimantan,Kalimantan Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.61.10.03,KHG Sungai Belimbing - Sungai Menunuh,806.362294654,Pulau Kalimantan,Kalimantan Barat,True,165,Tim 3,804.0,0.0,1.0,442.0,362.0,True,target villages + SKEG 2024 damage,265,804.25,134.38,134.38
+KHG.61.11-04.01,KHG Sungai Durian - Sungai Kualan,155105.792458,Pulau Kalimantan,Kalimantan Barat,True,169,Tim 4,113941.0,8769.0,3318.0,45056.0,56799.0,True,target villages + SKEG 2024 damage,103,113941.16,5290.74,5130.61
+KHG.61.11-04.02,KHG Sungai Matan -Sungai Semandang,19418.5746413,Pulau Kalimantan,Kalimantan Barat,True,214,Tim 4,346.0,1.0,0.0,162.0,182.0,True,target villages,,345.53,0.0,0.0
+KHG.61.11.01,KHG Sungai Selat Maya - Sungai Aping,100232.188438,Pulau Kalimantan,Kalimantan Barat,True,241,Tim 5,100002.0,9922.0,2626.0,21955.0,65499.0,True,target villages + SKEG 2024 damage,51,100002.33,13001.41,13001.41
+KHG.61.11.02,KHG Sungai Matan - Sungai Rantaupanjang,28252.6107213,Pulau Kalimantan,Kalimantan Barat,True,213,Tim 4,11573.0,2397.0,486.0,4560.0,4131.0,True,target villages + SKEG 2024 damage,273,11573.12,111.7,111.7
+KHG.61.11.03,KHG Sungai Siduk - Sungai Rantaupanjang,28492.8746816,Pulau Kalimantan,Kalimantan Barat,True,244,Tim 5,21605.0,1132.0,1480.0,2693.0,16300.0,True,target villages + SKEG 2024 damage,213,21605.21,561.28,561.28
+KHG.61.12-03.01,KHG Sungai Ambawang - Sungai Landak,35280.9789265,Pulau Kalimantan,Kalimantan Barat,True,164,Tim 3,33811.0,41.0,102.0,12337.0,21331.0,True,target villages + SKEG 2024 damage,94,33810.92,6123.76,6025.24
+KHG.61.12-71.01,KHG Sungai Pungurbesar -  Sungai Kapuas,101269.212434,Pulau Kalimantan,Kalimantan Barat,True,225,Tim 5,84385.0,18686.0,2286.0,58022.0,5392.0,True,target villages + SKEG 2024 damage,28,84385.11,27886.89,27682.87
+KHG.61.12.01,KHG Sungai Punggurbesar - Sungai Ambawang,55442.9509522,Pulau Kalimantan,Kalimantan Barat,True,224,Tim 4,54914.0,928.0,165.0,41061.0,12759.0,True,target villages + SKEG 2024 damage,83,54913.58,7664.99,7664.99
+KHG.61.12.02,KHG Sungai Kubu - Sungai Pungurbesar,23500.7167886,Pulau Kalimantan,Kalimantan Barat,True,203,Tim 4,21229.0,1657.0,98.0,18392.0,1082.0,True,target villages + SKEG 2024 damage,68,21229.0,9720.96,8691.42
+KHG.61.12.03,KHG Sungai Kapuas,6626.75080238,Pulau Kalimantan,Kalimantan Barat,True,173,Tim 4,6627.0,14.0,0.0,4729.0,1884.0,True,target villages + SKEG 2024 damage,158,6626.75,1807.12,1807.12
+KHG.61.12.04,KHG Sungai Kapuas - Sungai Separoh,3865.58661138,Pulau Kalimantan,Kalimantan Barat,True,193,Tim 4,3866.0,0.0,0.0,1584.0,2281.0,True,target villages + SKEG 2024 damage,189,3865.59,882.32,882.32
+KHG.61.12.05,KHG Sungai Kapuas - Sungai Dawak,2362.59533306,Pulau Kalimantan,Kalimantan Barat,True,180,Tim 4,2363.0,124.0,1.0,2085.0,153.0,True,target villages + SKEG 2024 damage,179,2362.6,1160.9,1160.9
+KHG.61.12.06,KHG Sungai Ambawang - Sungai Kubu,50939.390313,Pulau Kalimantan,Kalimantan Barat,True,163,Tim 3,37726.0,2709.0,305.0,25398.0,9314.0,True,target villages + SKEG 2024 damage,44,37726.35,15967.51,15967.51
+KHG.61.12.07,KHG Sungai Terentang - Sungai Kapuas,186167.396215,Pulau Kalimantan,Kalimantan Barat,True,252,Tim 5,152080.0,1308.0,585.0,63282.0,86905.0,True,target villages + SKEG 2024 damage,33,152080.34,26148.73,23874.74
+KHG.61.12.08,KHG Sungai Jenu - Sungai Labai,11187.5405476,Pulau Kalimantan,Kalimantan Barat,False,,,,,,,,True,target villages,,0.0,0.0,0.0
+KHG.61.12.09,KHG Sungai Durian - Sungai Labai,44437.3069894,Pulau Kalimantan,Kalimantan Barat,True,170,Tim 4,17590.0,1850.0,205.0,3764.0,11772.0,True,target villages + SKEG 2024 damage,115,17590.5,4590.71,1924.36
+KHG.61.12.10,KHG Sungai Penyangkat - Sungai Selat Maya,93020.356446,Pulau Kalimantan,Kalimantan Barat,True,223,Tim 4,91923.0,7172.0,3057.0,28673.0,53022.0,True,target villages + SKEG 2024 damage,70,91922.84,9501.76,9501.76
+KHG.61.71-12-03.01,KHG Sungai Kapuas - Sungai Ambawang,157992.08808,Pulau Kalimantan,Kalimantan Barat,True,174,Tim 4,157054.0,6438.0,1708.0,87768.0,61139.0,True,target villages + SKEG 2024 damage,12,157053.53,52306.87,52290.54
+KHG.61.72-7.01,KHG Sungai Raya - Sungai Pangnilang,13031.8999724,Pulau Kalimantan,Kalimantan Barat,True,227,Tim 5,13023.0,1044.0,76.0,7880.0,4023.0,True,target villages + SKEG 2024 damage,172,13023.0,1437.89,1437.89
+KHG.62-63.01,KHG Sungai Utar - Sungai Serapat,107736.807098,Pulau Kalimantan,"Kalimantan Selatan, Kalimantan Tengah",True,287,Tim 6,4262.0,654.0,745.0,1690.0,1173.0,True,target villages + SKEG 2024 damage,43,23949.12,16296.62,8558.36
+KHG.62.01-07.01,KHG Sungai Buluh Besar - Sungai Seruyan,342851.536309,Pulau Kalimantan,Kalimantan Tengah,True,260,Tim 5,280207.0,4546.0,14689.0,55811.0,205162.0,True,target villages + SKEG 2024 damage,49,280207.3,13244.29,12341.83
+KHG.62.01-07.02,KHG Sungai Buluh Besar,134782.473752,Pulau Kalimantan,Kalimantan Tengah,True,259,Tim 5,134742.0,5727.0,21654.0,5073.0,102287.0,True,target villages + SKEG 2024 damage,107,134742.45,4846.42,4846.42
+KHG.62.01-08.01,KHG Sungai Bila - Sungai Rasaw,24346.2147825,Pulau Kalimantan,Kalimantan Tengah,True,258,Tim 5,22049.0,1708.0,1898.0,11879.0,6564.0,True,target villages + SKEG 2024 damage,173,22049.37,1401.54,1363.22
+KHG.62.01-08.02,KHG Sungai Lamandau - Sungai Jelai,216492.592618,Pulau Kalimantan,"Kalimantan Barat, Kalimantan Tengah",True,272,Tim 5,85466.0,5231.0,7016.0,19084.0,54134.0,True,target villages + SKEG 2024 damage,108,85467.71,4839.08,1436.49
+KHG.62.01-09.01,KHG Sungai Lamandau - Sungai Sematu,4159.99254788,Pulau Kalimantan,Kalimantan Tengah,False,,,,,,,,True,SKEG 2024 damage,215,0.0,555.74,0.0
+KHG.62.01.01,KHG Sungai Rasaw - Sungai Lamandau,38011.9442222,Pulau Kalimantan,Kalimantan Tengah,True,282,Tim 6,26188.0,179.0,266.0,13479.0,12263.0,True,target villages + SKEG 2024 damage,245,26188.19,275.65,237.97
+KHG.62.01.02,KHG Sungai Lamandau - Sungai Arut,44044.9836684,Pulau Kalimantan,Kalimantan Tengah,True,271,Tim 5,37223.0,2930.0,411.0,14814.0,19068.0,True,target villages + SKEG 2024 damage,125,37223.19,3854.18,3846.37
+KHG.62.01.03,KHG Sungai Arut,14428.0150588,Pulau Kalimantan,Kalimantan Tengah,True,255,Tim 5,899.0,0.0,0.0,537.0,363.0,True,target villages + SKEG 2024 damage,233,899.48,362.96,267.96
+KHG.62.01.04,KHG Sungai Lamandau - Sungai Kumai,90583.1836174,Pulau Kalimantan,Kalimantan Tengah,True,273,Tim 5,42070.0,3854.0,3010.0,22745.0,12461.0,True,target villages + SKEG 2024 damage,195,42070.24,816.0,435.36
+KHG.62.01.05,KHG Sungai Kumai - Sungai Sekonyer,14308.0533971,Pulau Kalimantan,Kalimantan Tengah,True,270,Tim 5,5802.0,317.0,25.0,4810.0,650.0,True,target villages + SKEG 2024 damage,218,5801.62,519.41,514.89
+KHG.62.02-06.01,KHG Sungai Katingan - Sungai Mentaya,361295.57407,Pulau Kalimantan,Kalimantan Tengah,True,268,Tim 5,181016.0,7594.0,10360.0,39272.0,123790.0,True,target villages + SKEG 2024 damage,55,181016.15,12170.99,7666.61
+KHG.62.02-07.01,KHG Sungai Pukun - Sungai Seruyan,97455.0961943,Pulau Kalimantan,Kalimantan Tengah,True,281,Tim 6,87316.0,3380.0,7076.0,10734.0,66125.0,True,target villages + SKEG 2024 damage,151,87315.6,2220.3,2166.59
+KHG.62.02-07.02,KHG Sungai Pukun - Sungai Mentaya,303798.403082,Pulau Kalimantan,Kalimantan Tengah,True,280,Tim 5,224185.0,19072.0,11902.0,84861.0,108350.0,True,target villages + SKEG 2024 damage,31,224185.46,26552.33,26051.47
+KHG.62.02.01,KHG Sungai Mentaya - Sungai Tualan,11349.7854391,Pulau Kalimantan,Kalimantan Tengah,True,278,Tim 5,4016.0,34.0,751.0,1744.0,1486.0,True,target villages + SKEG 2024 damage,287,4015.51,59.46,58.26
+KHG.62.02.02,KHG Sungai Mentaya - Sungai Seranau Kiri,22159.0936606,Pulau Kalimantan,Kalimantan Tengah,True,277,Tim 5,12082.0,1823.0,391.0,5618.0,4250.0,True,target villages + SKEG 2024 damage,187,12081.85,992.29,988.37
+KHG.62.02.03,KHG Sungai Mentaya - Sungai Cempaga,53382.7205433,Pulau Kalimantan,Kalimantan Tengah,True,276,Tim 5,52623.0,760.0,467.0,35052.0,16344.0,True,target villages + SKEG 2024 damage,45,52623.34,15547.38,15547.38
+KHG.62.03-04.01,KHG Sungai Kapuas - Sungai Barito,558167.803634,Pulau Kalimantan,Kalimantan Tengah,True,264,Tim 5,305149.0,31365.0,24182.0,99613.0,149989.0,True,target villages + SKEG 2024 damage,8,305148.99,73406.13,71191.27
+KHG.62.03-11.01,KHG Sungai Kahayan - Sungai Kapuas,400320.162945,Pulau Kalimantan,Kalimantan Tengah,True,262,Tim 5,311623.0,38519.0,28501.0,103649.0,140955.0,True,target villages + SKEG 2024 damage,6,311623.02,79682.44,72758.02
+KHG.62.03.01,KHG Sungai Kapuas - Sungai Mangkutup,77714.2474585,Pulau Kalimantan,Kalimantan Tengah,True,265,Tim 5,6510.0,6.0,333.0,430.0,5742.0,True,target villages + SKEG 2024 damage,165,6509.77,1559.5,180.14
+KHG.62.03.02,KHG Sungai Kapuas - Sungai Murui,68163.27194970002,Pulau Kalimantan,Kalimantan Tengah,True,266,Tim 5,9280.0,0.0,19.0,2.0,9258.0,True,target villages + SKEG 2024 damage,263,9279.66,166.99,0.0
+KHG.62.03.03,KHG Sungai Mangkatip - Sungai Barito 1,33224.63193380001,Pulau Kalimantan,Kalimantan Tengah,True,274,Tim 5,32601.0,21029.0,2781.0,7475.0,1317.0,True,target villages + SKEG 2024 damage,63,32600.63,11027.02,11027.02
+KHG.62.03.04,KHG Sungai Terusanraya - Sungai Kapuasmurung,4248.30372022,Pulau Kalimantan,Kalimantan Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.62.04.01,KHG Sungai Barito - Sungai Ayuh,37258.6376987,Pulau Kalimantan,Kalimantan Tengah,True,256,Tim 5,2536.0,0.0,34.0,0.0,2503.0,True,target villages + SKEG 2024 damage,292,2536.08,51.56,0.0
+KHG.62.04.02,KHG Sungai Barito - Sungai Napu,9968.47801299,Pulau Kalimantan,Kalimantan Tengah,True,257,Tim 5,5804.0,977.0,891.0,1675.0,2261.0,True,target villages + SKEG 2024 damage,307,5803.78,22.87,22.87
+KHG.62.04.03,KHG Sungai Mangkatip - Sungai Barito 2,18470.1769487,Pulau Kalimantan,Kalimantan Tengah,True,275,Tim 5,18470.0,2339.0,4054.0,5031.0,7047.0,True,target villages + SKEG 2024 damage,168,18470.18,1505.23,1505.23
+KHG.62.06-11-14.01,KHG Sungai Katingan - Sungai Sebangau,823060.300392,Pulau Kalimantan,Kalimantan Tengah,True,269,Tim 5,504844.0,21854.0,52390.0,29687.0,400913.0,True,target villages + SKEG 2024 damage,27,504843.63,27971.2,24403.8
+KHG.62.06.01,KHG Sungai Sampang - Sungai Kala,31277.6833324,Pulau Kalimantan,Kalimantan Tengah,True,284,Tim 6,14103.0,1439.0,1592.0,2132.0,8940.0,True,target villages + SKEG 2024 damage,164,14103.01,1651.98,1152.29
+KHG.62.06.02,KHG Sungai Katingan - Sungai Klaru,28377.7282687,Pulau Kalimantan,Kalimantan Tengah,True,267,Tim 5,7298.0,404.0,628.0,3727.0,2539.0,True,target villages + SKEG 2024 damage,139,7298.2,2752.5,2573.65
+KHG.62.07.01,KHG Sungai Seruyan - Sungai Sembuluh,42247.1074216,Pulau Kalimantan,Kalimantan Tengah,True,286,Tim 6,27159.0,1234.0,395.0,13441.0,12089.0,True,target villages + SKEG 2024 damage,105,27158.51,5042.48,4627.28
+KHG.62.07.02,KHG Sungai Seruyan - Sungai Kelua Besar,57479.2837237,Pulau Kalimantan,Kalimantan Tengah,True,285,Tim 6,29712.0,2692.0,3467.0,8921.0,14632.0,True,target villages + SKEG 2024 damage,130,29711.56,3167.94,2592.12
+KHG.62.07.03,KHG Sungai Pukun - Sungai Kelua Besar,72654.7146283,Pulau Kalimantan,Kalimantan Tengah,True,279,Tim 5,72655.0,4025.0,11573.0,10355.0,46703.0,True,target villages + SKEG 2024 damage,140,72654.71,2737.92,2737.92
+KHG.62.11-14.01,KHG Sungai Rungan - Sungai Kahayan,111155.672848,Pulau Kalimantan,Kalimantan Tengah,True,283,Tim 6,16320.0,95.0,43.0,661.0,15521.0,True,target villages + SKEG 2024 damage,303,16320.23,32.19,32.19
+KHG.62.11-14.02,KHG Sungai Kahayan - Sungai Sebangau,451507.241955,Pulau Kalimantan,Kalimantan Tengah,True,263,Tim 5,424274.0,93172.0,99632.0,151447.0,80023.0,True,target villages + SKEG 2024 damage,4,424274.36,155224.14,151826.49
+KHG.63.03-05.01,KHG Sungai Barito - Sungai Alalak,47934.8448752,Pulau Kalimantan,Kalimantan Selatan,True,289,Tim 6,20550.0,4581.0,122.0,15386.0,460.0,True,target villages + SKEG 2024 damage,88,20549.65,6784.34,6657.36
+KHG.63.04-05-06-08.01,KHG Sungai Barito - Sungai Taping,112227.276599,Pulau Kalimantan,Kalimantan Selatan,True,290,Tim 6,51835.0,11870.0,10507.0,24893.0,4565.0,True,target villages + SKEG 2024 damage,60,51834.95,11411.5,6912.12
+KHG.63.07-08-11.01,KHG Sungai Balangan - Sungai Batangalai,30859.0414525,Pulau Kalimantan,Kalimantan Selatan,True,288,Tim 6,23051.0,6065.0,351.0,14268.0,2367.0,True,target villages + SKEG 2024 damage,64,23051.19,10998.18,10860.42
+KHG.64.01.01,KHG Sungai Pasir - Sungai Kuaro,5826.67072442,Pulau Kalimantan,Kalimantan Timur,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.64.02-07.01,KHG Sungai Kedupan - Sungai Layah,10541.9758591,Pulau Kalimantan,Kalimantan Timur,True,295,Tim 6,10466.0,0.0,3.0,0.0,10464.0,True,target villages,,10466.31,0.0,0.0
+KHG.64.02-07.02,KHG Sungai Melintang - Sungai Layah,43562.94165790001,Pulau Kalimantan,Kalimantan Timur,True,299,Tim 6,17334.0,0.0,1737.0,0.0,15597.0,True,target villages + SKEG 2024 damage,234,17333.75,360.54,360.54
+KHG.64.02-08.01,KHG Sungai Belayan - Sungai Kelinjau,109804.435551,Pulau Kalimantan,Kalimantan Timur,True,291,Tim 6,78182.0,1459.0,4669.0,7411.0,64642.0,True,target villages + SKEG 2024 damage,61,78182.08,11144.58,7643.13
+KHG.64.02-08.02,KHG Sungai Kelinjau - Sungai Kedangyantau,31279.0245467,Pulau Kalimantan,Kalimantan Timur,True,296,Tim 6,30611.0,0.0,6635.0,450.0,23526.0,True,target villages + SKEG 2024 damage,264,30611.27,140.12,140.12
+KHG.64.02.01,KHG Sungai Belayan - Sungai Melintang,46004.6511705,Pulau Kalimantan,Kalimantan Timur,True,292,Tim 6,7010.0,0.0,1708.0,0.0,5302.0,True,target villages + SKEG 2024 damage,235,7010.08,352.51,268.28
+KHG.64.02.02,KHG Sungai Kedangyantau - Sungai Sabintulung,37929.9861715,Pulau Kalimantan,Kalimantan Timur,True,294,Tim 6,37930.0,2950.0,5340.0,19528.0,10112.0,True,target villages + SKEG 2024 damage,66,37929.99,9928.19,9928.19
+KHG.64.02.03,KHG Sungai Mahakam - Sungai Sabintulung,12905.0623292,Pulau Kalimantan,Kalimantan Timur,True,298,Tim 6,7095.0,0.0,431.0,575.0,6090.0,True,target villages + SKEG 2024 damage,284,7094.89,73.38,73.38
+KHG.64.03.01,KHG Sungai Lenggo,1736.42967878,Pulau Kalimantan,Kalimantan Timur,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.64.03.02,KHG Sungai Tanbuayabuaya - Sungai Domaring,1259.52779126,Pulau Kalimantan,Kalimantan Timur,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.64.03.03,KHG Pulau Tanbuayabuaya,222.535315715,Pulau Kalimantan,Kalimantan Timur,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.64.03.04,KHG Sei Batu Putih,1983.54365575,Pulau Kalimantan,Kalimantan Timur,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.64.03.05,KHG Pulau Tanjungbuaya-buaya,2881.75812191,Pulau Kalimantan,Kalimantan Timur,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.64.03.06,KHG Sungai Kariabu,369.20891132,Pulau Kalimantan,Kalimantan Timur,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.64.07.01,KHG Sungai Mahakam - Sungai Kedangpahu,20418.4752858,Pulau Kalimantan,Kalimantan Timur,True,297,Tim 6,8899.0,739.0,76.0,4559.0,3526.0,True,target villages + SKEG 2024 damage,220,8899.34,500.68,310.5
+KHG.64.07.02,KHG Sungai Jempang - Sungai Kedangpahu,15623.7002869,Pulau Kalimantan,Kalimantan Timur,True,293,Tim 6,14013.0,4781.0,911.0,6802.0,1519.0,True,target villages + SKEG 2024 damage,90,14013.21,6645.58,6186.29
+KHG.65.02-03-04.01,KHG Sungai Mentarang- Sungai Sembakung,160471.41129,Pulau Kalimantan,Kalimantan Utara,True,304,Tim 6,127804.0,0.0,0.0,53923.0,73881.0,True,target villages + SKEG 2024 damage,24,127804.35,34389.28,34375.48
+KHG.65.03.01,KHG Sungai Sebuku - Sungai Sembakung,117980.681109,Pulau Kalimantan,Kalimantan Utara,True,306,Tim 6,108087.0,1129.0,1167.0,28918.0,76873.0,True,target villages + SKEG 2024 damage,38,108087.27,20808.8,19150.44
+KHG.65.03.02,KHG Sungai Sebuku,14523.0317452,Pulau Kalimantan,Kalimantan Utara,True,305,Tim 6,12399.0,0.0,0.0,1210.0,11189.0,True,target villages + SKEG 2024 damage,180,12399.38,1099.91,368.91
+KHG.65.03.03,KHG Sungai Sumbal - Sungai Samadik,3766.82164405,Pulau Kalimantan,Kalimantan Utara,True,309,Tim 6,3767.0,0.0,121.0,0.0,3645.0,True,target villages,,3766.82,0.0,0.0
+KHG.65.03.04,KHG Sungai Sedaung - Sungai Itai,2153.22885704,Pulau Kalimantan,Kalimantan Utara,True,307,Tim 6,2153.0,0.0,0.0,0.0,2153.0,True,target villages,,2153.23,0.0,0.0
+KHG.65.04.01,KHG Sungai Seputuk - Sungai Rian,2134.42586296,Pulau Kalimantan,Kalimantan Utara,True,308,Tim 6,978.0,0.0,0.0,687.0,291.0,True,target villages + SKEG 2024 damage,200,978.06,728.96,516.62
+KHG.65.04.02,KHG Sungai Mentarang - Sungai Siduyun,3352.67942687,Pulau Kalimantan,Kalimantan Utara,True,303,Tim 6,3162.0,0.0,0.0,1661.0,1501.0,True,target villages + SKEG 2024 damage,196,3162.13,814.28,814.28
+KHG.65.04.03,KHG Sungai Mentarang - Sungai Belayu,32744.6445281,Pulau Kalimantan,Kalimantan Utara,True,302,Tim 6,14091.0,3.0,0.0,6596.0,7492.0,True,target villages + SKEG 2024 damage,62,14090.95,11098.8,4880.27
+KHG.65.04.04,KHG Sungai Belanyu - Sungai Barang,1639.77419132,Pulau Kalimantan,Kalimantan Utara,True,301,Tim 6,1640.0,516.0,27.0,717.0,380.0,True,target villages + SKEG 2024 damage,228,1639.77,407.29,407.29
+KHG.65.04.05,KHG Sungai Belanyu - Sungai Balai,3333.06352699,Pulau Kalimantan,Kalimantan Utara,True,300,Tim 6,3333.0,0.0,0.0,124.0,3209.0,True,target villages + SKEG 2024 damage,302,3333.06,34.5,34.5
+KHG.65.04.06,KHG Sungai Bangkudulisungai,5905.33185333,Pulau Kalimantan,Kalimantan Utara,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.65.04.07,KHG Sungai Bangkudulisungai - Sungai Umbus,2105.68839519,Pulau Kalimantan,Kalimantan Utara,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.65.04.08,KHG Sungai Terusan teladan,933.606472297,Pulau Kalimantan,Kalimantan Utara,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.72.06.01,KHG Sungai Laa - Sungai Petasia,12369.2499488,Pulau Sulawesi,Sulawesi Tengah,True,310,Tim 6,9290.0,0.0,0.0,4860.0,4430.0,True,target villages + SKEG 2024 damage,204,9289.76,632.18,632.18
+KHG.72.10-76.01.001,KHG Sungai Salo Lariang - Sungai Pasang Kayu,19264.7668771,Pulau Sulawesi,"Sulawesi Barat, Sulawesi Tengah",True,312,Tim 6,11158.0,461.0,196.0,5445.0,5056.0,True,target villages + SKEG 2024 damage,186,16793.65,1000.85,1000.85
+KHG.72.10-76.01.002,KHG Sungai Pasang Kayu - Sungai Bambalamotu,28533.9868304,Pulau Sulawesi,"Sulawesi Barat, Sulawesi Tengah",True,311,Tim 6,12842.0,13.0,16.0,6851.0,5962.0,True,target villages + SKEG 2024 damage,225,18332.79,420.06,418.37
+KHG.91.01.01,KHG Sungai Aliki Alo - Sungai Aliki Mauwk Ere,2512.8403268,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.01.02,KHG Sungai Bob Buraka - Sungai Aleki Buraka,2722.66926,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.01.03,KHG Sungai Bobburaka - Sungai Aliki Anaw,5297.47720354,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.01.04,KHG Sungai Aleki Eli - Sungai Aleki Mafe,2968.72750145,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.01.05,KHG Sungai Alekikosi Soap - Sungai Alekikosi Seghab,6373.68216906,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.01.06,KHG Sungai Aleki Male - Sungai Ifuleki Bian,4011.4025297,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.01.07,KHG Sungai Ifileki Bian - Sungai Lekiage Sentuf,6949.58561461,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.01.08,KHG Sungai Alekikos Bakian - Sungai Ifuleki Bian,2132.99566544,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.01.09,KHG Sungai Ifuleki Bian - Sungai Dalik,1421.3258909,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.01.10,KHG Sungai Kumbe - Sungai Bian,58253.2394768,Pulau Papua,Papua Selatan,True,337,Tim 6,22972.0,1139.0,7899.0,2495.0,11439.0,True,target villages + SKEG 2024 damage,194,22971.8,822.78,386.66
+KHG.91.01.11,KHG Sungai Ifuleki Kumbe - Sungai Lekiage Ser,2461.84606391,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.01.12,KHG Sungai Ifuleki Kumbe - Sungai Lekiagi,52697.7963046,Pulau Papua,Papua Selatan,False,,,,,,,,True,target villages + SKEG 2024 damage,312,0.19,12.24,0.0
+KHG.91.01.13,KHG Sungai Ifuleki Onam - Sungai Fly,11890.1747099,Pulau Papua,Papua Selatan,True,334,Tim 6,1688.0,0.0,0.0,0.0,1688.0,True,target villages,,1687.62,0.0,0.0
+KHG.91.01.14,KHG Sungai Ifuleki Onam - Sungai Lekiage Wagini,268.141140616,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.01.15,KHG Sungai Ifuleki Obathrow - Sungai Ifuleki Berapto,3020.58523504,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.01.16,KHG Sungai Ifuleki Berapto - Sungai Ifuleki Obat,1843.00036859,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.03.01,KHG Sungai Grime - Sungai Nanggutu,1737.72299478,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.03.02,KHG Sungai Nawa - Sungai Sutuy,10482.6044685,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.03.03,KHG Sungai Jagua - Sungai Nakambi,37318.3484018,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.03.04,KHG Sungai Nakambi - Sungai Mamberamo,5785.74398627,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.04-15.01,KHG Sungai Wapoga - Sungai Amewa I,30048.0274342,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.04-15.02,KHG Sungai Wapoga - Sungai Amewa II,17876.9925569,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.04.01,KHG Sungai Naggobi - Sungai Nandira,6249.32376558,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.04.02,KHG Sungai Wororomi - Sungai Aprege,1938.57507743,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.04.03,KHG Sungai Ajari - Sungai Kubai,1494.41357208,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.04.04,KHG Sungai Wanggar - Sungai Bumi,7289.20146838,Pulau Papua,"Papua, Papua Tengah",True,329,Tim 6,4975.0,2.0,72.0,2043.0,2858.0,True,target villages + SKEG 2024 damage,190,4975.36,871.16,871.16
+KHG.91.04.05,KHG Sungai Musaino - Sungai Makimi Tua,5963.8209848,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.04.06,KHG Sungai Bumi - Sungai Pepeya,7871.65031415,Pulau Papua,"Papua, Papua Tengah",True,324,Tim 6,2365.0,0.0,0.0,789.0,1576.0,True,target villages + SKEG 2024 damage,184,4018.72,1011.31,1011.31
+KHG.91.04.07,KHG Sungai Legari - Sungai Tabai,34454.46109550001,Pulau Papua,"Papua, Papua Tengah",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.04.08,KHG Pulau Rutomo,1594.31660536,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.04.09,KHG Sungai Tabai - Siriwo,21429.2070537,Pulau Papua,"Papua, Papua Tengah",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.04.10,KHG Sungai Siriwo - Sungai Kurere,1848.64651182,Pulau Papua,"Papua, Papua Tengah",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.04.11,KHG Sungai Siriwo - Sungai Lemawa,931.258502617,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.04.12,KHG Sungai Siriwo - Sungai Tobo,10940.8186611,Pulau Papua,"Papua, Papua Tengah",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.04.13,KHG Sungai Siriwo,812.384299179,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.04.14,KHG Sungai Siriwo - Sungai Poronai,76044.157338,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.04.15,KHG Sungai Mafirikamo - Sungai Buraromi,325.771704119,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.04.16,KHG Sungai Pemawari - Sungai Pami,1056.60029761,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.04.17,KHG Sungai Yuswar - Sungai Pemawari,758.317799725,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.04.18,KHG Sungai Totoberi - Sungai Kali Pegi,12900.8521691,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.04.19,KHG Sungai Pegi - Sungai Seiwa,18651.2726223,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.04.20,KHG Sungai Poronai - Sungai Kali Pegi,21517.2727209,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.07-25.01,KHG Sungai Rouffer - Sungai Van Daalen,95910.6080292,Pulau Papua,"Papua, Papua Tengah",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.07-25.02,KHG Sungai Niyo Yambi - Sungai Niyo Gurage,7332.9393885,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.07.01,KHG Sungai Niyo Vandaalen,5832.61851376,Pulau Papua,"Papua, Papua Tengah",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.07.02,KHG Sungai Rouffer - Sungai Foli,43300.2627529,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.08.01,KHG Sungai Aga One - Sungai Koabeu One,7700.97000395,Pulau Papua,Papua Tengah,True,328,Tim 6,728.0,11.0,73.0,57.0,588.0,True,target villages + SKEG 2024 damage,294,728.24,50.83,42.69
+KHG.91.08.02,KHG Sungai Eka One - Sungai Ega One,3849.66878161,Pulau Papua,Papua Tengah,True,326,Tim 6,985.0,5.0,119.0,78.0,783.0,True,target villages + SKEG 2024 damage,247,984.9,263.51,56.57
+KHG.91.08.03,KHG Sungai Enaro One - Sungai Aga One,4243.68128055,Pulau Papua,Papua Tengah,True,327,Tim 6,1551.0,58.0,56.0,602.0,835.0,True,target villages + SKEG 2024 damage,208,1551.36,594.89,498.83
+KHG.91.09.01,KHG Sungai Umar - Sungai Amara,947.465261127,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.09.02,KHG Sungai Wakia - Sungai Utarena Enta,3649.5129587,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.09.03,KHG Sungai Urumuka Enta - Sungai Utanta Enta,7205.44393068,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.09.04,KHG Sungai Utumuka - Sungai Kawar,4970.14829916,Pulau Papua,"Papua, Papua Tengah",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.09.05,KHG Sungai Utanta - Sungai Kapare,51894.5705831,Pulau Papua,"Papua, Papua Tengah",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.09.06,KHG Sungai Igwa Enta - Sungai Paripi Enta,4239.84587811,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.09.07,KHG Sungai Tina Enta - Sungai Kapare Enta,4807.99955375,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.09.08,KHG Sungai Igwa - Sungai Kapare,25067.2084029,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.09.09,KHG Sungai Kapare - Sungai Mimika,12009.5004429,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.09.10,KHG Sungai Mimika Enta - Sungai Kamura Enta,14050.8800482,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.09.11,KHG Sungai Kamura - Sungai Atuka,41906.0828165,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.09.12,KHG Sungai Atuka - Sungai Kamora I,4510.850635,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.09.13,KHG Sungai Kamora - Sungai Murepiga,16087.7865598,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.09.14,KHG Sungai Murepiga - Sungai Kauga,8592.16410618,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.09.15,KHG Sungai Wania - Sungai Jaramaya,10793.8660854,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.09.16,KHG Sungai Kauga - Sungai Wania,5547.18829732,Pulau Papua,Papua Tengah,False,,,,,,,,True,SKEG 2024 damage,321,0.0,4.37,0.0
+KHG.91.09.17,KHG Sungai Wania Enta - Sungai Aikwa Enta,1730.35718784,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.09.18,KHG Sungai Wania - Sungai Aikwa,8942.36260929,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.09.19,KHG Sungai Aikwa - Sungai Minajerwi,7358.8413196,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.09.20,KHG Sungai Minarjewi - Sungai Kamanita,39824.39132290001,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.09.21,KHG Sungai Kamanita - Sungai Inabukwa,8520.6961474,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.09.22,KHG Sungai Inabukwa - Sungai Otokwa,23488.9199041,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.09.23,KHG Sungai Otokwa - Sungai Aingno Gong,8338.09056322,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.09.24,KHG Sungai Mawati - Sungai Otokwa,4927.20720171,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.09.25,KHG Sungai Otakwa - Sungai Setakwa,15988.0676462,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.09.26,KHG Sungai Setakwa - Sungai Mamoa,9566.22227905,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.09.27,KHG Sungai Setakwa - Sungai Aenomon,31413.7984428,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.09.28,KHG Sungai Otokwa - Sungai Setakwa,1552.46696968,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.09.29,KHG Sungai Setakwa - Sungai Ipukwa,8335.79307182,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.09.30,KHG Sungai Atimet Enta - Sungai Amokono,10001.8882146,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.09.31,KHG Sungai Aenomon Gong - Sungai Olaronomon,12232.700397,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.09.32,KHG Sungai Aenomon Gong - Sungai Atimet Enta,3479.36546103,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.09.33,KHG Sungai Akimuga - Sungai Seruwinomon,7156.30226462,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.09.34,KHG Sungai Seruwinomon Gong - Sungai Olaronomon,13043.160754,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.09.35,KHG Sungai Olaronomon - Sungai Torpedoboot Enta,6837.03818932,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.10-03.01,KHG Sungai Toarim - Sungai Samap,8689.46283396,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.10-03.02,KHG Sungai Samap - Sungai Segayao,5522.12501052,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.10-03.03,KHG Sungai Segayao - Sungai Sarmowai,3438.12319247,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.10-03.04,KHG Sungai Sarmowai - Sungai Muaif,2719.31121991,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.10.01,KHG Sungai Mamberamo - Sungai Apauwar,102751.992985,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.10.02,KHG Sungai Apauwar - Sungai Tramuas,7896.04810588,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.10.03,KHG Sungai Apauwar - Sungai Willy,3475.66479324,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.10.04,KHG Sungai Tramuas - Sungai Waim,12817.064741,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.10.05,KHG Sungai Waim - Sunga Ferkame,20972.1979184,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.10.06,KHG Sungai Ferkame - Sunagi Orei,13241.2226098,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.10.07,KHG Sungai Sirim - Sungai Waskey,5369.40464562,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.10.08,KHG Sungai Sirim,1389.55744942,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.10.09,KHG Sungai Foen - Sungai Tor,7136.78255662,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.10.10,KHG Sungai Tor - Sungai Bier,9200.11471147,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.10.11,KHG Sungai Bier - Sungai Kwalitar,23794.025654,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.10.12,KHG Sungai Kwalitar - Sungai Biri,8212.60353934,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.10.13,KHG Sungai Biri - Sungai Kali Berpa,14638.1244931,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.10.14,KHG Sungai Kali Dormas - Sungai Wiruai,1877.9600584,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.10.15,KHG Sungai Wiruai - Sungai Gwin,2421.22802059,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.10.16,KHG Sungai Tamar - Sungai Mawesday,2226.81649622,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.10.17,KHG Sungai Jaro - Sungai Jagua,96909.2957842,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.10.18,KHG Sungai Niyo Aremi -  Sungai Niyo Amok,6977.97920814,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.11.01,KHG Sungai Sia-Sia - Sungai Merah,1975.65387613,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.11.02,KHG Sungai Pawasi - Sungai Merah,11425.9770404,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.11.03,KHG Sungai Songgolo - Sungai Pai,2794.86476956,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.11.04,KHG Sungai Pawasi - Sungai Sanggolo,13289.1187571,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.11.05,KHG Sungai Ken - Sungai Mafi,3119.23468941,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.11.06,KHG Sungai Mafi - Sungai Pawasi,4230.24010598,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.14-21.01,KHG Sungai Taria - Sungai Memberamo,34148.0293042,Pulau Papua,"Papua, Papua Pegunungan",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.14.01,KHG Sungai Mamberamo - Sungai Taria,46923.9120033,Pulau Papua,"Papua, Papua Pegunungan",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.15-20.01,KHG Sungai Obuai - Sungai Usoa,3463.2645165,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.15-27.01,KHG Sungai Seiwa - Sungai Dayewa,5171.62607804,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.15.01,KHG Sungai Wapoga - Sungai Dayewa,8787.62887782,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.15.02,KHG Sungai Dayewa - Sungai Owa,1938.26984471,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.15.03,KHG Sungai Auwewa - Sungai Owa,5271.27560789,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.15.04,KHG Sungai Nawo - Sungai Epawa,1266.02760119,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.15.05,KHG Sungai Epawa - Sungai Binataboa,4025.00467959,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.15.06,KHG Sungai Rasawa - Sungai Wutoa,7562.2508692,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.15.07,KHG Sungai Rurawa - Sungai Botawa,6370.40893648,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.15.08,KHG Sungai Gaigar - Sungai Maranarauni,2970.08204355,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.15.09,KHG Sungai Wobari - Sungai Ghaiwando,707.268147257,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.15.10,KHG Sungai Wobari - Sungai Wonti,1000.68266922,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.15.11,KHG Sungai Mbiabu - Sungai Tariku Tiga,3659.80773695,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.15.12,KHG Sungai Niyo Tariku Tiga - Sungai Niyo Muyabu,7773.00603059,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.15.13,KHG Sungai Tariku Dua - Sungai Rouffaer,1846.73981732,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.15.14,KHG Sungai Niyo Rouffer - Sungai Tariku,12985.1026858,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.15.15,KHG Sungai Soimiangga - Sungai Epawa,483.471033233,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.15.16,KHG Sungai Wutoa - Sungai Rurawa,11185.4473395,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.16-01.01,KHG Sungai Alekikosi Digoel - Sungai Aleki Seme,25521.4990236,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.16-01.02,KHG Sungai Ivo - Sungai Fly,5838.03829963,Pulau Papua,Papua Selatan,True,335,Tim 6,5838.0,0.0,0.0,0.0,5838.0,True,target villages,,5838.04,0.0,0.0
+KHG.91.16.01,KHG Sungai Buru Mappi II,186.309921835,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.16.02,KHG Sungai Udi Aifo - Sungai Buru Mappi,9266.96056392,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.16.03,KHG Sungai Buru Mappi - Sungai Mangguno,2999.76208752,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.16.04,KHG Sungai Wade Kowo - Sungai Buru Bayeni,16910.9763107,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.16.05,KHG Sungai Buru Mappi - Sungai Udi Afu,5379.38302696,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.16.06,KHG Sungai Buru Bayeni - Sungai Buru Mappi,3523.42487793,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.16.07,KHG Sungai Mappi - Sungai Edera,11948.6811131,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.16.08,KHG Sungai Alekikosi Digoel -  Sungai Udi Lebah,54084.5506403,Pulau Papua,Papua Selatan,False,,,,,,,,True,SKEG 2024 damage,296,0.0,48.17,0.0
+KHG.91.16.09,KHG Sungai Alekikosi Sia - Sungai  Alekikosi Digoel,19861.0242308,Pulau Papua,Papua Selatan,True,332,Tim 6,5753.0,0.0,0.0,144.0,5609.0,True,target villages + SKEG 2024 damage,231,5753.1,377.99,0.0
+KHG.91.16.10,KHG Sungai Alekikosi Yang - Sungai  Alekikosi Digoel,50608.2191398,Pulau Papua,Papua Selatan,True,333,Tim 6,10471.0,0.0,0.0,3355.0,7116.0,True,target villages + SKEG 2024 damage,271,10471.37,116.24,116.24
+KHG.91.16.11,KHG Sungai Alekokosi Kaswari - Sungai Alekikosi Dawe,730.330245115,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.16.12,KHG Sungai Alekikosi Kaswari - Sungai Alekikosi Digoel,2497.47630215,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.16.13,KHG Sungai Alekikosi Digoel - Sungai Alekikosi Kauh,72514.96739000002,Pulau Papua,Papua Selatan,True,331,Tim 6,20270.0,0.0,0.0,394.0,19876.0,True,target villages + SKEG 2024 damage,275,20270.47,105.41,63.92
+KHG.91.16.14,KHG Sungai Alekikosi Digoel - Sungai Alekikosi Bagon,9270.89687415,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.16.15,KHG Sungai Muyu,425.775336026,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.16.16,KHG Sungai Alekikos Kauh - Sungai Ifuleki Mati,17244.6608275,Pulau Papua,Papua Selatan,True,330,Tim 6,12875.0,0.0,0.0,2340.0,10535.0,True,target villages + SKEG 2024 damage,246,12875.28,267.0,267.0
+KHG.91.16.17,KHG Sungai Kanggu - Sungai Fly,5881.82232774,Pulau Papua,Papua Selatan,False,,,,,,,,True,SKEG 2024 damage,311,0.0,13.56,0.0
+KHG.91.17-16.01,KHG Sungai Keeme - Sungai Bayeni,27331.2700178,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.17-16.02,KHG Sungai Buru Bagaram,3009.41396156,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.17-16.03,KHG Sungai Buru Miyaman - Sungai Buru Mappi,28981.0995408,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.17-16.04,KHG Sungai Udi Edera - Sungai Samaleki Digul,197715.812344,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.17.01,KHG Sungai Wade Nanu - Sungai Wade Assue,58217.9280088,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.17.02,KHG Sungai Jo Dairam,39769.84159280001,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.17.03,KHG Sungai Wade Passue - Sungai Jo Dairam,108516.974499,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.17.04,KHG Sungai Buru Obaa - Sungai Buru Mappi,98805.1108588,Pulau Papua,Papua Selatan,False,,,,,,,,True,SKEG 2024 damage,210,0.0,592.1,0.0
+KHG.91.17.05,KHG Sungai Wade Passue,2953.02649735,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.17.06,KHG Sungai Buru Mappi - Sungai Siakha Homo,11208.802875,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.17.07,KHG Sungai Buru Mappi I,14525.9971663,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.17.08,KHG Sungai Jaman Kawarga - Sungai Samaleki Digul,117827.30931,Pulau Papua,Papua Selatan,True,336,Tim 6,13568.0,327.0,900.0,2237.0,10105.0,True,target villages + SKEG 2024 damage,240,13568.1,306.48,306.48
+KHG.91.18-17.01,KHG Sungai Buru Mappi - Sungai Buru Obaa,402643.363637,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.18-17.02,KHG Sungai Kuis - Sungai Bapai,615728.681463,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.18.01,KHG Sungai Torpedoboot - Sungai Kasteel Timur,5865.44508002,Pulau Papua,"Papua Selatan, Papua Tengah",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.18.02,KHG Sungai Juk Wab - Sungai Jub Orotok,4277.12115034,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.18.03,KHG Sungai Juk Patatmini,223.910171623,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.18.04,KHG Sungai Juk Wab - Sungai Juk Patatmini,396.227355477,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.18.05,KHG Sungai Juk Patatmini - Sungai Juk Orotok,812.152609539,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.18.06,KHG Sungai Juk Poet - Sungai Juk Jats,12370.9021003,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.18.07,KHG Sungai Juk Poet - Sungai Blumen,7055.87858736,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.18.08,KHG Sungai Juk Jats - Sungai Juk Momats,8879.48604359,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.18.09,KHG Sungai Juk Mamats - Juk Jats,21952.9703612,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.18.10,KHG Sungai Juk Jats - Sungai Juk Bafut,22700.1262929,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.18.11,KHG Sungai Momatsi - Sungai Juk Fase,24824.8449736,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.18.12,KHG Sungai Juk Mawar - Sungai Juk Fai,6052.53414574,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.18.13,KHG Sungai Juk Bafut - Sungai Juk Yisun,1687.25143955,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.18.14,KHG Sungai Juk Unir - Sungai Juk Aswet,2818.49812293,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.18.15,KHG Sungai Juk Pek - Sungai Juk Aswet,4762.7867818,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.18.16,KHG Sungai Juk Pomats - Sungai Juk Binijau,3822.8400346,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.18.17,KHG Sungai Juk Binijau - Sungai Juk Ba,9567.51794581,Pulau Papua,"Papua Pegunungan, Papua Selatan",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.18.18,KHG Sungai Juk Pai - Sungai Juk Bininjai,7577.80573683,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.18.19,KHG Sungai Juk Pai - Sungai Juk Senajuh,15289.538383,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.18.20,KHG Sungai Juk Unir/Kali Wosak - Sungai Utumbuwe,17049.234622,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.18.21,KHG Sungai Utumbuwe - Sungai Sor,28835.8438951,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.18.22,KHG Sungai Utumbuwe - Sungai Dumas,3712.10778909,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.18.23,KHG Sungai Juk Afe - Sungai Juk Aswet,8024.20234936,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.18.24,KHG Sungai Juk Katarina - Sungai Juk Asor,7357.25333898,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.18.25,KHG Sungai Juk Asor - Juk Epas,2716.35656847,Pulau Papua,"Papua Pegunungan, Papua Selatan",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.18.26,KHG Sungai Juk Yapi - Sungai Juk Katarina,6673.57568692,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.18.27,KHG Sungai Juk Serep - Sungai Juk Semen,22812.6877431,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.18.28,KHG Sungai Juk Tojoh - Sungai Jo Vriendschaps,6148.34539463,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.18.29,KHG Sungai Juk Katarina - Sungai Jo Vriendschaps,33192.5586233,Pulau Papua,"Papua Pegunungan, Papua Selatan",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.18.30,KHG Sungai Juk Tere - Sungai Juk Katarina,6356.85819017,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.18.31,KHG Sungai Jo Vriendschaps - Sungai Jo Siret,134681.688062,Pulau Papua,"Papua Pegunungan, Papua Selatan",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.18.32,KHG Sungai Ju Siret- Sungai Wade Assue,37961.6326576,Pulau Papua,Papua Selatan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20-07-14.01,KHG Sungai Fakuja - Sungai Foli,116478.289243,Pulau Papua,"Papua, Papua Pegunungan, Papua Tengah",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20-10.01,KHG Sungai Dijai - Sungai Jaro,88687.3273025,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20-14.01,KHG Sungai Fakujo - Sungai Mamberamo,84045.49956880002,Pulau Papua,"Papua, Papua Pegunungan",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20-14.02,KHG Sungai Treu - Sungai Doorman,32106.9316284,Pulau Papua,"Papua, Papua Pegunungan",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20.01,KHG Sungai Usoa - Sungai Eroina,16321.7029724,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20.02,KHG Sungai Warako - Sungai Wayandi,1788.16396054,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20.03,KHG Sungai Wayandi - Sungai Rorai,557.651987664,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20.04,KHG Sungai Aidui - Sungai Orakeb,3630.0662316,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20.05,KHG Sungai Inggodi - Sungai Pawai,8333.51999098,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20.06,KHG Sungai Gesa - Sungai Inggodi,5075.22065473,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20.07,KHG Sungai Gesa - Sungai Efra,2777.12117681,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20.08,KHG Sungai Kaferi - Sungai Fira,366.108973247,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20.09,KHG Sungai Fira - Sungai Tirasu,354.798674801,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20.10,KHG Sungai Karsid - Sungai Efra,490.167174476,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20.11,KHG Sungai Efra - Sungai Karsid,628.480597429,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20.12,KHG Sungai Orakeb - Sungai Mabo,14402.0323734,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20.13,KHG Sungai Rorai - Sungai Andaiwaren,14699.7562454,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20.14,KHG Sungai Gesa - Sungai Kirema,4460.75221605,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20.15,KHG Sungai Minowari - Sungai Mabo,522.608185559,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20.16,KHG Sungai Andaiwaren - Sungai Motosi,17010.2261675,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20.17,KHG Sungai Trambo - Sungai Mawana,6361.43625747,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20.18,KHG Sungai Mawana - Sungai Wakamba,70935.1987281,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20.19,KHG Sungai Wakamba - Sungai Warembori,45611.902137,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20.20,KHG Sungai Warembori - Sungai Mamberamo,30660.8569044,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20.21,KHG Sungai Motosi - Sungai Mamberamo,1824.75771269,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20.22,KHG Sungai Gesa - Sungai Warawuri II,2392.76629052,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20.23,KHG Sungai Gesa - Sungai Warawuri I,3646.44066405,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20.24,KHG Sungai Tariku Satu - Sungai Rouffaer Satu,5351.39354793,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20.25,KHG Sungai Niyo Fowoga - Sungai Biri,5052.57736131,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20.26,KHG Sungai Biri - Sungai Rouffaer,7383.78907173,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20.27,KHG Sungai Rouffaer - Sungai Van Der Wiligen,3421.92863669,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20.28,KHG Sungai Oi - Sungai Iri,12848.6472937,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20.29,KHG Sungai Mamberamo - Sungai Idenburg,16569.3371129,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20.30,KHG Sungai Memberamo - Sungai Origio,3447.52990957,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20.31,KHG Sungai Memberamo - Sungai Kabre Lama,69157.7638873,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20.32,KHG Sungai Kabre Lama - Sungai Biate,37469.0960977,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.20.33,KHG Sungai Biate - Sungai Dijai,28604.0696446,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.21-22.01,KHG Sungai Mamberamo - Sungai Kamika,35679.0538204,Pulau Papua,Papua Pegunungan,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.22-13.01,KHG Sungai Benewa - Sungai Mamberamo,18029.389557,Pulau Papua,"Papua, Papua Pegunungan",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.22.01,KHG Sungai Kamika - Sungai Hablisfura,21012.1261463,Pulau Papua,"Papua, Papua Pegunungan",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.22.02,KHG Sungai Hablisfura - Sungai Benewa,20809.2947328,Pulau Papua,"Papua, Papua Pegunungan",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.25.01,KHG Sungai Mbiabu - Sungai Bayajali,3891.18745873,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.25.02,KHG Sungai Mbiabu - Sungai Sikuua,1073.79362273,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.25.03,KHG Sungai Dinu - Sungai Palu,1243.22110679,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.25.04,KHG Danau Lere,1426.14379016,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.26.01,KHG Sungai Kaliten - Sungai Wangi One,2935.76142359,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.26.02,KHG Sungai Degey One  -  Sungai Pege,8237.24852092,Pulau Papua,Papua Tengah,True,325,Tim 6,1032.0,77.0,209.0,554.0,192.0,True,target villages + SKEG 2024 damage,177,1031.55,1178.1,239.73
+KHG.91.27.01,KHG Sungai Warena - Sungai Daewawa,2230.27569244,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.28.01,KHG Sungai Aparuka Enta - Sungai Dita One,4705.79046576,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.28.02,KHG Sungai Dita One - Kopai One,4104.54045014,Pulau Papua,Papua Tengah,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.71.01,KHG Sungai Yaos Kanan - Sungai Tami,6888.21596335,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.91.71.02,KHG Sungai Tami,5060.1711626,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.01,KHG Sungai Kla Kaibun,1059.51634104,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.02,KHG Sungai Wai Sapran - Sungai Wai Liam,14743.243028,Pulau Papua,Papua Barat Daya,True,317,Tim 6,10647.0,0.0,0.0,3224.0,7423.0,True,target villages + SKEG 2024 damage,167,10646.7,1521.81,1502.17
+KHG.92.01.03,KHG Sungai Kla Marine - Sungai Wasinsion,697.940822178,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.04,KHG Sungai Kla Marine - Sungai Kasol,2217.42212664,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.05,KHG Sungai Warmon - Sungai Klamalu I,40.1593618686,Pulau Papua,Papua Barat Daya,True,322,Tim 6,40.0,0.0,0.0,0.0,40.0,True,target villages,,39.93,0.0,0.0
+KHG.92.01.06,KHG Sungai Wai Tunun - Sungai Warmon II,103.006722986,Pulau Papua,Papua Barat Daya,True,319,Tim 6,103.0,0.0,0.0,72.0,30.0,True,target villages + SKEG 2024 damage,291,102.95,55.14,55.14
+KHG.92.01.07,KHG Sungai Geno - Sungai Fesia Kecil,7602.27408056,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.08,KHG Sungai Wakamuk - Sungai Kla Waimon,7575.26313778,Pulau Papua,Papua Barat Daya,False,,,,,,,,True,SKEG 2024 damage,227,0.0,410.55,0.0
+KHG.92.01.09,KHG Sungai Kla Mer - Sungai Buf II,1912.26700896,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.10,KHG Sungai Safet - Sungai Mer,757.390653652,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.11,KHG Sungai Kla Mer - Sungai Buf I,5992.41363126,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.12,KHG Sungai Kla Mer - Sungai Sigit,391.753719598,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.13,KHG Sungai Dug - Sungai Kla Mer,938.381078453,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.14,KHG Sungai Kla Mer - Sungai Sijeni,1681.43416879,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.15,KHG Sungai Kla Mer,413.998366605,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.16,KHG Sungai Kla Mer - Sungai Kla Segun I,3084.82723475,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.17,KHG Sungai Kla Mer - Sungai Kla Segun II,1421.64819992,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.18,KHG Sungai Kla Segun - Sungai Kla Betur,5280.47041473,Pulau Papua,Papua Barat Daya,True,316,Tim 6,1918.0,0.0,0.0,819.0,1100.0,True,target villages + SKEG 2024 damage,203,1918.34,650.62,650.62
+KHG.92.01.19,KHG Sungai Kaseremao - Sungai Kla Betur,1526.2144068,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.20,KHG Sungai Betur - Sungai Jari,4142.89465603,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.21,KHG Sungai Kla Jarin - Kla Seremuk,1160.19619485,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.22,KHG Sungai Kawor Besar - Sungai  Serumuk,2527.69881716,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.23,KHG Sungai Kla Jarin - Sungai Kawor Besar,5397.20511176,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.24,KHG Sungai Kla Seremuk - Sungai Murnaim,1157.89561499,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.25,KHG Sungai Murnaim - Sungai Kla Beraur I,1560.13646122,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.26,KHG Sungai Murnaim - Sungai Kla Beraur II,2157.08906972,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.27,KHG Sungai Kalamulung- Sungai Sofok,3147.373122,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.28,KHG Sungai Safet - Sungai Kla Beraur,1070.71052089,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.29,KHG Sungai Murnaim - Sungai Beraur I,1057.22183435,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.30,KHG Sungai Kla Beraur - Sungai Kla Seremuk,1452.29336558,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.31,KHG Sungai Kla Beraur - Sungai Sepa Beraur,3997.14128339,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.32,KHG Sungai Sofok - Sungai Safet,2484.9461721,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.33,KHG Sungai Safet - Sungai Isai,2479.3703482,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.34,KHG Sungai Kla Beraur - Sungai Kla Wan,8637.99307369,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.35,KHG Sungai Murnaim - Sungai Beraur II,3642.36987437,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.36,KHG Sungai Sepa Beraur -  Sungai Kla  Bak,8065.91779976,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.37,KHG Sungai Sersebak - Sungai Duk,14000.0045246,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.38,KHG Sungai Isai - Sungai Beraur,2090.63590356,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.39,KHG Sungai Wilis - Sungai Beraur,1323.81153662,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.40,KHG Sungai Kla Wan - Sungai Duk,7207.15020935,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.41,KHG Sungai Kla Wan - Sungai Kla Bak,1785.61213089,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.42,KHG Sungai Kla Sepa - Sungai Kla Bak,2951.69199773,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.43,KHG Sungai Kla Bak - Sungai Kla Duk,5381.52016387,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.44,KHG Sungai Duk - Sungai Sepa Klabra,1145.13934078,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.45,KHG Sungai Songawat - Sungai Serumuk,979.013512205,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.46,KHG Sungai Sepa Klabra - Sungai Seremuk,13758.0165122,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.47,KHG Sungai Fesia Kecil,168.700222506,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.48,KHG Sungai Fesia,186.337236892,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.01.49,KHG Sungai Walal,439.21399899,Pulau Papua,Papua Barat Daya,True,321,Tim 6,279.0,0.0,0.0,220.0,59.0,True,target villages + SKEG 2024 damage,258,278.99,178.64,153.2
+KHG.92.01.50,KHG SUngai Waprak - Sungai Tunun,214.711555132,Pulau Papua,Papua Barat Daya,False,,,,,,,,True,SKEG 2024 damage,306,0.0,26.19,0.0
+KHG.92.01.51,KHG Sungai Wai Tunun I,89.788853711,Pulau Papua,Papua Barat Daya,False,,,,,,,,True,target villages + SKEG 2024 damage,318,0.08,6.69,0.0
+KHG.92.01.52,KHG Sungai Wai Tunun II,74.4026255613,Pulau Papua,Papua Barat Daya,True,320,Tim 6,74.0,0.0,0.0,57.0,17.0,True,target villages + SKEG 2024 damage,310,74.12,15.9,15.9
+KHG.92.01.53,KHG Sungai Wai Tunun - Sungai Warmon I,72.1548514543,Pulau Papua,Papua Barat Daya,True,318,Tim 6,70.0,0.0,0.0,70.0,0.0,True,target villages + SKEG 2024 damage,304,70.05,29.78,29.78
+KHG.92.01.54,KHG Sungai Warmon - Sungai Klamalu II,310.998470827,Pulau Papua,Papua Barat Daya,True,323,Tim 6,247.0,0.0,0.0,246.0,1.0,True,target villages + SKEG 2024 damage,243,247.49,289.19,236.86
+KHG.92.02.01,KHG Sungai Api - Sungai Asiti,3480.81807579,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.03-06.01,KHG Sungai Otoweri - Sungai Saengga,56096.4296563,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.03.01,KHG Sungai Wafun - Sungai Budidi,6492.35588201,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.03.02,KHG Sungai Mintiber - Sungai Budidi,18115.2407769,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.03.03,KHG Sungai Budidi - Sungai Bomberai,35533.5205143,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.03.04,KHG Sungai Bomberai,1049.63549796,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.03.05,KHG Sungai Bomberai - Sungai Otoweri,11052.6183021,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.04-06.01,KHG Sungai Udugaga - Sungai Kamundan,50373.8264376,Pulau Papua,"Papua, Papua Barat, Papua Barat Daya",False,,,,,,,,True,SKEG 2024 damage,226,0.0,412.69,0.0
+KHG.92.04-06.02,KHG Sungai Kamundan - Sungai Weriagar,97713.5150581,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.04.01,KHG Sungai Kla Seremuk - Sungai Kanaya,4508.82304916,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.04.02,KHG Sungai Kla Seremuk - Sungai Kla Makambar,1813.77116423,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.04.03,KHG Sungai Kla Seremuk - Sungai Kla Sayal,9358.70860129,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.04.05,KHG Sungai Kla Makambar - Sungai Kla Serai,2398.47420001,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.04.06,KHG Sungai Serai- Sungai Kla Sayal,5297.37529262,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.04.07,KHG SUngai Serjin - Sungai Kamundan,3832.08320113,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.04.08,KHG Sungai Kaibus - Sungai Bariat,3604.95218628,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.04.09,KHG Sungai Selasin - Sungai Kaibu,1626.58145892,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.04.10,KHG Sungai Kaibus - Sungai Warongge,1706.81444048,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.04.12,KHG Sungai Kla Sepa - Sungai Kla Kaibus,1866.07149466,Pulau Papua,Papua Barat Daya,False,,,,,,,,True,target villages,,7.71,0.0,0.0
+KHG.92.04.13,KHG Sungai Kaibus - Sungai Semor,10673.51319,Pulau Papua,Papua Barat Daya,True,315,Tim 6,4866.0,0.0,0.0,507.0,4359.0,True,target villages + SKEG 2024 damage,266,4865.8,132.38,132.38
+KHG.92.04.14,KHG Sungai Bakoi - Sungai Bakop,5282.0016623,Pulau Papua,Papua Barat Daya,True,313,Tim 6,2185.0,0.0,0.0,0.0,2185.0,True,target villages,,2184.92,0.0,0.0
+KHG.92.04.15,KHG Sungai Keyen - Sungai Waren,4446.35447261,Pulau Papua,"Papua, Papua Barat Daya",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.04.16,KHG Sungai Bakop - Sungai Keyen,1049.82374836,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.04.17,KHG Sungai Keyen - Sungai Waigo,6671.62270463,Pulau Papua,"Papua, Papua Barat Daya",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.04.18,KHG Sungai Waigo,3255.33675113,Pulau Papua,"Papua, Papua Barat Daya",False,,,,,,,,True,SKEG 2024 damage,327,0.0,0.69,0.0
+KHG.92.04.19,KHG Sungai Kaibus - Sungai Koper,21342.5172835,Pulau Papua,"Papua, Papua Barat Daya",True,314,Tim 6,1262.0,0.0,0.0,0.0,1262.0,True,target villages,,1262.36,0.0,0.0
+KHG.92.04.20,KHG Sungai Sekak - Sungai Kais,43511.1865108,Pulau Papua,"Papua, Papua Barat Daya",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.04.21,KHG Sungai Suaboor - Sungai Bogoremo,1597.96881628,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.04.22,KHG Sungai Bogoremo,252.847536562,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.04.23,KHG Sungai Bogoremo - Sungai Sedai,2200.52225432,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.04.24,KHG Sungai Suaboor - Sungai Sedai,2177.8409857,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.04.25,KHG Sungai Suaboor - Sungai Awoge,1127.69277556,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.04.26,KHG Sungai Sepa,662.087749978,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.04.27,KHG Sungai Suaboor - Sungai Sepa,3638.15801518,Pulau Papua,"Papua, Papua Barat Daya",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.04.28,KHG Sungai Sepa - Sungai Kamamur I,1536.94497233,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.04.29,KHG Sungai Sepa - Sungai Kamamur II,999.36639555,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.04.30,KHG Sungai Sepa - Sungai Kais,22139.0786036,Pulau Papua,"Papua, Papua Barat Daya",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.04.31,KHG Sungai Rur - Sungai Kais,2338.0873078,Pulau Papua,"Papua, Papua Barat Daya",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.04.32,KHG Sungai Kais - Sungai Datur,2187.67985194,Pulau Papua,"Papua, Papua Barat Daya",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.04.33,KHG Sungai Datur Sungai Metamani,1421.98192293,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.04.34,KHG Sungai Kais - Sungai Metamani,58602.3866872,Pulau Papua,"Papua, Papua Barat Daya",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.04.35,KHG Sungai Metamani - Sungai Kasuweri,89981.14892950002,Pulau Papua,"Papua, Papua Barat Daya",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.04.36,KHG Sungai Serjin - Sungai Kais,4319.30011948,Pulau Papua,"Papua, Papua Barat Daya",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.04.37,KHG Sungai Kasuwari - Sungai Kenaburi,9767.54008163,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.04.38,KHG Kla Sayal - Sungai Kla Kaibus,3103.58598888,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.04.39,KHG Sungai Bakoi,467.791360804,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.05.01,KHG Pulau Warir III,352.870433398,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.05.02,KHG Pulau Warir II,115.487923245,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.05.03,KHG Pulau Warir I,237.028735739,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.05.04,KHG Sungai Wai Bo - Sungai Wai Mafu,542.254638408,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.05.05,KHG Sungai Makpan - Sungai Kasim,9243.92604493,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.05.06,KHG Sungai Nukarie - Sungai Mabel,2255.78042287,Pulau Papua,Papua Barat Daya,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06-08.01,KHG Sungai Bianoga - Sungai Wirfatn,3992.6116793,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.01,KHG Sungai Weriagar - Sungai Sebyar,49305.5314141,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.02,KHG Sungai Sebyar - Sungai Tembuni,103361.261275,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.03,KHG Sungai Tembuni - Sungai Bintuni,11688.3066633,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.04,KHG Sungai Tembuni - Sungai Retui I,24482.4748448,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.05,KHG Sungai Tembuni - Sungai Retui II,9563.55286338,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.06,KHG Sungai Tembuni - Sungai Tisai II,7868.18414452,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.07,KHG Sungai Tisai - Sungai Murebi II,415.407398769,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.08,KHG Sungai Tisai - Sungai Murebi I,992.260570905,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.09,KHG Sungai Bintuni - Sungai Syakarer,3071.10293048,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.10,KHG Sungai Murebi - Sungai Awisio I,260.028995597,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.11,KHG Sungai Murebi - Sungai Awisio II,104.122789261,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.12,KHG Sungai Tembuni - Sungai Tisai III,205.498487497,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.13,KHG Sungai Tembuni - Sungai Tisai I,170.355505408,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.14,KHG Sungai Syakarer - Sungai Manimeri,1547.23167957,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.15,KHG Sungai Manimeri II,105.177524389,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.16,KHG Sungai Manimeri,415.728614568,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.17,KHG Sungai Manimeri - Sungai Potong,810.400308752,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.18,KHG Sungai Awisio - Sungai Muturi,4222.32334394,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.19,KHG Sungai Manimeri - Sungai Peresari I,56.8946853536,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.20,KHG Sungai Manimeri - Sungai Peresari II,1485.72013902,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.21,KHG Sungai Muturi - Sungai Uroroni,2899.15199888,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.22,KHG Sungai Manimeri Dua - Sungai Uroroni,1054.21557569,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.23,KHG Sungai Muturi - Sungai Manimeri Dua,1315.10175672,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.24,KHG Sungai Urononi - Sungai Kirasai,4672.50917096,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.25,KHG Sungai Manimeri Satu - Sungai Bui,2371.71423974,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.26,KHG Sungai Kirasai - Sungai Samberi,3051.60413019,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.27,KHG Sungai Samberi - Sungai Tayamari I,895.872718976,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.28,KHG Sungai Samberi - Sungai Tayamari II,68.761243729,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.29,KHG Sungai Samberi - Sungai Tayamari III,227.974226332,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.30,KHG Sungai Tayamari - Sungai Anakasi,2099.99158916,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.31,KHG Sungai Anakasi - Sungai Muaraanakasi,5149.78737705,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.32,KHG Sungai Nusuamar - Sungai Muaraanakasi,1451.47512504,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.33,KHG Sungai Nusuamar - Sungai Pasomol,1830.51856453,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.34,KHG Sungai Tawari - Sungai Pasomol,255.505492237,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.35,KHG Sungai Nusuamar - Sungai Tatowari,5291.52626315,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.36,KHG Sungai Naramasa - Sungai Tatowari,27418.5351444,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.37,KHG Sungai Wembi - Sungai Natamasa,7118.65771821,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.38,KHG Sungai Naramasa - Sungai Sobrawara,7128.1051629,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.39,KHG Sungai Berparar - Sungai Naramasa,14722.6205962,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.40,KHG Sungai Wagura - Sungai Beparar,2468.2309886,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.41,KHG Sungai Wagura - Sungai Tobi,2757.71192615,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.42,KHG Sungai Tobi - Sungai Ennma,3211.10758126,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.43,KHG Sungai Armina - Sungai Wagura,5769.67610894,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.44,KHG Sungai Kaitaro - Sungai Wagura,9053.95683467,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.45,KHG Sungai Suga - Sungai Armina,5491.53823569,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.46,KHG Sungai Kaitaro - Sungai Suga,9781.42587167,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.47,KHG Sungai Kaitera - Sungai Suga,3296.16883585,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.48,KHG Sungai Sara - Sungai Besura,1055.667589,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.49,KHG Sungai Tamaroma - Sungai Sara,1681.28980002,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.50,KHG Sungai Mumusi Satu - Sungai Kaitera,11536.1166955,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.51,KHG Sungai Tifa - Sungai Kaitera,10722.1444026,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.52,KHG Sungai Husori - Sungai Mumusi Satu,1094.47710379,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.53,KHG Sungai Tifa - Sungai Husori,3759.29913216,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.54,KHG Sungai Marafuara - Sungai Tifa,1019.9111983,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.55,KHG Sungai Saka - Sungai Tifa,2842.72946074,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.56,KHG Sungai Kasira - Sungai Tifa,5477.607182,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.57,KHG Sungai Kasira - Sungai Saka,4798.4690191,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.58,KHG Sungai Ubuara - Sungai Sianiri Besar,2319.91121856,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.59,KHG Pulau Sungai Raahiba - Sungai Ubuara,2475.35112368,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.60,KHG Sungai Ubuara - Sungai Kasira,4716.40566181,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.61,KHG Sungai Raahiba - Sungai Kasira,2081.32779387,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.62,KHG Sungai Roarifa - Sungai Raahiba,861.084543428,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.63,KHG Sungai Seringga - Sungai Wami,47000.9847114,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.64,KHG Sungai Aroba - Sungai Roarifa,4380.67985495,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.65,KHG Pulau Kora-Kora,1486.71812548,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.06.66,KHG Sungai Wimro - Sungai Aroba,4156.3925373,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.07.01,KHG Sungai Wai - Sungai Webi,15544.4388013,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.01,KHG SUngai Ewas,88.1294475508,Pulau Papua,Papua Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.02,KHG Sungai Feria - Sungai Yaga,2454.97253325,Pulau Papua,Papua Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.03,KHG Sungai Feria - Sungai Noma,1631.35664772,Pulau Papua,Papua Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.04,KHG Sungai Noma,286.549710661,Pulau Papua,Papua Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.05,KHG Sungai Tanggiri - Sungai Wulmaset,318.533582423,Pulau Papua,Papua Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.06,KHG Sungai Tanggiri - Sungai Fewan,1699.29364818,Pulau Papua,"Papua, Papua Barat",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.07,KHG Sungai Tanggiri - Sungai Kabasesi,4041.29724158,Pulau Papua,"Papua, Papua Barat",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.08,KHG Sungai Buya - SUngai Furakara,1796.90903271,Pulau Papua,"Papua, Papua Barat",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.09,KHG Sungai Potong - Sungai Buruway,4601.66627548,Pulau Papua,"Papua, Papua Barat",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.10,KHG Sungai Garawa - Sungai Buruway,6029.85328495,Pulau Papua,"Papua, Papua Barat",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.11,KHG Sungai Gobo - Sungai Garawa,28050.6590114,Pulau Papua,"Papua, Papua Barat",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.12,KHG Sungai Gobo - Sungai Wegera,2949.56057695,Pulau Papua,"Papua, Papua Barat",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.13,KHG Sungai Tanggiri - Sungai Binawa,4703.34216416,Pulau Papua,"Papua, Papua Barat",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.14,KHG Sungai Irimawa - Sungai Wawara,2723.21823855,Pulau Papua,"Papua, Papua Barat",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.15,KHG Sungai Warsih - Sungai Sindu,1366.53028655,Pulau Papua,Papua Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.16,KHG Sungai Sunua,156.092953136,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.17,KHG Sungai Rerum - Sungai Rafa,3355.62445844,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.18,KHG Sungai Bianoga - Sungai Watro,10763.6111784,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.19,KHG Sungai Wirfatn - Sungai Repada,5581.67339651,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.21,KHG Sungai Barari - Sungai Gariyoga,375.474907247,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.22,KHG Sungai Barari - Sungai Kali Sihuna,1320.90676878,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.23,KHG Sungai Kali Waermura - Sungai Sawaruktu,1892.48593221,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.24,KHG Sungai Noani - Sungai Sekua,2788.40741426,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.25,KHG Sungai Sekua,1979.16158793,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.26,KHG Sungai Tabutabu,2285.18813529,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.27,KHG Sungai Tabutabu - Sungai Karora,2333.53254209,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.28,KHG Sungai Gebiasi - Sungai Wermura,4057.02020671,Pulau Papua,Papua Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.29,KHG Sungai Badara - Sungai Aiyamada,3338.15181498,Pulau Papua,Papua Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.30,KHG Sungai Sisir Satu - Sisir Dua,885.438168764,Pulau Papua,Papua Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.31,KHG Sungai Urere - Sungai Tambana,632.945416397,Pulau Papua,Papua Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.32,KHG Sungai Cabang Arafoi - Sungai Uniswala,1477.57681556,Pulau Papua,"Papua, Papua Barat",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.33,KHG Sungai Landenwala - Sungai I'wai,1031.85482819,Pulau Papua,"Papua, Papua Barat",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.34,KHG Sungai Wawa - Sungai Kafa,1621.76586788,Pulau Papua,"Papua, Papua Barat",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.35,KHG Sungai Waranggera,457.65928631,Pulau Papua,Papua Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.36,KHG Sungai Muawa- Sungai Tiningga,3302.05170681,Pulau Papua,"Papua, Papua Barat",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.37,KHG Sungai Muera - Sungai Mematefare,7111.20879931,Pulau Papua,"Papua, Papua Barat",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.38,KHG Sungai Omba - Sungai Timbona,6883.3642895,Pulau Papua,"Papua, Papua Barat, Papua Tengah",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.39,KHG Sungai Muera - Sungai Omba,50480.0561484,Pulau Papua,"Papua, Papua Barat",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.40,KHG Sungai Omba - Sungai Mairuna,1547.48549883,Pulau Papua,Papua Barat,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.41,KHG Sungai Omba - Sungai Aria,2571.9592933,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.08.42,KHG Sungai Omba - Sungai Urama,11826.5190618,Pulau Papua,"Papua, Papua Barat",False,,,,,,,,False,,,0.0,0.0,0.0
+KHG.92.12.01,KHG Sungai Warkesi - Sungai Irai,2547.09666491,Pulau Papua,Papua,False,,,,,,,,False,,,0.0,0.0,0.0

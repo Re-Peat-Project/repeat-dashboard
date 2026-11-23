@@ -1,0 +1,351 @@
+{
+ "rule": {
+  "written": "2026-11-17",
+  "version": 2,
+  "cuts": {
+   "urgency": [
+    0.3673,
+    0.6084
+   ],
+   "complexity": [
+    0.3649,
+    0.6179
+   ],
+   "stake": [
+    0.4251,
+    0.559
+   ]
+  },
+  "fcut": 0.4356,
+  "pcut": 0.6432,
+  "intervention": {
+   "rewetting": {
+    "indicator": "canal_share",
+    "min": 0.2
+   },
+   "revegetation": {
+    "indicator": "reveg_share",
+    "min": 0.2
+   }
+  },
+  "min_peat": 25,
+  "reported": [
+   "brgm_blocks_per_km2",
+   "peat_volume_mm3",
+   "tma_deep_share",
+   "open_share",
+   "forest_share",
+   "reveg_share",
+   "burn_recovered_share",
+   "burn_unrecovered_share",
+   "tmf_forest_2024",
+   "tmf_degraded_2024",
+   "tmf_deforested_2024",
+   "tmf_regrowth_2024",
+   "hansen_loss_2015",
+   "ndvi_dry",
+   "ndmi_dry",
+   "ndvi_low_share",
+   "sm_root_anom"
+  ],
+  "dims": {
+   "urgency": {
+    "u_fire_freq": 2,
+    "u_burn_repeat": 1,
+    "u_hotspot": 1,
+    "u_hotspot_now": 1,
+    "damage_share": 1,
+    "canal_share": 1,
+    "u_canal_primary": 0,
+    "u_canal_secondary": 0,
+    "u_canal_tertiary": 0,
+    "forest_loss_2015": 0,
+    "sm_root_dry": 0
+   },
+   "stake": {
+    "thick3m_share": 1,
+    "dome_share": 1,
+    "protected_share": 1,
+    "peat_km2": 1,
+    "conservation_share": 1
+   },
+   "complexity": {
+    "tenure_complexity": 2,
+    "actor_types": 1,
+    "villages": 1
+   },
+   "feasibility": {
+    "water_dist_km": 1,
+    "road_dist_km": 1,
+    "dry_balance_mm": 1
+   },
+   "people": {
+    "pop_on_peat": 1,
+    "pop_10km": 1,
+    "villages_peat": 1
+   }
+  },
+  "dirs": {
+   "u_fire_freq": "+",
+   "u_burn_repeat": "+",
+   "u_hotspot": "+",
+   "u_hotspot_now": "+",
+   "damage_share": "+",
+   "canal_share": "+",
+   "u_canal_primary": "+",
+   "u_canal_secondary": "+",
+   "u_canal_tertiary": "+",
+   "forest_loss_2015": "+",
+   "sm_root_dry": "-",
+   "thick3m_share": "+",
+   "dome_share": "+",
+   "protected_share": "+",
+   "peat_km2": "+",
+   "conservation_share": "+",
+   "tenure_complexity": "+",
+   "actor_types": "+",
+   "villages": "+",
+   "water_dist_km": "-",
+   "road_dist_km": "-",
+   "dry_balance_mm": "+",
+   "pop_on_peat": "+",
+   "pop_10km": "+",
+   "villages_peat": "+"
+  },
+  "validation": {
+   "target": "u_burned_now",
+   "n_pool": 334,
+   "n_burned": 94,
+   "excluded": [
+    "u_hotspot_now"
+   ],
+   "urgency": {
+    "spearman": 0.489,
+    "auc": 0.801,
+    "capture_top20pct": 0.781
+   },
+   "fire_history_only": {
+    "spearman": 0.466,
+    "auc": 0.784,
+    "capture_top20pct": 0.583
+   }
+  },
+  "sensitivity": {
+   "runs": 500,
+   "share_keeping_type_mean": 0.92,
+   "share_khg_type_stable_80pct": 0.829,
+   "median_rank_sd": 5.2
+  },
+  "types": [
+   {
+    "type": "A",
+    "type_id": "Aksi cepat",
+    "type_en": "Quick action",
+    "khg": 46,
+    "in_337": 45,
+    "peat_km2": 4988.1,
+    "priority_ha": 163365.0,
+    "low_feasibility": 19,
+    "high_exposure": 16,
+    "pop_on_peat": 73121.0
+   },
+   {
+    "type": "B",
+    "type_id": "Koordinasi multipihak",
+    "type_en": "Multi-party coordination",
+    "khg": 79,
+    "in_337": 79,
+    "peat_km2": 72233.3,
+    "priority_ha": 2128059.5,
+    "low_feasibility": 43,
+    "high_exposure": 53,
+    "pop_on_peat": 1450977.7
+   },
+   {
+    "type": "C",
+    "type_id": "Urgensi sedang",
+    "type_en": "Medium urgency",
+    "khg": 158,
+    "in_337": 150,
+    "peat_km2": 34592.4,
+    "priority_ha": 883435.0,
+    "low_feasibility": 30,
+    "high_exposure": 43,
+    "pop_on_peat": 565883.3
+   },
+   {
+    "type": "D",
+    "type_id": "Lindungi dan pantau",
+    "type_en": "Protect and monitor",
+    "khg": 23,
+    "in_337": 1,
+    "peat_km2": 4453.0,
+    "priority_ha": 2.1,
+    "low_feasibility": 11,
+    "high_exposure": 0,
+    "pop_on_peat": 2051.6
+   },
+   {
+    "type": "E",
+    "type_id": "Pantau",
+    "type_en": "Monitor",
+    "khg": 127,
+    "in_337": 62,
+    "peat_km2": 11161.3,
+    "priority_ha": 17958.2,
+    "low_feasibility": 17,
+    "high_exposure": 5,
+    "pop_on_peat": 50165.7
+   }
+  ],
+  "run": "2026-11-18"
+ },
+ "page": {
+  "generated": "2026-11-13",
+  "period_now": "2026-10-29",
+  "baseline": "2015 to 2025",
+  "n_khg": 865,
+  "min_area": 50,
+  "min_peat": 25,
+  "hs_klh_to": "2026-09-15",
+  "hs_firms_from": "2026-09-16",
+  "n_full": 33,
+  "peat_by_island": {
+   "Kalimantan": [
+    0.49,
+    0.93,
+    190
+   ],
+   "Papua": [
+    0.0,
+    0.93,
+    465
+   ],
+   "Sulawesi": [
+    0.27,
+    0.64,
+    3
+   ],
+   "Sumatera": [
+    0.5,
+    0.97,
+    207
+   ]
+  }
+ },
+ "exports": [
+  {
+   "file": "final_khg.csv",
+   "desc": "Final prioritisation per KHG: urgency, stake, complexity, feasibility and people scores, type, ranks, stability, flags and the indicators behind them.",
+   "rows": 865,
+   "cols": 78,
+   "kb": 411.2,
+   "src": "final/final_khg.csv · 2026-11-18"
+  },
+  {
+   "file": "final_types.csv",
+   "desc": "Summary per type: KHG, KHG in the 337, peat area, SKEG-damaged peat, KHG with low feasibility.",
+   "rows": 5,
+   "cols": 10,
+   "kb": 0.4,
+   "src": "final/final_types.csv · 2026-11-18"
+  },
+  {
+   "file": "final_intervention.csv",
+   "desc": "KHG, peat and SKEG-damaged peat by type and by the intervention the peat needs (rewetting, revegetation, both, protect).",
+   "rows": 17,
+   "cols": 6,
+   "kb": 0.7,
+   "src": "final/final_intervention.csv · 2026-11-18"
+  },
+  {
+   "file": "final_gaps.csv",
+   "desc": "Gap lists: PPEG priority KHG outside the 337, high-urgency KHG outside the 362, 337 KHG not scored or scored with little peat.",
+   "rows": 134,
+   "cols": 8,
+   "kb": 24.2,
+   "src": "final/final_gaps.csv · 2026-11-18"
+  },
+  {
+   "file": "final_meta.json",
+   "desc": "The rule of the final prioritisation as run (indicators, weights, pool, tercile cuts) and the run date.",
+   "rows": 1,
+   "cols": 7,
+   "kb": 3.3,
+   "src": "final/final_meta.json · 2026-11-18"
+  },
+  {
+   "file": "final_validation.json",
+   "desc": "Validation against 2026 burned peat and the weight-sensitivity test.",
+   "rows": 1,
+   "cols": 2,
+   "kb": 0.5,
+   "src": "final/final_validation.json · 2026-11-18"
+  },
+  {
+   "file": "final_inputs.csv",
+   "desc": "Inputs of the final prioritisation computed for it: distance to large rivers and lakes and to roads, conservation share of peat, population on the peat and within 10 km, villages on peat, peat volume.",
+   "rows": 865,
+   "cols": 19,
+   "kb": 123.6,
+   "src": "final_inputs/final_inputs.csv · 2026-11-17"
+  },
+  {
+   "file": "profile.csv",
+   "desc": "National KHG profile: fire, hotspot and canal indicators, peat area, villages, SiTMAT, the fire-based ranking.",
+   "rows": 865,
+   "cols": 87,
+   "kb": 508.8,
+   "src": "operational/profile.csv · 2026-11-13"
+  },
+  {
+   "file": "yearly.csv",
+   "desc": "Per KHG and year: burned peat and hotspots on peat.",
+   "rows": 30855,
+   "cols": 4,
+   "kb": 1164.1,
+   "src": "operational/yearly.csv · 2026-11-13"
+  },
+  {
+   "file": "ppeg_khg.csv",
+   "desc": "KLH PPEG integrated analysis summed per KHG: peat, SKEG damage, dome, thickness, FEG, canal-affected, actors, intervention class.",
+   "rows": 867,
+   "cols": 35,
+   "kb": 212.0,
+   "src": "ppeg/ppeg_khg.csv · 2026-11-13"
+  },
+  {
+   "file": "tenure_area.csv",
+   "desc": "Peat and burned peat per KHG by tenure class (licence, forest area, other land) and DMPG village land.",
+   "rows": 2911,
+   "cols": 8,
+   "kb": 249.5,
+   "src": "tenure/tenure_area.csv · 2026-11-13"
+  },
+  {
+   "file": "tenure_complexity.csv",
+   "desc": "Tenure complexity per KHG (rule v2): shares of each claim type on peat, contested land, licence holders, index.",
+   "rows": 865,
+   "cols": 24,
+   "kb": 111.4,
+   "src": "tenure_complexity/tenure_complexity.csv · 2026-11-17"
+  },
+  {
+   "file": "khg_klh_priority.csv",
+   "desc": "KLH priorities per KHG: the 337 work list (team, areas by intervention class) and the 362 PPEG priority KHG.",
+   "rows": 865,
+   "cols": 19,
+   "kb": 130.4,
+   "src": "re-peat/sites/khg_klh_priority.csv · 2026-11-16"
+  },
+  {
+   "file": "khg_availability.csv",
+   "desc": "Data availability per KHG: peat-depth source, LiDAR and DeltaDTM cover, canals, BRGM blocks, SiTMAT stations, water balance, run class.",
+   "rows": 865,
+   "cols": 38,
+   "kb": 295.2,
+   "src": "re-peat/sites/khg_availability.csv · 2026-11-08"
+  }
+ ],
+ "tiles": "https://re-peat-project.github.io/re-peat/reports/national_profile/khg_tiles/"
+}

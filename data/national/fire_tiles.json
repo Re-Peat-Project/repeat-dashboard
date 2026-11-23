@@ -1,0 +1,43 @@
+{
+ "hotspots": {
+  "file": "fire_hotspots_2026.pmtiles",
+  "mb": 32.3,
+  "maxzoom": 12,
+  "count": {
+   "viirs": 619852,
+   "modis": 224161
+  },
+  "fingerprint": "cd6d8cfe24f4e0c56051029cfb19d0e3fb731f9721539c25a6d8486a013928d6",
+  "last": {
+   "viirs": "2026-10-31",
+   "modis": "2026-10-29"
+  },
+  "source": "VIIRS S-NPP (FIRMS standard and near real time) and MODIS (KLH file, then FIRMS near real time), medium and high confidence"
+ },
+ "burned": {
+  "file": "fire_burned.pmtiles",
+  "mb": 74.4,
+  "maxzoom": 11,
+  "polygons": 584723,
+  "per_year": {
+   "2015": 107477,
+   "2016": 18403,
+   "2017": 56267,
+   "2018": 107368,
+   "2019": 149798,
+   "2020": 109271,
+   "2021": 170831,
+   "2022": 119579,
+   "2023": 272477,
+   "2024": 26164,
+   "2025": 191625,
+   "2026": 52427
+  },
+  "fingerprint": "5d8c6293c4ecb4836fcb5058f30f9be6f70fef3b401325c4471b106698e95eb0",
+  "source": "KLHK burnt-area polygons 2015-2026",
+  "incomplete": [
+   2024,
+   2026
+  ]
+ }
+}
