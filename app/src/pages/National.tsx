@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { DataTable, type Col } from '../components/DataTable'
+import { TableValueBar } from '../components/TableVisuals'
 import { FilterBar } from '../components/FilterBar'
 import { LegendCard, RampLegend } from '../components/Legend'
 import { FireTrends } from '../components/FireTrends'
@@ -23,6 +24,15 @@ const DENSITY_MAX = 50   // hotspots per 100 km² of peat at the top of the colo
 export default function National() {
   const t = useT()
   const nav = useNavigate()
+  const [params] = useSearchParams()
+  const province = params.get('province')
+  const [provinceKhg, setProvinceKhg] = useState<Record<string, string[]> | null>(null)
+  const [provinceError, setProvinceError] = useState(false)
+  useEffect(() => {
+    if (province && !provinceKhg && !provinceError) {
+      readJson<Record<string, string[]>>('national/fire_province_khg.json').then(setProvinceKhg).catch(() => setProvinceError(true))
+    }
+  }, [province, provinceKhg, provinceError])
   const { selected, select, basemap, setBasemap, fire: rawFire, setFire, lang } = useStore()
   const cam = useRef<{ center: maplibregl.LngLatLike; zoom: number } | null>(null)
   const el = useRef<HTMLDivElement>(null)
@@ -158,11 +168,20 @@ export default function National() {
   const fmt0 = (v: number | null) => (v == null || Number.isNaN(v) ? '' : Math.round(v).toLocaleString())
   const scope = sel ? sel.nama.replace(/^KHG /, '') : t('Indonesia')
   const total = [...counts.values()].reduce((a, b) => a + b, 0)
+  const shortlist = useMemo(() => {
+    if (!province) return rows
+    const members = new Set(provinceKhg?.[province] ?? [])
+    return rows.filter((row) => members.has(row.khg_id))
+  }, [rows, provinceKhg, province])
+  useEffect(() => {
+    if (province && provinceKhg && selected && !provinceKhg[province]?.includes(selected)) select(null)
+  }, [province, provinceKhg, selected, select])
+  const maxDensity = shortlist.reduce((max, r) => Math.max(max, r.density ?? 0), 0)
 
   const cols: Col<(typeof rows)[number]>[] = [
     { key: 'nama', label: t('KHG') }, { key: 'province', label: t('Province') },
     { key: 'n', label: t('Hotspots'), align: 'right', fmt: fmt0 },
-    { key: 'density', label: t('Density'), unit: t('per 100 km² of peat'), align: 'right', fmt: (v) => (v == null ? '' : v.toFixed(1)) },
+    { key: 'density', label: t('Density'), unit: t('per 100 km² of peat'), align: 'right', fmt: (v) => (v == null ? '' : v.toFixed(1)), visual: (v) => <TableValueBar value={v} max={maxDensity} color="var(--s2)" /> },
     { key: 'peat_km2', label: t('Peat'), unit: 'km²', align: 'right', fmt: fmt0 },
   ]
 
@@ -225,8 +244,20 @@ export default function National() {
           </div>
           {display === 'glyphs' && <p className="muted border-t border-border px-3 py-2 text-xs">{t('Clusters use the monthly grid, which can include likely static sources such as gas flares. Individual points exclude those sources.')}</p>}
         </div>
-        <div className="relative min-w-0">
+        <div id="khg-shortlist" className="relative min-w-0 scroll-mt-32 lg:scroll-mt-16">
           <div className="card flex flex-col gap-3 p-3 xl:absolute xl:inset-0">
+            {province && <div className="space-y-1 border-b border-border pb-2">
+              <div className="flex flex-wrap items-center justify-between gap-1 text-sm">
+                <h3 className="font-semibold">{t('KHG shortlist')} · {province}</h3>
+                <button type="button" className="btn text-xs" onClick={() => {
+                  const next = new URLSearchParams(params)
+                  next.delete('province')
+                  nav({ pathname: '/', search: next.toString(), hash: '#khg-shortlist' }, { replace: true })
+                }}>{t('Show all KHGs')}</button>
+              </div>
+              <p className="muted text-xs">{provinceError ? t('Could not load the province shortlist.') : !provinceKhg || !rows.length ? t('Loading…')
+                : shortlist.length ? t('Counts and density cover each whole KHG, including any part in another province. Use the Fire filters above to change the period.') : t('No KHGs overlap this province in the dashboard data.')}</p>
+            </div>}
             {sel ? <div className="space-y-2 border-b border-border pb-3" aria-live="polite">
               <div className="flex items-start gap-2">
                 <div><div className="text-base font-semibold">{sel.nama}</div><div className="muted">{sel.province} · {sel.island}</div></div>
@@ -242,7 +273,7 @@ export default function National() {
                 {entry ? <button className="btn text-sm" onClick={() => nav(`/workspace/${entry.code}`)}>{t('Open the working view of this KHG')}</button> : null}
               </div>
             </div> : null}
-            <DataTable rows={rows} cols={cols} rowKey="khg_id" searchKeys={['nama', 'province', 'island', 'khg_id']} selectedKey={selected} onRow={(r) => pickFromTable(r.khg_id)} initialSort={{ key: 'density', dir: -1 }} limit={rows.length} fit />
+            {(!province || shortlist.length > 0) && <DataTable rows={shortlist} cols={cols} rowKey="khg_id" searchKeys={['nama', 'province', 'island', 'khg_id']} selectedKey={selected} onRow={(r) => pickFromTable(r.khg_id)} initialSort={{ key: 'density', dir: -1 }} limit={shortlist.length} fit />}
           </div>
         </div>
       </div>

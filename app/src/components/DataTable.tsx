@@ -1,7 +1,7 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, type ReactNode } from 'react'
 import { useT } from '../lib/i18n'
 
-export type Col<R> = { key: string; label: string; unit?: string; fmt?: (v: any, r: R) => string; align?: 'left' | 'right' }
+export type Col<R> = { key: string; label: string; unit?: string; fmt?: (v: any, r: R) => string; visual?: (v: any, r: R) => ReactNode; align?: 'left' | 'right' }
 
 /** Sortable, searchable table; the unit is shown in the header. */
 export function DataTable<R extends Record<string, any>>({ rows, cols, searchKeys, onRow, selectedKey, rowKey, limit = 300, initialSort, placeholder, fit = false }: {
@@ -37,6 +37,7 @@ export function DataTable<R extends Record<string, any>>({ rows, cols, searchKey
                 style={{ background: selectedKey === r[rowKey] ? 'var(--seq-100)' : undefined, color: selectedKey === r[rowKey] ? '#0b0b0b' : undefined }}>
                 {cols.map((c, i) => <td key={c.key} className={`px-2 py-0.5 ${c.align === 'right' ? 'text-right tabular-nums' : ''}`}>
                   {onRow && i === 0 ? <button type="button" className="text-left hover:underline" onClick={(e) => { e.stopPropagation(); onRow(r) }}>{c.fmt ? c.fmt(r[c.key], r) : r[c.key] ?? ''}</button> : c.fmt ? c.fmt(r[c.key], r) : r[c.key] ?? ''}
+                  {c.visual?.(r[c.key], r)}
                 </td>)}
               </tr>
             ))}

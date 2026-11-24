@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { DataTable, type Col } from '../components/DataTable'
 import { LineChart, type Series } from '../components/LineChart'
+import { TableSparkline, TableValueBar } from '../components/TableVisuals'
 import { TenureAcross, useTenure } from '../components/Tenure'
 import { readJson, readTable } from '../lib/data'
 import { useT } from '../lib/i18n'
@@ -38,6 +40,8 @@ const agg = (): Agg => ({ area: 0, burned: new Map(), ever: 0, twice: 0, modis: 
 const add = (m: Map<number, number>, k: number, v: number) => m.set(k, (m.get(k) ?? 0) + v)
 const sumPast = (a?: Agg) => { let s = 0; if (a) for (let y = PAST[0]; y <= PAST[1]; y++) s += a.burned.get(y) ?? 0; return s }
 const pastMean = (m: Map<number, number>) => { let s = 0; for (let y = PAST[0]; y <= PAST[1]; y++) s += m.get(y) ?? 0; return s / (PAST[1] - PAST[0] + 1) }
+const burnedTrend = (a: Agg, years: number[]) => years.filter((y) => y <= PAST[1]).map((y) => y === 2024 || !a.area ? null : a.burned.get(y) ?? 0)
+const hotspotTrend = (a: Agg, years: number[]) => years.map((y) => a.viirsYtd.get(y) ?? 0)
 
 type Sel = { src: 'viirs' | 'modis'; year: number }
 function aggregate(area: Area[], hot: Hot[], key: (r: Area | Hot) => string, years: number[], sel: Sel) {
@@ -111,7 +115,10 @@ export default function Summary() {
   const rate = (n: number, ha: number) => (ha > 0 ? (n / ha) * 1e4 : null)       // per 100 km² (10,000 ha)
   const last = meta?.viirs_last?.slice(5).replace('-', '/') ?? ''
   const burnedLines: Series[] = shown.map((c) => ({ name: t(c.label), color: c.color, points: years.map((y) => ({ x: new Date(y, 6, 1), y: (cls.get(c.key)?.burned.get(y) ?? 0) / 100 })) }))
-  const viirsYears = useMemo(() => [...new Set(hot.filter((r) => r.source === 'viirs').map((r) => r.year))].sort(), [hot])
+  const viirsYears = useMemo(() => [...new Set(hot.filter((r) => r.source === 'viirs' && r.ytd).map((r) => r.year))].sort((a, b) => a - b), [hot])
+  const viirsPeriod = viirsYears.length ? `${viirsYears[0]}–${viirsYears.at(-1)}` : ''
+  const burnedLabel = t('Annual burned area, 2015–2025. The gap marks incomplete 2024 coverage.')
+  const viirsLabel = t('Annual VIIRS hotspots over the same dates each year')
   const viirsLines: Series[] = shown.map((c) => ({ name: t(c.label), color: c.color, points: viirsYears.map((y) => ({ x: new Date(y, 6, 1), y: cls.get(c.key)?.viirsYtd.get(y) ?? 0 })) }))
   const kpi = (label: string, value: string, sub: string, tip: string) => (
     <div className="min-w-0 p-3" title={tip}><dt className="muted text-xs">{label}</dt><dd className="text-xl font-semibold tabular-nums sm:text-2xl">{value}</dd><dd className="muted mt-1 text-xs">{sub}</dd></div>)
@@ -128,22 +135,27 @@ export default function Summary() {
       const b = sumPast(a)
       return { province: p, island: isl.get(p) ?? '', area_km2: a.area / 100, burned: bY(a), burned_past: pastMean(a.burned), burned_conc: b > 0 ? (100 * sumPast(c.get(p))) / b : null,
         burned_kws: b > 0 ? (100 * sumPast(k.get(p))) / b : null, modis: a.modis, density: rate(a.modis, a.area),
+        burnedTrend: burnedTrend(a, years), viirsTrend: hotspotTrend(a, viirsYears), viirsLatest: a.viirsYtd.get(viirsYears.at(-1)!) ?? 0,
         hs_conc: a.modis > 0 ? (100 * (c.get(p)?.modis ?? 0)) / a.modis : null, hs_kws: a.modis > 0 ? (100 * (k.get(p)?.modis ?? 0)) / a.modis : null, hs_dmpg: a.modis > 0 ? (100 * (d.get(p)?.modis ?? 0)) / a.modis : null }
     })
-  }, [A, H, years, sel, area])
+  }, [A, H, years, sel, area, viirsYears])
   const pc = (v: number | null) => (v == null ? '–' : `${Math.round(v)}`)
+  const maxProvDensity = Math.max(0, ...provRows.map((r) => r.density ?? 0))
+  const shareBar = (v: number | null) => <TableValueBar value={v} max={100} color="var(--s3)" />
+  const densityBar = (v: number | null, max: number, color = 'var(--s2)') => <TableValueBar value={v} max={max} color={color} />
   const provCols: Col<(typeof provRows)[number]>[] = [
     { key: 'province', label: t('Province') }, { key: 'island', label: t('Island'), fmt: (v) => String(v).replace(/^Pulau /, '') },
     { key: 'area_km2', label: basis === 'peat' ? t('Peat') : t('Land'), unit: 'km²', align: 'right', fmt: f0 },
     { key: 'burned', label: `${t('Burned')} ${yr}${incomplete ? '*' : ''}`, unit: 'ha', align: 'right', fmt: f0 },
-    { key: 'burned_past', label: `${t('Mean')} ${PAST[0]}–${PAST[1]}`, unit: t('ha/yr'), align: 'right', fmt: f0 },
-    { key: 'burned_conc', label: t('Concession'), unit: '%', align: 'right', fmt: pc },
-    { key: 'burned_kws', label: t('Forest area'), unit: '%', align: 'right', fmt: pc },
+    { key: 'burned_past', label: `${t('Mean')} ${PAST[0]}–${PAST[1]}`, unit: t('ha/yr'), align: 'right', fmt: f0, visual: (_, r) => <TableSparkline values={r.burnedTrend} label={`${r.province} · ${burnedLabel}`} color="var(--s2)" /> },
+    { key: 'burned_conc', label: t('Concession'), unit: '%', align: 'right', fmt: pc, visual: shareBar },
+    { key: 'burned_kws', label: t('Forest area'), unit: '%', align: 'right', fmt: pc, visual: shareBar },
     { key: 'modis', label: `${t('Hotspots')} ${yr}`, align: 'right', fmt: f0 },
-    { key: 'density', label: t('per 100 km²'), align: 'right', fmt: f1 },
-    { key: 'hs_conc', label: t('Concession'), unit: '%', align: 'right', fmt: pc },
-    { key: 'hs_kws', label: t('Forest area'), unit: '%', align: 'right', fmt: pc },
-    { key: 'hs_dmpg', label: 'DMPG', unit: '%', align: 'right', fmt: pc },
+    { key: 'density', label: t('per 100 km²'), align: 'right', fmt: f1, visual: (v) => densityBar(v, maxProvDensity) },
+    { key: 'hs_conc', label: t('Concession'), unit: '%', align: 'right', fmt: pc, visual: shareBar },
+    { key: 'hs_kws', label: t('Forest area'), unit: '%', align: 'right', fmt: pc, visual: shareBar },
+    { key: 'hs_dmpg', label: 'DMPG', unit: '%', align: 'right', fmt: pc, visual: shareBar },
+    ...(viirsPeriod ? [{ key: 'viirsLatest', label: t('VIIRS history'), unit: viirsPeriod, align: 'right' as const, fmt: f0, visual: (_: number, r: (typeof provRows)[number]) => <TableSparkline values={r.viirsTrend} label={`${r.province} · ${viirsLabel}, 1/1–${last}`} color="var(--s1)" /> }] : []),
   ]
 
   if (err) return <div className="card m-3 p-3 text-sm">{err}</div>
@@ -218,10 +230,10 @@ export default function Summary() {
                 <td className="py-1"><i className="chip" style={{ background: c.color }} />{t(c.label)}</td>
                 <td className="text-right tabular-nums">{f0(a.area / 100)}</td>
                 <td className="text-right tabular-nums">{f0(bY(a))}</td>
-                <td className="text-right tabular-nums">{f0(pastMean(a.burned))}</td>
-                <td className="text-right tabular-nums">{a.area > 0 ? ((100 * a.ever) / a.area).toFixed(1) : '–'}</td>
+                <td className="text-right tabular-nums">{f0(pastMean(a.burned))}<TableSparkline values={burnedTrend(a, years)} label={`${t(c.label)} · ${burnedLabel}`} color="var(--s2)" /></td>
+                <td className="text-right tabular-nums">{a.area > 0 ? ((100 * a.ever) / a.area).toFixed(1) : '–'}{shareBar(a.area > 0 ? 100 * a.ever / a.area : null)}</td>
                 <td className="text-right tabular-nums">{f0(a.modis)}</td>
-                <td className="pl-2"><div className="flex items-center gap-1"><div className="h-2.5 rounded" style={{ width: `${(70 * (d ?? 0)) / maxCls}%`, background: c.color }} /><span className="tabular-nums">{f1(d)}</span></div></td>
+                <td className="pl-2 text-right tabular-nums">{f1(d)}{densityBar(d, maxCls, c.color)}</td>
               </tr>) })}</tbody>
           </table></div>
           {incomplete && <div className="muted mt-1 text-xs">* {t('Burned area of 2026 (and 2024) is incomplete as delivered: it holds far less burned area per hotspot than the other years.')}</div>}
@@ -235,12 +247,17 @@ export default function Summary() {
         <LineChart title={`${t('VIIRS hotspots per year')}, 1/1–${last}`} series={viirsLines} fmt={(v) => f0(v)} zeroBase area={false} />
       </div>
 
-      <div className="card p-3">
-        <div className="mb-1 flex flex-wrap items-baseline gap-x-3"><span className="font-medium">{t('By province')}</span>
+      <section className="card min-w-0 p-3" aria-labelledby="fire-province-title">
+        <div className="mb-1 flex flex-wrap items-center justify-between gap-2">
+          <h3 id="fire-province-title" className="font-medium">{t('By province')}</h3>
+          {province && <Link className="btn text-xs" to={`/?${new URLSearchParams({ province })}#khg-shortlist`}>{t('View KHGs in this province')}</Link>}
+        </div>
+        <div className="mb-1">
           <span className="muted text-xs">{t('Shares in %: burned area 2015 to 2025 (first pair) and hotspots of the selected year (last three) inside concessions, forest area and DMPG villages. Burned area of 2024 and 2026 is incomplete as delivered.')}</span></div>
+        <p className="muted mb-2 text-xs">{t('Trends use a separate scale for each row. The VIIRS column shows the latest count, with the same dates compared each year.')}{viirsPeriod && ` (1/1–${last})`}</p>
         <DataTable rows={provRows} cols={provCols} rowKey="province" searchKeys={['province', 'island']} placeholder={t('Search province')} selectedKey={province || null}
           onRow={(r) => { setIsland(r.island); setProvince(province === r.province ? '' : r.province) }} initialSort={{ key: 'modis', dir: -1 }} />
-      </div>
+      </section>
       <p className="muted px-1 text-xs">{t('Every layer is laid on one equal-area grid of 30 m cells; a cell takes the class of the polygon its centre falls in, and a hotspot the class of the cell it falls in. Licences 2025 and forest area 2023 are matched to every year, so land may have had another status in earlier years. Hotspots and burns inside a licence are a spatial overlap; they do not show the cause of a fire or who is responsible.')}</p>
       {tenure && names.size > 0 && <TenureAcross data={tenure} names={names} />}
     </div>

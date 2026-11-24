@@ -17,7 +17,7 @@ import { cn } from '@/lib/utils'
 import { confChar, confName, esc, fmt, loadProfile, mon, t, tipAttr, type PD, type Profile } from '@/priority/core'
 import { popIdx, ProfileMap, XL, type MapState } from '@/priority/profileMap'
 import {
-  heatMap, landBar, landStatusHtml, lineChart, monthTable, ovColor, OVCLS, ovTable, profileFinalHtml, rankTiles, renderStrips, tenureHtml, villagesHtml, yearTable, type Ctx,
+  heatMap, landBar, landStatusHtml, lineChart, monthTable, ovColor, OVCLS, ovTable, profileFinalHtml, renderStrips, tenureHtml, villagesHtml, yearTable, type Ctx,
 } from '@/priority/render'
 import { prioQuery, readPrioQuery, usePrio, useScores } from '@/priority/state'
 import { usePriorityData } from './Priority'
@@ -114,18 +114,18 @@ export default function KhgProfile() {
         : <p className="mb-3 muted" role="status">{t('Loading comparison profile')}…</p>)}
       {profileError === code ? <p className="card" role="alert">{t('Could not load the KHG profile.')}</p>
         : !profile ? <p className="card muted" role="status">{t('Loading')}…</p>
-          : <>
-            <KhgDecisionBrief C={C} profile={profile} compare={!!other} options={{ missing: st.missing, conf: st.conf }} />
-            <div className="card">
-            {!other && <div className="pfinal" dangerouslySetInnerHTML={{ __html: profileFinalHtml(C, j) }} />}
+          : <div className="grid min-w-0 gap-3">
+            <KhgDecisionBrief C={C} profile={profile} other={other} options={{ missing: st.missing, conf: st.conf }} />
             <Kpis C={C} j={j} jc={jc} conf={st.conf} pr={profile} prc={other} />
-            <div id="khg-evidence-map" className="scroll-mt-28"><MapBlock key={code} P={P} pr={profile} prc={other} code={code} cmpName={jc != null ? P.name[jc] : null} confHigh={st.conf === 'h'} /></div>
+            <section id="khg-evidence-map" className="card min-w-0 scroll-mt-28" aria-labelledby="khg-map-title">
+              <h2 id="khg-map-title" className="mb-2 text-sm font-semibold">{t('Evidence map')}</h2>
+              <MapBlock key={code} P={P} pr={profile} prc={other} code={code} cmpName={jc != null ? P.name[jc] : null} confHigh={st.conf === 'h'} />
+            </section>
             <Mid C={C} j={j} jc={jc} pr={profile} prc={other} conf={st.conf} />
-            <details className="data"><summary>{t('Data table')}</summary>
+            <details className="card min-w-0"><summary className="font-medium">{t('Data table')}</summary>
               <div id="p-table" dangerouslySetInnerHTML={{ __html: yearTable(profile, other ? P.name[j] : null) + monthTable(profile, other ? P.name[j] : null) + (other && jc != null ? yearTable(other, P.name[jc]) + monthTable(other, P.name[jc]) : ovTable(profile)) }} />
             </details>
-            </div>
-          </>}
+          </div>}
     </div>
   )
 }
@@ -142,11 +142,11 @@ function KhgPick({ P, value, onPick, label, clearable, onClear, cmp, exclude }: 
     return [['Team KHG', team], ['KLH 337, by rank', ranked], ['Other KHG', rest]] as [string, number[]][]
   }, [P, exclude])
   return (
-    <div className="flex min-w-0 items-center gap-1.5 text-xs text-muted-foreground">
+    <div className="flex w-full min-w-0 items-center gap-1.5 text-xs text-muted-foreground sm:w-auto">
       {cmp ? <i className="inline-block size-2.5 rounded-full border-2" style={{ borderColor: 'var(--cmp)' }} /> : null}{label}
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
-          <Button variant="outline" size="sm" className="h-8 w-64 min-w-0 justify-between font-normal text-foreground" aria-label={label}><span className="truncate">{j !== undefined ? P.name[j] : t('None')}</span><ChevronsUpDown className="size-3.5 opacity-50" /></Button>
+          <Button variant="outline" size="sm" className="h-8 w-64 min-w-0 grow shrink justify-between font-normal text-foreground sm:grow-0" aria-label={label}><span className="truncate">{j !== undefined ? P.name[j] : t('None')}</span><ChevronsUpDown className="size-3.5 opacity-50" /></Button>
         </PopoverTrigger>
         <PopoverContent className="w-80 max-w-[var(--radix-popover-content-available-width)] p-0" align="end">
           <Command filter={(v, s) => (v.toLowerCase().includes(s.toLowerCase()) ? 1 : 0)}>
@@ -191,7 +191,6 @@ function Kpis({ C, j, jc, conf, pr, prc }: { C: Ctx; j: number; jc: number | nul
   }
   const L = ls(pr), Lc = ls(prc)
   const tiles: [string, string, string][] = [
-    ...rankTiles(C, j).map((x, k) => [x[0], x[1], k === 0 ? t('Rank by urgency among KLH\'s 337 (or among all scored KHG for a KHG outside the 337). The arrow is the change against the pre-registered weights.') : t('Type of action from the terciles of urgency, complexity and stake.')] as [string, string, string]),
     [`${fmt(P.peat[j], 0)}<small>km2</small>`, r.peat_gfw != null ? t('Peat: {a}% of KHG (1 km map {b})', { a: Math.round(r.peat_gfw * 100), b: r.peat_gpm != null ? Math.round(r.peat_gpm * 100) + '%' : t('n/a') }) : t('Peat area'), t("Peat area inside the KHG, from KLH's peat land map (PPEG 2026). Below it: the peat share of the KHG, and the share in the 1 km Global Peatland Map.")],
     [...hsTile(j), t('MODIS hotspots on peat this year, medium and high confidence (high only when the filter is set). Ranks are by density (per km2 of peat) and by count.')],
     [r.tma_n ? `${Math.round(r.tma_deep * 100)}<small>${t('% of days')}</small>` : t('none'), r.tma_n ? t('Water table below 0.4 m ({n} stations)', { n: r.tma_n }) : t('Water table stations'), t('SiTMAT loggers inside the KHG, 2026 season: share of days with the water table deeper than 0.4 m.')],
@@ -202,11 +201,11 @@ function Kpis({ C, j, jc, conf, pr, prc }: { C: Ctx; j: number; jc: number | nul
     ] as [string, string, string][] : []),
   ]
   const na = t('n/a')
-  const cv = (i: number) => [...rankTiles(C, i).map((x) => x[0].replace(/<small>.*<\/small>/, '')), `${fmt(P.peat[i], 0)} km2`, hsTile(i)[0], P.row[i].tma_n ? Math.round(P.row[i].tma_deep * 100) + '%' : t('none'), `${confChar[P.conf[i]]} ${t(confName[P.conf[i]])}`,
+  const cv = (i: number) => [`${fmt(P.peat[i], 0)} km2`, hsTile(i)[0], P.row[i].tma_n ? Math.round(P.row[i].tma_deep * 100) + '%' : t('none'), `${confChar[P.conf[i]]} ${t(confName[P.conf[i]])}`,
     Lc ? Lc.lic + '%' : na, Lc ? Lc.dm + '%' : na]
   const cvals = jc != null ? cv(jc) : []
   return (
-    <div className="kpis">
+    <div className={cn('kpis profile-kpis', L && 'has-tenure')}>
       {tiles.map(([v, l, tip], k) => (
         <div key={k} className="kpi" data-tip={tip}>
           <div className="v" dangerouslySetInnerHTML={{ __html: v }} /><div className="l">{l}</div>
@@ -270,7 +269,7 @@ function MapBlock({ P, pr, prc, code, cmpName, confHigh }: { P: PD; pr: Profile;
   }
   if (st.ov.mode !== 'off' && pr.ov) { const layer = st.ov.mode, present = new Set((pr.ov.s[layer === 'licence' ? 'licence_any' : layer] ? (layer === 'licence' ? OVCLS.licence.filter(([c]) => pr.ov!.s['licence_' + c]).map(([c]) => c) : pr.ov.s[layer].map((r) => r[0])) : [])); OVCLS[layer].filter(([c]) => present.has(c)).forEach(([c, l]) => legend.push(<span key={'ov' + c}><span className="sw" style={{ background: ovColor(layer, c), marginRight: 4 }} />{t(l)}</span>)) }
   return (
-    <div className="mt-3">
+    <div>
       <div className="map-tools" id="p-tools">
         <span className="lab">{t('Layers')}</span>
         {LAYER_TOGGLES.map(([k, l, ic, tip]) => <Fragment key={k}>{tg(st.layers[k], ic + esc(t(l, { n: counts })), tip, () => setS({ ...s, layers: { ...s.layers, [k]: !s.layers[k] } }), xOn)}</Fragment>)}
@@ -280,33 +279,40 @@ function MapBlock({ P, pr, prc, code, cmpName, confHigh }: { P: PD; pr: Profile;
             <Slider className="w-40" min={lo} max={hi} step={1} value={[st.now.a, st.now.b]} onValueChange={([a, b]) => setS({ ...s, now: { ...s.now, a, b } })} data-tip={t('Drag the handles to choose the months shown on the map.')} />
             <span className="hint drl">{st.now.a === lo && st.now.b === hi ? mon(lo) + ' - ' + mon(hi) : st.now.a === st.now.b ? mon(st.now.a) : mon(st.now.a) + ' - ' + mon(st.now.b)}</span>
             <Seg items={[{ v: 'mh', label: t('Medium + high') }, { v: 'h', label: t('High only') }]} value={s.now.high ? 'h' : 'mh'} onChange={(v) => setS({ ...s, now: { ...s.now, high: v === 'h' } })} />
-            <span className="lab ml-3">{t('Basemap')}</span>
-            <Seg items={[{ v: 'map', label: t('Map'), tip: t('Street map, muted.') }, { v: 'sat', label: t('Satellite'), tip: t('Esri World Imagery. Resolution and date vary by place.') }]} value={s.sat ? 'sat' : 'map'} onChange={(v) => setS({ ...s, sat: v === 'sat' })} />
           </span>
         ) : null}
-        <span className="tgrp">
-          <span className="lab hasTip" data-tip={t('The layers the prioritisation is computed from, clipped to the KHG. One at a time; the legend is below the map. While one is shown, the fire and canal layers are hidden.')}>{t('Data behind the scores')}</span>
-          <Seg items={[{ v: 'off', label: t('Off'), tip: t('Hide these layers.') }, ...Object.entries(XL).map(([k, v]) => ({ v: k, label: t(v[0]), tip: t(v[1]) }))]} value={s.x.mode} onChange={(v) => setS({ ...s, x: { ...s.x, mode: v } })} />
-          {tg(s.x.river, '<i style="background:#2f6db3;height:3px"></i>' + esc(t('Rivers and lakes')), 'Large rivers (drawn with two banks in RBI) and lakes: water to fill the canals (feasibility).', () => setS({ ...s, x: { ...s.x, river: !s.x.river } }))}
-          {tg(s.x.road, '<i style="background:#5c5a54;height:2px"></i>' + esc(t('Roads')), 'RBI roads, footpaths excluded: access to build blocks (feasibility).', () => setS({ ...s, x: { ...s.x, road: !s.x.road } }))}
-          {tg(s.x.brgm, '<i class="dot" style="background:#d1495b"></i>' + esc(t('BRGM structures')), 'Canal blocks, wells and other BRGM structures. Reported, not scored.', () => setS({ ...s, x: { ...s.x, brgm: !s.x.brgm } }))}
+        <span className="inline-flex flex-wrap items-center gap-1.5">
+          <span className="lab">{t('Basemap')}</span>
+          <Seg items={[{ v: 'map', label: t('Map'), tip: t('Street map, muted.') }, { v: 'sat', label: t('Satellite'), tip: t('Esri World Imagery. Resolution and date vary by place.') }]} value={s.sat ? 'sat' : 'map'} onChange={(v) => setS({ ...s, sat: v === 'sat' })} />
         </span>
-        {pr.ov ? (
-          <span className="tgrp">
-            <span className="lab">{t('Land status')}</span>
-            <Seg items={[['off', 'Off'], ['forest', 'Forest area'], ['feg', 'Peat function'], ['licence', 'Licences'], ['ring', '5 km ring']].map(([v, l]) => ({ v, label: t(l), tip: t(OV_TIP[v]) }))} value={s.ov.mode} onChange={(v) => setS({ ...s, ov: { ...s.ov, mode: v } })} />
-            {tg(s.ov.vil, `<i style="border-top:2px dashed ${ovColor('village', 'in')};height:0;background:none"></i>` + esc(t('Target villages')), 'Target villages of the 2026 Bluebook for peat ecosystem restoration. Hover for the village.', () => setS({ ...s, ov: { ...s.ov, vil: !s.ov.vil } }))}
-            {tg(s.ov.dmpg, `<i class="poly" style="background:${ovColor('dmpg', 'in')};opacity:.5"></i>` + esc(t('DMPG villages')), 'DMPG villages of the SiTMAT portal (838 villages in all, with programme and scheme year). Hover for the village, programme and scheme.', () => setS({ ...s, ov: { ...s.ov, dmpg: !s.ov.dmpg } }))}
-          </span>
-        ) : null}
-        {relief.length ? (
-          <span className="tgrp">
-            <span className="lab hasTip" data-tip={t('Shaded relief of the terrain models processed for this KHG (LiDAR where it covers the KHG, DeltaDTM and DEMNAS after correction). Colour shows elevation.')}>{t('DEM')}</span>
-            <Seg items={[{ v: 'off', label: t('Off') }, ...relief.map((r) => ({ v: r.dem, label: mf?.dem_labels?.[r.dem]?.[lang] ?? r.dem }))]} value={dem} onChange={setDem} />
-            {rr ? <><span className="hint">{t('Opacity')}</span><Slider className="w-28" min={0.2} max={1} step={0.05} value={[s.dem.opacity]} onValueChange={([o]) => setS({ ...s, dem: { ...s.dem, opacity: o } })} /></> : null}
-          </span>
-        ) : null}
       </div>
+      <details className="mb-2">
+        <summary className="font-medium">{t('More map layers')}</summary>
+        <div className="map-tools pt-2" id="p-extra-tools">
+          <span className="tgrp">
+            <span className="lab hasTip" data-tip={t('The layers the prioritisation is computed from, clipped to the KHG. One at a time; the legend is below the map. While one is shown, the fire and canal layers are hidden.')}>{t('Data behind the scores')}</span>
+            <Seg items={[{ v: 'off', label: t('Off'), tip: t('Hide these layers.') }, ...Object.entries(XL).map(([k, v]) => ({ v: k, label: t(v[0]), tip: t(v[1]) }))]} value={s.x.mode} onChange={(v) => setS({ ...s, x: { ...s.x, mode: v } })} />
+            {tg(s.x.river, '<i style="background:#2f6db3;height:3px"></i>' + esc(t('Rivers and lakes')), 'Large rivers (drawn with two banks in RBI) and lakes: water to fill the canals (feasibility).', () => setS({ ...s, x: { ...s.x, river: !s.x.river } }))}
+            {tg(s.x.road, '<i style="background:#5c5a54;height:2px"></i>' + esc(t('Roads')), 'RBI roads, footpaths excluded: access to build blocks (feasibility).', () => setS({ ...s, x: { ...s.x, road: !s.x.road } }))}
+            {tg(s.x.brgm, '<i class="dot" style="background:#d1495b"></i>' + esc(t('BRGM structures')), 'Canal blocks, wells and other BRGM structures. Reported, not scored.', () => setS({ ...s, x: { ...s.x, brgm: !s.x.brgm } }))}
+          </span>
+          {pr.ov ? (
+            <span className="tgrp">
+              <span className="lab">{t('Land status')}</span>
+              <Seg items={[['off', 'Off'], ['forest', 'Forest area'], ['feg', 'Peat function'], ['licence', 'Licences'], ['ring', '5 km ring']].map(([v, l]) => ({ v, label: t(l), tip: t(OV_TIP[v]) }))} value={s.ov.mode} onChange={(v) => setS({ ...s, ov: { ...s.ov, mode: v } })} />
+              {tg(s.ov.vil, `<i style="border-top:2px dashed ${ovColor('village', 'in')};height:0;background:none"></i>` + esc(t('Target villages')), 'Target villages of the 2026 Bluebook for peat ecosystem restoration. Hover for the village.', () => setS({ ...s, ov: { ...s.ov, vil: !s.ov.vil } }))}
+              {tg(s.ov.dmpg, `<i class="poly" style="background:${ovColor('dmpg', 'in')};opacity:.5"></i>` + esc(t('DMPG villages')), 'DMPG villages of the SiTMAT portal (838 villages in all, with programme and scheme year). Hover for the village, programme and scheme.', () => setS({ ...s, ov: { ...s.ov, dmpg: !s.ov.dmpg } }))}
+            </span>
+          ) : null}
+          {relief.length ? (
+            <span className="tgrp">
+              <span className="lab hasTip" data-tip={t('Shaded relief of the terrain models processed for this KHG (LiDAR where it covers the KHG, DeltaDTM and DEMNAS after correction). Colour shows elevation.')}>{t('DEM')}</span>
+              <Seg items={[{ v: 'off', label: t('Off') }, ...relief.map((r) => ({ v: r.dem, label: mf?.dem_labels?.[r.dem]?.[lang] ?? r.dem }))]} value={dem} onChange={setDem} />
+              {rr ? <><span className="hint">{t('Opacity')}</span><Slider className="w-28" min={0.2} max={1} step={0.05} value={[s.dem.opacity]} onValueChange={([o]) => setS({ ...s, dem: { ...s.dem, opacity: o } })} /></> : null}
+            </span>
+          ) : null}
+        </div>
+      </details>
       <div className={cn('p-maps', prc && 'two')}>
         <div className="p-mapc">{prc ? <div className="mcap">{P.name[P.idx.get(code)!]}</div> : null}<div ref={el1} id="p-map" /></div>
         {prc ? <div className="p-mapc"><div className="mcap"><i className="mr-1.5 inline-block size-2 rounded-full border-2 align-middle" style={{ borderColor: 'var(--cmp)' }} />{cmpName}</div><div ref={el2} id="p-map2" /></div> : null}
@@ -324,35 +330,62 @@ function Mid({ C, j, jc, pr, prc, conf }: { C: Ctx; j: number; jc: number | null
   const strips = useRef<HTMLDivElement>(null), charts = useRef<HTMLDivElement>(null)
   const [tn, setTn] = useState({ high: false, split: false })
   const [w, setW] = useState(0)
+  const [showScores, setShowScores] = useState(false)
   useEffect(() => { const ro = new ResizeObserver((e) => setW(Math.round(e[0].contentRect.width / 40))); if (charts.current) ro.observe(charts.current); return () => ro.disconnect() }, [])
-  useEffect(() => { if (strips.current) renderStrips(strips.current, C, j, jc) }, [C, j, jc, lang, theme, w])
+  useEffect(() => { if (showScores && strips.current) renderStrips(strips.current, C, j, jc) }, [C, j, jc, lang, theme, w, showScores])
   const high = conf === 'h'
   useEffect(() => {
     const host = charts.current; if (!host) return
-    host.innerHTML = ''
     const names: [string, string] | undefined = prc && jc != null ? [P.name[j], P.name[jc]] : undefined
     const sr = <T,>(f: (x: Profile) => T) => (prc ? { cmp: f(prc) as any, names } : {})
     const monthly = (p: Profile): [number, number][] => (high ? p.now_m.map((m) => [m[0], p.lay.now.filter((x) => x[2] === m[0] && x[3] && x[4]).length]) : p.now_m.map((m) => [m[0], m[1]]))
-    const hw = !!(pr.hm.length && prc && prc.hm.length)
-    const mk = (title: string, tip: string, wide?: boolean, cls?: string) => { const d = document.createElement('div'); d.className = 'ch' + (wide ? ' wide' : '') + (cls ? ' ' + cls : ''); d.innerHTML = `<h3 class="hasTip"${tipAttr(t(tip))}>${t(title)}</h3><div></div>`; host.appendChild(d); return d.lastChild as HTMLElement }
-    lineChart(mk('Burned, % of peat per year', "Burnt-area polygons, 2015 to 2026: the share of the KHG's peat burned in each year. 2026 is a partial year, drawn dashed."), { data: pr.burned, color: '--hist', partial: 2026, unit: '%', nd: 1, ticks: [2015, 2020, 2025], ...sr((x) => x.burned) })
-    lineChart(mk('Hotspots on peat per year, VIIRS', 'FIRMS VIIRS S-NPP vegetation-fire hotspots that fall on peat, nominal and high confidence, per year.'), { data: pr.hs, color: '--hist', unit: '', nd: 0, ticks: [2012, 2016, 2020, 2024], ...sr((x) => x.hs) })
+    const heatmaps = [{ name: P.name[j], hm: pr.hm }, ...(prc && jc != null ? [{ name: P.name[jc], hm: prc.hm }] : [])].filter((item) => item.hm.length)
+    host.innerHTML = '<div class="p-fire-charts"><div class="p-fire-lines"></div></div>'
+    const history = host.firstElementChild as HTMLElement
+    const fireLines = history.firstElementChild as HTMLElement
+    const mk = (parent: HTMLElement, title: string, tip: string) => {
+      const d = document.createElement('div')
+      d.className = 'ch'
+      d.innerHTML = `<h3 class="hasTip"${tipAttr(t(tip))}>${t(title)}</h3><div></div>`
+      parent.appendChild(d)
+      return d.lastChild as HTMLElement
+    }
+    lineChart(mk(fireLines, 'Burned, % of peat per year', "Burnt-area polygons, 2015 to 2026: the share of the KHG's peat burned in each year. 2026 is a partial year, drawn dashed."), { data: pr.burned, color: '--hist', partial: 2026, unit: '%', nd: 1, ticks: [2015, 2020, 2025], ...sr((x) => x.burned) })
+    lineChart(mk(fireLines, 'Hotspots on peat per year, VIIRS', 'FIRMS VIIRS S-NPP vegetation-fire hotspots that fall on peat, nominal and high confidence, per year.'), { data: pr.hs, color: '--hist', unit: '', nd: 0, ticks: [2012, 2016, 2020, 2024], ...sr((x) => x.hs) })
     const mh = Math.max(1, ...pr.now_m.map((m) => m[0]))
-    lineChart(mk('Hotspots this year by month', 'MODIS hotspots on peat in each month of this year, medium and high confidence (high only when the filter is set).', hw, 'tall'), { data: monthly(pr), ...sr(monthly), color: '--now', unit: '', nd: 0, ticks: [...[1, 4, 7, 10].filter((x) => x <= mh), ...([1, 4, 7, 10].includes(mh) ? [] : [mh])], tickFmt: (m) => mon(m), xdom: [1, mh] })
-    if (pr.hm.length) heatMap(mk('Hotspots per month and year', 'FIRMS VIIRS S-NPP hotspots on peat, nominal and high confidence (high only when the filter is set), counted per month. 2026 to the last day of data. Compared KHG share one colour scale.', hw, 'tall'), [{ name: P.name[j], hm: pr.hm }, ...(hw && jc != null ? [{ name: P.name[jc], hm: prc!.hm }] : [])], high, P.meta.page.period_now)
-    if (pr.deficit.length) lineChart(mk('Dry-season water deficit, mm', 'TerraClimate climatic water deficit summed over the dry months (June to October), in mm. About 4 km resolution, 2015 to 2021. Shown for context, not scored.'), { data: pr.deficit, color: '--ink2', unit: ' mm', nd: 0, ticks: [2015, 2018, 2021], ...sr((x) => x.deficit) })
-    if (pr.rain.length) lineChart(mk('Rain June to October, mm', 'TerraClimate rainfall in the dry months, in mm. About 4 km resolution, 2015 to 2021. Shown for context, not scored.'), { data: pr.rain, color: '--ink2', unit: ' mm', nd: 0, ticks: [2015, 2018, 2021], ...sr((x) => x.rain) })
-    { const lh = mk('Land cover', 'ESA WorldCover classes sampled at 250 m. Open land is grass, shrub, crop, built and bare. Shown for context, not scored.', false, 'full')
-      if (!pr.lc.length) lh.parentElement!.remove(); else if (prc && prc.lc.length && jc != null) { landBar(lh, pr.lc, { cap: P.name[j] }); landBar(lh, prc.lc, { cap: P.name[jc], append: true }) } else landBar(lh, pr.lc) }
+    lineChart(mk(fireLines, 'Hotspots this year by month', 'MODIS hotspots on peat in each month of this year, medium and high confidence (high only when the filter is set).'), { data: monthly(pr), ...sr(monthly), color: '--now', unit: '', nd: 0, ticks: [...[1, 4, 7, 10].filter((x) => x <= mh), ...([1, 4, 7, 10].includes(mh) ? [] : [mh])], tickFmt: (m) => mon(m), xdom: [1, mh] })
+    if (heatmaps.length) {
+      history.classList.add('has-heatmap')
+      heatMap(mk(history, 'Hotspots per month and year', 'FIRMS VIIRS S-NPP hotspots on peat, nominal and high confidence (high only when the filter is set), counted per month. 2026 to the last day of data. Compared KHG share one colour scale.'), heatmaps, high, P.meta.page.period_now)
+    }
+    const context = document.createElement('div')
+    context.className = 'p-context-charts'
+    host.appendChild(context)
+    if (pr.deficit.length) lineChart(mk(context, 'Dry-season water deficit, mm', 'TerraClimate climatic water deficit summed over the dry months (June to October), in mm. About 4 km resolution, 2015 to 2021. Shown for context, not scored.'), { data: pr.deficit, color: '--ink2', unit: ' mm', nd: 0, ticks: [2015, 2018, 2021], ...sr((x) => x.deficit) })
+    if (pr.rain.length) lineChart(mk(context, 'Rain June to October, mm', 'TerraClimate rainfall in the dry months, in mm. About 4 km resolution, 2015 to 2021. Shown for context, not scored.'), { data: pr.rain, color: '--ink2', unit: '', nd: 0, ticks: [2015, 2018, 2021], ...sr((x) => x.rain) })
+    if (pr.lc.length) {
+      const cover = mk(context, 'Land cover', 'ESA WorldCover classes sampled at 250 m. Open land is grass, shrub, crop, built and bare. Shown for context, not scored.')
+      if (prc && prc.lc.length && jc != null) {
+        landBar(cover, pr.lc, { cap: P.name[j] })
+        landBar(cover, prc.lc, { cap: P.name[jc], append: true })
+      } else landBar(cover, pr.lc)
+    }
   }, [pr, prc, j, jc, high, lang, theme, w, P])
   const ov = prc ? '' : landStatusHtml(pr), ten = prc ? '' : tenureHtml(pr, tn), vil = prc ? '' : villagesHtml(pr)
   return (
-    <div className={cn('p-mid', !ov && 'noov')}>
-      <div ref={strips} id="p-strips" className="p-strips" />
-      {ov ? <div className="p-ov" dangerouslySetInnerHTML={{ __html: ov }} /> : null}
-      {ten ? <div id="khg-evidence-tenure" className="p-ten scroll-mt-28" onChange={(e) => { const k = (e.target as HTMLInputElement).dataset.tn as 'high' | 'split'; if (k) setTn({ ...tn, [k]: (e.target as HTMLInputElement).checked }) }} dangerouslySetInnerHTML={{ __html: ten }} /> : null}
-      <div ref={charts} id="p-charts" className="charts" />
-      {vil ? <div className="p-vil" onClick={(e) => { const r = (e.target as HTMLElement).closest('tr.zr') as HTMLElement | null; if (r) { const v = pr.ov!.v[+r.dataset.i!]; dispatchEvent(new CustomEvent('khg-zoom', { detail: v[8] })) } }} dangerouslySetInnerHTML={{ __html: vil }} /> : null}
-    </div>
+    <>
+      <section className="card min-w-0" aria-labelledby="khg-fire-title">
+        <h2 id="khg-fire-title" className="mb-3 text-sm font-semibold">{t('Fire history')}</h2>
+        <div ref={charts} id="p-charts" />
+      </section>
+      {ten ? <div id="khg-evidence-tenure" className="card p-ten min-w-0 scroll-mt-28" onChange={(e) => { const k = (e.target as HTMLInputElement).dataset.tn as 'high' | 'split'; if (k) setTn({ ...tn, [k]: (e.target as HTMLInputElement).checked }) }} dangerouslySetInnerHTML={{ __html: ten }} /> : null}
+      {ov ? <div className="card p-ov min-w-0" dangerouslySetInnerHTML={{ __html: ov }} /> : null}
+      {vil ? <div className="card p-vil min-w-0" onClick={(e) => { const r = (e.target as HTMLElement).closest('tr.zr') as HTMLElement | null; if (r) { const v = pr.ov!.v[+r.dataset.i!]; dispatchEvent(new CustomEvent('khg-zoom', { detail: v[8] })) } }} dangerouslySetInnerHTML={{ __html: vil }} /> : null}
+      <details className="card min-w-0" onToggle={(event) => setShowScores(event.currentTarget.open)}>
+        <summary className="font-medium">{t('Scoring details')}</summary>
+        {!prc && <div className="pfinal" dangerouslySetInnerHTML={{ __html: profileFinalHtml(C, j) }} />}
+        <div ref={strips} id="p-strips" className="mt-2" />
+      </details>
+    </>
   )
 }

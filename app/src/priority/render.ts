@@ -2,7 +2,7 @@
 // Each takes the state it needs explicitly; the page components own the state.
 import * as d3 from 'd3'
 import {
-  confChar, confName, css, DIM_TIP, esc, finDims, fmt, fx, IND, isDark, IV_COL, IV_NOTE, IV_ORDER, IV_SHORT, mon, monf, monthsShort, pc,
+  confChar, confName, css, DIM_TIP, esc, finDims, fmt, fx, IND, isDark, IV_COL, IV_NOTE, IV_ORDER, IV_SHORT, mon, monf, monthsShort,
   SCORE_NOTE, t, tipAttr, TYPE_LABEL, TYPE_NOTE, TYPE_ORDER, TYPE_RULE, type FC, type PD, type Profile, type Weights,
 } from './core'
 
@@ -86,19 +86,10 @@ export function renderShift(svgEl: SVGSVGElement, C: Ctx, idx: number[], only337
 export function profileFinalHtml(C: Ctx, j: number) {
   const P = C.P, FC = C.FC
   if (!FC.type[j]) return `<p class="hint">${t('Not scored in the final prioritisation: no KLH peat, or below the minimum peat area and outside the 337.')}</p>`
-  const ty = FC.type[j] as string, iv = P.iv[j], M = P.meta.rule.intervention
+  const ty = FC.type[j] as string
   const ranks = P.k337[j] ? t('rank {a} of the 337 by urgency, {b} in type {ty}', { a: FC.ru337[j], b: FC.rt[j], ty }) : t('rank {a} by urgency, {b} in type {ty}', { a: FC.ru[j], b: FC.rt[j], ty })
-  const cs = P.ind.canal_share?.[j], os = P.ind.open_share?.[j]
-  return `<div class="pf-h"><span class="tyb big" style="--c:${typeVar(ty)}"${tipAttr(typeTip(ty))}>${ty}</span><div><b>${esc(t(TYPE_LABEL[ty]))}</b> ${ivBadge(P, iv)}<br><span class="hint">${esc(t(TYPE_NOTE[ty]))}</span>${iv && IV_NOTE[iv] ? `<br><span class="hint">${esc(t(IV_NOTE[iv], { a: Math.round(M.rewetting.min * 100), b: Math.round(M.revegetation.min * 100) }))} ${t('Canal-affected {a}, open or degraded {b}.', { a: cs != null ? pc(cs) : t('n/a'), b: os != null ? pc(os) : t('n/a') })}</span>` : ''}</div></div>
-    <div class="pf-d">${finDims(P).map(([k, l]) => `<div class="pf-r"><span class="hasTip"${tipAttr(dimTip(C, k))}>${esc(t(l))}</span>${finBar(C, (FC as any)[k][j], k, j)}</div>`).join('')}</div>
+  return `<div class="pf-d">${finDims(P).map(([k, l]) => `<div class="pf-r"><span class="hasTip"${tipAttr(dimTip(C, k))}>${esc(t(l))}</span>${finBar(C, (FC as any)[k][j], k, j)}</div>`).join('')}</div>
     <p class="hint">${esc(ranks)} · ${t('type kept in {p}% of weight draws', { p: P.st[j] == null ? '–' : fx((P.st[j] as number) * 100, 0) })}${P.wk[j] ? ' · ' + t('no KLH peat: whole KHG used, less reliable') : ''}${P.small[j] ? ' · ' + t('small peat area: less reliable') : ''}${FC.lowf[j] ? ' · ' + t('low feasibility') : ''}${FC.hix[j] ? ' · ' + t('high exposure') : ''}${!C.atRef && C.FC0.type[j] !== ty ? ' · ' + t('type {a} at the pre-registered weights', { a: C.FC0.type[j] }) : ''}</p>`
-}
-export function rankTiles(C: Ctx, j: number): [string, string][] {
-  const P = C.P, FC = C.FC
-  if (!FC.type[j]) return [[t('n/a'), t('Rank by urgency')], [t('n/a'), t('Type')]]
-  const d = ((C.FC0.ru[j] ?? 0) as number) - ((FC.ru[j] ?? 0) as number)
-  return [[`${P.k337[j] ? FC.ru337[j] : FC.ru[j]}<small>${!C.atRef && d ? (d > 0 ? '▲' + d : '▼' + -d) : ''}</small>`, P.k337[j] ? t('Rank of the 337 by urgency') : t('Rank by urgency')],
-    [`<span style="color:var(--ty${FC.type[j]})">${FC.type[j]}</span>`, t(TYPE_LABEL[FC.type[j] as string])]]
 }
 export function renderStrips(host: HTMLElement, C: Ctx, j: number, jc: number | null) {
   const P = C.P
@@ -267,7 +258,7 @@ export function tenureHtml(Pr: Profile, st: { high: boolean; split: boolean }) {
   const lab = (g: G) => t(TNLAB[g.ten]) + (st.split ? ` <small>${t(g.dm ? 'DMPG village land' : 'Outside DMPG')}</small>` : '')
   return `<div class="ovact ov-tenure"><div class="ovhead"><h3 class="hasTip"${tipAttr(t('Hotspots on peat per 100 km2 of peat from 1 January to {d}. Bar: 2026. Tick: mean of 2015 to 2025 over the same dates. Each point of the KHG takes one class: business licence, forest area without a licence, other land. DMPG village land can fall in any class. A comparison of rates is an association; it does not show the cause of a fire or who is responsible.', { d: end }))}>${t('Fire by land tenure')}</h3>
     <label class="chk"><input type="checkbox" data-tn="split"${st.split ? ' checked' : ''}> ${t('Split by DMPG village land')}</label> <label class="chk"><input type="checkbox" data-tn="high"${st.high ? ' checked' : ''}> ${t('High confidence only')}</label></div>`
-    + rows.map((g) => `<div class="ovrow" style="grid-template-columns:215px 1fr 118px;${g.few ? 'opacity:.55' : ''}"><span class="ovl">${lab(g)}</span><div class="ovbar" style="position:relative"${tipAttr(`<b>${t(TNLAB[g.ten])}</b><br>${fmt(g.peat, 0)} km2 ${t('of peat')}<br>2026: ${fmt(g.n26, 0)} ${t('hotspots')}<br>${t('Mean 2015 to 2025')}: ${fmt(g.past, 1)}`)}><i style="width:${(100 * g.r26) / top}%;background:${tnColor(g.ten)}"></i><b style="position:absolute;top:-2px;bottom:-2px;width:2px;left:${(100 * g.rp) / top}%;background:var(--ink)"></b></div><span class="ovv">${fmt(g.r26, g.r26 < 10 ? 1 : 0)} / ${fmt(g.rp, g.rp < 10 ? 1 : 0)}${g.ratio != null ? ` <b>×${fmt(g.ratio, g.ratio < 10 ? 1 : 0)}</b>` : ''}</span></div>`).join('')
+    + rows.map((g) => `<div class="ovrow"${g.few ? ' style="opacity:.55"' : ''}><span class="ovl">${lab(g)}</span><div class="ovbar" style="position:relative"${tipAttr(`<b>${t(TNLAB[g.ten])}</b><br>${fmt(g.peat, 0)} km2 ${t('of peat')}<br>2026: ${fmt(g.n26, 0)} ${t('hotspots')}<br>${t('Mean 2015 to 2025')}: ${fmt(g.past, 1)}`)}><i style="width:${(100 * g.r26) / top}%;background:${tnColor(g.ten)}"></i><b style="position:absolute;top:-2px;bottom:-2px;width:2px;left:${(100 * g.rp) / top}%;background:var(--ink)"></b></div><span class="ovv">${fmt(g.r26, g.r26 < 10 ? 1 : 0)} / ${fmt(g.rp, g.rp < 10 ? 1 : 0)}${g.ratio != null ? ` <b>×${fmt(g.ratio, g.ratio < 10 ? 1 : 0)}</b>` : ''}</span></div>`).join('')
     + `<p class="hint">${t('Faded rows have few detections or little peat.')} ${t('2026 / mean of 2015 to 2025, per 100 km2 of peat.')}</p></div>`
 }
 /** Land status of the peat: one bar triple per layer. Licence holders are not shown in this dashboard. */
@@ -292,14 +283,15 @@ export function landStatusHtml(Pr: Profile) {
   }
   const rowLab = [['Peat area', "Peat area in each class, from KLH's peat land map."], ['Burned peat', 'Peat that burned at least once in 2015 to 2025 (burnt-area polygons).'], ['Hotspots this year', 'MODIS hotspots on peat this year, medium and high confidence.']]
   const totTxt = [fmt(tot[0], 0) + ' km2', fmt(tot[1], 0) + ' km2', fmt(tot[2], 0)]
-  let html = `<div class="ovhead"><h3 class="hasTip"${tipAttr(t("Where the peat, the burned peat and this year's hotspots fall on each land-status layer. A segment wider in the lower bars than in the top bar means fire is over-represented in that class."))}>${t('Land status of the peat')}</h3>${Pr.ov.whole ? `<span class="hint">${t("No peat in KLH's peat map: the whole KHG is counted as peat, as in the ranking.")}</span>` : ''}</div><div class="ovgrid">`
+  let cards = ''
   groups.forEach((g) => {
     const rows = g.rows.filter((r) => (r.v[0] >= 0.002 * tot[0] || r.v[1] > 0 || r.v[2] > 0) && r.v[0] + r.v[1] + r.v[2] > 0); if (!rows.length) return
     const bars = ovSeg(g.layer, rows, tot)
-    html += `<div class="ovg"><div class="ovt hasTip"${tipAttr(t(g.tip))}>${t(g.title)}</div><div class="ovleg">${rows.map((r) => `<span><span class="sw" style="background:${ovColor(g.layer, r.c)}"></span>${t(r.l)}${tot[0] ? ` <small>${fmt((100 * r.v[0]) / tot[0], 0)}%</small>` : ''}</span>`).join('')}</div>`
+    cards += `<div class="ovg"><div class="ovt hasTip"${tipAttr(t(g.tip))}>${t(g.title)}</div><div class="ovleg">${rows.map((r) => `<span><span class="sw" style="background:${ovColor(g.layer, r.c)}"></span>${t(r.l)}${tot[0] ? ` <small>${fmt((100 * r.v[0]) / tot[0], 0)}%</small>` : ''}</span>`).join('')}</div>`
       + [0, 1, 2].map((k) => `<div class="ovrow"><span class="ovl hasTip"${tipAttr(t(rowLab[k][1]))}>${t(rowLab[k][0])}</span><div class="ovbar">${bars[k]}</div><span class="ovv">${totTxt[k]}</span></div>`).join('') + '</div>'
   })
-  return html + '</div>'
+  if (!cards) return ''
+  return `<div class="ovhead"><h3 class="hasTip"${tipAttr(t("Where the peat, the burned peat and this year's hotspots fall on each land-status layer. A segment wider in the lower bars than in the top bar means fire is over-represented in that class."))}>${t('Land status of the peat')}</h3>${Pr.ov.whole ? `<span class="hint">${t("No peat in KLH's peat map: the whole KHG is counted as peat, as in the ranking.")}</span>` : ''}</div><div class="ovgrid">${cards}</div>`
 }
 export function villagesHtml(Pr: Profile) {
   const V = Pr.ov?.v || []

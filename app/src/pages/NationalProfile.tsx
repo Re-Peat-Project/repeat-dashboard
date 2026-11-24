@@ -13,7 +13,8 @@ export default function NationalProfile() {
   const water = q.get('v') === 'water'
   const showStatus = !water && (hash === '#fire-by-land-status' || q.get('v') === 'status')
   useEffect(() => {
-    if (showStatus) document.getElementById('fire-by-land-status')?.scrollIntoView()
+    if (!water && hash === '#khg-shortlist') document.getElementById('khg-shortlist')?.scrollIntoView()
+    else if (showStatus) document.getElementById('fire-by-land-status')?.scrollIntoView()
     else window.scrollTo(0, 0)
   }, [showStatus, hash, water])
 
