@@ -1,0 +1,1 @@
+import{f as e}from"./data-kHRewCDb.js";function t(t,n){return e(t,.5,n)}export{t};
